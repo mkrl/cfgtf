@@ -84,6 +84,9 @@ jQuery(function ($) {
 			if(iswhat == "gfx") {
 				zip.file("cfg/gfx.cfg", urlToPromise(url), {binary:true});
             }
+			if(iswhat == "scripts") {
+				zip.file("custom/dustholes/scripts/surfaceproperties.txt", urlToPromise(url), {binary:true});
+            }
         });
 
         // when everything has been downloaded, we can trigger the dl
