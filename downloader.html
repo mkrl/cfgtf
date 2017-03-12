@@ -37,21 +37,12 @@
     <script type="text/javascript" src="/js/FileSaver.js"></script>
   </head>
   <body>
----
-title: "Mini app : Downloader"
-layout: default
-section: example
----
-
-<p>Tip : check the source of the page !</p>
-
+        <div class="col-md-9">
 <p>
-  This mini application let you choose the files you want in a list, download
-  them, zip them and give the result to the user.
+<h1>Download a few configs from a server, save to zip on client side.</h1>
 </p>
 <p>
-  This demo requires a recent browser, see <a href="{{site.baseurl}}/documentation/howto/write_zip.html">
-  the howto</a>.
+  This demo requires a recent browser.</a>.
 </p>
 
 
@@ -86,7 +77,7 @@ section: example
     </li>
   </ul>
 
-  <button type="submit" class="btn btn-primary">pack them !</button>
+  <button type="submit" class="btn btn-primary">Generate config</button>
 </form>
 
 <div class="progress hide" id="progress_bar">
@@ -99,3 +90,4 @@ section: example
 </div>
 
 <script type="text/javascript" src="/js/downloader.js"></script>
+</div>

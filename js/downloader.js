@@ -65,7 +65,7 @@ jQuery(function ($) {
     }
 
     if(!JSZip.support.blob) {
-        showError("This demo works only with a recent browser !");
+        showError("This only works with a good browser!");
         return;
     }
 
