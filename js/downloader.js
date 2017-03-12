@@ -75,12 +75,12 @@ jQuery(function ($) {
 
         var zip = new JSZip();
 
-        // find every checked item
+        // find every checked item for gfx
         $(this).find(":checked").each(function () {
             var $this = $(this);
             var url = $this.data("url");
             var filename = url.replace(/.*\//g, "");
-            zip.file(filename, urlToPromise(url), {binary:true});
+            zip.file("cfg/gfx.cfg", urlToPromise(url), {binary:true});
         });
 
         // when everything has been downloaded, we can trigger the dl
