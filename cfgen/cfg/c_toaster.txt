@@ -1,6 +1,6 @@
 // Unexplained crashes? Try changing mat_queue_mode to `-1'.
 // ----------------------------------------------------------------------------
-// Comanglia' frames config inspired by chris, designed to get you a large performance boost
+// Comanglia' toaster config inspired by chris, designed to get you a large performance boost
 // v1.1 | 18 December 2015 | 
 // ----------------------------------------------------------------------------
 // Launch options:

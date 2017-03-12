@@ -75,17 +75,20 @@ jQuery(function ($) {
 
         var zip = new JSZip();
 
-        // find every checked item for gfx
+        // find every checked item
         $(this).find(":checked").each(function () {
             var $this = $(this);
             var url = $this.data("url");
-            var filename = url.replace(/.*\//g, "");
-            zip.file("cfg/gfx.cfg", urlToPromise(url), {binary:true});
+			var iswhat = $this.data("name");
+            //var filename = url.replace(/.*\//g, "");   using static filenames for cfg
+			if(iswhat == "gfx") {
+				zip.file("cfg/gfx.cfg", urlToPromise(url), {binary:true});
+            }
         });
 
         // when everything has been downloaded, we can trigger the dl
         zip.generateAsync({type:"blob"}, function updateCallback(metadata) {
-            var msg = "progression : " + metadata.percent.toFixed(2) + " %";
+            var msg = "Packing : " + metadata.percent.toFixed(2) + " %";
             if(metadata.currentFile) {
                 msg += ", current file = " + metadata.currentFile;
             }
