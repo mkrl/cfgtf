@@ -55,29 +55,6 @@ fps_max 0
 //
 // Uncomment (remove the `//' from) one of the groups if you want to use them.
 // ----------------------------------------------------------------------------
-
-// Good connection
-cl_cmdrate 67
-cl_interp 0
-cl_interp_ratio 1
-cl_lagcompensation 1
-cl_pred_optimize 2
-cl_smooth 0
-cl_smoothtime 0.01
-cl_updaterate 67
-rate 60000
-
-// Bad connection
-//cl_cmdrate 40
-//cl_interp 0
-//cl_interp_ratio 2
-//cl_lagcompensation 1
-//cl_pred_optimize 2
-//cl_smooth 0
-//cl_smoothtime 0.01
-//cl_updaterate 40
-//rate 35000
-
 // ----------------------------------------------------------------------------
 // Graphical
 // ----------------------------------------------------------------------------

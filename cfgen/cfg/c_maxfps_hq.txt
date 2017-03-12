@@ -33,61 +33,6 @@ fps_max 0 // fps caps on PCs that consistently meet that cap causes horrible inp
 sv_cheats 0
 
 // ----------------------------------------------------------------------------
-// Net settings
-// ----------------------------------------------------------------------------
-// Whilst net settings perhaps aren't an integral part of an FPS config, they
-// are a fact of life in competitive TF2, and as such, they are included here.
-//
-// A common question I am asked -- what defines whether a good connection is
-// good or bad? Mostly personal preference. If you're not willing to make the
-// choice, try both and see which is better for you.
-//
-// Generally, meeting both of the following conditions would classify it as a
-// good connection:
-//
-// - Ping of <80 to the average server you join
-// - Generally no/negligible choke/loss (can be checked with `net_graph')
-//
-// There's some pretty good documentation on this here:
-// http://developer.valvesoftware.com/wiki/Source_Multiplayer_Networking
-//
-// Uncomment (remove the `//' from) one of the groups if you want to use them.
-// ----------------------------------------------------------------------------
-
-// Good connection
-cl_cmdrate 67 // The tricks to get 1.4ms lerp are placebo you're still forced to .0152
-cl_interp .033 // change to whatever you like for certain classes projectiles/popping uber/flames = .0152 hitscan = .031 on bad connections = .062
-cl_interp_ratio 1
-cl_lagcompensation 1
-cl_pred_optimize 2
-cl_smooth 0
-cl_smoothtime 0.01
-cl_updaterate 67 // The tricks to get 1.4ms lerp are placebo you're still forced to .0152
-rate 60000 // anything above 62,000 is completely useless, anything above 48,000ish is useless in HL
-
-// Competitive connection // Very few servers will have these settings
-//cl_cmdrate 128 
-//cl_interp .007 // this will likely have to be user defined .007 should be roughly the lowest interp, hit scan might do well at .0152 for this
-//cl_interp_ratio 1
-//cl_lagcompensation 1
-//cl_pred_optimize 2
-//cl_smooth 0
-//cl_smoothtime 0.01
-//cl_updaterate 128 
-//rate 90000 // With higher tick rates you have more bandwidth being used
-
-// Bad connection
-//cl_cmdrate 40
-//cl_interp 0
-//cl_interp_ratio 2
-//cl_lagcompensation 1
-//cl_pred_optimize 2
-//cl_smooth 0
-//cl_smoothtime 0.01
-//cl_updaterate 40
-//rate 35000
-
-// ----------------------------------------------------------------------------
 // Sprays
 // ----------------------------------------------------------------------------
 // Bear in mind that these are disabled on war servers due to `sv_pure 2'
