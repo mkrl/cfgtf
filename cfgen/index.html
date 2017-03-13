@@ -233,7 +233,7 @@
 		viewmodel_fov
       </label>
     </li> 
-	<!--<li>
+	<li>
       <label>
         <input type="checkbox" name="modeltoggle" checked />
         Draw viewmodels
@@ -245,40 +245,40 @@
         Use minimal viewmodels
       </label>
     </li>
-	<hr> -->
+	<hr>
 	<!--   CONNECTION SETTINGS  -->
-<!-- 	<h3>Connection settings:</h3>	
+	<h3>Connection settings:</h3>	
 	<p>Equals to "good connection" by default. Don't touch if you don't understand what it is. If you are curious, here is a <a href="http://dl.dropboxusercontent.com/u/1811521/interp.html" target="_blank">small article about connection settings</a>.</p>
 	<li>
       <label>
-        <input type="text" size="6"  id="cmdrate" value="67" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+        <input type="text" size="6"  id="cmdrate" value="67" />
 		cl_cmdrate 
       </label>
     </li> 
 	<li>
       <label>
-        <input type="text" size="6"  id="interp" value=".0152" onkeypress="return isNumberKey(event)">
+        <input type="text" size="6"  id="interp" />
 		cl_interp
       </label>
     </li> 
 	<li>
       <label>
-        <input type="text" size="6"  id="intratio" value="1" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+        <input type="text" size="6"  id="intratio" value="1" />
 		cl_interp_ratio
       </label>
     </li> 
 	<li>
       <label>
-        <input type="text" size="6"  id="uprate" value="67" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+        <input type="text" size="6"  id="uprate" value="67" />
 		cl_updaterate
       </label>
     </li> 
 	<li>
       <label>
-        <input type="text" size="6"  id="rate" value="60000" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+        <input type="text" size="6"  id="rate" value="60000" />
 		rate 
       </label>
-    </li>  -->	
+    </li> 	
  </ul>
 	<hr>	 
   <button type="submit" class="btn btn-primary">Generate config</button>

@@ -76,7 +76,7 @@ jQuery(function ($) {
         var zip = new JSZip();
 		var customs = "";
 		
-/* 		//getting form inputs
+ 		//getting form inputs
 		var v_fov = $('#v_fov').val();
 		if($("#modeltoggle").is(':checked')){
 			var drawviewmodel = "1"
@@ -92,7 +92,7 @@ jQuery(function ($) {
 		var interp = $('#interp').val();
 		var intratio = $('#intratio').val();
 		var uprate = $('#uprate').val();
-		var rate = $('#rate').val(); */
+		var rate = $('#rate').val(); 
 		
 		
         // find every checked item
