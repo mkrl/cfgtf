@@ -149,7 +149,7 @@ jQuery(function ($) {
             // see FileSaver.js
             saveAs(blob, "config.zip");
 
-            showMessage(bla + "Done! Extract this archive to your /tf folder.");
+            showMessage("Done! Extract this archive to your /tf folder.");
         }, function (e) {
             showError(e);
         });

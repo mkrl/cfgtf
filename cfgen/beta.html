@@ -51,15 +51,15 @@
           </div>
           <ul class="nav navbar-nav">
             <li >
-              <a href="https://github.com/mkrl/mkrl.github.io/issues">Report an issue</a>
+              <a href="https://github.com/mkrl/mkrl.github.io/issues" target="_blank">Report an issue</a>
             </li>
             <li>
-              <a href="http://www.teamfortress.tv/40062/a-simple-custom-config-generator">Discuss on TFTV</a>
+              <a href="http://www.teamfortress.tv/40062/a-simple-custom-config-generator" target="_blank">Discuss on TFTV</a>
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li>
-              <a href="https://github.com/mkrl/mkrl.github.io">View the source code</a>
+              <a href="https://github.com/mkrl/mkrl.github.io" target="_blank">View the source code</a>
             </li>
           </ul>
         </div>
@@ -103,7 +103,7 @@
   <ul>
     <!--   GFX  -->
     <h3>Please select your config:</h3>
-	<p>Head over to <a href="http://www.teamfortress.tv/25328/comanglias-config-fps-guide">this thread</a> to get a general idea about this.</p>
+	<p>Head over to <a href="http://www.teamfortress.tv/25328/comanglias-config-fps-guide" target="_blank">this thread</a> to get a general idea about this.</p>
     <li>
       <label>
         <input type="radio" name="gfx" id="toaster" data-name="gfx" data-url="/cfgen/cfg/c_toaster.txt" />
@@ -196,12 +196,31 @@
         broesel's Crosshair Switcher (stock, you will have to configure it yourself) <a href="http://etf2l.org/forum/customise/topic-11110/" target="_blank">[?]</a>
       </label>
     </li> 
+	<hr>
+	<!--   VIEWMODEL  -->	
+	<h3>Viewmodel settings:</h3>	
 	<li>
       <label>
-        <input type="text" id="v_fov" />
-        Viewmodel_fov 
+		viewmodel_fov 
+        <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57'> id="v_fov" value="75"/>
       </label>
     </li> 
+	<li>
+      <label>
+        <input type="checkbox" name="modeltoggle" checked />
+        Draw viewmodels
+      </label>
+    </li>	
+	<li>
+      <label>
+        <input type="checkbox" name="minmodtoggle" checked />
+        Use minimal viewmodels
+      </label>
+    </li>
+	<hr>
+	<!--   CONNECTION SETTINGS  -->	
+	<h3>Connection settings:</h3>	
+	<p>Equals to "good connection" by default. Don't touch if you don't understand what it is. If you are curious, here is a <a href="https://www.reddit.com/r/tf2/comments/1fdi64/a_small_guide_on_cl_interp_and_how_it_influences/" target="_blank>small article about connection settings</a>.</p>
 	
   </ul>
 	<hr>	
