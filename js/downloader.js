@@ -75,26 +75,6 @@ jQuery(function ($) {
 
         var zip = new JSZip();
 		var customs = "";
-		
- 		//getting form inputs
-		var v_fov = $('#v_fov').val();
-/* 		if($("#modeltoggle").is(':checked')){
-			var drawviewmodel = "1"
-			} else {
-			var drawviewmodel = "0"
-		}
-		if($("#minmodtoggle").is(':checked')){
-			var minmodel = "1"
-			} else {
-			var minmodel = "0"
-		}
-		var cmdrate = $('#cmdrate').val();
-		var interp = $('#interp').val();
-		var intratio = $('#intratio').val();
-		var uprate = $('#uprate').val();
-		var rate = $('#rate').val();  */
-		
-		
         // find every checked item
         $(this).find(":checked").each(function () {
 
@@ -148,8 +128,8 @@ jQuery(function ($) {
 		
 		//building and downloading static configs
 		zip.file("cfg/autoexec.cfg", "exec gfx\nexec binds\nexec settings\nexec network\nexec custom"); 				//autoexec
-		//zip.file("cfg/settings.cfg", "//General TF2 settings, like autoheal, min viewmodels, fastswitch, etc.\n\ntf_medigun_autoheal 1\ncl_autoreload 1\nhud_fastswitch 1\ntf_use_min_viewmodels " + minmodel +"\nr_drawviewmodel " + drawviewmodel + "\nfov_desired 90\nviewmodel_fov " + v_fov + "\n\ntf_remember_activeweapon 1\ntf_remember_lastswitched 1\nsb_dontshow_maxplayer_warning 1\ntf_spectate_pyrovision 0\nviewmodel_fov_demo 75\n\ntf_dingalingaling 1\ntf_dingaling_pitchmindmg 133\ntf_dingaling_pitchmaxdmg 66\ntf_dingaling_lasthit_volume 0.750000\ntf_dingaling_lasthit_pitchmindmg 100.000000\ntf_dingaling_lasthit_pitchmaxdmg 100.000000\n\n\ntf_training_has_prompted_for_training 1\ntf_training_has_prompted_for_offline_practice 1\ntf_training_has_prompted_for_forums 1\ntf_training_has_prompted_for_options 1\ntf_training_has_prompted_for_loadout 1\ntf_mvm_tabs_discovered 3\ntf_matchmaking_ticket_help 0\ntf_coach_request_nevershowagain 1\n\nhud_combattext_batching 1\nhud_combattext_batching_window 0.7\nds_min_streak 4.000000\nds_kill_delay 15.000000"); 	//settings
-		//zip.file("cfg/autoexec.cfg", "//Connection settings\n\ncl_cmdrate " + cmdrate + "\ncl_interp " + interp + "\ncl_interp_ratio " + intratio +"\ncl_lagcompensation 1\ncl_pred_optimize 2\ncl_smooth 0\ncl_smoothtime 0.01\ncl_updaterate " + uprate + "\nrate " + rate + "\n");  	//network
+		zip.file("cfg/settings.cfg", urlToPromise("/cfgen/cfg/settings.cfg"), {binary:true}); 	//settings
+		zip.file("cfg/network.cfg", urlToPromise("/cfgen/cfg/network.cfg"), {binary:true}); 	//network
 		zip.file("cfg/binds.cfg", urlToPromise("/cfgen/cfg/binds.cfg"), {binary:true}); 	//binds
 	
 		
@@ -167,15 +147,13 @@ jQuery(function ($) {
             // see FileSaver.js
             saveAs(blob, "config.zip");
 
-            showMessage("Done! Extract this archive to your /tf folder.");
+            showMessage("Enjoy your custom stuff!");
         }, function (e) {
             showError(e);
         });
 
         return false;
     });
-	
-	
 });
 
 // vim: set shiftwidth=4 softtabstop=4:
