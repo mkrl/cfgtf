@@ -158,7 +158,7 @@
 <p class="hide" id="result"></p>
 	<!--   LAUNCH OPTIONS  -->
 	<h3>Launch options:</h3>	
-	<input id="loptions" type="text" maxlength="255" size="50" value=""/> 
+	<input id="loptions" type="text" onClick="this.setSelectionRange(0, this.value.length)" maxlength="255" size="50" value=""/> 
 	<script>																				//launch options stuff
 	var dxlevel;
 	if(document.getElementById('toaster').checked) {
@@ -171,22 +171,7 @@
 	dxlevel = "98";
 	}
 	document.getElementById('loptions').value = "-dxlevel " + dxlevel + " -sw -w " + screen.width + " -h " + screen.height + " -console -noborder -novid"; 
-	
-	var rad = document.download_form.gfx;
-    var prev = null;
-    for(var i = 0; i < rad.length; i++) {
-        rad[i].onclick = function() {
-            (prev)? console.log(prev.id):null;
-            if(this !== prev) {
-                prev = this;
-            }
-            console.log(this.id)
-        };
-    }
-	
-//	var input = document.getElementById('loptions');
-//	input.focus();
-//	input.select();
+
 	</script>
 	<hr>
 </div>
