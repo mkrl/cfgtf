@@ -28,9 +28,9 @@
 
     <script type="text/javascript" src="/js/jszip-utils.js"></script>
 	
-	<script language=Javascript>					//allowing numbers and decimal points
+	<script language=Javascript>					
 
-       function isNumberKey(evt)
+       function isNumberKey(evt) 					//allowing numbers and decimal points
        {
           var charCode = (evt.which) ? evt.which : evt.keyCode;
           if (charCode != 46 && charCode > 31 
@@ -39,7 +39,21 @@
 
           return true;
        }
+	   	var dxlevel;								//updating dxlevel below
+		function updatedxlevel()
+		{
 
+			if(document.getElementById('toaster').checked) {
+			dxlevel = "81";
+			}else if(document.getElementById('stable').checked) {
+			dxlevel = "81";
+			}else if(document.getElementById('fine').checked) {
+			dxlevel = "91";
+			}else if(document.getElementById('fancy').checked) {
+			dxlevel = "98";
+			}
+			document.getElementById('loptions').value = "-dxlevel " + dxlevel + " -sw -w " + screen.width + " -h " + screen.height + " -console -noborder -novid"; 
+		}
     </script>
     <!--
     Mandatory in IE 6, 7, 8 and 9.
@@ -120,25 +134,25 @@
 	<p>Head over to <a href="http://www.teamfortress.tv/25328/comanglias-config-fps-guide" target="_blank">this thread</a> to get a general idea about this.</p>
     <li>
       <label>
-        <input type="radio" name="gfx" id="toaster" data-name="gfx" data-url="/cfgen/cfg/c_toaster.txt" />
+        <input type="radio" name="gfx" id="toaster" onclick="updatedxlevel();" data-name="gfx" data-url="/cfgen/cfg/c_toaster.txt" />
         Comanglia's Toaster
       </label>
     </li>
     <li>
       <label>
-        <input type="radio" name="gfx" id="stable" data-name="gfx" data-url="/cfgen/cfg/c_stability.txt" checked />
+        <input type="radio" name="gfx" id="stable" onclick="updatedxlevel();" data-name="gfx" data-url="/cfgen/cfg/c_stability.txt" checked />
         Comanglia's Stability
       </label>
     </li>
     <li>
       <label>
-        <input type="radio" name="gfx" id="fine" data-name="gfx" data-url="/cfgen/cfg/c_maxfps_hq.txt" />
+        <input type="radio" name="gfx" id="fine" onclick="updatedxlevel();" data-name="gfx" data-url="/cfgen/cfg/c_maxfps_hq.txt" />
         Comanglia's Max FPS for High Quality PCs
       </label>
     </li>
     <li>
       <label>
-        <input type="radio" name="gfx" id="fancy" data-name="gfx" data-url="/cfgen/cfg/c_cinema.txt" />
+        <input type="radio" name="gfx" id="fancy" onclick="updatedxlevel();" data-name="gfx" data-url="/cfgen/cfg/c_cinema.txt" />
         Comanglia's Cinema
       </label>
     </li>
@@ -280,19 +294,10 @@
 	<!--   LAUNCH OPTIONS  -->
 	<h3>Launch options:</h3>	
 	<input id="loptions" type="text" onClick="this.setSelectionRange(0, this.value.length)" maxlength="255" size="50" value=""/> 
-	<script>																				//launch options stuff
-	var dxlevel;
-	if(document.getElementById('toaster').checked) {
-	dxlevel = "81";
-	}else if(document.getElementById('stable').checked) {
-	dxlevel = "81";
-	}else if(document.getElementById('fine').checked) {
-	dxlevel = "91";
-	}else if(document.getElementById('fancy').checked) {
-	dxlevel = "98";
-	}
+	
+	
+	<script>																				//launch options default value
 	document.getElementById('loptions').value = "-dxlevel " + dxlevel + " -sw -w " + screen.width + " -h " + screen.height + " -console -noborder -novid"; 
-
 	</script>
 	<hr>
 </div>
