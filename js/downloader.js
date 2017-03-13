@@ -77,7 +77,7 @@ jQuery(function ($) {
 
         // find every checked item
         $(this).find(":checked").each(function () {
-			var customs = new Array("");
+//			var customs = new Array("");
             var $this = $(this);
             var url = $this.data("url");
 			var iswhat = $this.data("name");
@@ -96,7 +96,7 @@ jQuery(function ($) {
             }
 			if(iswhat == "tweaks") {
 				zip.file("cfg/tweaks/" + filename, urlToPromise(url), {binary:true});
-				customs.push("exec " + filename);
+//				customs.push("exec " + filename);
             }
         });
 		//building and downloading static configs
