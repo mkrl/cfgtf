@@ -75,6 +75,8 @@ jQuery(function ($) {
 
         var zip = new JSZip();
 		var customs = "";
+		var bla = $('#v_fov').val();
+		
         // find every checked item
         $(this).find(":checked").each(function () {
 
@@ -147,7 +149,7 @@ jQuery(function ($) {
             // see FileSaver.js
             saveAs(blob, "config.zip");
 
-            showMessage("Done! Extract this archive to your /tf folder.");
+            showMessage(bla + "Done! Extract this archive to your /tf folder.");
         }, function (e) {
             showError(e);
         });
