@@ -90,9 +90,16 @@ jQuery(function ($) {
 			if(iswhat == "vpks") {
 				zip.file("custom/" + filename, urlToPromise(url), {binary:true});
             }
+			if(iswhat == "configs") {
+				zip.file("cfg/" + filename, urlToPromise(url), {binary:true});
+            }
+			if(iswhat == "tweaks") {
+				zip.file("cfg/tweaks/" + filename, urlToPromise(url), {binary:true});
+            }
         });
 		//building static configs
-		zip.file("cfg/autoexec.cfg", "exec gfx\n"); //autoexec
+		zip.file("cfg/autoexec.cfg", "exec gfx\nexec binds\nexec custom"); //autoexec
+		zip.file("cfg/custom.cfg", "echo custom_200_stuff"); //load custom tweaks and configs 	
 		
         // when everything has been downloaded, we can trigger the dl
         zip.generateAsync({type:"blob"}, function updateCallback(metadata) {
