@@ -105,7 +105,7 @@ jQuery(function ($) {
 		var cexecs = "";																//writing custom execs to a single variable
  		customs.forEach(function(entry) {						
 			cexecs = entry + "\n";
-			} 
+			}); 
 		zip.file('cfg/custom.cfg', cexecs + 'echo "------------- Thanks for using config generator by 200 -------------"\necho "------------- Create your own custom config at https://mkrl.github.io/cfgen/ -------------"\necho "------------- Type the following to run the scripts you installed: -------------"'); //load custom tweaks and config
 		
 		
