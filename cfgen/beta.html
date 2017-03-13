@@ -27,6 +27,20 @@
     <script type="text/javascript" src="/js/jszip.js"></script>
 
     <script type="text/javascript" src="/js/jszip-utils.js"></script>
+	
+	<script language=Javascript>					//allowing numbers and decimal points
+
+       function isNumberKey(evt)
+       {
+          var charCode = (evt.which) ? evt.which : evt.keyCode;
+          if (charCode != 46 && charCode > 31 
+            && (charCode < 48 || charCode > 57))
+             return false;
+
+          return true;
+       }
+
+    </script>
     <!--
     Mandatory in IE 6, 7, 8 and 9.
     -->
@@ -202,7 +216,7 @@
 	<li>
       <label>
 		viewmodel_fov 
-        <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57'> id="v_fov" value="75"/>
+        <input type="text"  id="v_fov" value="75" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
       </label>
     </li> 
 	<li>
@@ -221,7 +235,37 @@
 	<!--   CONNECTION SETTINGS  -->	
 	<h3>Connection settings:</h3>	
 	<p>Equals to "good connection" by default. Don't touch if you don't understand what it is. If you are curious, here is a <a href="https://www.reddit.com/r/tf2/comments/1fdi64/a_small_guide_on_cl_interp_and_how_it_influences/" target="_blank">small article about connection settings</a>.</p>
-  </ul>
+	<li>
+      <label>
+		cl_cmdrate 
+        <input type="text"  id="cmdrate" value="67" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+      </label>
+    </li> 
+	<li>
+      <label>
+		cl_interp
+        <input type="text"  id="interp" value=".0152" onkeypress="return isNumberKey(event)">
+      </label>
+    </li> 
+	<li>
+      <label>
+		cl_interp_ratio
+        <input type="text"  id="intratio" value="1" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+      </label>
+    </li> 
+	<li>
+      <label>
+		cl_updaterate
+        <input type="text"  id="uprate" value="67" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+      </label>
+    </li> 
+	<li>
+      <label>
+		rate 
+        <input type="text"  id="rate" value="60000" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+      </label>
+    </li> 	
+ </ul>
 	<hr>	
   <button type="submit" class="btn btn-primary">Generate config</button>
   	<hr>
