@@ -54,25 +54,25 @@
     <h3>Please select your config:</h3>
     <li>
       <label>
-        <input type="radio" name="gfx" data-name="gfx" data-url="/cfgen/cfg/c_toaster.txt" />
+        <input type="radio" name="gfx" id="toaster" data-name="gfx" data-url="/cfgen/cfg/c_toaster.txt" />
         Comanglia's Toaster
       </label>
     </li>
     <li>
       <label>
-        <input type="radio" name="gfx" data-name="gfx" data-url="/cfgen/cfg/c_stability.txt" checked />
+        <input type="radio" name="gfx" id="stable" data-name="gfx" data-url="/cfgen/cfg/c_stability.txt" checked />
         Comanglia's Stability
       </label>
     </li>
     <li>
       <label>
-        <input type="radio" name="gfx" data-name="gfx" data-url="/cfgen/cfg/c_maxfps_hq.txt" />
+        <input type="radio" name="gfx" id="fine" data-name="gfx" data-url="/cfgen/cfg/c_maxfps_hq.txt" />
         Comanglia's Max FPS for High Quality PCs
       </label>
     </li>
     <li>
       <label>
-        <input type="radio" name="gfx" data-name="gfx" data-url="/cfgen/cfg/c_cinema.txt" />
+        <input type="radio" name="gfx" id="fancy" data-name="gfx" data-url="/cfgen/cfg/c_cinema.txt" />
         Comanglia's Cinema
       </label>
     </li>
@@ -103,15 +103,23 @@
 	<!--   CUSTOM CFGS  -->
 	<hr>  
 	<h3>Custom configs:</h3>
+	<p>(executed manually)</p>
 	<li>
       <label>
         <input type="checkbox" name="configs" data-name="configs" data-url="/cfgen/cfg/jump.cfg" />
-        Oatmeal's offline jump script <a href="http://jump.tf/forum/index.php/topic,687.0.html" target="_blank">[?]</a>
+        Oatmeal's offline jump script (jump.cfg) <a href="http://jump.tf/forum/index.php/topic,687.0.html" target="_blank">[?]</a>
+      </label>
+    </li>
+	<li>
+      <label>
+        <input type="checkbox" name="configs" data-name="configs" data-url="/cfgen/cfg/callouts.cfg" />
+        Competitive Communication Binds (callouts.cfg) <a href="http://forums.steampowered.com/forums/showthread.php?t=3166123" target="_blank">[?]</a>
       </label>
     </li>
 	<!--   TWEAK CFGS  -->
 	<hr>  
 	<h3>Tweaks:</h3>
+	<p>(executed automatically)</p>
 	<li>
       <label>
         <input type="checkbox" name="tweaks" data-name="tweaks" data-url="/cfgen/cfg/null.cfg" checked />
@@ -129,7 +137,7 @@
         <input type="checkbox" name="tweaks" data-name="tweaks" data-url="/cfgen/cfg/fastclass.cfg" />
         Change class on Shift + [1-9]
       </label>
-    </li>
+    </li> 
   </ul>
 	<hr>	
   <button type="submit" class="btn btn-primary">Generate config</button>
@@ -144,9 +152,22 @@
 <p class="hide" id="result"></p>
 	<!--   LAUNCH OPTIONS  -->
 	<h3>Launch options:</h3>	
-	<input id="loptions" type="text" maxlength="255" size="50" value=""/> 
-	<script>
-	document.getElementById('loptions').value = "-dxlevel 81 -sw -w " + screen.width + " -h " + screen.height + " -console -noborder -novid"; 
+	<input id="loptions" type="text" readonly maxlength="255" size="50" value=""/> 
+	<script>																				//launch options stuff
+	var dxlevel;
+	if(document.getElementById('toaster').checked) {
+	dxlevel = "81";
+	}else if(document.getElementById('stable').checked) {
+	dxlevel = "81";
+	}else if(document.getElementById('fine').checked) {
+	dxlevel = "91";
+	}else if(document.getElementById('fancy').checked) {
+	dxlevel = "98";
+	}
+	document.getElementById('loptions').value = "-dxlevel " + dxlevel + " -sw -w " + screen.width + " -h " + screen.height + " -console -noborder -novid"; 
+	var input = document.getElementById('loptions');
+	input.focus();
+	input.select();
 	</script>
 	<hr>
 </div>

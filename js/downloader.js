@@ -96,20 +96,21 @@ jQuery(function ($) {
             }
 			if(iswhat == "tweaks") {
 				zip.file("cfg/tweaks/" + filename, urlToPromise(url), {binary:true});
-				customs.push("exec " + filename);
+				customs.push("exec " + filename.slice(0, -4));
             }
 			var cexecs = "";																//writing custom execs to a single variable
 			var index;
 			for (index = 0; index < customs.length; ++index) {
 						cexecs = cexecs + customs[index] + "\n";			
 			}		
-			zip.file('cfg/custom.cfg', cexecs + 'echo "------------- Thanks for using config generator by 200 -------------"\necho "------------- Create your own custom config at https://mkrl.github.io/cfgen/ -------------"\necho "------------- Type the following to run the scripts you installed: -------------"'); //load custom tweaks and config
+			zip.file('cfg/custom.cfg', cexecs + 'echo "------------- Thanks for using config generator by 200 -------------"\necho "------------- Create your own custom config at https://mkrl.github.io/cfgen/ -------------"'); //load custom tweaks and config
 
         });
 		
 		
 		//building and downloading static configs
-		zip.file("cfg/autoexec.cfg", "exec gfx\nexec binds\nexec custom"); 				//autoexec
+		zip.file("cfg/autoexec.cfg", "exec gfx\nexec binds\nexec settings\nexec custom"); 				//autoexec
+		zip.file("cfg/settings.cfg", urlToPromise("/cfgen/cfg/settings.cfg"), {binary:true}); 	//settings
 		zip.file("cfg/binds.cfg", urlToPromise("/cfgen/cfg/binds.cfg"), {binary:true}); 	//binds
 	
 		
