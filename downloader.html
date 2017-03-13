@@ -39,7 +39,7 @@
   <body>
         <div class="col-md-9">
 <p>
-<h1>A quite simple config generator v.1.6</h1>
+<h1>A quite simple config generator v.1.7</h1>
 </p>
 <p>
   Download multiple files from a server, save to zip on client side. This test requires a recent browser.</a>.
@@ -134,12 +134,6 @@
   <button type="submit" class="btn btn-primary">Generate config</button>
   	<hr>
 </form>
-	<h3>Launch options:</h3>	
-	<input id="loptions" type="text" maxlength="255" size="50" value=""/> 
-	<script>
-	document.getElementById('loptions').value = "-dxlevel 81 -sw -w " + screen.width + " -h " + screen.height + "-console -noborder -novid"; 
-	</script>
-	<hr>
 	
 <div class="progress hide" id="progress_bar">
     <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
@@ -151,4 +145,13 @@
 </div>
 
 <script type="text/javascript" src="/js/downloader.js"></script>
+
+	<!--   LAUNCH OPTIONS  -->
+	<h3>Launch options:</h3>	
+	<input id="loptions" type="text" maxlength="255" size="50" value=""/> 
+	<script>
+	document.getElementById('loptions').value = "-dxlevel 81 -sw -w " + screen.width + " -h " + screen.height + " -console -noborder -novid"; 
+	</script>
+	<hr>
+
 </div>
