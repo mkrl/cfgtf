@@ -39,19 +39,19 @@
   <body>
         <div class="col-md-9">
 <p>
-<h1>A quite simple config generator v.1.3</h1>
+<h1>A quite simple config generator v.1.4</h1>
 </p>
 <p>
-  Download a single config from a server, save to zip on client side. This test requires a recent browser.</a>.
+  Download multiple files from a server, save to zip on client side. This test requires a recent browser.</a>.
 </p>
 
 
 
 <div id="downloader_application">
-  <!--   GFX  -->
-  <h3>Please select your config</h3>
   <form action="#" id="download_form">
   <ul>
+    <!--   GFX  -->
+    <h3>Please select your config:</h3>
     <li>
       <label>
         <input type="radio" name="gfx" data-name="gfx" data-url="/cfgen/cfg/c_toaster.txt" checked />
@@ -78,11 +78,26 @@
     </li>
 	  <!--   SCRIPTS  -->
 	<hr>  
-	<h3>Optional custom scripts:</h3>
+	<h3>Scripts:</h3>
 	<li>
       <label>
-        <input type="checkbox" name="scripts" data-name="scripts" data-url="/cfgen/scripts/dust.txt" />
-        dustholes
+        <input type="checkbox" name="scripts" data-name="scripts" data-url="/cfgen/scripts/surfaceproperties.txt" />
+        Remove billet hole dust
+      </label>
+    </li>
+		<!--   VPK FILES  -->
+	<hr>  
+	<h3>VPK files:</h3>
+	<li>
+      <label>
+        <input type="checkbox" name="vpks" data-name="vpks" data-url="/cfgen/vpks/explosions_muzzle_flash.vpk" />
+        No explosion smoke script <a href="http://www.teamfortress.tv/25647/no-explosion-smoke-script" target="_blank">[?]</a>
+      </label>
+    </li>
+	<li>
+      <label>
+        <input type="checkbox" name="vpks" data-name="vpks" data-url="/cfgen/vpks/headsfeet05.04.vpk" />
+        No Hats Mod (Headsfeet version) <a href="http://www.teamfortress.tv/16179/no-hats-mod" target="_blank">[?]</a>
       </label>
     </li>
   </ul>

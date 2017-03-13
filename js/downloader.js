@@ -80,15 +80,20 @@ jQuery(function ($) {
             var $this = $(this);
             var url = $this.data("url");
 			var iswhat = $this.data("name");
-            var filename = url.replace(/.*\//g, "");   //using static filenames for cfg
+            var filename = url.replace(/.*\//g, "");   //using static filenames for gfx cfg
 			if(iswhat == "gfx") {
 				zip.file("cfg/gfx.cfg", urlToPromise(url), {binary:true});
             }
 			if(iswhat == "scripts") {
-				zip.file("custom/dustholes/scripts/surfaceproperties.txt", urlToPromise(url), {binary:true});
+				zip.file("custom/runfasterpls/scripts/" + filename, urlToPromise(url), {binary:true});
+            }
+			if(iswhat == "vpks") {
+				zip.file("custom/" + filename, urlToPromise(url), {binary:true});
             }
         });
-
+		//building static configs
+		zip.file("cfg/autoexec.cfg", "exec gfx\n"); //autoexec
+		
         // when everything has been downloaded, we can trigger the dl
         zip.generateAsync({type:"blob"}, function updateCallback(metadata) {
             var msg = "Packing : " + metadata.percent.toFixed(2) + " %";
