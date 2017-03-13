@@ -296,7 +296,9 @@
 	<input id="loptions" type="text" onClick="this.setSelectionRange(0, this.value.length)" maxlength="255" size="50" value=""/> 
 	
 	
-	<script>																				//launch options default value
+	<script>	
+																			//launch options default value
+																			var dxlevel = "81";
 	document.getElementById('loptions').value = "-dxlevel " + dxlevel + " -sw -w " + screen.width + " -h " + screen.height + " -console -noborder -novid"; 
 	</script>
 	<hr>
