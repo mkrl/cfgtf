@@ -133,29 +133,7 @@ jQuery(function ($) {
 		zip.file("cfg/binds.cfg", urlToPromise("/cfgen/cfg/binds.cfg"), {binary:true}); 	//binds
 	
 		
-/*         // when everything has been downloaded, we can trigger the dl
-        zip.generateAsync({type:"blob"}, function updateCallback(metadata) {
-            var msg = "Packing : " + metadata.percent.toFixed(2) + " %";
-            if(metadata.currentFile) {
-                msg += ", current file = " + metadata.currentFile;
-            }
-            showMessage(msg);
-            updatePercent(metadata.percent|0);
-        })
-        .then(function callback(blob) {
-
-            // see FileSaver.js
-            saveAs(blob, "config.zip");
-
-            showMessage("Done! Extract this archive to your /tf folder.");
-        }, function (e) {
-            showError(e);
-        }); */
-
-        return false;
-    });
-	
-	        // when everything has been downloaded, we can trigger the dl
+        // when everything has been downloaded, we can trigger the dl
         zip.generateAsync({type:"blob"}, function updateCallback(metadata) {
             var msg = "Packing : " + metadata.percent.toFixed(2) + " %";
             if(metadata.currentFile) {
@@ -173,6 +151,11 @@ jQuery(function ($) {
         }, function (e) {
             showError(e);
         });
+
+        return false;
+    });
+	
+	
 });
 
 // vim: set shiftwidth=4 softtabstop=4:
