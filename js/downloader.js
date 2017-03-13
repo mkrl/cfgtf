@@ -80,7 +80,7 @@ jQuery(function ($) {
             var $this = $(this);
             var url = $this.data("url");
 			var iswhat = $this.data("name");
-            var filename = url.replace(/.*\//g, "");   using static filenames for cfg
+            var filename = url.replace(/.*\//g, "");   //using static filenames for cfg
 			if(iswhat == "gfx") {
 				zip.file("cfg/gfx.cfg", urlToPromise(url), {binary:true});
             }
