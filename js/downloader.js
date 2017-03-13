@@ -77,7 +77,7 @@ jQuery(function ($) {
 
         // find every checked item
         $(this).find(":checked").each(function () {
-//			var customs = new Array("");
+			var customs = new Array("");
             var $this = $(this);
             var url = $this.data("url");
 			var iswhat = $this.data("name");
@@ -96,17 +96,17 @@ jQuery(function ($) {
             }
 			if(iswhat == "tweaks") {
 				zip.file("cfg/tweaks/" + filename, urlToPromise(url), {binary:true});
-//				customs.push("exec " + filename);
+				customs.push("exec " + filename);
             }
         });
 		//building and downloading static configs
 		zip.file("cfg/autoexec.cfg", "exec gfx\nexec binds\nexec custom"); 				//autoexec
 		zip.file("cfg/binds.cfg", urlToPromise(/cfgen/cfg/binds.cfg), {binary:true}); 	//binds
-//		var cexecs = "";																//writing custom execs to a single variable
-/* 		customs.forEach(function(entry) {						
-			cexecs = "exec " + entry + "\n";
-			} */
-		zip.file('cfg/custom.cfg', '\necho "------------- Thanks for using config generator by 200 -------------"\necho "------------- Create your own custom config at https://mkrl.github.io/cfgen/ -------------"\necho "------------- Type the following to run the scripts you installed: -------------"'); //load custom tweaks and config
+		var cexecs = "";																//writing custom execs to a single variable
+ 		customs.forEach(function(entry) {						
+			cexecs = entry + "\n";
+			} 
+		zip.file('cfg/custom.cfg', cexecs + 'echo "------------- Thanks for using config generator by 200 -------------"\necho "------------- Create your own custom config at https://mkrl.github.io/cfgen/ -------------"\necho "------------- Type the following to run the scripts you installed: -------------"'); //load custom tweaks and config
 		
 		
         // when everything has been downloaded, we can trigger the dl
