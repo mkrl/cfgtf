@@ -111,14 +111,14 @@ jQuery(function ($) {
 				zip.file("cfg/sniper.cfg", urlToPromise("/cfgen/cfg/class/sniper.cfg"), {binary:true});
 				zip.file("cfg/soldier.cfg", urlToPromise("/cfgen/cfg/class/soldier.cfg"), {binary:true});
 				zip.file("cfg/spy.cfg", urlToPromise("/cfgen/cfg/class/spy.cfg"), {binary:true});
-				zip.file("cfg/crosshairswitcher/binds.cfg", urlToPromise("/cfgen/cfg/class/binds.cfg"), {binary:true});
-				zip.file("cfg/crosshairswitcher/crosshairs.cfg", urlToPromise("/cfgen/cfg/class/crosshairs.cfg"), {binary:true});
-				zip.file("cfg/crosshairswitcher/defaultcrosshair.cfg", urlToPromise("/cfgen/cfg/class/defaultcrosshair.cfg"), {binary:true});
-				zip.file("cfg/crosshairswitcher/disable.cfg", urlToPromise("/cfgen/cfg/class/disable.cfg"), {binary:true});
-				zip.file("cfg/crosshairswitcher/settings.cfg", urlToPromise("/cfgen/cfg/class/settings.cfg"), {binary:true});
-				zip.file("cfg/crosshairswitcher/shorten.cfg", urlToPromise("/cfgen/cfg/class/shorten.cfg"), {binary:true});
-				zip.file("cfg/crosshairswitcher/switcher.cfg", urlToPromise("/cfgen/cfg/class/switcher.cfg"), {binary:true});
-				zip.file("cfg/crosshairswitcher/weapons.cfg", urlToPromise("/cfgen/cfg/class/weapons.cfg"), {binary:true});
+				zip.file("cfg/crosshairswitcher/binds.cfg", urlToPromise("/cfgen/cfg/class/crosshairswitcher/binds.cfg"), {binary:true});
+				zip.file("cfg/crosshairswitcher/crosshairs.cfg", urlToPromise("/cfgen/cfg/class/crosshairswitcher/crosshairs.cfg"), {binary:true});
+				zip.file("cfg/crosshairswitcher/defaultcrosshair.cfg", urlToPromise("/cfgen/cfg/class/crosshairswitcher/defaultcrosshair.cfg"), {binary:true});
+				zip.file("cfg/crosshairswitcher/disable.cfg", urlToPromise("/cfgen/cfg/class/crosshairswitcher/disable.cfg"), {binary:true});
+				zip.file("cfg/crosshairswitcher/settings.cfg", urlToPromise("/cfgen/cfg/class/crosshairswitcher/settings.cfg"), {binary:true});
+				zip.file("cfg/crosshairswitcher/shorten.cfg", urlToPromise("/cfgen/cfg/class/crosshairswitcher/shorten.cfg"), {binary:true});
+				zip.file("cfg/crosshairswitcher/switcher.cfg", urlToPromise("/cfgen/cfg/class/crosshairswitcher/switcher.cfg"), {binary:true});
+				zip.file("cfg/crosshairswitcher/weapons.cfg", urlToPromise("/cfgen/cfg/class/crosshairswitcher/weapons.cfg"), {binary:true});
 				
             }
 			var cexecs = "";																//writing custom execs to a single variable
