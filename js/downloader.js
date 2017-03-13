@@ -127,8 +127,9 @@ jQuery(function ($) {
 		
 		
 		//building and downloading static configs
-		zip.file("cfg/autoexec.cfg", "exec gfx\nexec binds\nexec settings\nexec custom"); 				//autoexec
+		zip.file("cfg/autoexec.cfg", "exec gfx\nexec binds\nexec settings\nexec network\nexec custom"); 				//autoexec
 		zip.file("cfg/settings.cfg", urlToPromise("/cfgen/cfg/settings.cfg"), {binary:true}); 	//settings
+		zip.file("cfg/network.cfg", urlToPromise("/cfgen/cfg/network.cfg"), {binary:true}); 	//network
 		zip.file("cfg/binds.cfg", urlToPromise("/cfgen/cfg/binds.cfg"), {binary:true}); 	//binds
 	
 		
