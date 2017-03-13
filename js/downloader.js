@@ -101,7 +101,7 @@ jQuery(function ($) {
         });
 		//building and downloading static configs
 		zip.file("cfg/autoexec.cfg", "exec gfx\nexec binds\nexec custom"); 				//autoexec
-		zip.file("cfg/binds.cfg", urlToPromise(/cfgen/cfg/binds.cfg), {binary:true}); 	//binds
+		zip.file("cfg/binds.cfg", urlToPromise("/cfgen/cfg/binds.cfg"), {binary:true}); 	//binds
 		var cexecs = "";																//writing custom execs to a single variable
  		customs.forEach(function(entry) {						
 			cexecs = entry + "\n";
