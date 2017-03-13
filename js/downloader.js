@@ -119,7 +119,7 @@ jQuery(function ($) {
             }
 			if(iswhat == "tweaks") {
 				zip.file("cfg/tweaks/" + filename, urlToPromise(url), {binary:true});
-				customs = customs + "exec tweaks/" + filename.slice(0, -4) + "\n";
+				customs = customs + "exec tweaks/" + filename + "\n";
             }
 			zip.file('cfg/custom.cfg', customs + '\necho "------------- Thanks for using config generator by 200 -------------"\necho "------------- Create your own custom config at https://mkrl.github.io/cfgen/ -------------"'); //load custom tweaks and config
 
