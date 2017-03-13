@@ -138,6 +138,12 @@
         Change class on Shift + [1-9]
       </label>
     </li> 
+	<li>
+      <label>
+        <input type="checkbox" name="crosshairswitcher" data-name="tweaks" data-url="/cfgen/cfg/fastclass.cfg" />
+        broesel's Crosshair Switcher (stock, you will have to configure it yourself) <a href="http://etf2l.org/forum/customise/topic-11110/" target="_blank">[?]</a>
+      </label>
+    </li> 
   </ul>
 	<hr>	
   <button type="submit" class="btn btn-primary">Generate config</button>
@@ -165,9 +171,22 @@
 	dxlevel = "98";
 	}
 	document.getElementById('loptions').value = "-dxlevel " + dxlevel + " -sw -w " + screen.width + " -h " + screen.height + " -console -noborder -novid"; 
-	var input = document.getElementById('loptions');
-	input.focus();
-	input.select();
+	
+	var rad = document.download_form.gfx;
+    var prev = null;
+    for(var i = 0; i < rad.length; i++) {
+        rad[i].onclick = function() {
+            (prev)? console.log(prev.id):null;
+            if(this !== prev) {
+                prev = this;
+            }
+            console.log(this.id)
+        };
+    }
+	
+//	var input = document.getElementById('loptions');
+//	input.focus();
+//	input.select();
 	</script>
 	<hr>
 </div>

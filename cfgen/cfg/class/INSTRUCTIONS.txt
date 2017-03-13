@@ -1,0 +1,66 @@
++-----------------------------------+
+| broesel's Crosshair Switcher v2.4 |
++-----------------------------------+
+________________
+- INSTALLATION -
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+To install the Crosshair Switcher, extract the cfg folder to:
+
+Program Files\Steam\steamapps\<user name>\team fortress 2\tf\
+
+REMEMBER TO BACK UP YOUR CLASS CFG'S BEFORE INSTALLING THE CROSSHAIR
+SWITCHER, IF YOU HAVE ANY CLASS-SPECIFIC SCRIPTS IN THERE!
+_____________________________
+- CUSTOMIZE YOUR CROSSHAIRS -
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+open cfg/crosshairswitcher/settings.cfg and edit the aliases
+there which are following this syntax:
+
+<class>_<slot> "size; color; type; viewmodel FOV or viewmodel off"
+
+to your liking.
+
+At the top, there are 3 presets you can change and use instead of "size; ...".
+
+-------------------------------------------------------------------------------
+
+To disable crosshair-switching for a class, simply change this in the class cfg file:
+
+exec crosshairswitcher/switcher -> exec crosshairswitcher/disable
+
+When disabling the switcher, the crosshair that you specified for the primary slot
+of this class will be used.
+
+Per default, the switcher is disabled for Heavy, Engie and Spy to prevent minor,
+unavoidable glitches.
+________________________
+- CUSTOMIZE YOUR BINDS -
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+open cfg/crosshairswitcher/binds.cfg and change the binds for the functions
+listed there to your liking.
+
+Quickswitch is bound to ALT per default, change ALT to the key you normally
+use, else you can't switch slots with 1, 2 & 3 when using the quickswitch menu!
+
+I've already made a section under the default binds which sets the script to
+select slot1 on mousewheel UP, slot2 on mousewheel DOWN and slot3 with the
+upper thumbbutton.
+
+To use this alternate bind-config, simply uncomment the whole section and leave
+the upper one - it will then overwrite the default settings.
+
+If you want the lastweapon command to only switch between your primary and
+secondary weapon, uncomment the last section and change q to something else
+if you prefer a different key.
+________________________________
+- INTEGRATION OF OTHER SCRIPTS -
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+If you have any other scripts, insert them into the class cfg files
+from your backup. Note that to work correctly, they will now require
+weapon1 instead of slot1 and so on - otherwise your scripts will only
+change the slot and not the crosshair.
+
+To do this, simply do "search and replace" in your text editor and
+let it replace all instances of "slot" with "weapon".
+
+You don't have to do this for classes where you disabled the crosshair switcher.
