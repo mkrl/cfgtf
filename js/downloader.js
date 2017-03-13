@@ -103,9 +103,10 @@ jQuery(function ($) {
 		zip.file("cfg/autoexec.cfg", "exec gfx\nexec binds\nexec custom"); 				//autoexec
 		zip.file("cfg/binds.cfg", urlToPromise("/cfgen/cfg/binds.cfg"), {binary:true}); 	//binds
 		var cexecs = "";																//writing custom execs to a single variable
- 		customs.forEach(function(entry) {						
-			cexecs = entry + "\n";
-			}); 
+		var index;
+		for (index = 0; index < customs.length; ++index) {
+						cexecs = cexecs + customs[index] + "\n";			
+		}		
 		zip.file('cfg/custom.cfg', cexecs + 'echo "------------- Thanks for using config generator by 200 -------------"\necho "------------- Create your own custom config at https://mkrl.github.io/cfgen/ -------------"\necho "------------- Type the following to run the scripts you installed: -------------"'); //load custom tweaks and config
 		
 		
