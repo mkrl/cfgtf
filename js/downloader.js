@@ -77,7 +77,7 @@ jQuery(function ($) {
 
         // find every checked item
         $(this).find(":checked").each(function () {
-			var customs = new Array("");
+			var customs = "";
             var $this = $(this);
             var url = $this.data("url");
 			var iswhat = $this.data("name");
@@ -119,14 +119,9 @@ jQuery(function ($) {
             }
 			if(iswhat == "tweaks") {
 				zip.file("cfg/tweaks/" + filename, urlToPromise(url), {binary:true});
-				customs.push("exec tweaks/" + filename.slice(0, -4));
+				customs = customs + "exec tweaks/" + filename.slice(0, -4) + "\n";
             }
-			var cexecs = "";																//writing custom execs to a single variable
-			var index;
-			for (index = 0; index < customs.length; ++index) {
-						cexecs = cexecs + customs[index] + "\n";			
-			}		
-			zip.file('cfg/custom.cfg', cexecs + 'echo "------------- Thanks for using config generator by 200 -------------"\necho "------------- Create your own custom config at https://mkrl.github.io/cfgen/ -------------"'); //load custom tweaks and config
+			zip.file('cfg/custom.cfg', customs + '\necho "------------- Thanks for using config generator by 200 -------------"\necho "------------- Create your own custom config at https://mkrl.github.io/cfgen/ -------------"'); //load custom tweaks and config
 
         });
 		
