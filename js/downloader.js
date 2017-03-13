@@ -94,10 +94,6 @@ jQuery(function ($) {
 			if(iswhat == "configs") {
 				zip.file("cfg/" + filename, urlToPromise(url), {binary:true});
             }
-			if(iswhat == "tweaks") {
-				zip.file("cfg/tweaks/" + filename, urlToPromise(url), {binary:true});
-				customs.push("exec tweaks/" + filename.slice(0, -4));
-            }
 			if(iswhat == "crosshairswitcher") {
 				zip.file("cfg/demoman.cfg", urlToPromise("/cfgen/cfg/class/demoman.cfg"), {binary:true});
 				zip.file("cfg/demoplayback.cfg", urlToPromise("/cfgen/cfg/class/demoplayback.cfg"), {binary:true});
@@ -120,6 +116,10 @@ jQuery(function ($) {
 				zip.file("cfg/crosshairswitcher/switcher.cfg", urlToPromise("/cfgen/cfg/class/crosshairswitcher/switcher.cfg"), {binary:true});
 				zip.file("cfg/crosshairswitcher/weapons.cfg", urlToPromise("/cfgen/cfg/class/crosshairswitcher/weapons.cfg"), {binary:true});
 				
+            }
+			if(iswhat == "tweaks") {
+				zip.file("cfg/tweaks/" + filename, urlToPromise(url), {binary:true});
+				customs.push("exec tweaks/" + filename.slice(0, -4));
             }
 			var cexecs = "";																//writing custom execs to a single variable
 			var index;
