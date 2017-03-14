@@ -6,124 +6,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Automatically generate Team Fortress 2 configs, including custom VPKs, tweaks, crosshair switcher and more. Get a good fps boost without stupid unnecessary stuff." />
     <title>CFgen - custom TF2 config generator</title>
-
 	
 	    <!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <!-- Optional theme -->
-<!--     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css"> -->
-
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
     <!-- Latest compiled and minified JavaScript -->
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
 
+	<style>
+	#wrapper {
+		width: 60%;
+	} 
+	#wrapper .container {
+		max-width: 100%; display: block;
+	}
+	body { 
+		padding-top: 90px; 
+	}
+	.tab-content {
+		padding-top: 2%;
+	}
+		ul.nopad {
+		padding-left: 0;
+	}
+	textarea {
+	    overflow-y: scroll;
+		height: 150px;
+		resize: none;
+	}
+	</style>
+	
     <link rel="stylesheet" href="/css/pygments.css">
     <link rel="stylesheet" href="/css/main.css">
 
     <script type="text/javascript" src="/js/jszip.js"></script>
-
-    <script type="text/javascript" src="/js/jszip-utils.js"></script>
-	
- 	<script language=Javascript>					
-
-       function isNumberKey(evt) 					//allowing numbers and decimal points
-       {
-          var charCode = (evt.which) ? evt.which : evt.keyCode;
-          if (charCode != 46 && charCode > 31 
-            && (charCode < 48 || charCode > 57))
-             return false;
-
-          return true;
-       }
-	   	var dxlevel = "81";								//updating dxlevel below
-		function updatedxlevel()
-		{
-
-			if(document.getElementById('toaster').checked) {
-			dxlevel = "81";
-			}else if(document.getElementById('stable').checked) {
-			dxlevel = "81";
-			}else if(document.getElementById('fine').checked) {
-			dxlevel = "91";
-			}else if(document.getElementById('fancy').checked) {
-			dxlevel = "98";
-			}
-			document.getElementById('loptions').value = "-dxlevel " + dxlevel + " " + screenmod +" -w " + screen.width + " -h " + screen.height + " -console -noborder -novid"; 
-		}
-		var screenmod = "-full";	
-		function updatescreenmode()				//updating screen mode
-		{
-
-			if(document.getElementById('full').checked) {
-			screenmod = "-full";
-			}else if(document.getElementById('windowed').checked) {
-			screenmod = "-sw";
-			}
-			document.getElementById('loptions').value = "-dxlevel " + dxlevel + " " + screenmod +" -w " + screen.width + " -h " + screen.height + " -console -noborder -novid"; 
-		}
-		
-    </script> 
-
+    <script type="text/javascript" src="/js/jszip-utils.js"></script>	
+	<script type="text/javascript" src="/js/utility.js"></script>
     <script type="text/javascript" src="/js/FileSaver.js"></script>
+	
   </head>
   <body>
-    <div class="container">
-      <div class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="/jszip/"><strong>CF</strong>gen</a>
-          </div>
-          <ul class="nav navbar-nav">
-            <li>
-              <a href="https://github.com/mkrl/mkrl.github.io/issues" target="_blank">Report an issue</a>
-            </li>
-            <li>
-              <a href="http://www.teamfortress.tv/40062/a-simple-custom-config-generator" target="_blank">Discuss on TFTV</a>
-            </li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li>
-              <a href="https://github.com/mkrl/mkrl.github.io" target="_blank">View the source code</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      
-      <div class="row">
-        <nav class="col-md-3">
-        
-        <!-- <h4>How to ...</h4> -->
-        <ul class="nav">
-              <!-- <li><a href="/jszip/documentation/examples.html">Use JSZip</a></li> -->
-              <!-- <li><a href="/jszip/documentation/howto/read_zip.html">Read a file</a></li> -->
-              <!-- <li><a href="/jszip/documentation/howto/write_zip.html">Write a file</a></li> -->
-        </ul>
-        <!-- <h4>Examples</h4> -->
-        <ul class="nav">
-              <!-- <li><a href="/jszip/documentation/examples/read-local-file-api.html">Read local file</a></li> -->
-              <!-- <li><a href="/jszip/documentation/examples/get-binary-files-ajax.html">Read remote file</a></li> -->
-              <!-- <li><a href="/jszip/documentation/examples/download-zip-file.html">Give the user its zip file</a></li> -->
-              <!-- <li><a href="/jszip/documentation/examples/downloader.html">Mini app : downloader</a></li> -->
-        </ul>
-        
-        <!-- <ul class="nav"> -->
-          <!-- <li><a href="/jszip/documentation/faq.html">FAQ</a></li> -->
-        <!-- </ul> -->
-          <!-- <li><a href="/jszip/">installation</a></li> -->
-          </nav>
+		  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+				  <div class="container">
+				  <div class="navbar-header">
+					<a class="navbar-brand" href="/jszip/"><strong>CF</strong>gen</a>
+				  </div>
+				  <ul class="nav navbar-nav">
+					<li>
+					  <a href="https://github.com/mkrl/mkrl.github.io/issues" target="_blank">Report an issue</a>
+					</li>
+					<li>
+					  <a href="http://www.teamfortress.tv/40062/a-simple-custom-config-generator" target="_blank">Discuss on TFTV</a>
+					</li>
+				  </ul>
+				  <ul class="nav navbar-nav navbar-right">
+					<li>
+					  <a href="https://github.com/mkrl/mkrl.github.io" target="_blank">View the source code</a>
+					</li>
+				  </ul>
+				  </div>
+				</nav>
+    <div class="container-fluid">
+		<div class="row content">
+		    <div class="col-sm-3 sidenav">
+				<!-- magic -->
+			</div>
 
-  <div class="col-md-9">
+		<div class="col-sm-9">
+		<div id="wrapper">
 <p>
 <h1>A quite simple config generator</h1>
 </p>
 <p>
-  Ver. 1.0b. This should work in any modern browser.  
+  2.0.1 
 </p>
+<br>
 
   <form action="#" id="download_form">
-  <ul>
-    <!--   GFX  -->
+  <ul class="nopad">						<!-- The form submit will not work without ul, so I added another class to remove padding -->
+  
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#graphics" data-toggle="tab">Graphics</a></li>
+  <li><a href="#cfgs" data-toggle="tab">Configs</a></li>
+  <li><a href="#files" data-toggle="tab">Custom files</a></li>
+  <li><a href="#viewmod" data-toggle="tab">Viewmodels</a></li>
+  <li><a href="#network" data-toggle="tab">Network</a></li>
+  <li><a href="#binds" data-toggle="tab">Custom binds</a></li>
+
+</ul>
+<div id="myTabContent" class="tab-content">
+  <div class="tab-pane fade active in" id="graphics">
+	<!--   GFX  -->
     <h3>Please select your config:</h3>
 	<p>Head over to <a href="http://www.teamfortress.tv/25328/comanglias-config-fps-guide" target="_blank">this thread</a> to get a general idea about this.</p>
     <li>
@@ -150,48 +125,9 @@
         Comanglia's Cinema
       </label>
     </li>
-	  <!--   SCRIPTS  -->
-	<hr>  
-	<h3>Scripts:</h3>
-	<li>
-      <label>
-        <input type="checkbox" name="scripts" data-name="scripts" data-url="/cfgen/scripts/surfaceproperties.txt" />
-        Remove bullet hole dust <a href="#" data-toggle="tooltip" title="This script will remove dust particles that appear when you shoot walls or other surfaces.">[?]</a>
-      </label>
-    </li>
-		<!--   VPK FILES  -->
-	<hr>  
-	<h3>VPK files:</h3>
-	<li>
-      <label>
-        <input type="checkbox" name="vpks" data-name="vpks" data-url="/cfgen/vpks/explosions_muzzle_flash.vpk" />
-        No explosion smoke script (muzzle_minigun_starflash01) <a href="http://www.teamfortress.tv/25647/no-explosion-smoke-script" data-toggle="tooltip" title="This will make your explosions less disturbing to see by replacing all the explosive weapons' particles." target="_blank">[?]</a> 
-      </label>
-    </li>
-	<li>
-      <label>
-        <input type="checkbox" name="vpks" data-name="vpks" data-url="/cfgen/vpks/headsfeet05.04.vpk" />
-        No Hats Mod (Headsfeet version) <a href="http://www.teamfortress.tv/16179/no-hats-mod" data-toggle="tooltip" title="This mod disables all the hats except ones that replace Pyro's head and Demoman legs. Grants a decent FPS boost." target="_blank">[?]</a>
-      </label>
-    </li>
-	<!--   CUSTOM CFGS  -->
-	<hr>  
-	<h3>Custom configs:</h3>
-	<p>(executed manually)</p>
-	<li>
-      <label>
-        <input type="checkbox" name="configs" data-name="configs" data-url="/cfgen/cfg/jump.cfg" />
-        Oatmeal's offline jump script (jump.cfg) <a href="http://jump.tf/forum/index.php/topic,687.0.html" data-toggle="tooltip" title="You will be able to execute this config any time you wold like to practice offline jumping. This enables ammo and health regeneration and a teleport system. Type 'exec jump' when installed and follow instructions in your console."  target="_blank">[?]</a>
-      </label>
-    </li>
-	<li>
-      <label>
-        <input type="checkbox" name="configs" data-name="configs" data-url="/cfgen/cfg/callouts.cfg" />
-        Competitive Communication Binds (callouts.cfg) <a href="http://forums.steampowered.com/forums/showthread.php?t=3166123" data-toggle="tooltip" title="When installed, use numpad keys (if you have them) to call important picks, spies, and a lot of other stuff to your team. For detailed instructions, click here. To use, type 'exec callouts' in your console."  target="_blank">[?]</a>
-      </label>
-    </li>
+  </div>
+  <div class="tab-pane fade" id="cfgs">
 	<!--   TWEAK CFGS  -->
-	<hr>  
 	<h3>Tweaks:</h3>
 	<p>(executed automatically)</p>
 	<li>
@@ -224,7 +160,51 @@
         broesel's Crosshair Switcher (stock, you will have to configure it yourself) <a href="http://etf2l.org/forum/customise/topic-11110/" data-toggle="tooltip" title="A very nice thing to have. broesel's script lets you adjust your viewmodels and crosshairs for each class and slot individually. If installed, see CROSSHAIRSWITCHER-INSTRUCTIONS.txt in your /tf/cfg folder for instructions on how to set this up." target="_blank">[?]</a>
       </label>
     </li> 
-	<hr>
+	<!--   CUSTOM CFGS  -->
+	<hr>  
+	<h3>Custom configs:</h3>
+	<p>(executed manually)</p>
+	<li>
+      <label>
+        <input type="checkbox" name="configs" data-name="configs" data-url="/cfgen/cfg/jump.cfg" />
+        Oatmeal's offline jump script (jump.cfg) <a href="http://jump.tf/forum/index.php/topic,687.0.html" data-toggle="tooltip" title="You will be able to execute this config any time you wold like to practice offline jumping. This enables ammo and health regeneration and a teleport system. Type 'exec jump' when installed and follow instructions in your console."  target="_blank">[?]</a>
+      </label>
+    </li>
+	<li>
+      <label>
+        <input type="checkbox" name="configs" data-name="configs" data-url="/cfgen/cfg/callouts.cfg" />
+        Competitive Communication Binds (callouts.cfg) <a href="http://forums.steampowered.com/forums/showthread.php?t=3166123" data-toggle="tooltip" title="When installed, use numpad keys (if you have them) to call important picks, spies, and a lot of other stuff to your team. For detailed instructions, click here. To use, type 'exec callouts' in your console."  target="_blank">[?]</a>
+      </label>
+    </li>
+
+  </div>
+  <div class="tab-pane fade" id="files">
+	  <!--   SCRIPTS  -->
+	<h3>Scripts:</h3>
+	<li>
+      <label>
+        <input type="checkbox" name="scripts" data-name="scripts" data-url="/cfgen/scripts/surfaceproperties.txt" />
+        Remove bullet hole dust <a href="#" data-toggle="tooltip" title="This script will remove dust particles that appear when you shoot walls or other surfaces.">[?]</a>
+      </label>
+    </li>
+		<!--   VPK FILES  -->
+	<hr>  
+	<h3>VPK files:</h3>
+	<li>
+      <label>
+        <input type="checkbox" name="vpks" data-name="vpks" data-url="/cfgen/vpks/explosions_muzzle_flash.vpk" />
+        No explosion smoke script (muzzle_minigun_starflash01) <a href="http://www.teamfortress.tv/25647/no-explosion-smoke-script" data-toggle="tooltip" title="This will make your explosions less disturbing to see by replacing all the explosive weapons' particles." target="_blank">[?]</a> 
+      </label>
+    </li>
+	<li>
+      <label>
+        <input type="checkbox" name="vpks" data-name="vpks" data-url="/cfgen/vpks/headsfeet23.02.vpk" />
+        No Hats Mod (Headsfeet version) <a href="http://www.teamfortress.tv/16179/no-hats-mod" data-toggle="tooltip" title="This mod disables all the hats except ones that replace Pyro's head and Demoman legs. Grants a decent FPS boost." target="_blank">[?]</a>
+      </label>
+    </li>
+
+  </div>
+  <div class="tab-pane fade" id="viewmod">
 <!--   VIEWMODEL  -->
 	<h3>Viewmodel settings:</h3>	
 	<li>
@@ -245,10 +225,18 @@
         Use minimal viewmodels
       </label>
     </li> 
-	<hr>
+	</div>
+  <div class="tab-pane fade" id="network">
 	<!--   CONNECTION SETTINGS  -->
 	<h3>Connection settings:</h3>	
-	<p>Equals to "good connection" by default. Don't touch if you don't understand what it is. If you are curious, here is a <a href="http://dl.dropboxusercontent.com/u/1811521/interp.html" target="_blank">small article about connection settings</a>.</p>
+	<p>Equals to "good connection" by default. Don't touch if you don't understand what it is. If you are curious, here is a <a href="http://dl.dropboxusercontent.com/u/1811521/interp.html" target="_blank">small article about connection settings</a>. Very few servers can handle competitive connection so it is recommended to avoid using it.</p>
+	<br>
+	<button type="button" class="btn btn-default" onClick="autoFillGood()">Good connection</button>
+	<button type="button" class="btn btn-default" onClick="autoFillBad()">Bad connection</button>
+	<button type="button" class="btn btn-default" onClick="autoFillComp()">Competitive connection</button>
+	<br>
+	<br>
+	<br>
 	<li>
       <label>
         <input type="text" size="6"  id="cmdrate" onkeypress="return isNumberKey(event)" value="67" />
@@ -278,7 +266,22 @@
         <input type="text" size="6"  id="rate" onkeypress="return isNumberKey(event)" value="60000" />
 		rate 
       </label>
-    </li> 	
+    </li>
+	</div>
+  <div class="tab-pane fade" id="binds">
+	<!--   CUSTOM INPUT  -->
+	<h3>Custom bindings:</h3> 
+	<p>You may enter anything here, not just binds. Same formatting rules as for the TF2 console. This will be executed at the end of your config and overwrite existing binds.</p>
+	<br>
+	<textarea id="bindings" placeholder='bind kp_minus "say !add spire"' class="form-control"></textarea>
+	</div>
+</div>
+
+  
+
+
+
+	 	
  </ul>
 	<hr>	 
   <button type="submit" class="btn btn-primary">Generate config</button>
@@ -286,21 +289,39 @@
 </form>
 	
 <div class="progress hide" id="progress_bar">
+	<div class="progress progress-striped active">
     <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
     </div>
+	</div>
 </div>
 
 <p class="hide" id="result"></p>
 	<!--   LAUNCH OPTIONS  -->
 
+		<div class="panel panel-primary">
+		  <div class="panel-heading">
+			<h3 class="panel-title">Launch options:  <a href="#" data-toggle="tooltip" title="Right click on TF2 in your Steam Library, press 'Properties' and then 'Launch Options'. Copy and paste given text there." >[?]</a></h3>
+		  </div>
+		  <div class="panel-body">
+			<div class="well well-lg">
+			<input id="loptions" type="text" onClick="this.setSelectionRange(0, this.value.length)" maxlength="255" size="50" value=""/>  
+			</div>
+			<div class="well">
+			<li><input type="radio" name="launch" id="full" onclick="updatescreenmode();" checked />
+			Fullscreen
+			</li>
+			<li><input type="radio" name="launch" id="windowed" onclick="updatescreenmode();" />
+			Windowed 
+			</li>
+			</div>
+		  </div>
+		</div>
+		
+  
 
-        <input type="radio" name="launch" id="full" onclick="updatescreenmode();" checked />
-        Fullscreen
 
-        <input type="radio" name="launch" id="windowed" onclick="updatescreenmode();" />
-        Windowed   
-	<h3>Launch options:</h3>	
-	<input id="loptions" type="text" onClick="this.setSelectionRange(0, this.value.length)" maxlength="255" size="50" value=""/>  
+
+
 
 
 	
@@ -318,7 +339,7 @@
 		$('[data-toggle="tooltip"]').tooltip();   
 	});
 	</script>
-	<hr>
+</div>
 </div>
 
 <script type="text/javascript" src="/js/downloader.js"></script>

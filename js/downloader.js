@@ -94,6 +94,9 @@ jQuery(function ($) {
 		var uprate = $('#uprate').val();
 		var rate = $('#rate').val();  
 		
+		//get large piece of custom binds
+		var bindings = $('#bindings').val();  
+		
 		
         // find every checked item
         $(this).find(":checked").each(function () {
@@ -141,7 +144,7 @@ jQuery(function ($) {
 				zip.file("cfg/tweaks/" + filename, urlToPromise(url), {binary:true});
 				customs = customs + "exec tweaks/" + filename.slice(0, -4) + "\n";
             }
-			zip.file('cfg/custom.cfg', customs + '\necho "------------- Thanks for using config generator by 200 -------------"\necho "------------- Create your own custom config at https://mkrl.github.io/cfgen/ -------------"'); //load custom tweaks and config
+			zip.file('cfg/custom.cfg', '//Tweaks, custom binds, all the stuff usually goes here\n\n' + bindings + '\n\n' +customs + '\n' + '\necho "------------- Thanks for using config generator by 200 -------------"\necho "------------- Create your own custom config at https://mkrl.github.io/cfgen/ -------------"'); //load custom tweaks and config
 
         });
 		
@@ -167,7 +170,7 @@ jQuery(function ($) {
             // see FileSaver.js
             saveAs(blob, "config.zip");
 
-            showMessage(" Done! Extract this archive to your /tf folder.");
+            showMessage("Done! Extract this archive to your /tf folder.");
         }, function (e) {
             showError(e);
         });
