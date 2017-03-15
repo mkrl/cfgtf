@@ -36,6 +36,7 @@
 		height: 150px;
 		resize: none;
 	}
+
 	</style>
 	
     <link rel="stylesheet" href="/css/pygments.css">
@@ -83,7 +84,7 @@
 <h1>A quite simple config generator</h1>
 </p>
 <p>
-  2.0.1 
+  2.0.3
 </p>
 <br>
 
@@ -95,6 +96,7 @@
   <li><a href="#cfgs" data-toggle="tab">Configs</a></li>
   <li><a href="#files" data-toggle="tab">Custom files</a></li>
   <li><a href="#viewmod" data-toggle="tab">Viewmodels</a></li>
+  <li><a href="#damage" data-toggle="tab">Damage indicators</a></li>
   <li><a href="#network" data-toggle="tab">Network</a></li>
   <li><a href="#binds" data-toggle="tab">Custom binds</a></li>
 
@@ -142,7 +144,7 @@
 	<li>
       <label>
         <input type="checkbox" name="tweaks" data-name="tweaks" data-url="/cfgen/cfg/confilter.cfg" checked />
-        Remove error alerts from the console <a href="#" data-toggle="tooltip" title="Because TF2 devs are lazy (or we are going crazy with all those configs), the console gets flooded with scary red text all the time. This should help."  >[?]</a>
+        Remove particle error alerts from the console <a href="#" data-toggle="tooltip" title="Because TF2 devs are lazy (or we are going crazy with all those configs), the console gets flooded with scary red text all the time. This tiny script removes the most (probably) annoying message about particles."  >[?]</a>
       </label>
     </li>
 	<li>
@@ -238,6 +240,78 @@
         Use minimal viewmodels
       </label>
     </li> 
+	</div>
+  <div class="tab-pane fade" id="damage">
+<!--   HITSOUNDS AND PITCH AND STUFF  -->
+	<h3>Damage dealt display:</h3>	
+	<p>
+	This section allows you to control damage numbers that appear when you deal a damage to your enemy.
+	</p>
+	<br>
+	<li>
+      <label>
+        <input type="checkbox" id="comtoggle" data-name="comtoggle" data-url="" checked />
+        Enable damage numbers
+      </label>
+	</li>
+	<li>
+      <label>
+        <input type="checkbox" id="battoggle" data-name="battoggle" data-url="" checked />
+        Enable damage batching <a href="https://www.youtube.com/watch?v=1JcBC1USF0A" data-toggle="tooltip" title="This will enable damage dealt batching. This means that if you deal some damage to a target for a short period of time, all this damage will be shown together as a single number. This is useful for pyros and heavies so you don't have to count all the damage manually. Click here for a detailed video about this topic."  target="_blank">[?]</a>
+      </label>
+	</li>
+	 <li>
+      <label>
+        <input type="text" size="3"  id="batwindow" onkeypress="return isNumberKey(event)" value="0.7" />
+		Combat text window <a href="https://www.youtube.com/watch?v=xqovD6HbTeY" data-toggle="tooltip" title="Set to any value between 0 and 2. You can set a period of time when the game sums up an amount of damage dealt (see previous parameter). 0.7 is nearly recommended for hitscan weapons like shotgun, scattergun, etc. Click here for a detailed demo."  target="_blank">[?]</a>
+      </label>
+	</li>
+	<hr>
+	<h3>Combat sounds:</h3>	
+	<p>
+	Here you can control sounds that are being played when you deal a damage.
+	</p>
+	<br>
+	<li>
+      <label>
+        <input type="checkbox" id="hittoggle" data-name="hittoggle" data-url="" checked />
+        Enable hitsounds <a href="#" data-toggle="tooltip" title="Play a sound each time you deal a damage. This is very important while spamming explosives (so you know there is someone you hit without seeing) and is recommended to be enabled.">[?]</a>
+      </label>
+	</li>
+	  	<li>
+      <label>
+        <input type="text" size="3"  id="hitvol" onkeypress="return isNumberKey(event)" value="1" />
+		Hitsound volume
+      </label>
+		</li>
+	  	<li>
+      <label>
+        <input type="text" size="3"  id="hitdelay" onkeypress="return isNumberKey(event)" value="0.0" />
+		Hitsound repeat delay <a href="#" data-toggle="tooltip" title="This prevents hitsound from being played too often. If you hate that ding ding ding when you set your enemies on fire, increase this value. Set to 0 to play a sound for every instance of damage dealt.">[?]</a>
+      </label>
+		</li>
+	  	<li>
+      <label>
+		Hitsound pitch minimum: <input type="text" size="3"  id="hitmin" onkeypress="return isNumberKey(event)" value="75" />, maximum: <input type="text" size="3"  id="hitmax" onkeypress="return isNumberKey(event)" value="195" /> <a href="#" data-toggle="tooltip" title="This values represent an amount of damage to get the minimum and maximum pitch of the hitsound. Set both to 100 if you want to disable the pitch.">[?]</a>
+      </label>
+		</li> 		
+	<li>
+      <label>
+        <input type="checkbox" id="killtoggle" data-name="killtoggle" data-url="" />
+        Enable killsounds <a href="#" data-toggle="tooltip" title="Play a sound each time you kill an enemy. Set up to your personal preference.">[?]</a>
+      </label>
+    </li>
+	  	<li>
+      <label>
+        <input type="text" size="3"  id="killvol" onkeypress="return isNumberKey(event)" value="1" />
+		Killsound volume
+      </label>
+		</li>
+	  	<li>
+      <label>
+		Killsound pitch minimum: <input type="text" size="3"  id="killmin" onkeypress="return isNumberKey(event)" value="100" />, maximum: <input type="text" size="3"  id="killmax" onkeypress="return isNumberKey(event)" value="100" />
+      </label>
+		</li> 		
 	</div>
   <div class="tab-pane fade" id="network">
 	<!--   CONNECTION SETTINGS  -->
