@@ -2,6 +2,8 @@
 https://mkrl.github.io/cfgen/ */
 
 		
+
+		
 		
 		function autoFillGood() {											//automatically fill network settings
             document.getElementById('cmdrate').value = "67";   
@@ -24,6 +26,12 @@ https://mkrl.github.io/cfgen/ */
             document.getElementById('uprate').value = "128";   
             document.getElementById('rate').value = "90000";   
         }
+		
+		function updateInput(ish){													//updating FOV on user default change
+			document.getElementById("v_fov").value = ish;
+		}
+				
+		
 		
 
        function isNumberKey(evt) 					//allowing numbers and decimal points
