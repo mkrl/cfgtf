@@ -104,7 +104,7 @@
 <h1>CFGen - a Team Fortress 2 custom config generator</h1>
 </p>
 <p>
-  2.1.1
+  2.1.2
 </p>
 <br>
 
@@ -148,6 +148,12 @@
       <label>
         <input type="radio" name="gfx" id="fancy" onclick="updatedxlevel();" data-name="gfx" data-url="/cfgen/cfg/c_cinema.txt" />
         Comanglia's Cinema
+      </label>
+    </li>
+    <li>
+      <label>
+        <input type="radio" name="gfx" id="fancy" data-name="gfx" data-url="/cfgen/cfg/nogfx.txt" />
+        No thanks, I will set the graphics manually in my gfx.cfg file
       </label>
     </li>
   </div>
@@ -289,6 +295,12 @@
     </li>
 	<li>
       <label>
+		<input type="radio" name="nohats" data-name="nothing" data-url="" checked/>
+        Do not remove hats
+      </label>
+    </li>	
+	<li>
+      <label>
 		<input type="radio" name="nohats" data-name="vpks" data-url="/cfgen/vpks/headsfeet23.02.vpk"/>
         No Hats Mod (Headsfeet version) <a href="http://www.teamfortress.tv/16179/no-hats-mod" data-toggle="tooltip" title="This mod disables all the hats except ones that replace Pyro's head and Demoman legs. Grants a small FPS boost." target="_blank">[?]</a>
       </label>
@@ -326,7 +338,7 @@
 	<li>
       <label>
         <input type="text" size="6"  id="v_fov" onkeypress="return isNumberKey(event)" value="75" />
-		viewmodel_fov <a href="#" data-toggle="tooltip" title="Viewmodel field of view, aka 'how do I make my hands longer?'. Set it to higher values to make your viewmodel smaller (and your hands longer). This allows you to see more stuff, but fucks up models themselves on high values. Set it to over 180 to flip them upside down.">[?]</a>
+		viewmodel_fov
       </label>
     </li> 
 	<li>
@@ -1916,7 +1928,9 @@
 		<hr>
 		<h3>Custom hitsounds and killsounds:</h3>	
 		<p>
-		There are already a few hitsounds that you can select from in an "Advanced Options" in-game menu. Optionally, you can select a custom hit/killsound (or choose none here and use your own one).
+		There are already a few hitsounds that you can select from in an "Advanced Options" in-game menu. Optionally, you can select a custom hit/killsound (or choose none here and use your own one). 
+		<br>
+		Warning! The sound you selected will autoplay on click.
 		</p>		
 		
 		<li>
@@ -1955,7 +1969,7 @@
 						  <optgroup label="meme">	
 							<option value="/cfgen/snd/sideshow.wav" data-name="hitsound" data-url="/cfgen/snd/sideshow.wav">Sideshow dribble</option>					  
 							<option value="/cfgen/snd/hehehe.wav" data-name="hitsound" data-url="/cfgen/snd/hehehe.wav">b4nny giggle</option>					  
-							<option value="/cfgen/snd/unusual.wav" data-name="hitsound" data-url="/cfgen/snd/unusual.wav">b4nny unusual</option>					  
+							<option value="/cfgen/snd/unusual.wav" data-name="hitsound" data-url="/cfgen/snd/unusual.wav">b4nny unusual (ear warning)</option>					  
 							<option value="/cfgen/snd/gj.wav" data-name="hitsound" data-url="/cfgen/snd/gj.wav">great job</option>					  
 						  </optgroup>						  
 					</select>
@@ -2013,8 +2027,8 @@
 							<option value="/cfgen/snd/doot.wav" data-name="killsound" data-url="/cfgen/snd/doot.wav">Skull Trumpet</option>
 							<option value="/cfgen/snd/acc.wav" data-name="killsound" data-url="/cfgen/snd/acc.wav">acc-e-min</option>
 							<option value="/cfgen/snd/owhit.wav" data-name="hitsound" data-url="/cfgen/snd/acc.wav">Overwatch Hitsound</option>
-							<option value="/cfgen/snd/owkill.wav" data-name="hitsound" data-url="/cfgen/snd/acc.wav">Overwatch Killsound</option>							
-						  </optgroup>
+							<option value="/cfgen/snd/owkill.wav" data-name="hitsound" data-url="/cfgen/snd/acc.wav">Overwatch Killsound</option>
+							</optgroup>
 						  <optgroup label="Voicelines">
 							<option value="/cfgen/snd/ded.wav" data-name="killsound" data-url="/cfgen/snd/ded.wav">DED</option>
 							<option value="/cfgen/snd/nope.wav" data-name="killsound" data-url="/cfgen/snd/nope.wav">Nope.wav</option>
@@ -2024,7 +2038,7 @@
 						  <optgroup label="meme">	
 							<option value="/cfgen/snd/sideshow.wav" data-name="killsound" data-url="/cfgen/snd/sideshow.wav">Sideshow dribble</option>					  
 							<option value="/cfgen/snd/hehehe.wav" data-name="killsound" data-url="/cfgen/snd/hehehe.wav">b4nny giggle</option>					  
-							<option value="/cfgen/snd/unusual.wav" data-name="killsound" data-url="/cfgen/snd/unusual.wav">b4nny unusual</option>					  
+							<option value="/cfgen/snd/unusual.wav" data-name="killsound" data-url="/cfgen/snd/unusual.wav">b4nny unusual (ear warning)</option>					  
 							<option value="/cfgen/snd/gj.wav" data-name="killsound" data-url="/cfgen/snd/gj.wav">great job</option>					  
 						  </optgroup>						  
 					</select>
