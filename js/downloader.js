@@ -155,7 +155,7 @@ jQuery(function ($) {
 		
 		//getting switcher values (if selected)
 		
-		if($("[data-name='crosshairswitcher']").is(':checked')){
+		if($("#crosshairswitcherid").is(':checked')){
 			
 			//getting a lot of dumb vars for class settings (PLEASE remake this into any kind of loop, is way too ugly. use arrays, maybe?)
 
@@ -523,7 +523,19 @@ jQuery(function ($) {
 				zip.file("cfg/tweaks/" + filename, urlToPromise(url), {binary:true});
 				customs = customs + "exec tweaks/" + filename.slice(0, -4) + "\n";
             }
-			zip.file('cfg/custom.cfg', '//Tweaks, custom binds, all the stuff usually goes here\n\n' + bindings + '\n\n' +customs + '\n' + '\necho "------------- Thanks for using config generator by 200 -------------"\necho "------------- Create your own custom config at https://mkrl.github.io/cfgen/ -------------"'); //load custom tweaks and config
+			if(iswhat == "tweaks_fastclass") {
+				
+				
+				if($("#crosshairswitcherid").is(':checked')){	
+					zip.file("cfg/tweaks/fastclass.cfg", urlToPromise("/cfgen/cfg/fastclass_cs.cfg"), {binary:true});
+					customs = customs + "exec tweaks/fastclass.cfg\n";					
+				} else {
+					zip.file("cfg/tweaks/fastclass.cfg", urlToPromise("/cfgen/cfg/fastclass.cfg"), {binary:true});
+					customs = customs + "exec tweaks/fastclass.cfg\n";	
+				} 		
+
+            }
+			zip.file('cfg/custom.cfg', '//Tweaks, custom binds, all the stuff usually goes here\n\n\n' +customs + '\n\n' + bindings + '\necho "------------- Thanks for using config generator by 200 -------------"\necho "------------- Create your own custom config at https://mkrl.github.io/cfgen/ -------------"'); //load custom tweaks and config
 
         });
 		
