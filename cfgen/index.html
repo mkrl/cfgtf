@@ -120,6 +120,14 @@
 				<li>
 					<a href="http://www.teamfortress.tv/40062/a-simple-custom-config-generator" target="_blank">Discuss on TFTV</a>
 				</li>
+				<li class="dropdown">
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Articles<span class="caret"></span></a>
+				  <ul class="dropdown-menu" role="menu">
+					<li><a href="/cfgen/read/interp.html">Networking in Source games</a></li>
+					<li><a href="/cfgen/read/health.html">Health care</a></li>
+					<li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=154435696" target="_blank"><i class="fa fa-external-link"></i>  Scripting guide</a></li>
+				  </ul>
+				</li>
 				<li>
 					<a href="../cfgen/about/">About</a>
 				</li>
@@ -135,10 +143,10 @@
 		<div class="row content">
 			<h1>CFGen - A Team Fortress 2 custom config generator</h1>
 			<p>
-			  2.1.5.1
+			  2.1.6
 			</p>
-      <p class="alert alert-warning"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> This tool will overwrite all of your binds. It is recommended to be installed on a blank <abbr title="Team Fortress 2" class="initialism">TF2</abbr>, without any prior configs installed. Please make a backup of your <abbr title="Config" class="initialism">CFG</abbr> and custom folders before using this if you want to save your old binds. You can wipe your configs by clearing your custom and cfg folders and launching <abbr title="Team Fortress 2" class="initialism">TF2</abbr> with -autoconfig launch option. </p>
-			<p class="alert alert-info"><i class="fa fa-info-circle" aria-hidden="true"></i> This tool is intended to be used with <a href="https://en.wikipedia.org/wiki/QWERTY" class="alert-link" target="_blank">QWERTY</a> keyboards, anything else is unsupported.</p>
+      <div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><i class="fa fa-exclamation-circle" aria-hidden="true"></i> This tool will overwrite all of your binds. It is recommended to be installed on a blank <abbr title="Team Fortress 2" class="initialism">TF2</abbr>, without any prior configs installed. Please make a backup of your <abbr title="Config" class="initialism">CFG</abbr> and custom folders before using this if you want to save your old binds. You can wipe your configs by clearing your custom and cfg folders and launching <abbr title="Team Fortress 2" class="initialism">TF2</abbr> with -autoconfig launch option. </div>
+			<div class="alert alert-dismissible alert-info"><button type="button" class="close" data-dismiss="alert">&times;</button><i class="fa fa-info-circle" aria-hidden="true"></i> This tool is intended to be used with <a href="https://en.wikipedia.org/wiki/QWERTY" class="alert-link" target="_blank">QWERTY</a> keyboards, anything else is unsupported.</div>
 
 			<form action="#" id="download_form">
 				<!-- The form submit will not work without ul, so I added another class to remove padding? todo: fix this shit -->
@@ -157,12 +165,15 @@
 			  <div class="tab-pane fade active in" id="graphics">
 				<!--   GFX  -->
 			  <h3>Graphic config</h3>
-				<p class="text-muted">Determine the look and performance of your game</p>
-        <!-- <p class="text-info">Remember - you will generally always have to sacrifice something to see a performance increase. Selecting a config will show a demonstration with the pros and cons of the config explained.</p> -->
-				<!-- <li>
+				
+				<p>Determine the look and performance of your game</p>
+				<p class="text-muted">Remember - you will generally always have to sacrifice something to see a performance increase. Selecting a config will show a demonstration with the pros and cons of the config explained.</p>
+				<br>
+				<ul>
+				<li>
 					<label>
 						<input type="radio" name="gfx" id="myown" data-name="gfx" data-url="../cfgen/cfg/nogfx.txt" checked="checked" />
-						None.
+						None
 					</label>
 				</li>
 			  <li>
@@ -188,102 +199,25 @@
 			      <input type="radio" name="gfx" id="fancy" onclick="updatedxlevel();" data-name="gfx" data-url="../cfgen/cfg/c_cinema.txt" />
 			      Comanglia's Cinema
 			    </label>
-			  </li> -->
-
-        <ul class="checkbox">
-          <li>
-    				<label class="form-inline">
-    		      Graphic settings config
-    					<select class="form-control" id="gfx_selector">
-    						<option data-name="gfx" onclick="updatedxlevel();" id="myown" data-url="../cfgen/cfg/nogfx.txt" selected="selected" >None</option>
-    						<option data-name="gfx" onclick="updatedxlevel();" id="toaster" data-url="../cfgen/cfg/c_toaster.txt">Comanglia: Toaster</option>
-    						<option data-name="gfx" onclick="updatedxlevel();" id="stable" data-url="../cfgen/cfg/c_stability.txt">Comanglia: Stability</option>
-    						<option data-name="gfx" onclick="updatedxlevel();" id="fine" data-url="../cfgen/cfg/c_maxfps_hq.txt">Comanglia: Max FPS for High Quality PCs</option>
-    						<option data-name="gfx" onclick="updatedxlevel();" id="fancy" data-url="../cfgen/cfg/c_cinema.txt">Comanglia: Cinema</option>
-    						<option data-name="gfx" onclick="updatedxlevel();" id="felik" data-url="../cfgen/cfg/f_gfx.txt">Felik</option>
-    					</select>
-    		    </label>
-          </li>
-  				<li id="gfx_force_settings" style="display:none;">
-    				<label>
-    					<input type="checkbox" id="gfx_force_settings_cb" data-name="gfx_force_settings" data-url="" /> Force custom settings <a href="#" data-toggle="tooltip" title="Force certain options to be enabled or disabled, overriding the settings in the selected config."  ><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
-    				</label>
-			    </li>
-        </ul>
-
-        <!-- WIP -->
-				<div id="gfx_force_settings_panel" style="display:none;">
-        <ul>
-					<li>
-						<h4>Shadows</h4>
-						<label class="radio-inline"><input type="radio" name="shadows" data-name="nothing" data-url="" checked/> Config setting</label>
-						<label class="radio-inline"><input type="radio" name="shadows" data-name="nothing" data-url=""/> Off</label>
-						<label class="radio-inline"><input type="radio" name="shadows" data-name="nothing" data-url=""/> On</label>
-					</li>
-					<li>
-						<h4>Eyes</h4>
-						<label class="radio-inline"><input type="radio" name="eyes" data-name="nothing" data-url="" checked/> Config setting</label>
-						<label class="radio-inline"><input type="radio" name="eyes" data-name="nothing" data-url=""/> Off</label>
-						<label class="radio-inline"><input type="radio" name="eyes" data-name="nothing" data-url=""/> On</label>
-					</li>
-					<li>
-						<h4>Gibs</h4>
-						<label class="radio-inline"><input type="radio" name="gibs" data-name="nothing" data-url="" checked/> Config setting</label>
-						<label class="radio-inline"><input type="radio" name="gibs" data-name="nothing" data-url=""/> Off</label>
-						<label class="radio-inline"><input type="radio" name="gibs" data-name="nothing" data-url=""/> On</label>
-						<label class="radio-inline"><input type="radio" name="gibs" data-name="nothing" data-url=""/> On (burning) <a href="#" data-toggle="tooltip" title="If a burning player explodes, his gibs will burn. Can be quite impactful on performance."  ><i class="fa fa-question-circle-o" aria-hidden="true"></i></a></label>
-					</li>
-					<li>
-						<h4>Glow Outline</h4>
-						<label class="radio-inline"><input type="radio" name="glow" data-name="nothing" data-url="" checked/> Config setting</label>
-						<label class="radio-inline"><input type="radio" name="glow" data-name="nothing" data-url=""/> Off</label>
-						<label class="radio-inline"><input type="radio" name="glow" data-name="nothing" data-url=""/> On</label>
-					</li>
-					<li>
-						<h4>3D Skybox</h4>
-						<label class="radio-inline"><input type="radio" name="skybox" data-name="nothing" data-url="" checked/> Config setting</label>
-						<label class="radio-inline"><input type="radio" name="skybox" data-name="nothing" data-url=""/> Off</label>
-						<label class="radio-inline"><input type="radio" name="skybox" data-name="nothing" data-url=""/> On</label>
-					</li>
-        </ul>
-				</div>
-				<script>
-				$(document).ready(function(){
-					$('#gfx_force_settings_cb').change(function(){
-					    if(this.checked)
-					        $('#gfx_force_settings_panel').fadeIn(400);
-					    else
-					        $('#gfx_force_settings_panel').fadeOut(400);
-
-					});
-				});
-				</script>
-
+			  </li>
+			  <li>
+			    <label>
+			      <input type="radio" name="gfx" id="felik" onclick="updatedxlevel();" data-name="gfx" data-url="../cfgen/cfg/f_gfx.txt" />
+			      Felik's Config
+			    </label>
+			  </li>
+			  </ul>
 
 	<!-- CONFIG PREVIEWS -->
 	<script>
-	$(document).ready(function() {
-    $("#gfx_selector option").click(function() {
-        var showme = $(this).attr('id');
-
-        $("div.desc").hide();
-        $("#preview" + showme).fadeIn(400);
-    });
-	});
+		$(document).ready(function() {
+		$("input[name$='gfx']").click(function() {
+			var showme = $(this).attr('id');
+			$("div.desc").hide();
+			$("#preview" + showme).fadeIn(400);
+		});
+		});
 	</script>
-
-	<!-- <div id="previewmyown" class="desc" style="display: none;">
-				<div class="panel-body panel-default">
-					<div class="col-md-6">
-						<img class="img-responsive img-rounded" src="../img/cfg/what.jpg" alt="???????">
-					</div>
-					<div class="col-md-6">
-						<h3>Use your own settings.</h3>
-						<p>You can put your own settings into gfx.cfg, which will be located inside of your /tf/cfg folder.</p>
-						<p>Who knows what you'll put in there? Be careful...</p>
-					</div>
-				</div>
-	</div> -->
 
 	<div id="previewtoaster" class="desc" style="display: none;">
 		<div class="panel-body">
@@ -423,7 +357,7 @@
 
 				<div class="col-md-6">
 					<h3><span class="badge badge-info">New</span> Felik's config</h3>
-					<p>Similar looking to Comanglia's Stability config.</p>
+					<p>Similar looking to Comanglia's Stability config (actual pics are going to be here soon).</p>
 					<p><a href="https://gitlab.com/felik/TF2-Config/" target="_blank">Source</a></p>
           <h3 class="text-success">Pros</h3>
 					<ul class="list-group">
@@ -2296,12 +2230,18 @@
 							<option value="../cfgen/snd/doof.wav" data-name="hitsound" data-url="../cfgen/snd/doof.wav">Doof</option>
 							<option value="../cfgen/snd/pop.wav" data-name="hitsound" data-url="../cfgen/snd/pop.wav">Pop</option>
 							<option value="../cfgen/snd/fortressforever.wav" data-name="hitsound" data-url="../cfgen/snd/fortressforever.wav">Fortress Forever hitsound</option>
+							<option value="../cfgen/snd/crunchy_8-bit.wav" data-name="hitsound" data-url="../cfgen/snd/crunchy_8-bit.wav">Crunchy 8-bit</option>
+							<option value="../cfgen/snd/8-bit.wav" data-name="hitsound" data-url="../cfgen/snd/8-bit.wav">8-bit</option>
 						  </optgroup>
 						  <optgroup label="Voicelines">
+							<option value="../cfgen/snd/impressive_q3.wav" data-name="hitsound" data-url="../cfgen/snd/impressive_q3.wav">Quake - Impressive</option>
+							<option value="../cfgen/snd/q3_excellent.wav" data-name="hitsound" data-url="../cfgen/snd/q3_excellent.wav">Quake - Excellent</option>
+							<option value="../cfgen/snd/ded.wav" data-name="hitsound" data-url="../cfgen/snd/ded.wav">DED</option>
 							<option value="../cfgen/snd/ded.wav" data-name="hitsound" data-url="../cfgen/snd/ded.wav">DED</option>
 							<option value="../cfgen/snd/nope.wav" data-name="hitsound" data-url="../cfgen/snd/nope.wav">Nope.wav</option>
 							<option value="../cfgen/snd/see.wav" data-name="hitsound" data-url="../cfgen/snd/see.wav">SEE?</option>
 							<option value="../cfgen/snd/huh.wav" data-name="hitsound" data-url="../cfgen/snd/huh.wav">Pyro honk</option>
+							<option value="../cfgen/snd/mk_toasty.wav" data-name="hitsound" data-url="../cfgen/snd/mk_toasty.wav">Mortal Kombat - toasty</option>
 						  </optgroup>
 						  <optgroup label="meme">
 							<option value="../cfgen/snd/sideshow.wav" data-name="hitsound" data-url="../cfgen/snd/sideshow.wav">Sideshow dribble</option>
@@ -2375,12 +2315,17 @@
 							<option value="../cfgen/snd/doof.wav" data-name="killsound" data-url="../cfgen/snd/doof.wav">Doof</option>
 							<option value="../cfgen/snd/pop.wav" data-name="killsound" data-url="../cfgen/snd/pop.wav">Pop</option>
 							<option value="../cfgen/snd/fortressforever.wav" data-name="killsound" data-url="../cfgen/snd/fortressforever.wav">Fortress Forever hitsound</option>
+							<option value="../cfgen/snd/crunchy_8-bit.wav" data-name="killsound" data-url="../cfgen/snd/crunchy_8-bit.wav">Crunchy 8-bit</option>
+							<option value="../cfgen/snd/8-bit.wav" data-name="killsound" data-url="../cfgen/snd/8-bit.wav">8-bit</option>
 							</optgroup>
 						  <optgroup label="Voicelines">
+							<option value="../cfgen/snd/impressive_q3.wav" data-name="killsound" data-url="../cfgen/snd/impressive_q3.wav">Quake - Impressive</option>
+							<option value="../cfgen/snd/q3_excellent.wav" data-name="killsound" data-url="../cfgen/snd/q3_excellent.wav">Quake - Excellent</option>
 							<option value="../cfgen/snd/ded.wav" data-name="killsound" data-url="../cfgen/snd/ded.wav">DED</option>
 							<option value="../cfgen/snd/nope.wav" data-name="killsound" data-url="../cfgen/snd/nope.wav">Nope.wav</option>
 							<option value="../cfgen/snd/see.wav" data-name="killsound" data-url="../cfgen/snd/see.wav">SEE?</option>
 							<option value="../cfgen/snd/huh.wav" data-name="killsound" data-url="../cfgen/snd/huh.wav">Pyro honk</option>
+							<option value="../cfgen/snd/mk_toasty.wav" data-name="killsound" data-url="../cfgen/snd/mk_toasty.wav">Mortal Kombat - toasty</option>
 						  </optgroup>
 						  <optgroup label="meme">
 							<option value="../cfgen/snd/sideshow.wav" data-name="killsound" data-url="../cfgen/snd/sideshow.wav">Sideshow dribble</option>
@@ -2428,10 +2373,10 @@
   <div class="tab-pane fade" id="network">
 	<!--   CONNECTION SETTINGS  -->
 	<h3>Connection settings</h3>
-	<p>Set to "good connection" by default. Don't touch if you don't understand what this is. If you are curious, here is a <a href="http://dl.dropboxusercontent.com/u/1811521/interp.html" target="_blank">small article about connection settings</a>.</p>
+	<p>Set to "good connection" by default. Don't touch if you don't understand what this is. If you are curious, here is a <a href="/cfgen/read/interp.html" target="_blank">small article about connection settings</a>.</p>
 	<br>
 	<div class="btn-group" role="group" aria-label="Connection type">
-	<button type="button" class="btn btn-default" onclick="autoFillGood()"><span class="badge badge-default">Default</span> Good connection</button>
+	<button type="button" class="btn btn-default" onclick="autoFillGood()">Good connection</button>
 	<button type="button" class="btn btn-default" onclick="autoFillBad()">Bad connection</button>
 	<button type="button" class="btn btn-default" onclick="autoFillComp()">Competitive connection</button>
 	</div>

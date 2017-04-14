@@ -47,29 +47,31 @@ https://mkrl.github.io/cfgen/ */
 		function updatedxlevel()
 		{
 
-			// if(document.getElementById('toaster').checked) {
-			// dxlevel = "81";
-			// }else if(document.getElementById('stable').checked) {
-			// dxlevel = "81";
-			// }else if(document.getElementById('fine').checked) {
-			// dxlevel = "91";
-			// }else if(document.getElementById('fancy')) {
-			// dxlevel = "98";
-			// }
+			if(document.getElementById('toaster').checked) {
+			dxlevel = "81";
+			}else if(document.getElementById('stable').checked) {
+			dxlevel = "81";
+			}else if(document.getElementById('fine').checked) {
+			dxlevel = "91";
+			}else if(document.getElementById('fancy').checked) {
+			dxlevel = "98";
+			}else if(document.getElementById('felik').checked) {
+			dxlevel = "81";
+			}
 
 			// reffering by index is gross
-			var gfxsel = document.getElementById("gfx_selector");
-			if(gfxsel.selectedIndex == 0) {
-			dxlevel = "81";
-			}else if(gfxsel.selectedIndex == 1) { // toaster
-			dxlevel = "81";
-			}else if(gfxsel.selectedIndex == 2) { // stable
-			dxlevel = "81";
-			}else if(gfxsel.selectedIndex == 3) { // fine
-			dxlevel = "91";
-			}else if(gfxsel.selectedIndex == 4) { // fancy
-			dxlevel = "98";
-			}
+			//var gfxsel = document.getElementById("gfx_selector");
+			// if(gfxsel.selectedIndex == 0) {
+			// dxlevel = "81";
+			// }else if(gfxsel.selectedIndex == 1) { // toaster
+			// dxlevel = "81";
+			// }else if(gfxsel.selectedIndex == 2) { // stable
+			// dxlevel = "81";
+			// }else if(gfxsel.selectedIndex == 3) { // fine
+			// dxlevel = "91";
+			// }else if(gfxsel.selectedIndex == 4) { // fancy
+			// dxlevel = "98";
+			// }
 
 
 			document.getElementById('loptions').value = "-dxlevel " + dxlevel + " " + screenmod +" -w " + screen.width + " -h " + screen.height + " -console -noborder -novid";
