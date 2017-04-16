@@ -6,20 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Automatically generate Team Fortress 2 configs, including custom VPKs, tweaks, crosshair switcher and more. Get a good fps boost without stupid unnecessary stuff." />
     <title>CFGen - Custom TF2 config generator</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
     <!-- Latest compiled and minified CSS -->
 		<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <!-- Latest compiled and minified JavaScript -->
+    <link id="css_file_light" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" >
+    <link id="css_file_dark" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/darkly/bootstrap.min.css" rel="stylesheet" integrity="sha384-S7YMK1xjUjSpEnF4P8hPUcgjXYLZKK3fQW1j5ObLSl787II9p8RO9XUGehRmKsxd" crossorigin="anonymous" disabled>
 
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" integrity="sha384-dNpIIXE8U05kAbPhy3G1cz+yZmTzA6CY8Vg/u2L9xRnHjJiAK76m2BIEaSEV+/aU" crossorigin="anonymous">
 
 		<style>
 			#overlay {
-	      background: #ffffff;
-	      color: #666666;
 	      position: fixed;
 	      height: 100%;
 	      width: 100%;
@@ -30,32 +31,17 @@
 	      text-align: center;
 	      padding-top: 25%;
 	    }
-			#wrapper {
-				width: 60%;
-			}
-			#wrapper .container {
-				max-width: 100%; display: block;
-			}
-			textarea {
-		    overflow-y: scroll;
-				height: 150px;
-				resize: none;
-			}
-			.table > tbody > tr > td {
-				vertical-align: middle;
-				text-align: center;
-			}
 			@-moz-keyframes spin {
-			    from { -moz-transform: rotate(0deg); }
-			    to { -moz-transform: rotate(360deg); }
+		    from { -moz-transform: rotate(0deg); }
+		    to { -moz-transform: rotate(360deg); }
 			}
 			@-webkit-keyframes spin {
-			    from { -webkit-transform: rotate(0deg); }
-			    to { -webkit-transform: rotate(360deg); }
+		    from { -webkit-transform: rotate(0deg); }
+		    to { -webkit-transform: rotate(360deg); }
 			}
 			@keyframes spin {
-			    from {transform:rotate(0deg);}
-			    to {transform:rotate(360deg);}
+		    from {transform:rotate(0deg);}
+		    to {transform:rotate(360deg);}
 			}
 			#loading_logo {
 				background-image: url('../img/tf2logo.png');
@@ -81,12 +67,10 @@
 		    -o-transition: rotate(3600deg);
 			}
 
-      /* give clipboard copy some room */ #loptions { width: 95%; } #loptions_copy { float:left; }
       /* align titles of crosshair switcher table with content */ #switcherdiv th:not(:last-child) { text-align: center; }
       /* multiselector has bad contrast on text */ .bootstrap-select > .dropdown-toggle.bs-placeholder { color: white !important; }
-      /* remove bullet points on li */ * { list-style: none; }
       /* separate the lists a bit more, its too squashed */ .radio label, .checkbox label { padding-top: 8px; }
-      /* replace <hr> with bottom borders */ .tab-pane { border-bottom: rgb(236, 240, 241) solid 1px; margin-bottom: 21px; padding-bottom: 21px; }
+      /* Space below network selector */ #network .btn-group { padding-bottom: 20px;}
 
 		</style>
 
@@ -99,11 +83,11 @@
 		<script type="text/javascript" src="../js/utility.js"></script>
     <script type="text/javascript" src="../js/FileSaver.js"></script>
     <script type="text/javascript" src="../js/bootstrap-select.min.js"></script>
+    <script type="text/javascript" src="../js/js.cookie.js"></script>
 
   </head>
   <body>
-	<div id="overlay">
-    <!-- <img src="../img/loading.gif" alt="Loading" /><br> -->
+	<div class="jumbotron" id="overlay">
 	  <div id="loading_logo"></div>
 		Hang on a minute...
     <noscript>Please enable javascript in your browser to continue.</noscript>
@@ -123,9 +107,9 @@
 				<li class="dropdown">
 				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Articles<span class="caret"></span></a>
 				  <ul class="dropdown-menu" role="menu">
-					<li><a href="/cfgen/read/interp.html">Networking in Source games</a></li>
-					<li><a href="/cfgen/read/health.html">Health care</a></li>
-					<li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=154435696" target="_blank"><i class="fa fa-external-link"></i>  Scripting guide</a></li>
+  					<li><a href="../cfgen/read/interp.html">Networking in Source games</a></li>
+  					<li><a href="../cfgen/read/health.html">Health care</a></li>
+  					<li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=154435696" target="_blank">Scripting guide <i class="fa fa-external-link"></i></a></li>
 				  </ul>
 				</li>
 				<li>
@@ -134,22 +118,69 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li>
-					<a href="https://github.com/mkrl/mkrl.github.io" target="_blank">View the source code</a>
+					<a href="https://github.com/mkrl/mkrl.github.io" target="_blank">View the source code <i class="fa fa-github" aria-hidden="true"></i></a>
 				</li>
+        <li>
+          <a href="javascript:;" id="dark_toggle" title="Night mode toggle"><i class="fa fa-lightbulb-o bulb-on" aria-hidden="true"></i></a>
+        </li>
 			</ul>
 		</div>
 	</nav>
+  <script>
+    $("#dark_toggle").click(function(event){
+      if ($('body').hasClass('nightmode')) {
+        // disable nightmode
+        $('#css_file_dark').prop("disabled", true); // Element(s) are now disabled.
+        $('body').removeClass('nightmode');
+        $('#dark_toggle i').removeClass('bulb-off');
+        $('#dark_toggle i').addClass('bulb-on');
+        Cookies.set('nightmode', 'off');
+      } else {
+        // enable nightmode
+        $('#css_file_dark').prop("disabled", false); // Element(s) are now enabled.
+        $('body').addClass('nightmode');
+        Cookies.set('nightmode', 'on');
+        $('#dark_toggle i').removeClass('bulb-on');
+        $('#dark_toggle i').addClass('bulb-off');
+      }
+    });
+  </script>
+  <script>
+    if(Cookies.get('nightmode')=='on'){
+      $('#css_file_dark').prop("disabled", false); // Element(s) are now enabled.
+      $('body').addClass('nightmode');
+      $('#dark_toggle i').removeClass('bulb-on');
+      $('#dark_toggle i').addClass('bulb-off');
+    }
+  </script>
   <div id="wrapper" class="container-fluid">
 		<div class="row content">
-			<h1>CFGen - A Team Fortress 2 custom config generator</h1>
-			<p>
-			  2.1.6
-			</p>
-      <div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><i class="fa fa-exclamation-circle" aria-hidden="true"></i> This tool will overwrite all of your binds. It is recommended to be installed on a blank <abbr title="Team Fortress 2" class="initialism">TF2</abbr>, without any prior configs installed. Please make a backup of your <abbr title="Config" class="initialism">CFG</abbr> and custom folders before using this if you want to save your old binds. You can wipe your configs by clearing your custom and cfg folders and launching <abbr title="Team Fortress 2" class="initialism">TF2</abbr> with -autoconfig launch option. </div>
-			<div class="alert alert-dismissible alert-info"><button type="button" class="close" data-dismiss="alert">&times;</button><i class="fa fa-info-circle" aria-hidden="true"></i> This tool is intended to be used with <a href="https://en.wikipedia.org/wiki/QWERTY" class="alert-link" target="_blank">QWERTY</a> keyboards, anything else is unsupported.</div>
+      <div class="jumbotron">
+  			<h1>
+          CFGen <small><span id="version"></span></small>
+        </h1>
+        <script type="text/javascript">
+          // Gets version number from text file and injects it above into #version
+          $(document).ready(function(){
+            var read = new XMLHttpRequest();
+            read.open('GET', '../version.txt', false);
+            read.send();
+
+            var siteVersion = read.responseText;
+            $('#version').html(siteVersion);
+          });
+        </script>
+        <h2>A Team Fortress 2 custom config generator</h2>
+      </div>
+      <div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button>
+        <i class="fa fa-exclamation-circle" aria-hidden="true"></i> This tool will overwrite all of your binds. It is recommended to be installed on a blank <abbr title="Team Fortress 2" class="initialism">TF2</abbr>, without any prior configs installed. Please make a backup of your <abbr title="Config" class="initialism">CFG</abbr> and custom folders before using this if you want to save your old binds. You can wipe your configs by clearing your custom and cfg folders and launching <abbr title="Team Fortress 2" class="initialism">TF2</abbr> with -autoconfig launch option.
+      </div>
+			<div class="alert alert-dismissible alert-info"><button type="button" class="close" data-dismiss="alert">&times;</button>
+        <i class="fa fa-info-circle" aria-hidden="true"></i> This tool is intended to be used with <a href="https://en.wikipedia.org/wiki/QWERTY" class="alert-link" target="_blank">QWERTY</a> keyboards, anything else is unsupported.
+      </div>
 
 			<form action="#" id="download_form">
-				<!-- The form submit will not work without ul, so I added another class to remove padding? todo: fix this shit -->
+			<!-- The form submit will not work without ul, so I added another class to remove padding? todo: fix this shit -->
 			<div class="tabbable">
 				<ul class="nav nav-tabs">
 				  <li class="active"><a href="#graphics" data-toggle="tab">Graphics</a></li>
@@ -159,64 +190,133 @@
 				  <li><a href="#damage" data-toggle="tab">Damage indicators</a></li>
 				  <li><a href="#network" data-toggle="tab">Network</a></li>
 				  <li><a href="#binds" data-toggle="tab">Custom binds</a></li>
-
 				</ul>
 			<div id="myTabContent" class="tab-content">
 			  <div class="tab-pane fade active in" id="graphics">
 				<!--   GFX  -->
 			  <h3>Graphic config</h3>
-				
-				<p>Determine the look and performance of your game</p>
-				<p class="text-muted">Remember - you will generally always have to sacrifice something to see a performance increase. Selecting a config will show a demonstration with the pros and cons of the config explained.</p>
-				<br>
-				<ul>
-				<li>
-					<label>
-						<input type="radio" name="gfx" id="myown" data-name="gfx" data-url="../cfgen/cfg/nogfx.txt" checked="checked" />
-						None
-					</label>
-				</li>
-			  <li>
-			    <label>
-			      <input type="radio" name="gfx" id="toaster" onclick="updatedxlevel();" data-name="gfx" data-url="../cfgen/cfg/c_toaster.txt" />
-			      Comanglia's Toaster
-			    </label>
-			  </li>
-			  <li>
-			    <label>
-			      <input type="radio" name="gfx" id="stable" onclick="updatedxlevel();" data-name="gfx" data-url="../cfgen/cfg/c_stability.txt" />
-			      Comanglia's Stability
-			    </label>
-			  </li>
-			  <li>
-			    <label>
-			      <input type="radio" name="gfx" id="fine" onclick="updatedxlevel();" data-name="gfx" data-url="../cfgen/cfg/c_maxfps_hq.txt" />
-			      Comanglia's Max FPS for High Quality PCs
-			    </label>
-			  </li>
-			  <li>
-			    <label>
-			      <input type="radio" name="gfx" id="fancy" onclick="updatedxlevel();" data-name="gfx" data-url="../cfgen/cfg/c_cinema.txt" />
-			      Comanglia's Cinema
-			    </label>
-			  </li>
-			  <li>
-			    <label>
-			      <input type="radio" name="gfx" id="felik" onclick="updatedxlevel();" data-name="gfx" data-url="../cfgen/cfg/f_gfx.txt" />
-			      Felik's Config
-			    </label>
-			  </li>
-			  </ul>
+				<p class="text-muted">Determine the look and performance of your game</p>
+				<p class="alert alert-info"><i class="fa fa-info-circle" aria-hidden="true"></i> Remember - you will generally always have to sacrifice something to see a performance increase. Selecting a config will show a demonstration with the pros and cons of the config explained.</p>
+				<!-- <ul class="checkbox list-unstyled">
+  				<li>
+  					<label>
+  						<input type="radio" name="gfx" id="myown" data-name="gfx" data-url="../cfgen/cfg/nogfx.txt" checked="checked" />
+  						None
+  					</label>
+  				</li>
+  			  <li>
+  			    <label>
+  			      <input type="radio" name="gfx" id="toaster" onclick="updatedxlevel();" data-name="gfx" data-url="../cfgen/cfg/c_toaster.txt" />
+  			      Comanglia's Toaster
+  			    </label>
+  			  </li>
+  			  <li>
+  			    <label>
+  			      <input type="radio" name="gfx" id="stable" onclick="updatedxlevel();" data-name="gfx" data-url="../cfgen/cfg/c_stability.txt" />
+  			      Comanglia's Stability
+  			    </label>
+  			  </li>
+  			  <li>
+  			    <label>
+  			      <input type="radio" name="gfx" id="fine" onclick="updatedxlevel();" data-name="gfx" data-url="../cfgen/cfg/c_maxfps_hq.txt" />
+  			      Comanglia's Max FPS for High Quality PCs
+  			    </label>
+  			  </li>
+  			  <li>
+  			    <label>
+  			      <input type="radio" name="gfx" id="fancy" onclick="updatedxlevel();" data-name="gfx" data-url="../cfgen/cfg/c_cinema.txt" />
+  			      Comanglia's Cinema
+  			    </label>
+  			  </li>
+  			  <li>
+  			    <label>
+  			      <input type="radio" name="gfx" id="felik" onclick="updatedxlevel();" data-name="gfx" data-url="../cfgen/cfg/f_gfx.txt" />
+  			      Felik's Config
+  			    </label>
+  			  </li>
+			  </ul> -->
+        <ul class="checkbox list-unstyled">
+          <li>
+            <label class="form-inline">
+              Graphics setting config
+              <select class="form-control selectpicker" id="gfx_selector">
+                <option value="myown" data-name="gfx" onclick="updatedxlevel();" id="myown" data-url="../cfgen/cfg/nogfx.txt" selected="selected">None</option>
+						    <optgroup label="Comanglia">
+                  <option value="toaster" data-name="gfx" onclick="updatedxlevel();" id="toaster" data-url="../cfgen/cfg/c_toaster.txt">Comanglia: Toaster</option>
+                  <option value="stable" data-name="gfx" onclick="updatedxlevel();" id="stable" data-url="../cfgen/cfg/c_stability.txt">Comanglia: Stability</option>
+                  <option value="fine" data-name="gfx" onclick="updatedxlevel();" id="fine" data-url="../cfgen/cfg/c_maxfps_hq.txt">Comanglia: Max FPS for High Quality PCs</option>
+                  <option value="fancy" data-name="gfx" onclick="updatedxlevel();" id="fancy" data-url="../cfgen/cfg/c_cinema.txt">Comanglia: Cinema</option>
+  							</optgroup>
+                <optgroup label="Felik">
+                  <option value="felik" data-name="gfx" onclick="updatedxlevel();" id="felik" data-url="../cfgen/cfg/f_gfx.txt">Felik</option>
+                </optgroup>
+              </select>
+            </label>
+          </li>
+          <li id="gfx_force_settings" style="display:none;">
+            <label>
+              <input type="checkbox" id="gfx_force_settings_cb" data-name="gfx_force_settings" data-url="" /> Force custom settings <a href="#" data-toggle="tooltip" title="Force certain options to be enabled or disabled, overriding the settings in the selected config."  ><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+            </label>
+          </li>
+        </ul>
+
+        <!-- WIP -->
+				<div id="gfx_force_settings_panel" style="display:none;">
+        <ul>
+					<li>
+						<h4>Shadows</h4>
+						<label class="radio-inline"><input type="radio" name="shadows" data-name="nothing" data-url="" checked/> Config setting</label>
+						<label class="radio-inline"><input type="radio" name="shadows" data-name="nothing" data-url=""/> Off</label>
+						<label class="radio-inline"><input type="radio" name="shadows" data-name="nothing" data-url=""/> On</label>
+					</li>
+					<li>
+						<h4>Eyes</h4>
+						<label class="radio-inline"><input type="radio" name="eyes" data-name="nothing" data-url="" checked/> Config setting</label>
+						<label class="radio-inline"><input type="radio" name="eyes" data-name="nothing" data-url=""/> Off</label>
+						<label class="radio-inline"><input type="radio" name="eyes" data-name="nothing" data-url=""/> On</label>
+					</li>
+					<li>
+						<h4>Gibs</h4>
+						<label class="radio-inline"><input type="radio" name="gibs" data-name="nothing" data-url="" checked/> Config setting</label>
+						<label class="radio-inline"><input type="radio" name="gibs" data-name="nothing" data-url=""/> Off</label>
+						<label class="radio-inline"><input type="radio" name="gibs" data-name="nothing" data-url=""/> On</label>
+						<label class="radio-inline"><input type="radio" name="gibs" data-name="nothing" data-url=""/> On (burning) <a href="#" data-toggle="tooltip" title="If a burning player explodes, his gibs will burn. Can be quite impactful on performance."  ><i class="fa fa-question-circle-o" aria-hidden="true"></i></a></label>
+					</li>
+					<li>
+						<h4>Glow Outline</h4>
+						<label class="radio-inline"><input type="radio" name="glow" data-name="nothing" data-url="" checked/> Config setting</label>
+						<label class="radio-inline"><input type="radio" name="glow" data-name="nothing" data-url=""/> Off</label>
+						<label class="radio-inline"><input type="radio" name="glow" data-name="nothing" data-url=""/> On</label>
+					</li>
+					<li>
+						<h4>3D Skybox</h4>
+						<label class="radio-inline"><input type="radio" name="skybox" data-name="nothing" data-url="" checked/> Config setting</label>
+						<label class="radio-inline"><input type="radio" name="skybox" data-name="nothing" data-url=""/> Off</label>
+						<label class="radio-inline"><input type="radio" name="skybox" data-name="nothing" data-url=""/> On</label>
+					</li>
+        </ul>
+				</div>
+				<script>
+				$(document).ready(function(){
+					$('#gfx_force_settings_cb').change(function(){
+				    if(this.checked)
+			        $('#gfx_force_settings_panel').fadeIn(400);
+				    else
+			        $('#gfx_force_settings_panel').fadeOut(400);
+					});
+				});
+				</script>
 
 	<!-- CONFIG PREVIEWS -->
 	<script>
-		$(document).ready(function() {
-		$("input[name$='gfx']").click(function() {
-			var showme = $(this).attr('id');
-			$("div.desc").hide();
-			$("#preview" + showme).fadeIn(400);
-		});
-		});
+    $(document).ready(function() {
+      $("#gfx_selector").change(function() {
+          var showme = this.value;
+          $("div.desc").hide();
+          $("#preview" + showme).fadeIn(400);
+          updatedxlevel();
+      });
+  	});
 	</script>
 
 	<div id="previewtoaster" class="desc" style="display: none;">
@@ -231,7 +331,7 @@
 					<p>Bare minimum, with a focus on simply running the game.</p>
 					<p>This is probably the ugliest looking config you can get here. It disables a lot of things, and gives your TF2 that nice "blocky" oldschool look.</p>
 					<p><a href="http://www.teamfortress.tv/25328/comanglias-config-fps-guide" target="_blank">Source</a></p>
-          <p class="alert alert-info"><i class="fa fa-info-circle" aria-hidden="true"></i> This config can actually underperform on moderate hardware, even achieving lower frames than <a class="alert-link" onclick="document.getElementById('stable').click();document.getElementById('gfx_selector').selectedIndex=2;">Comanglia Stability</a> on identical hardware.</p>
+          <p class="alert alert-info"><i class="fa fa-info-circle" aria-hidden="true"></i> This config can actually underperform on moderate hardware, even achieving lower frames than Comanglia's Stability config on identical hardware.</p>
 					<h3 class="text-success">Pros</h3>
 					<ul class="list-group">
 					  <li class="list-group-item list-group-item-success">Maximum FPS for underpowered computers</li>
@@ -268,7 +368,7 @@
 				  <li class="list-group-item list-group-item-success">Decent fps gain for underpowered computers</li>
 				  <li class="list-group-item list-group-item-success">A great choice for midrange PCs</li>
 				  <li class="list-group-item list-group-item-success">Minimizes visual clutter</li>
-				  <li class="list-group-item list-group-item-success">Smoother textures compared to <a class="alert-link" onclick="document.getElementById('toaster').click();document.getElementById('gfx_selector').selectedIndex=1;">Toaster CFG</a></li>
+				  <li class="list-group-item list-group-item-success">Smoother textures compared to Comanglia's Toaster config</li>
 				</ul>
         <h3 class="text-danger">Cons</h3>
 				<ul class="list-group">
@@ -376,6 +476,7 @@
 				</div>
 		  </div>
 
+    <hr>
 	</div>
 
   <div class="tab-pane fade" id="cfgs">
@@ -383,7 +484,7 @@
 		<div id="tweaks">
 			<h3>Tweaks</h3>
 			<p class="text-muted">Executed automatically</p>
-      <ul class="checkbox">
+      <ul class="checkbox list-unstyled">
   			<li>
   		    <label>
   		      <input type="checkbox" name="tweaks" data-name="tweaks" data-url="../cfgen/cfg/null.cfg" checked />
@@ -413,35 +514,37 @@
 
 		<hr>
 		<!--   CUSTOM CFGS  -->
-		<div id="custom_cfgs">
-			<h3>Custom configs</h3>
-			<p class="text-muted">Executed manually</p>
-			<ul class="checkbox">
-				<li>
-			    <label>
-			      <input type="checkbox" name="configs" data-name="configs" data-url="../cfgen/cfg/jump.cfg" />
-			      Oatmeal's offline jump script (jump.cfg) <a href="http://jump.tf/forum/index.php/topic,687.0.html" data-toggle="tooltip" title="Enables ammo + health regeneration and a teleport system on offline servers. When enabled, type 'exec jump' into console and follow the printed instructions."  target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
-			    </label>
-			  </li>
-				<li>
-			    <label>
-			      <input type="checkbox" name="configs" data-name="configs" data-url="../cfgen/cfg/callouts.cfg" />
-			      Competitive Communication Binds (callouts.cfg) <a href="http://forums.steampowered.com/forums/showthread.php?t=3166123" data-toggle="tooltip" title="When installed, use numpad keys (if you have them) to call important picks, spies, and a lot of other stuff to your team. For detailed instructions, click here. To use, type 'exec callouts' in your console." target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
-			    </label>
-			  </li>
-				<li>
-			    <label>
-			      <input type="checkbox" name="configs" data-name="configs" data-url="../cfgen/cfg/ctap.cfg" />
-			      <abbr title="Crouch tap" class="initialism">Ctap</abbr> script (ctap.cfg) <a href="#" data-toggle="tooltip" title="A pretty simple script that claims to help with crouch-tap timing. When executed, use mouse2." ><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
-			    </label>
-			  </li>
-			</ul>
+		<div id="custom_files">
+      <div id="custom_cfgs">
+  			<h3>Custom configs</h3>
+  			<p class="text-muted">Executed manually</p>
+  			<ul class="checkbox list-unstyled">
+  				<li>
+  			    <label>
+  			      <input type="checkbox" name="configs" data-name="configs" data-url="../cfgen/cfg/jump.cfg" />
+  			      Oatmeal's offline jump script (jump.cfg) <a href="http://jump.tf/forum/index.php/topic,687.0.html" data-toggle="tooltip" title="Enables ammo + health regeneration and a teleport system on offline servers. When enabled, type 'exec jump' into console and follow the printed instructions."  target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+  			    </label>
+  			  </li>
+  				<li>
+  			    <label>
+  			      <input type="checkbox" name="configs" data-name="configs" data-url="../cfgen/cfg/callouts.cfg" />
+  			      Competitive Communication Binds (callouts.cfg) <a href="http://forums.steampowered.com/forums/showthread.php?t=3166123" data-toggle="tooltip" title="When installed, use numpad keys (if you have them) to call important picks, spies, and a lot of other stuff to your team. For detailed instructions, click here. To use, type 'exec callouts' in your console." target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+  			    </label>
+  			  </li>
+  				<li>
+  			    <label>
+  			      <input type="checkbox" name="configs" data-name="configs" data-url="../cfgen/cfg/ctap.cfg" />
+  			      <abbr title="Crouch tap" class="initialism">Ctap</abbr> script (ctap.cfg) <a href="#" data-toggle="tooltip" title="A pretty simple script that claims to help with crouch-tap timing. When executed, use mouse2." ><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+  			    </label>
+  			  </li>
+  			</ul>
+      </div>
 			<hr>
 			<!-- DEMO SUPPORT -->
 			<div id="demo_support">
 				<h3>Demo Support</h3>
 				<p class="text-muted">Automatically record games <a href="https://wiki.teamfortress.com/wiki/Help:Recording_demos" data-toggle="tooltip" title="Automatically record POV demos of your games. [Click] to visit the official TF2 Wiki for detailed explanation of demo features."  target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a></p>
-        <ul class="checkbox">
+        <ul class="checkbox list-unstyled">
   				<li class="form-inline">
   			    <label>
   			      Demo Support
@@ -502,13 +605,15 @@
 				</ul>
 			</div>
 		</div>
+
+    <hr>
 	</div>
 
   <div class="tab-pane fade" id="files">
   <!--   SCRIPTS  -->
 		<div id="scripts">
 			<h3>Scripts</h3>
-			<ul class="checkbox">
+			<ul class="checkbox list-unstyled">
 				<li>
 			    <label>
 			      <input type="checkbox" name="scripts" data-name="scripts" data-url="../cfgen/scripts/surfaceproperties.txt" />
@@ -520,7 +625,7 @@
 			<hr>
 
 			<h3><abbr title="Valve Pak" class="initialism">VPK</abbr> files</h3>
-			<ul class="checkbox">
+			<ul class="checkbox list-unstyled">
 				<li>
 			    <label>
 			      <input type="checkbox" name="vpks" data-name="vpks" data-url="../cfgen/vpks/explosions_muzzle_flash.vpk" />
@@ -530,15 +635,15 @@
   			<li>
   		    <label class="radio-inline">
   					<input type="radio" name="nohats" data-name="nothing" data-url="" checked/>
-  			    Do not remove hats
+  			    Do not remove cosmetics
   		    </label>
   		    <label class="radio-inline">
   					<input type="radio" name="nohats" data-name="vpks" data-url="../cfgen/vpks/headsfeet23.02.vpk"/>
-  		      Remove cosmetics ("Headsfeet" version) <a href="http://www.teamfortress.tv/16179/no-hats-mod" data-toggle="tooltip" title="Disables cosmetics, except ones that replace body parts. Grants a small FPS boost." target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+  		      Remove most cosmetics ("Headsfeet" version) <a href="http://www.teamfortress.tv/16179/no-hats-mod" data-toggle="tooltip" title="Disables cosmetics, except ones that replace body parts. Grants a small FPS boost." target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
   		    </label>
   		    <label class="radio-inline">
   					<input type="radio" name="nohats" data-name="vpks" data-url="../cfgen/vpks/no.hats.mod.2017.02.02.vpk" />
-  		      Remove cosmetics <a href="http://www.teamfortress.tv/16179/no-hats-mod" data-toggle="tooltip" title="Disables all cosmetics. Grants a small FPS boost." target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+  		      Remove all cosmetics <a href="http://www.teamfortress.tv/16179/no-hats-mod" data-toggle="tooltip" title="Disables all cosmetics. Grants a small FPS boost." target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
   		    </label>
   		  </li>
   			<li>
@@ -550,7 +655,7 @@
 			</ul>
 			<hr>
 			<h3>Addons</h3>
-			<ul class="checkbox">
+			<ul class="checkbox list-unstyled">
 				<li>
 			    <label>
 			      <input type="checkbox" name="sourceres" data-name="sourceres" data-url="" />
@@ -566,12 +671,13 @@
 			</ul>
 		</div>
 
+  <hr>
   </div>
 
   <div class="tab-pane fade" id="viewmod">
 	<!--   VIEWMODEL  -->
 	<h3>Viewmodel settings</h3>
-	<ul class="checkbox">
+	<ul class="checkbox list-unstyled">
   	<li class="form-inline">
       <label>
   			Viewmodel <th><abbr title="Field of View" class="initialism">FOV</abbr></th>
@@ -593,7 +699,7 @@
 	</ul>
 	<hr>
 	<h3>Adjust viewmodels and crosshairs for each class:</h3>
-	<ul class="checkbox">
+	<ul class="checkbox list-unstyled">
 		<li>
 	    <label>
 	      <input type="checkbox" id="crosshairswitcherid" name="crosshairswitcher" data-name="crosshairswitcher" data-url="" />
@@ -601,7 +707,6 @@
 	    </label>
 	  </li>
 	</ul>
-	<br>
 	<script>
 	$(document).ready(function(){
     $('#crosshairswitcherid').change(function(){
@@ -2089,13 +2194,13 @@
 
 
 
-
+  <hr>
 	</div>
   <div class="tab-pane fade" id="damage">
 	<!--  nable killso HITSOUNDS AND PITCH AND STUFF  -->
 	<h3>Combat Text</h3>
 	<p class="text-muted">Damage numbers that appear on screen</p>
-  <ul class="checkbox">
+  <ul class="checkbox list-unstyled">
   	<li>
       <label>
         <input type="checkbox" id="comtoggle" data-name="comtoggle" data-url="" checked />
@@ -2120,7 +2225,7 @@
 	<p class="text-muted">Sounds that play when you do damage</p>
 
   <div class="disabled">
-  	<ul class="checkbox">
+  	<ul class="checkbox list-unstyled">
   		<li>
   	    <label>
   	      <input type="checkbox" id="hittoggle" data-name="hittoggle" data-url="" checked />
@@ -2167,7 +2272,7 @@
 
     </div>
     <p class="text-muted">Sounds that play when you kill</p>
-  	<ul class="checkbox">
+  	<ul class="checkbox list-unstyled">
   		<li>
   	    <label>
   	      <input type="checkbox" id="killtoggle" data-name="killtoggle" data-url="" />
@@ -2195,7 +2300,6 @@
 		<h3>Custom hitsounds and killsounds:</h3>
 		<p>
 		There are already a few hitsounds that you can select from in the "Advanced Options" in-game menu. Optionally, you can select a custom hit/killsound (or choose none here and use your own one).
-		<br>
     <p class="text-warning"><i class="fa fa-volume-up" aria-hidden="true"></i> Warning! The sound you select will autoplay on click.</p>
 		</p>
 
@@ -2369,59 +2473,64 @@
 			</audio>
       </label>
 		</li>
+
+  <hr>
 	</div>
   <div class="tab-pane fade" id="network">
-	<!--   CONNECTION SETTINGS  -->
-	<h3>Connection settings</h3>
-	<p>Set to "good connection" by default. Don't touch if you don't understand what this is. If you are curious, here is a <a href="/cfgen/read/interp.html" target="_blank">small article about connection settings</a>.</p>
-	<br>
-	<div class="btn-group" role="group" aria-label="Connection type">
-	<button type="button" class="btn btn-default" onclick="autoFillGood()">Good connection</button>
-	<button type="button" class="btn btn-default" onclick="autoFillBad()">Bad connection</button>
-	<button type="button" class="btn btn-default" onclick="autoFillComp()">Competitive connection</button>
+  	<!--   CONNECTION SETTINGS  -->
+  	<h3>Connection settings</h3>
+  	<p>Set to "good connection" by default. Don't touch if you don't understand what this is. If you are curious, here is a <a href="../cfgen/read/interp.html" target="_blank">small article about connection settings</a>.</p>
+  	<div id="connection_buttons" class="btn-group" role="group" aria-label="Connection type">
+    	<button type="button" class="btn btn-default" onclick="autoFillGood()">Good connection</button>
+    	<button type="button" class="btn btn-default" onclick="autoFillBad()">Bad connection</button>
+    	<button type="button" class="btn btn-default" onclick="autoFillComp()">Competitive connection</button>
+  	</div>
+    <ul class="list-unstyled">
+    	<li class="form-inline">
+        <label>
+    			cl_cmdrate
+          <input class="form-control input-sm" type="text" size="6"  id="cmdrate" onkeypress="return isNumberKey(event)" value="67" />
+        </label>
+        </li>
+    	<li class="form-inline">
+        <label>
+    			cl_interp
+          <input class="form-control input-sm" type="text" size="6"  id="interp" onkeypress="return isNumberKey(event)" value=".0152"/>
+        </label>
+        </li>
+    	<li class="form-inline">
+        <label>
+    			cl_interp_ratio
+          <input class="form-control input-sm" type="text" size="6"  id="intratio" onkeypress="return isNumberKey(event)" value="1" />
+        </label>
+        </li>
+    	<li class="form-inline">
+        <label>
+    			cl_updaterate
+          <input class="form-control input-sm" type="text" size="6"  id="uprate" onkeypress="return isNumberKey(event)" value="67" />
+        </label>
+        </li>
+    	<li class="form-inline">
+        <label>
+    			rate
+          <input class="form-control input-sm" type="text" size="6"  id="rate" onkeypress="return isNumberKey(event)" value="60000" />
+        </label>
+      </li>
+    </ul>
+
+  <hr>
 	</div>
-	<br>
-	<br>
-	<br>
-	<li>
-    <label>
-			cl_cmdrate
-      <input class="form-control" type="text" size="6"  id="cmdrate" onkeypress="return isNumberKey(event)" value="67" />
-    </label>
-    </li>
-	<li>
-    <label>
-			cl_interp
-      <input class="form-control" type="text" size="6"  id="interp" onkeypress="return isNumberKey(event)" value=".0152"/>
-    </label>
-    </li>
-	<li>
-    <label>
-			cl_interp_ratio
-      <input class="form-control" type="text" size="6"  id="intratio" onkeypress="return isNumberKey(event)" value="1" />
-    </label>
-    </li>
-	<li>
-    <label>
-			cl_updaterate
-      <input class="form-control" type="text" size="6"  id="uprate" onkeypress="return isNumberKey(event)" value="67" />
-    </label>
-    </li>
-	<li>
-    <label>
-			rate
-      <input class="form-control" type="text" size="6"  id="rate" onkeypress="return isNumberKey(event)" value="60000" />
-    </label>
-    </li>
-	</div>
+
   <div class="tab-pane fade" id="binds">
 	<!--   CUSTOM INPUT  -->
-	<h3>Custom bindings:</h3>
-	<p>You may enter anything here, not just binds. Same formatting rules as for the TF2 console. This will be executed at the end of your config and overwrite existing binds.</p>
-	<br>
+	<h3>Custom bindings</h3>
+	<p class="alert alert-info">You may enter any TF2 commands here, not just "binds". Same syntax rules as the in-game console. They will be executed at the end of your config and overwrite existing binds.</p>
 	<textarea id="bindings" placeholder="bind kp_minus &quot;say !add spire&quot;" class="form-control"></textarea>
+  <hr>
 	</div>
+
 </div>
+
 </div>
 
   <button data-toggle="tooltip" title="Be sure to go through all the tabs before generating." type="submit" class="btn btn-primary">Generate config <i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
@@ -2439,7 +2548,7 @@
 	<!--   LAUNCH OPTIONS  -->
   <script>
   $(document).ready(function() {
-    var copyTextareaBtn = document.querySelector('#loptions_copy');
+    var copyTextareaBtn = document.querySelector('#loptions');
 
     copyTextareaBtn.addEventListener('click', function(event) {
     var copyTextarea = document.querySelector('#loptions');
@@ -2448,9 +2557,14 @@
     try {
       var successful = document.execCommand('copy');
       var msg = successful ? 'successful' : 'unsuccessful';
-      $("#loptions_copy").removeClass('btn-primary').addClass('btn-success');
+      $("#clipboard_copy_info_text").html('Copied to clipboard');
+      $("#clipboard_copy_info").addClass('text-success');
+      setTimeout(function(){
+        $("#clipboard_copy_info_text").html('Click to copy launch options to clipboard');
+        $("#clipboard_copy_info").removeClass('text-success');
+      }, 2000);
     } catch (err) {
-      $("#loptions_copy").removeClass('btn-primary').addClass('btn-danger');
+      $("#clipboard_copy_info").addClass('text-danger');
     }
     });
   });
@@ -2462,7 +2576,8 @@
 		  </div>
 		  <div class="panel-body">
 				<div class="well well-lg">
-					 <button data-toggle="tooltip" title="Copy launch options to clipboard" id="loptions_copy" class="btn btn-primary" type="button"><i class="fa fa-clipboard" aria-hidden="true"></i></button><input type="text" class="form-control" id="loptions" onclick="this.setSelectionRange(0, this.value.length)" value="" readonly/>
+          <input type="text" class="form-control" id="loptions" onclick="this.setSelectionRange(0, this.value.length)" value="" readonly/>
+				  <p class="text-center" id="clipboard_copy_info"><i class="fa fa-clipboard" aria-hidden="true"></i> <span id="clipboard_copy_info_text">Click to copy launch options to clipboard</span></p>
 				</div>
 				<div class="well">
 					<li>
@@ -2480,47 +2595,24 @@
 				</div>
 		  </div>
 		</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	<script>
-																																							//launch options default value
-	document.getElementById('loptions').value = "-dxlevel " + dxlevel + " " + screenmod +" -w " + screen.width + " -h " + screen.height + " -console -noborder -novid";
-	</script>
-	<script>
-	$(document).ready(function(){																															//tooltips
-		$('[data-toggle="tooltip"]').tooltip();
-	});
+  	//launch options default value
+  	document.getElementById('loptions').value = "-dxlevel " + dxlevel + " " + screenmod +" -w " + screen.width + " -h " + screen.height + " -console -noborder -novid";
 	</script>
 </div>
 
 <script type="text/javascript" src="../js/downloader.js"></script>
-
-
 </div>
 
-
- This page has probably generated about <script language="JavaScript">var fhsh = document.createElement('script');var fhs_id_h = "3234623";
+<p> This page has probably generated about <script language="JavaScript">var fhsh = document.createElement('script');var fhs_id_h = "3234623";
 fhsh.src = "//s1.freehostedscripts.net/ocount.php?site="+fhs_id_h+"&name=configs&a=1";
 document.head.appendChild(fhsh);document.write("<span id='h_"+fhs_id_h+"'></span>");
-</script> so far.
-
+</script> so far. </p>
 
  <script>
-    jQuery(window).on('load', function(){
+  jQuery(window).on('load', function(){
     jQuery('#overlay').fadeOut();
-    });
+  });
 </script>
   </body>
 </html>
