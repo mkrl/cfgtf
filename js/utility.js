@@ -1,8 +1,33 @@
-/* Various page processing stuff for CFGen
-https://mkrl.github.io/cfgen/ */
+/* Various page processing stuff for CFG.tf
+http://cfg.tf*/
 
+		function updateConnect(){
+			var srvaddr = document.getElementById("ip").value;;
+			var srvpass = document.getElementById("sv_password").value;;
+			if (srvpass.length !== 0){
+			document.getElementById('loptions').value='connect '+srvaddr+"; password "+srvpass; 
+			} else {
+			document.getElementById('loptions').value='connect '+srvaddr; 
+			}
+			
+		}
+		
 
-
+		function installPackage(file) {
+		    // todo
+			var request = new XMLHttpRequest();
+			request.open('GET', '/test.pack', true);
+			request.send(null);
+			request.onreadystatechange = function () {
+				if (request.readyState === 4 && request.status === 200) {
+					var type = request.getResponseHeader('Content-Type');
+					if (type.indexOf("text") !== 1) {
+						return request.responseText;
+					}
+				}
+			}	
+			
+		}
 
 
 		function autoFillGood() {											//automatically fill network settings

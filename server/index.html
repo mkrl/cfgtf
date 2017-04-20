@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Automatically generate Team Fortress 2 configs, including custom VPKs, tweaks, crosshair switcher and more. Get a good fps boost without stupid unnecessary stuff." />
+    <title>CFG.TF - Server config</title>
+
+    <!-- Latest compiled and minified CSS -->
+		<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" integrity="sha384-dNpIIXE8U05kAbPhy3G1cz+yZmTzA6CY8Vg/u2L9xRnHjJiAK76m2BIEaSEV+/aU" crossorigin="anonymous">
+
+		<style>
+			#overlay {
+	      background: #ffffff;
+	      color: #666666;
+	      position: fixed;
+	      height: 100%;
+	      width: 100%;
+	      z-index: 5000;
+	      top: 0;
+	      left: 0;
+	      float: left;
+	      text-align: center;
+	      padding-top: 25%;
+	    }
+			#wrapper {
+				width: 60%;
+			}
+			#wrapper .container {
+				max-width: 100%; display: block;
+			}
+			textarea {
+		    overflow-y: scroll;
+				height: 150px;
+				resize: none;
+			}
+			.table > tbody > tr > td {
+				vertical-align: middle;
+				text-align: center;
+			}
+			@-moz-keyframes spin {
+			    from { -moz-transform: rotate(0deg); }
+			    to { -moz-transform: rotate(360deg); }
+			}
+			@-webkit-keyframes spin {
+			    from { -webkit-transform: rotate(0deg); }
+			    to { -webkit-transform: rotate(360deg); }
+			}
+			@keyframes spin {
+			    from {transform:rotate(0deg);}
+			    to {transform:rotate(360deg);}
+			}
+			#loading_logo {
+				background-image: url('../img/tf2logo_server.png');
+				width: 80px;
+				height: 80px;
+				background-repeat: no-repeat;
+				background-size: contain;
+				margin: 0 auto;
+				background-position: center center;
+
+				-webkit-animation-name: spin;
+		    -webkit-animation-duration: 2000ms;
+		    -webkit-animation-iteration-count: infinite;
+		    -webkit-animation-timing-function: linear;
+		    -moz-animation-name: spin;
+		    -moz-animation-duration: 2000ms;
+		    -moz-animation-iteration-count: infinite;
+		    -moz-animation-timing-function: linear;
+		    -ms-animation-name: spin;
+		    -ms-animation-duration: 2000ms;
+		    -ms-animation-iteration-count: infinite;
+		    -ms-animation-timing-function: linear;
+		    -o-transition: rotate(3600deg);
+			}
+
+      /* give clipboard copy some room */ #loptions { width: 95%; } #loptions_copy { float:left; }
+      /* align titles of crosshair switcher table with content */ #switcherdiv th:not(:last-child) { text-align: center; }
+      /* multiselector has bad contrast on text */ .bootstrap-select > .dropdown-toggle.bs-placeholder { color: white !important; }
+      /* remove bullet points on li */ * { list-style: none; }
+      /* separate the lists a bit more, its too squashed */ .radio label, .checkbox label { padding-top: 8px; }
+      /* replace <hr> with bottom borders */ .tab-pane { border-bottom: rgb(236, 240, 241) solid 1px; margin-bottom: 21px; padding-bottom: 21px; }
+
+		</style>
+
+    <link rel="stylesheet" href="../css/pygments.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/bootstrap-select.min.css">
+
+    <script type="text/javascript" src="../js/jszip.js"></script>
+    <script type="text/javascript" src="../js/jszip-utils.js"></script>
+		<script type="text/javascript" src="../js/utility.js"></script>
+    <script type="text/javascript" src="../js/FileSaver.js"></script>
+    <script type="text/javascript" src="../js/bootstrap-select.min.js"></script>
+
+  </head>
+  <body>
+	<div id="overlay">
+    <!-- <img src="../img/loading.gif" alt="Loading" /><br> -->
+	  <div id="loading_logo"></div>
+		<br>Hang on a minute...
+    <noscript>Please enable javascript in your browser to continue.</noscript>
+	</div>
+    <nav class="navbar navbar-default" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/"><i class="fa fa-cogs" aria-hidden="true"></i> CFG.TF</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li>
+					<a href="/make">Generate</a>
+				</li>				
+				<li class="active">
+					<a href="/server">Server config</a>
+				</li>
+				<li class="dropdown">
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Articles<span class="caret"></span></a>
+				  <ul class="dropdown-menu" role="menu">
+					<li><a href="/read/interp">Networking in Source games</a></li>
+					<li><a href="/read/health">Health care</a></li>
+					<li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=154435696" target="_blank"><i class="fa fa-external-link"></i>  Scripting guide</a></li>
+				  </ul>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<a href="/faq/">FAQ</a>
+				</li>				
+				<li>
+					<a href="/about/">About</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+  <div id="wrapper" class="container-fluid">
+		<div class="row content">
+			<h1>Server config generator</h1>
+			<p>
+			  0.9b
+			</p>
+			<form action="#" id="download_form">
+				<!-- The form submit will not work without ul, so I added another class to remove padding? todo: fix this shit -->
+			<div class="tabbable">
+				<ul class="nav nav-tabs">
+				  <li class="active"><a href="#general" data-toggle="tab">General</a></li>
+				  <li><a href="#rcon" data-toggle="tab">Security & Logs</a></li>
+				  <li><a href="#files" data-toggle="tab">League configs</a></li>
+				  <li><a href="#addons" data-toggle="tab">Add-ons</a></li>
+				  <li><a href="#essential" data-toggle="tab">Essential settings</a></li>
+				  <li><a href="#network" data-toggle="tab">Network</a></li>
+				  <li><a href="#binds" data-toggle="tab">Custom settings</a></li>
+
+				</ul>
+			<div id="myTabContent" class="tab-content">
+			  <div class="tab-pane fade active in" id="general">
+				<!--   GENERAL  -->
+			  <h3>General settings</h3>
+				
+				
+				<p class="text-muted">Your server address is only prompted to generate a connect command automatically. Also, it is not required. We do not record any data you enter on this site.</p>
+				<br>
+				<ul>
+  				<li class="form-inline">
+  			    <label>
+  			      Server OS:
+  						<select class="form-control input-sm" id="os">
+  							<option value="0" data-name="os" data-url="">Linux</option>
+  							<option value="1" data-name="os" data-url="">Windows</option>
+  						</select>
+  			    </label>
+				</li>
+				<li class="form-inline">
+  			    <label>
+  			      Hostname : <a href="#" data-toggle="tooltip" title="This name will appear in game browser and on top of the scoreboard."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+  						<input class="form-control input-sm" type="text" size="35" value="CFG.TF MGE [Pony | 100% crits | RP | VIP]" id="hostname"/> 
+  			    </label>
+  			  </li>
+				<li class="form-inline">
+  			    <label>
+  			      Server password: <a href="#" data-toggle="tooltip" title="A password that is required to join your server"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+  						<input class="form-control input-sm" type="text" size="9"  id="sv_password" onchange="updateConnect()"/> <button type="button" class="btn-sm btn-default" onclick="generatePassword()">Random</button>
+  			    </label>
+  			  </li>
+			  <li class="form-inline">
+  			    <label>
+  			      Server address: 
+  						<input class="form-control input-sm" type="text" size="14" value="127.0.0.1" id="ip" onchange="updateConnect();"/>
+  			    </label>
+  			  </li>
+  			  <li class="form-inline">
+  			    <label>
+  			      Server type: <a href="#" data-toggle="tooltip" title="If you pick 'LAN only', you will only be able to recieve connections from your local area network. Use this if you want to make a server for a group of computers that share the same network."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+  						<select class="form-control input-sm" id="sv_lan">
+  							<option value="0" data-name="sv_lan" data-url="">Internet and LAN</option>
+  							<option value="1" data-name="sv_lan" data-url="">LAN only</option>
+  						</select>
+  			    </label>
+				</li>
+			  </ul>
+			
+	
+
+
+
+
+	</div>
+	<script>
+	//passgen
+	function generatePassword() {
+    var length = 8,
+        charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+        retVal = "";
+    for (var i = 0, n = charset.length; i < length; ++i) {
+        retVal += charset.charAt(Math.floor(Math.random() * n));
+    }
+	sv_password.value = retVal;
+	updateConnect();
+	}
+	</script>	<script>
+	//passgen rcon
+	function generatePassword_rcon() {
+    var length = 8,
+        charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+        retVal = "";
+    for (var i = 0, n = charset.length; i < length; ++i) {
+        retVal += charset.charAt(Math.floor(Math.random() * n));
+    }
+	rcon_password.value = retVal;
+	}
+	</script>
+  <div class="tab-pane fade" id="rcon">
+		<div id="rcon">
+		<h3>RCON settings</h3>
+		<p class="text-muted">RCON is a remote console service. It allows you to execute commands from a client like they are executed on server. Do not share your RCON password with someone you barely know. It is recommended to change this password from time to time.</p>
+			<ul class="form-inline">
+			  <li class="form-inline">
+  			    <label>
+  			      RCON password: <a href="#" data-toggle="tooltip" title="A password that is required control your server."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  						<input class="form-control input-sm" type="text" size="14" value="changeme" id="rcon_password"/> <button type="button" class="btn-sm btn-default" onclick="generatePassword_rcon()">Random</button>
+  			    </label>
+  			  </li>			  
+			  <li class="form-inline">
+  			    <label>
+  			      Failed login ban time: <a href="#" data-toggle="tooltip" title="Number of minutes to ban users who fail rcon authentication."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  						<input class="form-control input-sm" type="text" size="14" value="15" id="sv_rcon_banpenalty"/> 
+  			    </label>
+  			  </li>
+  			  <li class="form-inline">
+  			    <label>
+  			      RCON min failed login attempts: <a href="#" data-toggle="tooltip" title="Number of times a user can fail RCON authentication before being banned."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+  						<select class="form-control input-sm" id="sv_rcon_minfailures">
+  							<option value="5" data-name="sv_rcon_minfailures" data-url="">5 tries</option>
+  							<option value="1" data-name="sv_rcon_minfailures" data-url="">1 try</option>
+							<option value="3" data-name="sv_rcon_minfailures" data-url="">3 tries</option>
+							<option value="10" data-name="sv_rcon_minfailures" data-url="">7 tries</option>
+							<option value="10" data-name="sv_rcon_minfailures" data-url="">15 tries</option>
+							<option value="10" data-name="sv_rcon_minfailures" data-url="">20 tries (max)</option>
+  						</select>
+  			    </label>
+				</li>  			  
+				<li class="form-inline">
+  			    <label>
+  			      RCON max failed login attempts: <a href="#" data-toggle="tooltip" title="Max number of times a user can fail rcon authentication before being banned."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+  						<select class="form-control input-sm" id="sv_rcon_maxfailures">
+  							<option value="5" data-name="sv_rcon_maxfailures" data-url="">5 tries</option>
+  							<option value="1" data-name="sv_rcon_maxfailures" data-url="">1 try</option>
+							<option value="3" data-name="sv_rcon_maxfailures" data-url="">3 tries</option>
+							<option value="10" data-name="sv_rcon_maxfailures" data-url="" selected>10 tries</option>
+							<option value="10" data-name="sv_rcon_maxfailures" data-url="">15 tries</option>
+							<option value="10" data-name="sv_rcon_maxfailures" data-url="">20 tries (max)</option>
+  						</select>
+  			    </label>
+				</li>
+			</ul>
+		</div>
+
+		<hr>
+		<div id="logs">
+			<h3>Logging</h3>
+			<p class="text-muted">Record everything that happens on your server</p>
+			<ul class="form-inline">
+				<li class="form-inline">
+  			    <label>
+  			      Enable log: <a href="#" data-toggle="tooltip" title="This is required for uploading logs to logs.tf."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+  						<select class="form-control input-sm" id="log">
+  							<option value="on" data-name="log" data-url="">Yes</option>
+  							<option value="off" data-name="log" data-url="">No</option>
+  						</select>
+  			    </label>
+				</li>
+				<li class="form-inline">
+  			    <label>
+  			      Log into a file: <a href="#" data-toggle="tooltip" title="Record everything that happens on your server into a file inside your server folder. This is required for uploading logs to logs.tf."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+  						<select class="form-control input-sm" id="sv_logfile">
+  							<option value="1" data-name="sv_logfile" data-url="">Yes</option>
+  							<option value="0" data-name="sv_logfile" data-url="">No</option>
+  						</select>
+  			    </label>
+				</li>
+				<li class="form-inline">
+  			    <label>
+  			      Echo log in console: <a href="#" data-toggle="tooltip" title="Server logs will also appear in server console."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+  						<select class="form-control input-sm" id="sv_logecho">
+  							<option value="1" data-name="sv_logecho" data-url="">Yes</option>
+  							<option value="0" data-name="sv_logecho" data-url="">No</option>
+  						</select>
+  			    </label>
+				</li>
+				<li class="form-inline">
+  			    <label>
+  			      Log server bans: 
+  						<select class="form-control input-sm" id="sv_logbans">
+  							<option value="1" data-name="sv_logbans" data-url="">Yes</option>
+  							<option value="0" data-name="sv_logbans" data-url="">No</option>
+  						</select>
+  			    </label>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+  <div class="tab-pane fade" id="files">
+  <!--   LEAGUE  -->
+		<div id="league">
+			<h3>Popular competitive	leagues' config presets</h3>
+			<p class="text-muted">Each config should be excuted manually when you are going to play any kind of "mp_tournament 1" match, like scrim, official, etc. If you are only going to keep your server as a public, feel free to skip this section. Execute the config you need by typing 'exec [config name without .cfg]' in server console. Use 'rcon' command to execute them from a client side. Built-in league whitelists also present and are executed automatically when you run a corresponding config.</p>
+
+			<ul class="checkbox">
+
+				<li>
+					<label>
+					  <p><input type="checkbox" name="etf2l" id="etf2l" data-name="etf2l" data-url="" />
+					  ETF2L <a href="http://etf2l.org/rules/configs/" data-toggle="tooltip" title="European Team Fortress 2 League. Contains cfg files and a whitelist. Click here to check out ETF2L download page." target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+					</label></p>
+					<div id="etf2l_p">
+						<div class="panel panel-default">
+						  <div class="panel-heading">Configs you can execute:</div>
+						  <div class="panel-body">
+							etf2l_6v6<br>
+							etf2l_6v6_5cp<br>
+							etf2l_6v6_ctf<br>
+							etf2l_6v6_koth<br>
+							etf2l_6v6_stopwatch<br>
+							etf2l_9v9<br>
+							etf2l_9v9_5cp<br>
+							etf2l_9v9_ctf<br>
+							etf2l_9v9_koth<br>
+							etf2l_9v9_stopwatch<br>
+							etf2l_bball<br>
+							etf2l_golden_cap<br>
+							etf2l_ultiduo<br>
+						  </div>
+						</div>
+					</div>
+				</li>
+				<script>
+				checkbox = $('#etf2l'),
+				chShipBlock = $('#etf2l_p');
+
+				chShipBlock.hide();
+
+				checkbox.on('click', function() {
+				   if($(this).is(':checked')) {
+					  chShipBlock.fadeIn(400);
+					  chShipBlock.find('input').attr('required', true);
+				   } else {
+					  chShipBlock.fadeOut(200);
+					  chShipBlock.find('input').attr('required', false);
+				   }
+				});
+				</script>
+				
+				
+				<li>
+					<label>
+					  <p><input type="checkbox" name="ugc" id="ugc" data-name="ugc" data-url="" />
+					  UGC <a href="#" data-toggle="tooltip" title="United Gaming Clans League" target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+					</label></p>
+					<div id="ugc_p">
+						<div class="panel panel-default">
+						  <div class="panel-heading">Configs you can execute:</div>
+						  <div class="panel-body">
+							ugc_4v_koth<br>
+							ugc_4v_koth_overtime<br>
+							ugc_4v_standard<br>
+							ugc_4v_standard_overtime<br>
+							ugc_4v_golden<br>
+							ugc_4v_stopwatch<br>
+							ugc_6v_standard<br>
+							ugc_6v_standard_overtime<br>
+							ugc_6v_golden<br>
+							ugc_6v_koth<br>
+							ugc_6v_koth_overtime<br>
+							ugc_6v_stopwatch<br>
+							ugc_HL_base<br>
+							ugc_HL_ctf<br>
+							ugc_HL_koth<br>
+							ugc_HL_standard<br>
+							ugc_HL_stopwatch<br>
+							ugc_off<br>
+						  </div>
+						</div>
+					</div>
+				</li>
+				<script>
+				checkbox2 = $('#ugc'),
+				chShipBlock2 = $('#ugc_p');
+
+				chShipBlock2.hide();
+
+				checkbox2.on('click', function() {
+				   if($(this).is(':checked')) {
+					  chShipBlock2.fadeIn(400);
+					  chShipBlock2.find('input').attr('required', true);
+				   } else {
+					  chShipBlock2.fadeOut(200);
+					  chShipBlock2.find('input').attr('required', false);
+				   }
+				});
+				</script>
+				
+				
+				
+				<li>
+					<label>
+					  <p><input type="checkbox" name="ozfortress" id="ozfortress" data-name="ozfortress" data-url="" />
+					  ozfortress <a href="https://github.com/ozfortress/server-configs" data-toggle="tooltip" title="The Australian TF2 League. Click here to go to the config download page." target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+					</label></p>
+					<div id="ozfortress_p">
+						<div class="panel panel-default">
+						  <div class="panel-heading">Configs you can execute:</div>
+						  <div class="panel-body">
+							ozfortress_6v6<br>
+							ozfortress_6v6_5cp<br>
+							ozfortress_6v6_koth<br>
+							ozfortress_6v6_push<br>
+							ozfortress_6v6_scrim<br>
+							ozfortress_9v9<br>
+							ozfortress_9v9_5cp<br>
+							ozfortress_9v9_koth<br>
+							ozfortress_9v9_push<br>
+							ozfortress_9v9_scrim<br>
+							ozfortress_9v9_stopwatch<br>
+							ozfortress_golden_cap<br>
+							ozfortress_ultiduo<br>
+						  </div>
+						</div>
+					</div>
+				</li>
+				<script>
+				checkbox3 = $('#ozfortress'),
+				chShipBlock3 = $('#ozfortress_p');
+
+				chShipBlock3.hide();
+
+				checkbox3.on('click', function() {
+				   if($(this).is(':checked')) {
+					  chShipBlock3.fadeIn(400);
+					  chShipBlock3.find('input').attr('required', true);
+				   } else {
+					  chShipBlock3.fadeOut(200);
+					  chShipBlock3.find('input').attr('required', false);
+				   }
+				});
+				</script>								
+			</ul>
+		</div>
+
+  </div>
+
+  <div class="tab-pane fade" id="addons">
+	<!--   ADDONS  -->
+	<h3>Server addons</h3>
+	<p class="text-muted">Those are tools that help you to manage your server, add extra features and a lot of other stuff.</p>
+
+	<ul class="checkbox">
+				<li>
+					<label>
+					  <input type="checkbox" name="tftrue" id="tftrue" data-name="tftrue" data-url="" />
+					  TFTrue <a href="http://tftrue.esport-tools.net/" data-toggle="tooltip" title="TFTrue is a competitive server mod that includes various settings that you usually can't control, automatical logs upload, quick whitelist change and more. Click here for details." target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+					</label>
+				</li>
+	</ul>
+	<br>
+	<script>
+	$(document).ready(function(){
+    $('#tftrue').change(function(){
+        if(this.checked)
+            $('#tftrue_p').fadeIn(400);
+        else
+            $('#tftrue_p').fadeOut(400);
+
+    });
+	});
+	</script>
+
+	<!-- TFTRUE -->
+	<div id="tftrue_p" style="display: none;">
+	
+			<div class="panel panel-primary">
+			  <div class="panel-heading">
+				<h3 class="panel-title">TFTrue settings:</h3>
+			  </div>
+			  <div class="panel-body">
+			  <p class="text-muted">For more settings, please refer to <a href="http://tftrue.esport-tools.net/" target="_blank">TFTrue official site.</a></p>
+			  <ul class="form-inline">
+				<li class="form-inline">
+  			    <label>
+  			      Max FOV: <a href="#" data-toggle="tooltip" title="In the chat, players can type !fov xxx to change field of view, where xxx is a value between 75 and this value."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  						<input class="form-control input-sm" type="text" size="5" value="90" id="tftrue_maxfov"/>
+  			    </label>
+  			  </li>			 
+				<li class="form-inline">
+  			    <label>
+  			      Enable freeze cam: <a href="#" data-toggle="tooltip" title="Show players a shot of their killer for a short period of time. Disabling this will also shorten respawn times. 0 - disable, 1 - enable."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  						<input class="form-control input-sm" type="text" size="5" value="1" id="tftrue_freezecam"/>
+  			    </label>
+  			  </li>			 
+				<li class="form-inline">
+  			    <label>
+  			      Whitelist.tf id: <a href="#" data-toggle="tooltip" title="Sets a whitelist id from whitelist.tf. Default is -1 (disabled). "><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  						<input class="form-control input-sm" type="text" size="5" value="-1" id="tftrue_whitelist_id"/>
+  			    </label>
+  			  </li>			 
+				<li class="form-inline">
+  			    <label>
+  			      Logs.tf API key: <a href="http://logs.tf/uploader" data-toggle="tooltip" title="Required for automaticall logs upload to Logs.tf. Click here to get your API key (you must be logged in on Logs.tf)" target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  						<input class="form-control input-sm" type="text" size="5" value="1" id="tftrue_logs_apikey"/>
+  			    </label>
+  			  </li>			 
+				<li class="form-inline">
+  			    <label>
+  			      Restore player stats on reconnect: <a href="#" data-toggle="tooltip" title="Keeps the player stats on disconnect (Score, Kills, Deaths, etc...) and restore them when he reconnects in both scoreboard and A2S_PLAYER queries (e.g. View Game Info in the Server Browser). 0 - disable, 1 - enable."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  						<input class="form-control input-sm" type="text" size="5" value="1" id="tftrue_restorestats"/>
+  			    </label>
+  			  </li>			 
+				<li class="form-inline">
+  			    <label>
+  			      Auto record STV demo: <a href="#" data-toggle="tooltip" title="Turn on auto STV recording when both teams are ready in tournament mode. It will stops when the win conditions are reached.  0 - disable, 1 - enable."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  						<input class="form-control input-sm" type="text" size="5" value="1" id="tftrue_tv_autorecord"/>
+  			    </label>
+  			  </li>			 
+				<li class="form-inline">
+  			    <label>
+  			      STV demos path: <a href="#" data-toggle="tooltip" title="Lets you define a folder inside 'tf' where you want the demos recorded by tftrue_tv_autorecord to be stored. The folder will be automatically created if this parameter is set. "><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  						<input class="form-control input-sm" type="text" size="5" value="demos" id="tftrue_tv_demos_path"/>
+  			    </label>
+  			  </li>			 
+				<li class="form-inline">
+  			    <label>
+  			      Disable hats (server-side):
+  						<input class="form-control input-sm" type="text" size="5" value="0" id="tftrue_no_hats"/>
+  			    </label>
+  			  </li>			 
+				<li class="form-inline">
+  			    <label>
+  			      Disable misc items (server-side): 
+  						<input class="form-control input-sm" type="text" size="5" value="0" id="tftrue_no_misc"/>
+  			    </label>
+  			  </li>			 
+				<li class="form-inline">
+  			    <label>
+  			      Enable bunny hopping: <a href="#" data-toggle="tooltip" title="Turn on/off bunny hopping. Hold space to jump constantly without losing your speed. This will also set all doors opening speed to maximum to prevent players from being stuck. 0 - disable, 1 - enable."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  						<input class="form-control input-sm" type="text" size="5" value="0" id="tftrue_bunnyhop"/>
+  			    </label>
+  			  </li>			 
+				</ul>
+			  </div>
+			</div>
+
+		</div>
+
+
+
+
+	</div>
+  <div class="tab-pane fade" id="essential">
+	<!--  stuff  -->
+	<h3>Various settings</h3>
+	<p class="text-muted">League configs already have most of this settings so they will be overwritten once you execute anything.</p>
+	<ul class="form-inline">
+				<li class="form-inline">
+  			    <label>
+  			      sv_pure: <a href="#" data-toggle="tooltip" title="A pure server is one that forces all clients on the server to use content that matches what is on the server. This prevents players from cheating by modifying game content, e.g. increasing the size of models or volume of footsteps, or making wall materials transparent. Avaialbe modes: '-1' - allow all user mods, '0' - only checks files from list pure_server_minimal.txt, '1' - everything is disallowed but you can add exceptions to pure_server_whitelist.txt. '2' - disallow all modifications."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  						<input class="form-control input-sm" type="text" size="5" value="2" id="sv_pure"/>
+  			    </label>
+				</li>
+				<li class="form-inline">
+  			    <label>
+  			      Kick pure server violators: 
+  						<input class="form-control input-sm" type="text" size="5" value="0" id="sv_pure_kick_clients"/>
+  			    </label>
+				</li>
+				<li class="form-inline">
+  			    <label>
+  			      All-talk: <a href="#" data-toggle="tooltip" title="Players on both sides can hear all other players, no team restrictions."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  						<input class="form-control input-sm" type="text" size="5" value="0" id="sv_alltalk"/>
+  			    </label>
+				</li>
+				<li class="form-inline">
+  			    <label>
+  			      Allow spectators: <a href="#" data-toggle="tooltip" title=" Toggles whether the server allows spectator mode or not."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  						<input class="form-control input-sm" type="text" size="5" value="1" id="mp_allowspectators"/>
+  			    </label>
+				</li>
+				<li class="form-inline">
+  			    <label>
+  			      Auto team balance: <a href="#" data-toggle="tooltip" title=" Force clients to join the opposite team if teams are not balanced."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  						<input class="form-control input-sm" type="text" size="5" value="1" id="mp_autoteambalance"/>
+  			    </label>
+				</li>
+				<li class="form-inline">
+  			    <label>
+  			      Team balance limit: <a href="#" data-toggle="tooltip" title="Teams are unbalanced when one team has this many more players than the other team. (0 disables check)"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  						<input class="form-control input-sm" type="text" size="5" value="2" id="mp_teams_unbalance_limit"/>
+  			    </label>
+				</li>
+				<li class="form-inline">
+  			    <label>
+  			      Force first person mode for dead players: <a href="#" data-toggle="tooltip" title="Restricts spectator modes for dead players"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  						<input class="form-control input-sm" type="text" size="5" value="0" id="mp_forcecamera"/>
+  			    </label>
+				</li>
+				<li class="form-inline">
+  			    <label>
+  			      Allow wait Command:: <a href="#" data-toggle="tooltip" title="Allow or disallow the wait command on clients connected to this server"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  						<input class="form-control input-sm" type="text" size="5" value="0" id="sv_allow_wait_command"/>
+  			    </label>
+				</li>
+				<li class="form-inline">
+  			    <label>
+  			      Allow cheat commands: <a href="#" data-toggle="tooltip" title="Allow commands marked as cheats on a server."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  						<input class="form-control input-sm" type="text" size="5" value="0" id="sv_cheats"/>
+  			    </label>
+				</li>
+				<li class="form-inline">
+  			    <label>
+  			      Allow pause: <a href="#" data-toggle="tooltip" title="Allow players to pause a game with 'pause' command"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  						<input class="form-control input-sm" type="text" size="5" value="0" id="sv_pausable"/>
+  			    </label>
+				</li>
+				<li class="form-inline">
+  			    <label>
+  			      Stalemate: <a href="#" data-toggle="tooltip" title="Enable/Disable stalemate mode."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  						<input class="form-control input-sm" type="text" size="5" value="0" id="mp_stalemate_enable"/>
+  			    </label>
+				</li>
+				<li class="form-inline">
+  			    <label>
+  			      Stalemate time limit:
+  						<input class="form-control input-sm" type="text" size="5" value="240" id="mp_stalemate_timelimit"/>
+  			    </label>
+				</li>
+				<li class="form-inline">
+  			    <label>
+  			      Win limit: <a href="#" data-toggle="tooltip" title="Win Llmit before map change:"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  						<input class="form-control input-sm" type="text" size="5" value="0" id="mp_winlimit"/>
+  			    </label>
+				</li>
+				<li class="form-inline">
+  			    <label>
+  			      Map time limit: <a href="#" data-toggle="tooltip" title="Game time per map in minutes. 0 = unlimited / until win limit reached"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  						<input class="form-control input-sm" type="text" size="5" value="0" id="mp_timelimit"/>
+  			    </label>
+				</li>
+				<li class="form-inline">
+  			    <label>
+  			      Random crits:
+  						<input class="form-control input-sm" type="text" size="5" value="1" id="tf_weapon_criticals"/>
+  			    </label>
+				</li>
+				<li class="form-inline">
+  			    <label>
+  			      Disable random bullet spread: <a href="#" data-toggle="tooltip" title=" If set to 1, weapons that fire multiple pellets per shot will use a non-random pellet distribution. "><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  						<input class="form-control input-sm" type="text" size="5" value="0" id="tf_use_fixed_weaponspreads"/>
+  			    </label>
+				</li>
+			</u>
+  <ul class="checkbox">
+  </ul>
+	</div>
+  <div class="tab-pane fade" id="network">
+	<!--   NETWORK SETTINGS  -->
+	<h3>Bandwidth rate and network settings</h3>
+	<p class="text-muted">Change only if you know what are you doing.</p>
+
+	<li>
+    <label>
+			sv_maxrate
+      <input class="form-control" type="text" size="6"  id="sv_maxrate" onkeypress="return isNumberKey(event)" value="50000" />
+    </label>
+    </li>
+	<li>
+    <label>
+			sv_minrate
+      <input class="form-control" type="text" size="6"  id="sv_minrate" onkeypress="return isNumberKey(event)" value="7500"/>
+    </label>
+    </li>
+	<li>
+    <label>
+			sv_maxupdaterate
+      <input class="form-control" type="text" size="6"  id="sv_maxupdaterate" onkeypress="return isNumberKey(event)" value="66" />
+    </label>
+    </li>
+	<li>
+    <label>
+			sv_minupdaterate
+      <input class="form-control" type="text" size="6"  id="sv_minupdaterate" onkeypress="return isNumberKey(event)" value="20" />
+    </label>
+    </li>
+	<li>
+    <label>
+			sv_maxcmdrate
+      <input class="form-control" type="text" size="6"  id="sv_maxcmdrate" onkeypress="return isNumberKey(event)" value="66" />
+    </label>
+    </li>
+	<li>
+    <label>
+			sv_mincmdrate
+      <input class="form-control" type="text" size="6"  id="sv_mincmdrate" onkeypress="return isNumberKey(event)" value="30" />
+    </label>
+    </li>
+	</div>
+  <div class="tab-pane fade" id="binds">
+	<!--   CUSTOM INPUT  -->
+	<h3>Custom settings:</h3>
+	<p>Same formatting rules as for the TF2 console. This will be executed at the end of your config and overwrite existing settings if there are any.</p>
+	<br>
+	<textarea id="bindings" placeholder="exec etf2l_6v6_5cp; say &quot;pug time&quot;" class="form-control"></textarea>
+	</div>
+</div>
+</div>
+
+  <button data-toggle="tooltip" title="Be sure to go through all the tabs before generating." type="submit" class="btn btn-primary">Generate config <i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
+	<hr>
+</form>
+
+<div class="progress hide" id="progress_bar">
+	<div class="progress progress-striped active">
+    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+    </div>
+	</div>
+</div>
+
+<p class="hide" id="result"></p>
+	<!--   CONNECT OPTIONS  -->
+	  <script>
+  $(document).ready(function() {
+    var copyTextareaBtn = document.querySelector('#loptions_copy');
+
+    copyTextareaBtn.addEventListener('click', function(event) {
+    var copyTextarea = document.querySelector('#loptions');
+    copyTextarea.select();
+
+    try {
+      var successful = document.execCommand('copy');
+      var msg = successful ? 'successful' : 'unsuccessful';
+      $("#loptions_copy").removeClass('btn-primary').addClass('btn-success');
+    } catch (err) {
+      $("#loptions_copy").removeClass('btn-primary').addClass('btn-danger');
+    }
+    });
+  });
+  </script>
+  <script>
+  </script>
+
+		<div class="panel panel-primary">
+		  <div class="panel-heading">
+			<h3 class="panel-title">Connect command: <a href="#" data-toggle="tooltip" title="Used to give other players a quick server connect string. Just paste it into console and you can play." ><i class="fa fa-question-circle-o" aria-hidden="true"></i></a></h3>
+		  </div>
+		  <div class="panel-body">
+				<div class="well well-lg">
+					 <button data-toggle="tooltip" title="Copy to clipboard" id="loptions_copy" class="btn btn-primary" type="button"><i class="fa fa-clipboard" aria-hidden="true"></i></button><input type="text" class="form-control" id="loptions" onclick="this.setSelectionRange(0, this.value.length)" value="" readonly/>
+				</div>
+		  </div>
+		</div>
+
+	<script>
+	$(document).ready(function(){																															//tooltips
+		$('[data-toggle="tooltip"]').tooltip();
+	});
+	</script>
+</div>
+
+<script type="text/javascript" src="../js/downloader_server.js"></script>
+
+
+</div>
+
+
+<p> </p>
+
+
+ <script>
+    jQuery(window).on('load', function(){
+    jQuery('#overlay').fadeOut();
+    });
+</script>
+
+<footer>
+  <div class="container">
+  <p class="pull-right">~<script language="JavaScript">var fhsh = document.createElement('script');var fhs_id_h = "3234623";
+fhsh.src = "//s1.freehostedscripts.net/ocount.php?site="+fhs_id_h+"&name=configs&a=1";
+document.head.appendChild(fhsh);document.write("<span id='h_"+fhs_id_h+"'></span>");
+</script><br> generated so far.</p>
+        <p class="pull-left">
+    	<small>
+		<a href="https://discord.gg/79cbsTu" target="_blank">Join our Discord</a> <br>
+		<a href="http://www.teamfortress.tv/40062/a-simple-custom-config-generator" target="_blank">Discuss on TFTV</a><br>
+		<a href="https://github.com/mkrl/mkrl.github.io/issues" target="_blank">Report an issue</a><br>
+		<a href="https://github.com/mkrl/mkrl.github.io" target="_blank">View the source code</a>
+		</small>
+		</p>
+        
+	<center><p> CFG.TF <br><small> a custom TF2 config generator by <a href="https://steamcommunity.com/id/2x100/" target="_blank">200</a></small> </p></center>
+    
+  </div>
+</footer>
+
+  </body>
+</html>

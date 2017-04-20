@@ -487,37 +487,37 @@ jQuery(function ($) {
 				zip.file("cfg/" + filename, urlToPromise(url), {binary:true});
             }
 			if(iswhat == "crosshairswitcher") {
-				zip.file("cfg/demoman.cfg", urlToPromise("../cfgen/cfg/class/demoman.cfg"), {binary:true});
-				zip.file("cfg/demoplayback.cfg", urlToPromise("../cfgen/cfg/class/demoplayback.cfg"), {binary:true});
-				zip.file("cfg/engineer.cfg", urlToPromise("../cfgen/cfg/class/engineer.cfg"), {binary:true});
-				zip.file("cfg/heavyweapons.cfg", urlToPromise("../cfgen/cfg/class/heavyweapons.cfg"), {binary:true});
-				zip.file("cfg/insourcetv.cfg", urlToPromise("../cfgen/cfg/class/insourcetv.cfg"), {binary:true});
-				zip.file("cfg/CROSSHAIRSWITCHER-INSTRUCTIONS.txt", urlToPromise("../cfgen/cfg/class/CROSSHAIRSWITCHER-INSTRUCTIONS.txt"), {binary:true});
-				zip.file("cfg/medic.cfg", urlToPromise("../cfgen/cfg/class/medic.cfg"), {binary:true});
-				zip.file("cfg/pyro.cfg", urlToPromise("../cfgen/cfg/class/pyro.cfg"), {binary:true});
-				zip.file("cfg/scout.cfg", urlToPromise("../cfgen/cfg/class/scout.cfg"), {binary:true});
-				zip.file("cfg/sniper.cfg", urlToPromise("../cfgen/cfg/class/sniper.cfg"), {binary:true});
-				zip.file("cfg/soldier.cfg", urlToPromise("../cfgen/cfg/class/soldier.cfg"), {binary:true});
-				zip.file("cfg/spy.cfg", urlToPromise("../cfgen/cfg/class/spy.cfg"), {binary:true});
-				zip.file("cfg/crosshairswitcher/binds.cfg", urlToPromise("../cfgen/cfg/class/crosshairswitcher/binds.cfg"), {binary:true});
-				zip.file("cfg/crosshairswitcher/crosshairs.cfg", urlToPromise("../cfgen/cfg/class/crosshairswitcher/crosshairs.cfg"), {binary:true});
-				zip.file("cfg/crosshairswitcher/defaultcrosshair.cfg", urlToPromise("../cfgen/cfg/class/crosshairswitcher/defaultcrosshair.cfg"), {binary:true});
-				zip.file("cfg/crosshairswitcher/disable.cfg", urlToPromise("../cfgen/cfg/class/crosshairswitcher/disable.cfg"), {binary:true});
+				zip.file("cfg/demoman.cfg", urlToPromise("../make/cfg/class/demoman.cfg"), {binary:true});
+				zip.file("cfg/demoplayback.cfg", urlToPromise("../make/cfg/class/demoplayback.cfg"), {binary:true});
+				zip.file("cfg/engineer.cfg", urlToPromise("../make/cfg/class/engineer.cfg"), {binary:true});
+				zip.file("cfg/heavyweapons.cfg", urlToPromise("../make/cfg/class/heavyweapons.cfg"), {binary:true});
+				zip.file("cfg/insourcetv.cfg", urlToPromise("../make/cfg/class/insourcetv.cfg"), {binary:true});
+				zip.file("cfg/CROSSHAIRSWITCHER-INSTRUCTIONS.txt", urlToPromise("../make/cfg/class/CROSSHAIRSWITCHER-INSTRUCTIONS.txt"), {binary:true});
+				zip.file("cfg/medic.cfg", urlToPromise("../make/cfg/class/medic.cfg"), {binary:true});
+				zip.file("cfg/pyro.cfg", urlToPromise("../make/cfg/class/pyro.cfg"), {binary:true});
+				zip.file("cfg/scout.cfg", urlToPromise("../make/cfg/class/scout.cfg"), {binary:true});
+				zip.file("cfg/sniper.cfg", urlToPromise("../make/cfg/class/sniper.cfg"), {binary:true});
+				zip.file("cfg/soldier.cfg", urlToPromise("../make/cfg/class/soldier.cfg"), {binary:true});
+				zip.file("cfg/spy.cfg", urlToPromise("../make/cfg/class/spy.cfg"), {binary:true});
+				zip.file("cfg/crosshairswitcher/binds.cfg", urlToPromise("../make/cfg/class/crosshairswitcher/binds.cfg"), {binary:true});
+				zip.file("cfg/crosshairswitcher/crosshairs.cfg", urlToPromise("../make/cfg/class/crosshairswitcher/crosshairs.cfg"), {binary:true});
+				zip.file("cfg/crosshairswitcher/defaultcrosshair.cfg", urlToPromise("../make/cfg/class/crosshairswitcher/defaultcrosshair.cfg"), {binary:true});
+				zip.file("cfg/crosshairswitcher/disable.cfg", urlToPromise("../make/cfg/class/crosshairswitcher/disable.cfg"), {binary:true});
 				zip.file("cfg/crosshairswitcher/settings.cfg", '//   use the aliases like this: size; color; type; viewmodel FOV or viewmodel off\n//  _______________________________________________________________________________\n// |SIZES:  tiny      [18] |COLORS:  red    | mint    |TYPES:  cross_with_dot      |\n// |IIIIII  smallest  [20] |IIIIIII  green  | lime    |IIIIII  half_cross_with_dot |\n// |        small     [24] |         blue   | skyblue |        ring                |\n// |        medium    [28] |         yellow | black   |        ex                  |\n// |        big       [32] |         cyan   | grey    |        dot                 |\n// |        biggest   [36] |         pink   | white   |        open_cross          |\n// |        huge      [40] |         orange |         |        cross               |\n// |        invisible [00] |         purple |         |        default             |\n//  IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII\n\nalias default_primary_crosshair   "medium; green; cross; 84"\nalias default_secondary_crosshair "medium; cyan; cross_with_dot; 84"\nalias default_melee_crosshair     "big; yellow; open_cross; 84"\n\n//SCOUT\nalias scout_primary       "'+ size1_1 + '; ' + color1_1 + '; ' + style1_1 + '; ' + model1_1 + '"\nalias scout_secondary     "'+ size1_2 + '; ' + color1_2 + '; ' + style1_2 + '; ' + model1_2 + '"\nalias scout_melee         "'+ size1_3 + '; ' + color1_3 + '; ' + style1_3 + '; ' + model1_3 + '"\n\n//SOLDIER\nalias soldier_primary     "'+ size2_1 + '; ' + color2_1 + '; ' + style2_1 + '; ' + model2_1 + '"\nalias soldier_secondary   "'+ size2_2 + '; ' + color2_2 + '; ' + style2_2 + '; ' + model2_2 + '"\nalias soldier_melee       "'+ size2_3 + '; ' + color2_3 + '; ' + style2_3 + '; ' + model2_3 + '"\n\n//PYRO\nalias pyro_primary        "'+ size3_1 + '; ' + color3_1 + '; ' + style3_1 + '; ' + model3_1 + '"\nalias pyro_secondary      "'+ size3_2 + '; ' + color3_2 + '; ' + style3_2 + '; ' + model3_2 + '"\nalias pyro_melee          "'+ size3_3 + '; ' + color3_3 + '; ' + style3_3 + '; ' + model3_3 + '"\n\n//DEMOMAN\nalias demoman_primary     "'+ size4_1 + '; ' + color4_1 + '; ' + style4_1 + '; ' + model4_1 + '"\nalias demoman_secondary   "'+ size4_2 + '; ' + color4_2 + '; ' + style4_2 + '; ' + model4_2 + '"\nalias demoman_melee       "'+ size4_3 + '; ' + color4_3 + '; ' + style4_3 + '; ' + model4_3 + '"\n\n//HEAVY\nalias heavy_primary       "'+ size5_1 + '; ' + color5_1 + '; ' + style5_1 + '; ' + model5_1 + '"\nalias heavy_secondary     "'+ size5_2 + '; ' + color5_2 + '; ' + style5_2 + '; ' + model5_2 + '"\nalias heavy_melee         "'+ size5_3 + '; ' + color5_3 + '; ' + style5_3 + '; ' + model5_3 + '"\n\n//ENGINEER\nalias engineer_primary    "'+ size6_1 + '; ' + color6_1 + '; ' + style6_1 + '; ' + model6_1 + '"\nalias engineer_secondary  "'+ size6_2 + '; ' + color6_2 + '; ' + style6_2 + '; ' + model6_2 + '"\nalias engineer_melee      "'+ size6_3 + '; ' + color6_3 + '; ' + style6_3 + '; ' + model6_3 + '"\n\n//MEDIC\nalias medic_primary       "'+ size7_1 + '; ' + color7_1 + '; ' + style7_1 + '; ' + model7_1 + '"\nalias medic_secondary     "'+ size7_2 + '; ' + color7_2 + '; ' + style7_2 + '; ' + model7_2 + '"\nalias medic_melee         "'+ size7_3 + '; ' + color7_3 + '; ' + style7_3 + '; ' + model7_3 + '"\n\n//SNIPER\nalias sniper_primary      "'+ size8_1 + '; ' + color8_1 + '; ' + style8_1 + '; ' + model8_1 + '"\nalias sniper_secondary    "'+ size8_2 + '; ' + color8_2 + '; ' + style8_2 + '; ' + model8_2 + '"\nalias sniper_melee        "'+ size8_3 + '; ' + color8_3 + '; ' + style8_3 + '; ' + model8_3 + '"\n\n//SPY\nalias spy_primary         "'+ size9_1 + '; ' + color9_1 + '; ' + style9_1 + '; ' + model9_1 + '"\nalias spy_secondary       "'+ size9_2 + '; ' + color9_2 + '; ' + style9_2 + '; ' + model9_2 + '"\nalias spy_melee           "'+ size9_3 + '; ' + color9_3 + '; ' + style9_3 + '; ' + model9_3 + '"');
-				zip.file("cfg/crosshairswitcher/shorten.cfg", urlToPromise("../cfgen/cfg/class/crosshairswitcher/shorten.cfg"), {binary:true});
-				zip.file("cfg/crosshairswitcher/switcher.cfg", urlToPromise("../cfgen/cfg/class/crosshairswitcher/switcher.cfg"), {binary:true});
-				zip.file("cfg/crosshairswitcher/weapons.cfg", urlToPromise("../cfgen/cfg/class/crosshairswitcher/weapons.cfg"), {binary:true});
+				zip.file("cfg/crosshairswitcher/shorten.cfg", urlToPromise("../make/cfg/class/crosshairswitcher/shorten.cfg"), {binary:true});
+				zip.file("cfg/crosshairswitcher/switcher.cfg", urlToPromise("../make/cfg/class/crosshairswitcher/switcher.cfg"), {binary:true});
+				zip.file("cfg/crosshairswitcher/weapons.cfg", urlToPromise("../make/cfg/class/crosshairswitcher/weapons.cfg"), {binary:true});
 
             }
 			if(iswhat == "sourceres") {
-				zip.file("addons/SourceRes.dll" + filename, urlToPromise("../cfgen/addons/SourceRes/addons/SourceRes.dll"), {binary:true});
-				zip.file("addons/SourceRes.vdf" + filename, urlToPromise("../cfgen/addons/SourceRes/addons/SourceRes.vdf"), {binary:true});
+				zip.file("addons/SourceRes.dll" + filename, urlToPromise("../make/addons/SourceRes/addons/SourceRes.dll"), {binary:true});
+				zip.file("addons/SourceRes.vdf" + filename, urlToPromise("../make/addons/SourceRes/addons/SourceRes.vdf"), {binary:true});
             }
 			if(iswhat == "prec") {
-				zip.file("addons/PREC.cfg" + filename, urlToPromise("../cfgen/addons/prec/addons/PREC.cfg"), {binary:true});
-				zip.file("addons/PREC.dll" + filename, urlToPromise("../cfgen/addons/prec/addons/PREC.dll"), {binary:true});
-				zip.file("addons/PREC.vdf" + filename, urlToPromise("../cfgen/addons/prec/addons/PREC.vdf"), {binary:true});
-				zip.file("addons/readme_prec.txt" + filename, urlToPromise("../cfgen/addons/prec/addons/readme_prec.txt"), {binary:true});
+				zip.file("addons/PREC.cfg" + filename, urlToPromise("../make/addons/prec/addons/PREC.cfg"), {binary:true});
+				zip.file("addons/PREC.dll" + filename, urlToPromise("../make/addons/prec/addons/PREC.dll"), {binary:true});
+				zip.file("addons/PREC.vdf" + filename, urlToPromise("../make/addons/prec/addons/PREC.vdf"), {binary:true});
+				zip.file("addons/readme_prec.txt" + filename, urlToPromise("../make/addons/prec/addons/readme_prec.txt"), {binary:true});
             }
 			if(iswhat == "tweaks") {
 				zip.file("cfg/tweaks/" + filename, urlToPromise(url), {binary:true});
@@ -527,15 +527,15 @@ jQuery(function ($) {
 
 
 				if($("#crosshairswitcherid").is(':checked')){
-					zip.file("cfg/tweaks/fastclass.cfg", urlToPromise("../cfgen/cfg/fastclass_cs.cfg"), {binary:true});
+					zip.file("cfg/tweaks/fastclass.cfg", urlToPromise("../make/cfg/fastclass_cs.cfg"), {binary:true});
 					customs = customs + "exec tweaks/fastclass.cfg\n";
 				} else {
-					zip.file("cfg/tweaks/fastclass.cfg", urlToPromise("../cfgen/cfg/fastclass.cfg"), {binary:true});
+					zip.file("cfg/tweaks/fastclass.cfg", urlToPromise("../make/cfg/fastclass.cfg"), {binary:true});
 					customs = customs + "exec tweaks/fastclass.cfg\n";
 				}
 
             }
-			zip.file('cfg/custom.cfg', '//Tweaks, custom binds, all the stuff usually goes here\n\n\n' +customs + '\n\n' + bindings + '\necho "------------- Thanks for using config generator by 200 -------------"\necho "------------- Create your own custom config at https://mkrl.github.io/cfgen/ -------------"'); //load custom tweaks and config
+			zip.file('cfg/custom.cfg', '//Tweaks, custom binds, all the stuff usually goes here\n\n\n' +customs + '\n\n' + bindings + '\necho "------------- Thanks for using CFG.TF -------------"\necho "------------- Create your own custom config at https://cfg.tf -------------"'); //load custom tweaks and config
 
         });
 
@@ -544,7 +544,7 @@ jQuery(function ($) {
 		zip.file("cfg/autoexec.cfg", "exec gfx\nexec binds\nexec settings\nexec network\nexec custom"); 				//autoexec
 		zip.file("cfg/settings.cfg", "//General TF2 settings, like autoheal, min viewmodels, fastswitch, etc.\n\ntf_medigun_autoheal 1\ncl_autoreload 1\nhud_fastswitch 1\ntf_use_min_viewmodels " + minmodel +"\nr_drawviewmodel " + drawviewmodel + "\nfov_desired 90\nviewmodel_fov " + v_fov + "\n\ntf_remember_activeweapon 1\ntf_remember_lastswitched 1\nsb_dontshow_maxplayer_warning 1\ntf_spectate_pyrovision 0\nviewmodel_fov_demo 75\n\ntf_dingalingaling " + hittoggle + "\ntf_dingalingaling_repeat_delay " + hitdelay + "\ntf_dingaling_pitchmindmg " + hitmin + " \ntf_dingaling_pitchmaxdmg " + hitmax + "\ntf_dingaling_lasthit " + killtoggle + "\ntf_dingaling_lasthit_volume " + killvol + "\ntf_dingaling_lasthit_pitchmindmg " + killmin + "\ntf_dingaling_lasthit_pitchmaxdmg " + killmax + "\n\n\ntf_training_has_prompted_for_training 1\ntf_training_has_prompted_for_offline_practice 1\ntf_training_has_prompted_for_forums 1\ntf_training_has_prompted_for_options 1\ntf_training_has_prompted_for_loadout 1\ntf_mvm_tabs_discovered 3\ntf_matchmaking_ticket_help 0\ntf_coach_request_nevershowagain 1\n\nhud_combattext " + comtoggle + "\nhud_combattext_batching " + battoggle + "\nhud_combattext_batching_window " + batwindow + "\n\nds_kill_delay 15.000000\nds_enable " + ds_mode + "\nds_dir " + ds_folder + "\nds_notify "+ ds_notify + "\nds_sound " + ds_sound + "\nds_min_streak " + ds_ks + "\nds_autodelete " + ds_delete + "\nds_screens " + ds_screen); 	//settings
 		zip.file("cfg/network.cfg", "//Connection settings\n\ncl_cmdrate " + cmdrate + "\ncl_interp " + interp + "\ncl_interp_ratio " + intratio +"\ncl_lagcompensation 1\ncl_pred_optimize 2\ncl_smooth 0\ncl_smoothtime 0.01\ncl_updaterate " + uprate + "\nrate " + rate + "\n");  	//network
-		zip.file("cfg/binds.cfg", urlToPromise("../cfgen/cfg/binds.cfg"), {binary:true}); 	//binds
+		zip.file("cfg/binds.cfg", urlToPromise("../make/cfg/binds.cfg"), {binary:true}); 	//binds
 
 
         // when everything has been downloaded, we can trigger the dl
