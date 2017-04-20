@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Automatically generate Team Fortress 2 configs, including custom VPKs, tweaks, crosshair switcher and more. Get a good fps boost without stupid unnecessary stuff." />
-    <title>CFGen - Custom TF2 config generator</title>
+    <title>CFG.TF - Generate</title>
 
     <!-- Latest compiled and minified CSS -->
 		<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
@@ -105,43 +105,43 @@
 	<div id="overlay">
     <!-- <img src="../img/loading.gif" alt="Loading" /><br> -->
 	  <div id="loading_logo"></div>
-		Hang on a minute...
+		<br>Hang on a minute...
     <noscript>Please enable javascript in your browser to continue.</noscript>
 	</div>
-  <nav class="navbar navbar-default" role="navigation">
+    <nav class="navbar navbar-default" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="../cfgen/"><img src="../img/logo.png" height="25" width="25" alt="Site logo"></a>
+				<a class="navbar-brand" href="/"><i class="fa fa-cogs" aria-hidden="true"></i> CFG.TF</a>
 			</div>
 			<ul class="nav navbar-nav">
+				<li class="active">
+					<a href="/make">Generate</a>
+				</li>				
 				<li>
-					<a href="https://github.com/mkrl/mkrl.github.io/issues" target="_blank">Report an issue</a>
-				</li>
-				<li>
-					<a href="http://www.teamfortress.tv/40062/a-simple-custom-config-generator" target="_blank">Discuss on TFTV</a>
+					<a href="/server">Server config</a>
 				</li>
 				<li class="dropdown">
 				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Articles<span class="caret"></span></a>
 				  <ul class="dropdown-menu" role="menu">
-					<li><a href="/cfgen/read/interp.html">Networking in Source games</a></li>
-					<li><a href="/cfgen/read/health.html">Health care</a></li>
+					<li><a href="/read/interp">Networking in Source games</a></li>
+					<li><a href="/read/health">Health care</a></li>
 					<li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=154435696" target="_blank"><i class="fa fa-external-link"></i>  Scripting guide</a></li>
 				  </ul>
-				</li>
-				<li>
-					<a href="../cfgen/about/">About</a>
 				</li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li>
-					<a href="https://github.com/mkrl/mkrl.github.io" target="_blank">View the source code</a>
+					<a href="/faq/">FAQ</a>
+				</li>				
+				<li>
+					<a href="/about/">About</a>
 				</li>
 			</ul>
 		</div>
 	</nav>
   <div id="wrapper" class="container-fluid">
 		<div class="row content">
-			<h1>CFGen - A Team Fortress 2 custom config generator</h1>
+			<h1>TF2 custom config generator</h1>
 			<p>
 			  2.1.6
 			</p>
@@ -172,37 +172,37 @@
 				<ul>
 				<li>
 					<label>
-						<input type="radio" name="gfx" id="myown" data-name="gfx" data-url="../cfgen/cfg/nogfx.txt" checked="checked" />
+						<input type="radio" name="gfx" id="myown" data-name="gfx" data-url="../make/cfg/nogfx.txt" checked="checked" />
 						None
 					</label>
 				</li>
 			  <li>
 			    <label>
-			      <input type="radio" name="gfx" id="toaster" onclick="updatedxlevel();" data-name="gfx" data-url="../cfgen/cfg/c_toaster.txt" />
+			      <input type="radio" name="gfx" id="toaster" onclick="updatedxlevel();" data-name="gfx" data-url="../make/cfg/c_toaster.txt" />
 			      Comanglia's Toaster
 			    </label>
 			  </li>
 			  <li>
 			    <label>
-			      <input type="radio" name="gfx" id="stable" onclick="updatedxlevel();" data-name="gfx" data-url="../cfgen/cfg/c_stability.txt" />
+			      <input type="radio" name="gfx" id="stable" onclick="updatedxlevel();" data-name="gfx" data-url="../make/cfg/c_stability.txt" />
 			      Comanglia's Stability
 			    </label>
 			  </li>
 			  <li>
 			    <label>
-			      <input type="radio" name="gfx" id="fine" onclick="updatedxlevel();" data-name="gfx" data-url="../cfgen/cfg/c_maxfps_hq.txt" />
+			      <input type="radio" name="gfx" id="fine" onclick="updatedxlevel();" data-name="gfx" data-url="../make/cfg/c_maxfps_hq.txt" />
 			      Comanglia's Max FPS for High Quality PCs
 			    </label>
 			  </li>
 			  <li>
 			    <label>
-			      <input type="radio" name="gfx" id="fancy" onclick="updatedxlevel();" data-name="gfx" data-url="../cfgen/cfg/c_cinema.txt" />
+			      <input type="radio" name="gfx" id="fancy" onclick="updatedxlevel();" data-name="gfx" data-url="../make/cfg/c_cinema.txt" />
 			      Comanglia's Cinema
 			    </label>
 			  </li>
 			  <li>
 			    <label>
-			      <input type="radio" name="gfx" id="felik" onclick="updatedxlevel();" data-name="gfx" data-url="../cfgen/cfg/f_gfx.txt" />
+			      <input type="radio" name="gfx" id="felik" onclick="updatedxlevel();" data-name="gfx" data-url="../make/cfg/f_gfx.txt" />
 			      Felik's Config
 			    </label>
 			  </li>
@@ -386,25 +386,25 @@
       <ul class="checkbox">
   			<li>
   		    <label>
-  		      <input type="checkbox" name="tweaks" data-name="tweaks" data-url="../cfgen/cfg/null.cfg" checked />
+  		      <input type="checkbox" name="tweaks" data-name="tweaks" data-url="../make/cfg/null.cfg" checked />
   		      Null-cancelling movement script <a href="https://steamcommunity.com/app/440/discussions/0/810939351322344477/" data-toggle="tooltip" title="Allows movement keys to override each other rather than cancel each other out. Highly recommended."  target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
   		    </label>
   		  </li>
   			<li>
   		    <label>
-  		      <input type="checkbox" name="tweaks" data-name="tweaks" data-url="../cfgen/cfg/confilter.cfg" checked />
+  		      <input type="checkbox" name="tweaks" data-name="tweaks" data-url="../make/cfg/confilter.cfg" checked />
   		      Filter "error" alerts from the console <a href="#" data-toggle="tooltip" title="Filters out any lines in the console with the word 'error' present."  ><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
   		    </label>
   		  </li>
   			<li>
   		    <label>
-  		      <input type="checkbox" name="tweaks" data-name="tweaks" data-url="../cfgen/cfg/tabgraph.cfg" checked />
+  		      <input type="checkbox" name="tweaks" data-name="tweaks" data-url="../make/cfg/tabgraph.cfg" checked />
   		      Show net_graph 4 on Tab press, toggle on '-'
   		    </label>
   		  </li>
   			<li>
   		    <label>
-  		      <input type="checkbox" name="tweaks" data-name="tweaks_fastclass" data-url="../cfgen/cfg/fastclass.cfg" />
+  		      <input type="checkbox" name="tweaks" data-name="tweaks_fastclass" data-url="../make/cfg/fastclass.cfg" />
   		      Change class on Shift + [1-9]
   		    </label>
   		  </li>
@@ -419,19 +419,19 @@
 			<ul class="checkbox">
 				<li>
 			    <label>
-			      <input type="checkbox" name="configs" data-name="configs" data-url="../cfgen/cfg/jump.cfg" />
+			      <input type="checkbox" name="configs" data-name="configs" data-url="../make/cfg/jump.cfg" />
 			      Oatmeal's offline jump script (jump.cfg) <a href="http://jump.tf/forum/index.php/topic,687.0.html" data-toggle="tooltip" title="Enables ammo + health regeneration and a teleport system on offline servers. When enabled, type 'exec jump' into console and follow the printed instructions."  target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
 			    </label>
 			  </li>
 				<li>
 			    <label>
-			      <input type="checkbox" name="configs" data-name="configs" data-url="../cfgen/cfg/callouts.cfg" />
+			      <input type="checkbox" name="configs" data-name="configs" data-url="../make/cfg/callouts.cfg" />
 			      Competitive Communication Binds (callouts.cfg) <a href="http://forums.steampowered.com/forums/showthread.php?t=3166123" data-toggle="tooltip" title="When installed, use numpad keys (if you have them) to call important picks, spies, and a lot of other stuff to your team. For detailed instructions, click here. To use, type 'exec callouts' in your console." target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
 			    </label>
 			  </li>
 				<li>
 			    <label>
-			      <input type="checkbox" name="configs" data-name="configs" data-url="../cfgen/cfg/ctap.cfg" />
+			      <input type="checkbox" name="configs" data-name="configs" data-url="../make/cfg/ctap.cfg" />
 			      <abbr title="Crouch tap" class="initialism">Ctap</abbr> script (ctap.cfg) <a href="#" data-toggle="tooltip" title="A pretty simple script that claims to help with crouch-tap timing. When executed, use mouse2." ><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
 			    </label>
 			  </li>
@@ -511,7 +511,7 @@
 			<ul class="checkbox">
 				<li>
 			    <label>
-			      <input type="checkbox" name="scripts" data-name="scripts" data-url="../cfgen/scripts/surfaceproperties.txt" />
+			      <input type="checkbox" name="scripts" data-name="scripts" data-url="../make/scripts/surfaceproperties.txt" />
 			      Remove bullet hole dust <a href="#" data-toggle="tooltip" title="This removes the dust particles that appear when you shoot walls or other surfaces."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
 			    </label>
 			  </li>
@@ -523,7 +523,7 @@
 			<ul class="checkbox">
 				<li>
 			    <label>
-			      <input type="checkbox" name="vpks" data-name="vpks" data-url="../cfgen/vpks/explosions_muzzle_flash.vpk" />
+			      <input type="checkbox" name="vpks" data-name="vpks" data-url="../make/vpks/explosions_muzzle_flash.vpk" />
 			      Remove explosion smoke <a href="http://www.teamfortress.tv/25647/no-explosion-smoke-script" data-toggle="tooltip" title="This will make explosions less visually apparent by replacing the explosive particle effects with 'muzzle_minigun_starflash01'." target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
 			    </label>
 			  </li>
@@ -533,17 +533,17 @@
   			    Do not remove hats
   		    </label>
   		    <label class="radio-inline">
-  					<input type="radio" name="nohats" data-name="vpks" data-url="../cfgen/vpks/headsfeet23.02.vpk"/>
+  					<input type="radio" name="nohats" data-name="vpks" data-url="../make/vpks/headsfeet23.02.vpk"/>
   		      Remove cosmetics ("Headsfeet" version) <a href="http://www.teamfortress.tv/16179/no-hats-mod" data-toggle="tooltip" title="Disables cosmetics, except ones that replace body parts. Grants a small FPS boost." target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
   		    </label>
   		    <label class="radio-inline">
-  					<input type="radio" name="nohats" data-name="vpks" data-url="../cfgen/vpks/no.hats.mod.2017.02.02.vpk" />
+  					<input type="radio" name="nohats" data-name="vpks" data-url="../make/vpks/no.hats.mod.2017.02.02.vpk" />
   		      Remove cosmetics <a href="http://www.teamfortress.tv/16179/no-hats-mod" data-toggle="tooltip" title="Disables all cosmetics. Grants a small FPS boost." target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
   		    </label>
   		  </li>
   			<li>
   		    <label>
-  		      <input type="checkbox" name="vpks" data-name="vpks" data-url="../cfgen/vpks/nosoundscapes.vpk" />
+  		      <input type="checkbox" name="vpks" data-name="vpks" data-url="../make/vpks/nosoundscapes.vpk" />
   		      Disable background sounds <a href="http://etf2l.org/forum/customise/topic-27511/" data-toggle="tooltip" title="This VPK file removes all the soundscapes (backgound sounds/ambient noises) from the game. It does not work on some maps that use other methods of producing sounds, but works on most maps." target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
   		    </label>
   		  </li>
@@ -2205,54 +2205,54 @@
 		Hitsound:   <select class="selectpicker" id="selectionhit" >
 						<option value="" data-name="nohitsound" data-url="">None</option>
 						  <optgroup label="Generic">
-							<option value="../cfgen/snd/Q3.wav" data-name="hitsound" data-url="../cfgen/snd/Q3.wav">Quake 3</option>
-							<option value="../cfgen/snd/sonicring.wav" data-name="hitsound" data-url="../cfgen/snd/sonicring.wav" >Sonic Ring</option>
-							<option value="../cfgen/snd/quack.wav" data-name="hitsound" data-url="../cfgen/snd/quack.wav" >Quack</option>
-							<option value="../cfgen/snd/mariocoin.wav" data-name="hitsound" data-url="../cfgen/snd/mariocoin.wav">Mario Coin</option>
-							<option value="../cfgen/snd/UT.wav" data-name="hitsound" data-url="../cfgen/snd/UT.wav" >Unreal Tournament</option>
-							<option value="../cfgen/snd/TINGG.wav" data-name="hitsound" data-url="../cfgen/snd/TINGG.wav" >Ting</option>
-							<option value="../cfgen/snd/funky.wav" data-name="hitsound" data-url="../cfgen/snd/funky.wav">Funky</option>
-							<option value="../cfgen/snd/combine.wav" data-name="hitsound" data-url="../cfgen/snd/combine.wav">HL2 Combine</option>
-							<option value="../cfgen/snd/mgs.wav" data-name="hitsound" data-url="../cfgen/snd/mgs.wav">MGS Alert</option>
-							<option value="../cfgen/snd/jbird.wav" data-name="hitsound" data-url="../cfgen/snd/jbird.wav">Jbird's hitsound</option>
-							<option value="../cfgen/snd/cod.wav" data-name="hitsound" data-url="../cfgen/snd/cod.wav">CoD Hitmaker</option>
-							<option value="../cfgen/snd/QL.wav" data-name="hitsound" data-url="../cfgen/snd/QL.wav">Quake Live</option>
-							<option value="../cfgen/snd/winxp_error.wav" data-name="hitsound" data-url="../cfgen/snd/winxp_error.wav">Windows XP error sound</option>
-							<option value="../cfgen/snd/mlg.wav" data-name="hitsound" data-url="../cfgen/snd/mlg.wav">Airhorn</option>
-							<option value="../cfgen/snd/prec.wav" data-name="hitsound" data-url="../cfgen/snd/prec.wav">P-Rec</option>
-							<option value="../cfgen/snd/sonicspring.wav" data-name="hitsound" data-url="../cfgen/snd/sonicspring.wav">Sonic Spring</option>
-							<option value="../cfgen/snd/doot.wav" data-name="hitsound" data-url="../cfgen/snd/doot.wav">Skull Trumpet</option>
-							<option value="../cfgen/snd/acc.wav" data-name="hitsound" data-url="../cfgen/snd/acc.wav">Acc-e-min</option>
-							<option value="../cfgen/snd/owhit.wav" data-name="hitsound" data-url="../cfgen/snd/owhit.wav">Overwatch Hitsound</option>
-							<option value="../cfgen/snd/owkill.wav" data-name="hitsound" data-url="../cfgen/snd/owkill.wav">Overwatch Killsound</option>
-							<option value="../cfgen/snd/nintswitch.wav" data-name="hitsound" data-url="../cfgen/snd/nintswitch.wav">Nintendo Switch</option>
-							<option value="../cfgen/snd/zoop.wav" data-name="hitsound" data-url="../cfgen/snd/zoop.wav">Zoop</option>
-							<option value="../cfgen/snd/doof.wav" data-name="hitsound" data-url="../cfgen/snd/doof.wav">Doof</option>
-							<option value="../cfgen/snd/pop.wav" data-name="hitsound" data-url="../cfgen/snd/pop.wav">Pop</option>
-							<option value="../cfgen/snd/fortressforever.wav" data-name="hitsound" data-url="../cfgen/snd/fortressforever.wav">Fortress Forever hitsound</option>
-							<option value="../cfgen/snd/crunchy_8-bit.wav" data-name="hitsound" data-url="../cfgen/snd/crunchy_8-bit.wav">Crunchy 8-bit</option>
-							<option value="../cfgen/snd/8-bit.wav" data-name="hitsound" data-url="../cfgen/snd/8-bit.wav">8-bit</option>
+							<option value="../make/snd/Q3.wav" data-name="hitsound" data-url="../make/snd/Q3.wav">Quake 3</option>
+							<option value="../make/snd/sonicring.wav" data-name="hitsound" data-url="../make/snd/sonicring.wav" >Sonic Ring</option>
+							<option value="../make/snd/quack.wav" data-name="hitsound" data-url="../make/snd/quack.wav" >Quack</option>
+							<option value="../make/snd/mariocoin.wav" data-name="hitsound" data-url="../make/snd/mariocoin.wav">Mario Coin</option>
+							<option value="../make/snd/UT.wav" data-name="hitsound" data-url="../make/snd/UT.wav" >Unreal Tournament</option>
+							<option value="../make/snd/TINGG.wav" data-name="hitsound" data-url="../make/snd/TINGG.wav" >Ting</option>
+							<option value="../make/snd/funky.wav" data-name="hitsound" data-url="../make/snd/funky.wav">Funky</option>
+							<option value="../make/snd/combine.wav" data-name="hitsound" data-url="../make/snd/combine.wav">HL2 Combine</option>
+							<option value="../make/snd/mgs.wav" data-name="hitsound" data-url="../make/snd/mgs.wav">MGS Alert</option>
+							<option value="../make/snd/jbird.wav" data-name="hitsound" data-url="../make/snd/jbird.wav">Jbird's hitsound</option>
+							<option value="../make/snd/cod.wav" data-name="hitsound" data-url="../make/snd/cod.wav">CoD Hitmaker</option>
+							<option value="../make/snd/QL.wav" data-name="hitsound" data-url="../make/snd/QL.wav">Quake Live</option>
+							<option value="../make/snd/winxp_error.wav" data-name="hitsound" data-url="../make/snd/winxp_error.wav">Windows XP error sound</option>
+							<option value="../make/snd/mlg.wav" data-name="hitsound" data-url="../make/snd/mlg.wav">Airhorn</option>
+							<option value="../make/snd/prec.wav" data-name="hitsound" data-url="../make/snd/prec.wav">P-Rec</option>
+							<option value="../make/snd/sonicspring.wav" data-name="hitsound" data-url="../make/snd/sonicspring.wav">Sonic Spring</option>
+							<option value="../make/snd/doot.wav" data-name="hitsound" data-url="../make/snd/doot.wav">Skull Trumpet</option>
+							<option value="../make/snd/acc.wav" data-name="hitsound" data-url="../make/snd/acc.wav">Acc-e-min</option>
+							<option value="../make/snd/owhit.wav" data-name="hitsound" data-url="../make/snd/owhit.wav">Overwatch Hitsound</option>
+							<option value="../make/snd/owkill.wav" data-name="hitsound" data-url="../make/snd/owkill.wav">Overwatch Killsound</option>
+							<option value="../make/snd/nintswitch.wav" data-name="hitsound" data-url="../make/snd/nintswitch.wav">Nintendo Switch</option>
+							<option value="../make/snd/zoop.wav" data-name="hitsound" data-url="../make/snd/zoop.wav">Zoop</option>
+							<option value="../make/snd/doof.wav" data-name="hitsound" data-url="../make/snd/doof.wav">Doof</option>
+							<option value="../make/snd/pop.wav" data-name="hitsound" data-url="../make/snd/pop.wav">Pop</option>
+							<option value="../make/snd/fortressforever.wav" data-name="hitsound" data-url="../make/snd/fortressforever.wav">Fortress Forever hitsound</option>
+							<option value="../make/snd/crunchy_8-bit.wav" data-name="hitsound" data-url="../make/snd/crunchy_8-bit.wav">Crunchy 8-bit</option>
+							<option value="../make/snd/8-bit.wav" data-name="hitsound" data-url="../make/snd/8-bit.wav">8-bit</option>
 						  </optgroup>
 						  <optgroup label="Voicelines">
-							<option value="../cfgen/snd/impressive_q3.wav" data-name="hitsound" data-url="../cfgen/snd/impressive_q3.wav">Quake - Impressive</option>
-							<option value="../cfgen/snd/q3_excellent.wav" data-name="hitsound" data-url="../cfgen/snd/q3_excellent.wav">Quake - Excellent</option>
-							<option value="../cfgen/snd/ded.wav" data-name="hitsound" data-url="../cfgen/snd/ded.wav">DED</option>
-							<option value="../cfgen/snd/ded.wav" data-name="hitsound" data-url="../cfgen/snd/ded.wav">DED</option>
-							<option value="../cfgen/snd/nope.wav" data-name="hitsound" data-url="../cfgen/snd/nope.wav">Nope.wav</option>
-							<option value="../cfgen/snd/see.wav" data-name="hitsound" data-url="../cfgen/snd/see.wav">SEE?</option>
-							<option value="../cfgen/snd/huh.wav" data-name="hitsound" data-url="../cfgen/snd/huh.wav">Pyro honk</option>
-							<option value="../cfgen/snd/mk_toasty.wav" data-name="hitsound" data-url="../cfgen/snd/mk_toasty.wav">Mortal Kombat - toasty</option>
+							<option value="../make/snd/impressive_q3.wav" data-name="hitsound" data-url="../make/snd/impressive_q3.wav">Quake - Impressive</option>
+							<option value="../make/snd/q3_excellent.wav" data-name="hitsound" data-url="../make/snd/q3_excellent.wav">Quake - Excellent</option>
+							<option value="../make/snd/ded.wav" data-name="hitsound" data-url="../make/snd/ded.wav">DED</option>
+							<option value="../make/snd/ded.wav" data-name="hitsound" data-url="../make/snd/ded.wav">DED</option>
+							<option value="../make/snd/nope.wav" data-name="hitsound" data-url="../make/snd/nope.wav">Nope.wav</option>
+							<option value="../make/snd/see.wav" data-name="hitsound" data-url="../make/snd/see.wav">SEE?</option>
+							<option value="../make/snd/huh.wav" data-name="hitsound" data-url="../make/snd/huh.wav">Pyro honk</option>
+							<option value="../make/snd/mk_toasty.wav" data-name="hitsound" data-url="../make/snd/mk_toasty.wav">Mortal Kombat - toasty</option>
 						  </optgroup>
 						  <optgroup label="meme">
-							<option value="../cfgen/snd/sideshow.wav" data-name="hitsound" data-url="../cfgen/snd/sideshow.wav">Sideshow dribble</option>
-							<option value="../cfgen/snd/hehehe.wav" data-name="hitsound" data-url="../cfgen/snd/hehehe.wav">b4nny giggle</option>
-							<option value="../cfgen/snd/unusual.wav" data-name="hitsound" data-url="../cfgen/snd/unusual.wav">b4nny unusual (ear warning)</option>
-							<option value="../cfgen/snd/wtf_tagg.wav" data-name="hitsound" data-url="../cfgen/snd/wtf_tagg.wav">tagg wtf (ear warning)</option>
-							<option value="../cfgen/snd/steeve.wav" data-name="hitsound" data-url="../cfgen/snd/steeve.wav">b4nny steeve</option>
-							<option value="../cfgen/snd/yight_ohyeaa.wav" data-name="hitsound" data-url="../cfgen/snd/yight_ohyeaa.wav">yight ohyeaa (ear warning)</option>
-							<option value="../cfgen/snd/toasted_tagg.wav" data-name="hitsound" data-url="../cfgen/snd/toasted_tagg.wav">tagg get toasted</option>
-							<option value="../cfgen/snd/funke_ding.wav" data-name="hitsound" data-url="../cfgen/snd/funke_ding.wav">FUNKe ding</option>
-							<option value="../cfgen/snd/shade_aaa.wav" data-name="hitsound" data-url="../cfgen/snd/shade_aaa.wav">drunk shade screaming</option>
+							<option value="../make/snd/sideshow.wav" data-name="hitsound" data-url="../make/snd/sideshow.wav">Sideshow dribble</option>
+							<option value="../make/snd/hehehe.wav" data-name="hitsound" data-url="../make/snd/hehehe.wav">b4nny giggle</option>
+							<option value="../make/snd/unusual.wav" data-name="hitsound" data-url="../make/snd/unusual.wav">b4nny unusual (ear warning)</option>
+							<option value="../make/snd/wtf_tagg.wav" data-name="hitsound" data-url="../make/snd/wtf_tagg.wav">tagg wtf (ear warning)</option>
+							<option value="../make/snd/steeve.wav" data-name="hitsound" data-url="../make/snd/steeve.wav">b4nny steeve</option>
+							<option value="../make/snd/yight_ohyeaa.wav" data-name="hitsound" data-url="../make/snd/yight_ohyeaa.wav">yight ohyeaa (ear warning)</option>
+							<option value="../make/snd/toasted_tagg.wav" data-name="hitsound" data-url="../make/snd/toasted_tagg.wav">tagg get toasted</option>
+							<option value="../make/snd/funke_ding.wav" data-name="hitsound" data-url="../make/snd/funke_ding.wav">FUNKe ding</option>
+							<option value="../make/snd/shade_aaa.wav" data-name="hitsound" data-url="../make/snd/shade_aaa.wav">drunk shade screaming</option>
 						  </optgroup>
 					</select>
 
@@ -2290,54 +2290,54 @@
 		Killsound:   <select class="selectpicker" id="selectionkill" >
 						<option value="" data-name="nohitsound" data-url="">None</option>
 						  <optgroup label="Generic">
-							<option value="../cfgen/snd/Q3.wav" data-name="killsound" data-url="../cfgen/snd/Q3.wav">Quake 3</option>
-							<option value="../cfgen/snd/sonicring.wav" data-name="killsound" data-url="../cfgen/snd/sonicring.wav" >Sonic Ring</option>
-							<option value="../cfgen/snd/quack.wav" data-name="killsound" data-url="../cfgen/snd/quack.wav" >Quack</option>
-							<option value="../cfgen/snd/mariocoin.wav" data-name="killsound" data-url="../cfgen/snd/mariocoin.wav">Mario Coin</option>
-							<option value="../cfgen/snd/UT.wav" data-name="killsound" data-url="../cfgen/snd/UT.wav" >Unreal Tournament</option>
-							<option value="../cfgen/snd/TINGG.wav" data-name="killsound" data-url="../cfgen/snd/TINGG.wav" >Ting</option>
-							<option value="../cfgen/snd/funky.wav" data-name="killsound" data-url="../cfgen/snd/funky.wav">Funky</option>
-							<option value="../cfgen/snd/combine.wav" data-name="killsound" data-url="../cfgen/snd/combine.wav">HL2 Combine</option>
-							<option value="../cfgen/snd/mgs.wav" data-name="killsound" data-url="../cfgen/snd/mgs.wav">MGS Alert</option>
-							<option value="../cfgen/snd/jbird.wav" data-name="killsound" data-url="../cfgen/snd/jbird.wav">Jbird's hitsound</option>
-							<option value="../cfgen/snd/cod.wav" data-name="killsound" data-url="../cfgen/snd/cod.wav">CoD Hitmaker</option>
-							<option value="../cfgen/snd/QL.wav" data-name="killsound" data-url="../cfgen/snd/QL.wav">Quake Live</option>
-							<option value="../cfgen/snd/winxp_error.wav" data-name="killsound" data-url="../cfgen/snd/winxp_error.wav">Windows XP error sound</option>
-							<option value="../cfgen/snd/mlg.wav" data-name="killsound" data-url="../cfgen/snd/mlg.wav">Airhorn</option>
-							<option value="../cfgen/snd/prec.wav" data-name="killsound" data-url="../cfgen/snd/prec.wav">P-Rec</option>
-							<option value="../cfgen/snd/sonicspring.wav" data-name="killsound" data-url="../cfgen/snd/sonicspring.wav">Sonic Spring</option>
-							<option value="../cfgen/snd/doot.wav" data-name="killsound" data-url="../cfgen/snd/doot.wav">Skull Trumpet</option>
-							<option value="../cfgen/snd/acc.wav" data-name="killsound" data-url="../cfgen/snd/acc.wav">acc-e-min</option>
-							<option value="../cfgen/snd/owhit.wav" data-name="killsound" data-url="../cfgen/snd/acc.wav">Overwatch Hitsound</option>
-							<option value="../cfgen/snd/owkill.wav" data-name="killsound" data-url="../cfgen/snd/acc.wav">Overwatch Killsound</option>
-							<option value="../cfgen/snd/nintswitch.wav" data-name="killsound" data-url="../cfgen/snd/nintswitch.wav">Nintendo Switch</option>
-							<option value="../cfgen/snd/zoop.wav" data-name="killsound" data-url="../cfgen/snd/zoop.wav">Zoop</option>
-							<option value="../cfgen/snd/doof.wav" data-name="killsound" data-url="../cfgen/snd/doof.wav">Doof</option>
-							<option value="../cfgen/snd/pop.wav" data-name="killsound" data-url="../cfgen/snd/pop.wav">Pop</option>
-							<option value="../cfgen/snd/fortressforever.wav" data-name="killsound" data-url="../cfgen/snd/fortressforever.wav">Fortress Forever hitsound</option>
-							<option value="../cfgen/snd/crunchy_8-bit.wav" data-name="killsound" data-url="../cfgen/snd/crunchy_8-bit.wav">Crunchy 8-bit</option>
-							<option value="../cfgen/snd/8-bit.wav" data-name="killsound" data-url="../cfgen/snd/8-bit.wav">8-bit</option>
+							<option value="../make/snd/Q3.wav" data-name="killsound" data-url="../make/snd/Q3.wav">Quake 3</option>
+							<option value="../make/snd/sonicring.wav" data-name="killsound" data-url="../make/snd/sonicring.wav" >Sonic Ring</option>
+							<option value="../make/snd/quack.wav" data-name="killsound" data-url="../make/snd/quack.wav" >Quack</option>
+							<option value="../make/snd/mariocoin.wav" data-name="killsound" data-url="../make/snd/mariocoin.wav">Mario Coin</option>
+							<option value="../make/snd/UT.wav" data-name="killsound" data-url="../make/snd/UT.wav" >Unreal Tournament</option>
+							<option value="../make/snd/TINGG.wav" data-name="killsound" data-url="../make/snd/TINGG.wav" >Ting</option>
+							<option value="../make/snd/funky.wav" data-name="killsound" data-url="../make/snd/funky.wav">Funky</option>
+							<option value="../make/snd/combine.wav" data-name="killsound" data-url="../make/snd/combine.wav">HL2 Combine</option>
+							<option value="../make/snd/mgs.wav" data-name="killsound" data-url="../make/snd/mgs.wav">MGS Alert</option>
+							<option value="../make/snd/jbird.wav" data-name="killsound" data-url="../make/snd/jbird.wav">Jbird's hitsound</option>
+							<option value="../make/snd/cod.wav" data-name="killsound" data-url="../make/snd/cod.wav">CoD Hitmaker</option>
+							<option value="../make/snd/QL.wav" data-name="killsound" data-url="../make/snd/QL.wav">Quake Live</option>
+							<option value="../make/snd/winxp_error.wav" data-name="killsound" data-url="../make/snd/winxp_error.wav">Windows XP error sound</option>
+							<option value="../make/snd/mlg.wav" data-name="killsound" data-url="../make/snd/mlg.wav">Airhorn</option>
+							<option value="../make/snd/prec.wav" data-name="killsound" data-url="../make/snd/prec.wav">P-Rec</option>
+							<option value="../make/snd/sonicspring.wav" data-name="killsound" data-url="../make/snd/sonicspring.wav">Sonic Spring</option>
+							<option value="../make/snd/doot.wav" data-name="killsound" data-url="../make/snd/doot.wav">Skull Trumpet</option>
+							<option value="../make/snd/acc.wav" data-name="killsound" data-url="../make/snd/acc.wav">acc-e-min</option>
+							<option value="../make/snd/owhit.wav" data-name="killsound" data-url="../make/snd/acc.wav">Overwatch Hitsound</option>
+							<option value="../make/snd/owkill.wav" data-name="killsound" data-url="../make/snd/acc.wav">Overwatch Killsound</option>
+							<option value="../make/snd/nintswitch.wav" data-name="killsound" data-url="../make/snd/nintswitch.wav">Nintendo Switch</option>
+							<option value="../make/snd/zoop.wav" data-name="killsound" data-url="../make/snd/zoop.wav">Zoop</option>
+							<option value="../make/snd/doof.wav" data-name="killsound" data-url="../make/snd/doof.wav">Doof</option>
+							<option value="../make/snd/pop.wav" data-name="killsound" data-url="../make/snd/pop.wav">Pop</option>
+							<option value="../make/snd/fortressforever.wav" data-name="killsound" data-url="../make/snd/fortressforever.wav">Fortress Forever hitsound</option>
+							<option value="../make/snd/crunchy_8-bit.wav" data-name="killsound" data-url="../make/snd/crunchy_8-bit.wav">Crunchy 8-bit</option>
+							<option value="../make/snd/8-bit.wav" data-name="killsound" data-url="../make/snd/8-bit.wav">8-bit</option>
 							</optgroup>
 						  <optgroup label="Voicelines">
-							<option value="../cfgen/snd/impressive_q3.wav" data-name="killsound" data-url="../cfgen/snd/impressive_q3.wav">Quake - Impressive</option>
-							<option value="../cfgen/snd/q3_excellent.wav" data-name="killsound" data-url="../cfgen/snd/q3_excellent.wav">Quake - Excellent</option>
-							<option value="../cfgen/snd/ded.wav" data-name="killsound" data-url="../cfgen/snd/ded.wav">DED</option>
-							<option value="../cfgen/snd/nope.wav" data-name="killsound" data-url="../cfgen/snd/nope.wav">Nope.wav</option>
-							<option value="../cfgen/snd/see.wav" data-name="killsound" data-url="../cfgen/snd/see.wav">SEE?</option>
-							<option value="../cfgen/snd/huh.wav" data-name="killsound" data-url="../cfgen/snd/huh.wav">Pyro honk</option>
-							<option value="../cfgen/snd/mk_toasty.wav" data-name="killsound" data-url="../cfgen/snd/mk_toasty.wav">Mortal Kombat - toasty</option>
+							<option value="../make/snd/impressive_q3.wav" data-name="killsound" data-url="../make/snd/impressive_q3.wav">Quake - Impressive</option>
+							<option value="../make/snd/q3_excellent.wav" data-name="killsound" data-url="../make/snd/q3_excellent.wav">Quake - Excellent</option>
+							<option value="../make/snd/ded.wav" data-name="killsound" data-url="../make/snd/ded.wav">DED</option>
+							<option value="../make/snd/nope.wav" data-name="killsound" data-url="../make/snd/nope.wav">Nope.wav</option>
+							<option value="../make/snd/see.wav" data-name="killsound" data-url="../make/snd/see.wav">SEE?</option>
+							<option value="../make/snd/huh.wav" data-name="killsound" data-url="../make/snd/huh.wav">Pyro honk</option>
+							<option value="../make/snd/mk_toasty.wav" data-name="killsound" data-url="../make/snd/mk_toasty.wav">Mortal Kombat - toasty</option>
 						  </optgroup>
 						  <optgroup label="meme">
-							<option value="../cfgen/snd/sideshow.wav" data-name="killsound" data-url="../cfgen/snd/sideshow.wav">Sideshow dribble</option>
-							<option value="../cfgen/snd/hehehe.wav" data-name="killsound" data-url="../cfgen/snd/hehehe.wav">b4nny giggle</option>
-							<option value="../cfgen/snd/unusual.wav" data-name="killsound" data-url="../cfgen/snd/unusual.wav">b4nny unusual (ear warning)</option>
-							<option value="../cfgen/snd/gj.wav" data-name="killsound" data-url="../cfgen/snd/gj.wav">great job</option>
-							<option value="../cfgen/snd/wtf_tagg.wav" data-name="killsound" data-url="../cfgen/snd/wtf_tagg.wav">tagg wtf (ear warning)</option>
-							<option value="../cfgen/snd/steeve.wav" data-name="killsound" data-url="../cfgen/snd/steeve.wav">b4nny steeve</option>
-							<option value="../cfgen/snd/yight_ohyeaa.wav" data-name="killsound" data-url="../cfgen/snd/yight_ohyeaa.wav">yight ohyeaa (ear warning)</option>
-							<option value="../cfgen/snd/toasted_tagg.wav" data-name="killsound" data-url="../cfgen/snd/toasted_tagg.wav">tagg get toasted</option>
-							<option value="../cfgen/snd/funke_ding.wav" data-name="killsound" data-url="../cfgen/snd/funke_ding.wav">FUNKe ding</option>
-							<option value="../cfgen/snd/shade_aaa.wav" data-name="killsound" data-url="../cfgen/snd/shade_aaa.wav">drunk shade screaming</option>
+							<option value="../make/snd/sideshow.wav" data-name="killsound" data-url="../make/snd/sideshow.wav">Sideshow dribble</option>
+							<option value="../make/snd/hehehe.wav" data-name="killsound" data-url="../make/snd/hehehe.wav">b4nny giggle</option>
+							<option value="../make/snd/unusual.wav" data-name="killsound" data-url="../make/snd/unusual.wav">b4nny unusual (ear warning)</option>
+							<option value="../make/snd/gj.wav" data-name="killsound" data-url="../make/snd/gj.wav">great job</option>
+							<option value="../make/snd/wtf_tagg.wav" data-name="killsound" data-url="../make/snd/wtf_tagg.wav">tagg wtf (ear warning)</option>
+							<option value="../make/snd/steeve.wav" data-name="killsound" data-url="../make/snd/steeve.wav">b4nny steeve</option>
+							<option value="../make/snd/yight_ohyeaa.wav" data-name="killsound" data-url="../make/snd/yight_ohyeaa.wav">yight ohyeaa (ear warning)</option>
+							<option value="../make/snd/toasted_tagg.wav" data-name="killsound" data-url="../make/snd/toasted_tagg.wav">tagg get toasted</option>
+							<option value="../make/snd/funke_ding.wav" data-name="killsound" data-url="../make/snd/funke_ding.wav">FUNKe ding</option>
+							<option value="../make/snd/shade_aaa.wav" data-name="killsound" data-url="../make/snd/shade_aaa.wav">drunk shade screaming</option>
 						  </optgroup>
 					</select>
 
@@ -2373,7 +2373,7 @@
   <div class="tab-pane fade" id="network">
 	<!--   CONNECTION SETTINGS  -->
 	<h3>Connection settings</h3>
-	<p>Set to "good connection" by default. Don't touch if you don't understand what this is. If you are curious, here is a <a href="/cfgen/read/interp.html" target="_blank">small article about connection settings</a>.</p>
+	<p>Set to "good connection" by default. Don't touch if you don't understand what this is. If you are curious, here is a <a href="/read/interp/" target="_blank">small article about connection settings</a>.</p>
 	<br>
 	<div class="btn-group" role="group" aria-label="Connection type">
 	<button type="button" class="btn btn-default" onclick="autoFillGood()">Good connection</button>
@@ -2481,19 +2481,6 @@
 		  </div>
 		</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 	<script>
 																																							//launch options default value
 	document.getElementById('loptions').value = "-dxlevel " + dxlevel + " " + screenmod +" -w " + screen.width + " -h " + screen.height + " -console -noborder -novid";
@@ -2511,10 +2498,7 @@
 </div>
 
 
- This page has probably generated about <script language="JavaScript">var fhsh = document.createElement('script');var fhs_id_h = "3234623";
-fhsh.src = "//s1.freehostedscripts.net/ocount.php?site="+fhs_id_h+"&name=configs&a=1";
-document.head.appendChild(fhsh);document.write("<span id='h_"+fhs_id_h+"'></span>");
-</script> so far.
+<p> </p>
 
 
  <script>
@@ -2522,5 +2506,26 @@ document.head.appendChild(fhsh);document.write("<span id='h_"+fhs_id_h+"'></span
     jQuery('#overlay').fadeOut();
     });
 </script>
+
+<footer>
+  <div class="container">
+  <p class="pull-right">~<script language="JavaScript">var fhsh = document.createElement('script');var fhs_id_h = "3234623";
+fhsh.src = "//s1.freehostedscripts.net/ocount.php?site="+fhs_id_h+"&name=configs&a=1";
+document.head.appendChild(fhsh);document.write("<span id='h_"+fhs_id_h+"'></span>");
+</script><br> generated so far.</p>
+        <p class="pull-left">
+    	<small>
+		<a href="https://discord.gg/79cbsTu" target="_blank">Join our Discord</a> <br>
+		<a href="http://www.teamfortress.tv/40062/a-simple-custom-config-generator" target="_blank">Discuss on TFTV</a><br>
+		<a href="https://github.com/mkrl/mkrl.github.io/issues" target="_blank">Report an issue</a><br>
+		<a href="https://github.com/mkrl/mkrl.github.io" target="_blank">View the source code</a>
+		</small>
+		</p>
+        
+	<center><p> CFG.TF <br><small> a custom TF2 config generator by <a href="https://steamcommunity.com/id/2x100/" target="_blank">200</a></small> </p></center>
+    
+  </div>
+</footer>
+
   </body>
 </html>
