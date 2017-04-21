@@ -8,17 +8,18 @@
     <title>CFG.TF - Server config</title>
 
     <!-- Latest compiled and minified CSS -->
-		<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <!-- Latest compiled and minified JavaScript -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="./css/bootstrap.min.main.css"> -->
 
+    <!-- Latest compiled and minified JavaScript -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" integrity="sha384-dNpIIXE8U05kAbPhy3G1cz+yZmTzA6CY8Vg/u2L9xRnHjJiAK76m2BIEaSEV+/aU" crossorigin="anonymous">
 
 		<style>
 			#loading_logo {
-				background-image: url('../img/tf2logo_server.png');
+				background-image: url('../img/tf2logo_server.png') !important;
 			}
 
       /* give clipboard copy some room */ #loptions { width: 95%; } #loptions_copy { float:left; }
@@ -98,7 +99,7 @@
 			<div class="tabbable">
 				<ul class="nav nav-tabs">
 				  <li class="active"><a href="#general" data-toggle="tab">General</a></li>
-				  <li><a href="#rcon" data-toggle="tab">Security & Logs</a></li>
+				  <li><a href="#rcon" data-toggle="tab">Security &amp; Logs</a></li>
 				  <li><a href="#files" data-toggle="tab">League configs</a></li>
 				  <li><a href="#addons" data-toggle="tab">Add-ons</a></li>
 				  <li><a href="#essential" data-toggle="tab">Essential settings</a></li>
@@ -110,10 +111,10 @@
 			  <div class="tab-pane fade active in" id="general">
 				<!--   GENERAL  -->
 			  <h3>General settings</h3>
-				
-				
-				<p class="text-muted">Your server address is only prompted to generate a connect command automatically. Also, it is not required. We do not record any data you enter on this site.</p>
-				<br>
+
+				<p class="alert alert-info">
+          Your server address is only prompted to generate a connect command automatically. Also, it is not required. We do not record any data you enter on this site.
+        </p>
 				<ul>
   				<li class="form-inline">
   			    <label>
@@ -138,7 +139,7 @@
   			  </li>
 			  <li class="form-inline">
   			    <label>
-  			      Server address: 
+  			      Server address:
   						<input class="form-control input-sm" type="text" size="14" value="127.0.0.1" id="ip" onchange="updateConnect();"/>
   			    </label>
   			  </li>
@@ -152,82 +153,78 @@
   			    </label>
 				</li>
 			  </ul>
-			
-	
-
-
-
-
 	</div>
 	<script>
-	//passgen
-	function generatePassword() {
-    var length = 8,
-        charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
-        retVal = "";
-    for (var i = 0, n = charset.length; i < length; ++i) {
-        retVal += charset.charAt(Math.floor(Math.random() * n));
-    }
-	sv_password.value = retVal;
-	updateConnect();
-	}
-	</script>	<script>
-	//passgen rcon
-	function generatePassword_rcon() {
-    var length = 8,
-        charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
-        retVal = "";
-    for (var i = 0, n = charset.length; i < length; ++i) {
-        retVal += charset.charAt(Math.floor(Math.random() * n));
-    }
-	rcon_password.value = retVal;
+  	//passgen
+  	function generatePassword() {
+      var length = 8,
+          charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+          retVal = "";
+      for (var i = 0, n = charset.length; i < length; ++i) {
+          retVal += charset.charAt(Math.floor(Math.random() * n));
+      }
+  	sv_password.value = retVal;
+  	updateConnect();
 	}
 	</script>
+  <script>
+  	//passgen rcon
+  	function generatePassword_rcon() {
+      var length = 8,
+          charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+          retVal = "";
+      for (var i = 0, n = charset.length; i < length; ++i) {
+          retVal += charset.charAt(Math.floor(Math.random() * n));
+      }
+  	rcon_password.value = retVal;
+  	}
+	</script>
   <div class="tab-pane fade" id="rcon">
-		<div id="rcon">
+		<div id="rcon2">
 		<h3>RCON settings</h3>
-		<p class="text-muted">RCON is a remote console service. It allows you to execute commands from a client like they are executed on server. Do not share your RCON password with someone you barely know. It is recommended to change this password from time to time.</p>
-			<ul class="form-inline">
+    <p class="text-muted">Remote console service</p>
+		<p class="alert alert-warning">Remotely executes server commands from a client. Do not share the RCON password with someone you don't trust. It is recommended to change this password from time to time.</p>
+    <ul class="form-inline">
+		  <li class="form-inline">
+			    <label>
+			      RCON password: <a href="#" data-toggle="tooltip" title="A password that is required control your server."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+						<input class="form-control input-sm" type="text" size="14" value="changeme" id="rcon_password"/> <button type="button" class="btn-sm btn-default" onclick="generatePassword_rcon()">Random</button>
+			    </label>
+			  </li>
+		  <li class="form-inline">
+			    <label>
+			      Failed login ban time: <a href="#" data-toggle="tooltip" title="Number of minutes to ban users who fail rcon authentication."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+						<input class="form-control input-sm" type="text" size="14" value="15" id="sv_rcon_banpenalty"/>
+			    </label>
+			  </li>
 			  <li class="form-inline">
-  			    <label>
-  			      RCON password: <a href="#" data-toggle="tooltip" title="A password that is required control your server."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
-  						<input class="form-control input-sm" type="text" size="14" value="changeme" id="rcon_password"/> <button type="button" class="btn-sm btn-default" onclick="generatePassword_rcon()">Random</button>
-  			    </label>
-  			  </li>			  
-			  <li class="form-inline">
-  			    <label>
-  			      Failed login ban time: <a href="#" data-toggle="tooltip" title="Number of minutes to ban users who fail rcon authentication."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
-  						<input class="form-control input-sm" type="text" size="14" value="15" id="sv_rcon_banpenalty"/> 
-  			    </label>
-  			  </li>
-  			  <li class="form-inline">
-  			    <label>
-  			      RCON min failed login attempts: <a href="#" data-toggle="tooltip" title="Number of times a user can fail RCON authentication before being banned."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
-  						<select class="form-control input-sm" id="sv_rcon_minfailures">
-  							<option value="5" data-name="sv_rcon_minfailures" data-url="">5 tries</option>
-  							<option value="1" data-name="sv_rcon_minfailures" data-url="">1 try</option>
-							<option value="3" data-name="sv_rcon_minfailures" data-url="">3 tries</option>
-							<option value="10" data-name="sv_rcon_minfailures" data-url="">7 tries</option>
-							<option value="10" data-name="sv_rcon_minfailures" data-url="">15 tries</option>
-							<option value="10" data-name="sv_rcon_minfailures" data-url="">20 tries (max)</option>
-  						</select>
-  			    </label>
-				</li>  			  
-				<li class="form-inline">
-  			    <label>
-  			      RCON max failed login attempts: <a href="#" data-toggle="tooltip" title="Max number of times a user can fail rcon authentication before being banned."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
-  						<select class="form-control input-sm" id="sv_rcon_maxfailures">
-  							<option value="5" data-name="sv_rcon_maxfailures" data-url="">5 tries</option>
-  							<option value="1" data-name="sv_rcon_maxfailures" data-url="">1 try</option>
-							<option value="3" data-name="sv_rcon_maxfailures" data-url="">3 tries</option>
-							<option value="10" data-name="sv_rcon_maxfailures" data-url="" selected>10 tries</option>
-							<option value="10" data-name="sv_rcon_maxfailures" data-url="">15 tries</option>
-							<option value="10" data-name="sv_rcon_maxfailures" data-url="">20 tries (max)</option>
-  						</select>
-  			    </label>
-				</li>
-			</ul>
-		</div>
+			    <label>
+			      RCON min failed login attempts: <a href="#" data-toggle="tooltip" title="Number of times a user can fail RCON authentication before being banned."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+						<select class="form-control input-sm" id="sv_rcon_minfailures">
+							<option value="5" data-name="sv_rcon_minfailures" data-url="">5 tries</option>
+							<option value="1" data-name="sv_rcon_minfailures" data-url="">1 try</option>
+						<option value="3" data-name="sv_rcon_minfailures" data-url="">3 tries</option>
+						<option value="10" data-name="sv_rcon_minfailures" data-url="">7 tries</option>
+						<option value="10" data-name="sv_rcon_minfailures" data-url="">15 tries</option>
+						<option value="10" data-name="sv_rcon_minfailures" data-url="">20 tries (max)</option>
+						</select>
+			    </label>
+			</li>
+			<li class="form-inline">
+			    <label>
+			      RCON max failed login attempts: <a href="#" data-toggle="tooltip" title="Max number of times a user can fail rcon authentication before being banned."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+						<select class="form-control input-sm" id="sv_rcon_maxfailures">
+							<option value="5" data-name="sv_rcon_maxfailures" data-url="">5 tries</option>
+							<option value="1" data-name="sv_rcon_maxfailures" data-url="">1 try</option>
+						<option value="3" data-name="sv_rcon_maxfailures" data-url="">3 tries</option>
+						<option value="10" data-name="sv_rcon_maxfailures" data-url="" selected>10 tries</option>
+						<option value="10" data-name="sv_rcon_maxfailures" data-url="">15 tries</option>
+						<option value="10" data-name="sv_rcon_maxfailures" data-url="">20 tries (max)</option>
+						</select>
+			    </label>
+			</li>
+		</ul>
+	</div>
 
 		<hr>
 		<div id="logs">
@@ -263,7 +260,7 @@
 				</li>
 				<li class="form-inline">
   			    <label>
-  			      Log server bans: 
+  			      Log server bans:
   						<select class="form-control input-sm" id="sv_logbans">
   							<option value="1" data-name="sv_logbans" data-url="">Yes</option>
   							<option value="0" data-name="sv_logbans" data-url="">No</option>
@@ -277,8 +274,9 @@
   <div class="tab-pane fade" id="files">
   <!--   LEAGUE  -->
 		<div id="league">
-			<h3>Popular competitive	leagues' config presets</h3>
-			<p class="text-muted">Each config should be excuted manually when you are going to play any kind of "mp_tournament 1" match, like scrim, official, etc. If you are only going to keep your server as a public, feel free to skip this section. Execute the config you need by typing 'exec [config name without .cfg]' in server console. Use 'rcon' command to execute them from a client side. Built-in league whitelists also present and are executed automatically when you run a corresponding config.</p>
+			<h3>Competitive	league configs</h3>
+      <p class="text-muted">Play by the rules</p>
+			<p class="alert alert-info">Each config should be executed manually when you are going to play any kind of "mp_tournament 1" match, like a scrim, pug, official, etc. If you are only going to keep your server as a pub, feel free to skip this section. Execute the config you need by typing 'exec &lt;config name&gt;' in server console. Use 'rcon exec &lt;config name&gt;' to execute them from a client side. Corresponding league whitelists are present and will be executed automatically when you run a config.</p>
 
 			<ul class="checkbox">
 
@@ -324,8 +322,8 @@
 				   }
 				});
 				</script>
-				
-				
+
+
 				<li>
 					<label>
 					  <p><input type="checkbox" name="ugc" id="ugc" data-name="ugc" data-url="" />
@@ -373,9 +371,9 @@
 				   }
 				});
 				</script>
-				
-				
-				
+
+
+
 				<li>
 					<label>
 					  <p><input type="checkbox" name="ozfortress" id="ozfortress" data-name="ozfortress" data-url="" />
@@ -417,7 +415,7 @@
 					  chShipBlock3.find('input').attr('required', false);
 				   }
 				});
-				</script>								
+				</script>
 			</ul>
 		</div>
 
@@ -451,7 +449,7 @@
 
 	<!-- TFTRUE -->
 	<div id="tftrue_p" style="display: none;">
-	
+
 			<div class="panel panel-primary">
 			  <div class="panel-heading">
 				<h3 class="panel-title">TFTrue settings:</h3>
@@ -461,64 +459,64 @@
 			  <ul class="form-inline">
 				<li class="form-inline">
   			    <label>
-  			      Max FOV: <a href="#" data-toggle="tooltip" title="In the chat, players can type !fov xxx to change field of view, where xxx is a value between 75 and this value."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  			      Max FOV: <a href="#" data-toggle="tooltip" title="In the chat, players can type !fov xxx to change field of view, where xxx is a value between 75 and this value."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
   						<input class="form-control input-sm" type="text" size="5" value="90" id="tftrue_maxfov"/>
   			    </label>
-  			  </li>			 
+  			  </li>
 				<li class="form-inline">
   			    <label>
-  			      Enable freeze cam: <a href="#" data-toggle="tooltip" title="Show players a shot of their killer for a short period of time. Disabling this will also shorten respawn times. 0 - disable, 1 - enable."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  			      Enable freeze cam: <a href="#" data-toggle="tooltip" title="Show players a shot of their killer for a short period of time. Disabling this will also shorten respawn times. 0 - disable, 1 - enable."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
   						<input class="form-control input-sm" type="text" size="5" value="1" id="tftrue_freezecam"/>
   			    </label>
-  			  </li>			 
+  			  </li>
 				<li class="form-inline">
   			    <label>
-  			      Whitelist.tf id: <a href="#" data-toggle="tooltip" title="Sets a whitelist id from whitelist.tf. Default is -1 (disabled). "><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  			      Whitelist.tf id: <a href="#" data-toggle="tooltip" title="Sets a whitelist id from whitelist.tf. Default is -1 (disabled). "><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
   						<input class="form-control input-sm" type="text" size="5" value="-1" id="tftrue_whitelist_id"/>
   			    </label>
-  			  </li>			 
+  			  </li>
 				<li class="form-inline">
   			    <label>
-  			      Logs.tf API key: <a href="http://logs.tf/uploader" data-toggle="tooltip" title="Required for automaticall logs upload to Logs.tf. Click here to get your API key (you must be logged in on Logs.tf)" target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  			      Logs.tf API key: <a href="http://logs.tf/uploader" data-toggle="tooltip" title="Required for automaticall logs upload to Logs.tf. Click here to get your API key (you must be logged in on Logs.tf)" target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
   						<input class="form-control input-sm" type="text" size="5" value="1" id="tftrue_logs_apikey"/>
   			    </label>
-  			  </li>			 
+  			  </li>
 				<li class="form-inline">
   			    <label>
-  			      Restore player stats on reconnect: <a href="#" data-toggle="tooltip" title="Keeps the player stats on disconnect (Score, Kills, Deaths, etc...) and restore them when he reconnects in both scoreboard and A2S_PLAYER queries (e.g. View Game Info in the Server Browser). 0 - disable, 1 - enable."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  			      Restore player stats on reconnect: <a href="#" data-toggle="tooltip" title="Keeps the player stats on disconnect (Score, Kills, Deaths, etc...) and restore them when he reconnects in both scoreboard and A2S_PLAYER queries (e.g. View Game Info in the Server Browser). 0 - disable, 1 - enable."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
   						<input class="form-control input-sm" type="text" size="5" value="1" id="tftrue_restorestats"/>
   			    </label>
-  			  </li>			 
+  			  </li>
 				<li class="form-inline">
   			    <label>
-  			      Auto record STV demo: <a href="#" data-toggle="tooltip" title="Turn on auto STV recording when both teams are ready in tournament mode. It will stops when the win conditions are reached.  0 - disable, 1 - enable."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  			      Auto record STV demo: <a href="#" data-toggle="tooltip" title="Turn on auto STV recording when both teams are ready in tournament mode. It will stops when the win conditions are reached.  0 - disable, 1 - enable."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
   						<input class="form-control input-sm" type="text" size="5" value="1" id="tftrue_tv_autorecord"/>
   			    </label>
-  			  </li>			 
+  			  </li>
 				<li class="form-inline">
   			    <label>
-  			      STV demos path: <a href="#" data-toggle="tooltip" title="Lets you define a folder inside 'tf' where you want the demos recorded by tftrue_tv_autorecord to be stored. The folder will be automatically created if this parameter is set. "><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  			      STV demos path: <a href="#" data-toggle="tooltip" title="Lets you define a folder inside 'tf' where you want the demos recorded by tftrue_tv_autorecord to be stored. The folder will be automatically created if this parameter is set. "><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
   						<input class="form-control input-sm" type="text" size="5" value="demos" id="tftrue_tv_demos_path"/>
   			    </label>
-  			  </li>			 
+  			  </li>
 				<li class="form-inline">
   			    <label>
   			      Disable hats (server-side):
   						<input class="form-control input-sm" type="text" size="5" value="0" id="tftrue_no_hats"/>
   			    </label>
-  			  </li>			 
+  			  </li>
 				<li class="form-inline">
   			    <label>
-  			      Disable misc items (server-side): 
+  			      Disable misc items (server-side):
   						<input class="form-control input-sm" type="text" size="5" value="0" id="tftrue_no_misc"/>
   			    </label>
-  			  </li>			 
+  			  </li>
 				<li class="form-inline">
   			    <label>
-  			      Enable bunny hopping: <a href="#" data-toggle="tooltip" title="Turn on/off bunny hopping. Hold space to jump constantly without losing your speed. This will also set all doors opening speed to maximum to prevent players from being stuck. 0 - disable, 1 - enable."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  			      Enable bunny hopping: <a href="#" data-toggle="tooltip" title="Turn on/off bunny hopping. Hold space to jump constantly without losing your speed. This will also set all doors opening speed to maximum to prevent players from being stuck. 0 - disable, 1 - enable."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
   						<input class="form-control input-sm" type="text" size="5" value="0" id="tftrue_bunnyhop"/>
   			    </label>
-  			  </li>			 
+  			  </li>
 				</ul>
 			  </div>
 			</div>
@@ -536,67 +534,67 @@
 	<ul class="form-inline">
 				<li class="form-inline">
   			    <label>
-  			      sv_pure: <a href="#" data-toggle="tooltip" title="A pure server is one that forces all clients on the server to use content that matches what is on the server. This prevents players from cheating by modifying game content, e.g. increasing the size of models or volume of footsteps, or making wall materials transparent. Availalbe modes: '-1' - allow all user mods, '0' - only checks files from list pure_server_minimal.txt, '1' - everything is disallowed but you can add exceptions to pure_server_whitelist.txt. '2' - disallow all modifications."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  			      sv_pure: <a href="#" data-toggle="tooltip" title="A pure server is one that forces all clients on the server to use content that matches what is on the server. This prevents players from cheating by modifying game content, e.g. increasing the size of models or volume of footsteps, or making wall materials transparent. Availalbe modes: '-1' - allow all user mods, '0' - only checks files from list pure_server_minimal.txt, '1' - everything is disallowed but you can add exceptions to pure_server_whitelist.txt. '2' - disallow all modifications."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
   						<input class="form-control input-sm" type="text" size="5" value="2" id="sv_pure"/>
   			    </label>
 				</li>
 				<li class="form-inline">
   			    <label>
-  			      Kick pure server violators: 
+  			      Kick pure server violators:
   						<input class="form-control input-sm" type="text" size="5" value="0" id="sv_pure_kick_clients"/>
   			    </label>
 				</li>
 				<li class="form-inline">
   			    <label>
-  			      All-talk: <a href="#" data-toggle="tooltip" title="Players on both sides can hear all other players, no team restrictions."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  			      All-talk: <a href="#" data-toggle="tooltip" title="Players on both sides can hear all other players, no team restrictions."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
   						<input class="form-control input-sm" type="text" size="5" value="0" id="sv_alltalk"/>
   			    </label>
 				</li>
 				<li class="form-inline">
   			    <label>
-  			      Allow spectators: <a href="#" data-toggle="tooltip" title=" Toggles whether the server allows spectator mode or not."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  			      Allow spectators: <a href="#" data-toggle="tooltip" title=" Toggles whether the server allows spectator mode or not."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
   						<input class="form-control input-sm" type="text" size="5" value="1" id="mp_allowspectators"/>
   			    </label>
 				</li>
 				<li class="form-inline">
   			    <label>
-  			      Auto team balance: <a href="#" data-toggle="tooltip" title=" Force clients to join the opposite team if teams are not balanced."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  			      Auto team balance: <a href="#" data-toggle="tooltip" title=" Force clients to join the opposite team if teams are not balanced."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
   						<input class="form-control input-sm" type="text" size="5" value="1" id="mp_autoteambalance"/>
   			    </label>
 				</li>
 				<li class="form-inline">
   			    <label>
-  			      Team balance limit: <a href="#" data-toggle="tooltip" title="Teams are unbalanced when one team has this many more players than the other team. (0 disables check)"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  			      Team balance limit: <a href="#" data-toggle="tooltip" title="Teams are unbalanced when one team has this many more players than the other team. (0 disables check)"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
   						<input class="form-control input-sm" type="text" size="5" value="2" id="mp_teams_unbalance_limit"/>
   			    </label>
 				</li>
 				<li class="form-inline">
   			    <label>
-  			      Force first person mode for dead players: <a href="#" data-toggle="tooltip" title="Restricts spectator modes for dead players"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  			      Force first person mode for dead players: <a href="#" data-toggle="tooltip" title="Restricts spectator modes for dead players"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
   						<input class="form-control input-sm" type="text" size="5" value="0" id="mp_forcecamera"/>
   			    </label>
 				</li>
 				<li class="form-inline">
   			    <label>
-  			      Allow wait Command:: <a href="#" data-toggle="tooltip" title="Allow or disallow the wait command on clients connected to this server"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  			      Allow wait Command:: <a href="#" data-toggle="tooltip" title="Allow or disallow the wait command on clients connected to this server"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
   						<input class="form-control input-sm" type="text" size="5" value="0" id="sv_allow_wait_command"/>
   			    </label>
 				</li>
 				<li class="form-inline">
   			    <label>
-  			      Allow cheat commands: <a href="#" data-toggle="tooltip" title="Allow commands marked as cheats on a server."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  			      Allow cheat commands: <a href="#" data-toggle="tooltip" title="Allow commands marked as cheats on a server."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
   						<input class="form-control input-sm" type="text" size="5" value="0" id="sv_cheats"/>
   			    </label>
 				</li>
 				<li class="form-inline">
   			    <label>
-  			      Allow pause: <a href="#" data-toggle="tooltip" title="Allow players to pause a game with 'pause' command"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  			      Allow pause: <a href="#" data-toggle="tooltip" title="Allow players to pause a game with 'pause' command"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
   						<input class="form-control input-sm" type="text" size="5" value="0" id="sv_pausable"/>
   			    </label>
 				</li>
 				<li class="form-inline">
   			    <label>
-  			      Stalemate: <a href="#" data-toggle="tooltip" title="Enable/Disable stalemate mode."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  			      Stalemate: <a href="#" data-toggle="tooltip" title="Enable/Disable stalemate mode."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
   						<input class="form-control input-sm" type="text" size="5" value="0" id="mp_stalemate_enable"/>
   			    </label>
 				</li>
@@ -608,13 +606,13 @@
 				</li>
 				<li class="form-inline">
   			    <label>
-  			      Win limit: <a href="#" data-toggle="tooltip" title="Win Llmit before map change:"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  			      Win limit: <a href="#" data-toggle="tooltip" title="Win Llmit before map change:"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
   						<input class="form-control input-sm" type="text" size="5" value="0" id="mp_winlimit"/>
   			    </label>
 				</li>
 				<li class="form-inline">
   			    <label>
-  			      Map time limit: <a href="#" data-toggle="tooltip" title="Game time per map in minutes. 0 = unlimited / until win limit reached"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  			      Map time limit: <a href="#" data-toggle="tooltip" title="Game time per map in minutes. 0 = unlimited / until win limit reached"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
   						<input class="form-control input-sm" type="text" size="5" value="0" id="mp_timelimit"/>
   			    </label>
 				</li>
@@ -626,7 +624,7 @@
 				</li>
 				<li class="form-inline">
   			    <label>
-  			      Disable random bullet spread: <a href="#" data-toggle="tooltip" title=" If set to 1, weapons that fire multiple pellets per shot will use a non-random pellet distribution. "><i class="fa fa-question-circle-o" aria-hidden="true"></i></a> 
+  			      Disable random bullet spread: <a href="#" data-toggle="tooltip" title=" If set to 1, weapons that fire multiple pellets per shot will use a non-random pellet distribution. "><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
   						<input class="form-control input-sm" type="text" size="5" value="0" id="tf_use_fixed_weaponspreads"/>
   			    </label>
 				</li>
@@ -771,7 +769,7 @@ document.head.appendChild(fhsh);document.write("<span id='h_"+fhs_id_h+"'></span
 		<a href="https://github.com/mkrl/cfgtf" target="_blank">View the source code</a>
 		</small>
 		</p>
-        
+
 	<center><p> CFG.TF <br><small> a custom TF2 config generator by <a href="https://steamcommunity.com/id/2x100/" target="_blank">200</a></small> </p></center>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -782,7 +780,7 @@ document.head.appendChild(fhsh);document.write("<span id='h_"+fhs_id_h+"'></span
   ga('create', 'UA-97817107-1', 'auto');
   ga('send', 'pageview');
 
-</script>    
+</script>
   </div>
 </footer>
 
