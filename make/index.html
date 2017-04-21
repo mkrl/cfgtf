@@ -113,58 +113,44 @@
 			  <h3>Graphic config</h3>
 
 				<p>Determine the look and performance of your game</p>
-				<p class="text-muted">Remember - you will generally always have to sacrifice something to see a performance increase. Selecting a config will show a demonstration with the pros and cons of the config explained.</p>
-				<br>
-				<ul>
-				<li>
-					<label>
-						<input type="radio" name="gfx" id="myown" data-name="gfx" data-url="../make/cfg/nogfx.txt" checked="checked" />
-						None
-					</label>
-				</li>
-			  <li>
-			    <label>
-			      <input type="radio" name="gfx" id="toaster" onclick="updatedxlevel();" data-name="gfx" data-url="../make/cfg/c_toaster.txt" />
-			      Comanglia's Toaster
-			    </label>
-			  </li>
-			  <li>
-			    <label>
-			      <input type="radio" name="gfx" id="stable" onclick="updatedxlevel();" data-name="gfx" data-url="../make/cfg/c_stability.txt" />
-			      Comanglia's Stability
-			    </label>
-			  </li>
-			  <li>
-			    <label>
-			      <input type="radio" name="gfx" id="fine" onclick="updatedxlevel();" data-name="gfx" data-url="../make/cfg/c_maxfps_hq.txt" />
-			      Comanglia's Max FPS for High Quality PCs
-			    </label>
-			  </li>
-			  <li>
-			    <label>
-			      <input type="radio" name="gfx" id="fancy" onclick="updatedxlevel();" data-name="gfx" data-url="../make/cfg/c_cinema.txt" />
-			      Comanglia's Cinema
-			    </label>
-			  </li>
-			  <li>
-			    <label>
-			      <input type="radio" name="gfx" id="felik" onclick="updatedxlevel();" data-name="gfx" data-url="../make/cfg/f_gfx.txt" />
-			      Felik's Config
-			    </label>
-			  </li>
-			  </ul>
+				<p class="alert alert-info">Remember - you will generally always have to sacrifice something to see a performance increase. Selecting a config will show a demonstration with the pros and cons of the config explained.</p>
+
+        <ul class="checkbox list-unstyled">
+          <li>
+            <label class="form-inline">
+              Graphics setting config
+              <select class="form-control selectpicker" id="gfx_selector">
+                <option value="myown" data-name="gfx" onclick="updatedxlevel();" id="myown" data-url="../cfgen/cfg/nogfx.txt" selected="selected">None</option>
+						    <optgroup label="Comanglia">
+                  <option value="toaster" data-name="gfx" onclick="updatedxlevel();" id="toaster" data-url="../cfgen/cfg/c_toaster.txt">Comanglia: Toaster</option>
+                  <option value="stable" data-name="gfx" onclick="updatedxlevel();" id="stable" data-url="../cfgen/cfg/c_stability.txt">Comanglia: Stability</option>
+                  <option value="fine" data-name="gfx" onclick="updatedxlevel();" id="fine" data-url="../cfgen/cfg/c_maxfps_hq.txt">Comanglia: Max FPS for High Quality PCs</option>
+                  <option value="fancy" data-name="gfx" onclick="updatedxlevel();" id="fancy" data-url="../cfgen/cfg/c_cinema.txt">Comanglia: Cinema</option>
+  							</optgroup>
+                <optgroup label="Felik">
+                  <option value="felik" data-name="gfx" onclick="updatedxlevel();" id="felik" data-url="../cfgen/cfg/f_gfx.txt">Felik</option>
+                </optgroup>
+              </select>
+            </label>
+          </li>
+          <li id="gfx_force_settings" style="display:none;">
+            <label>
+              <input type="checkbox" id="gfx_force_settings_cb" data-name="gfx_force_settings" data-url="" /> Force custom settings <a href="#" data-toggle="tooltip" title="Force certain options to be enabled or disabled, overriding the settings in the selected config."  ><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+            </label>
+          </li>
+        </ul>
 
 	<!-- CONFIG PREVIEWS -->
-	<script>
-		$(document).ready(function() {
-		$("input[name$='gfx']").click(function() {
-			var showme = $(this).attr('id');
-			$("div.desc").hide();
-			$("#preview" + showme).fadeIn(400);
-		});
-		});
+  <script>
+    $(document).ready(function() {
+      $("#gfx_selector").change(function() {
+          var showme = this.value;
+          $("div.desc").hide();
+          $("#preview" + showme).fadeIn(400);
+          updatedxlevel();
+      });
+  	});
 	</script>
-
 	<div id="previewtoaster" class="desc" style="display: none;">
 		<div class="panel-body">
 
