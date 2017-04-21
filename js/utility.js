@@ -68,36 +68,22 @@ http://cfg.tf*/
 
           return true;
        }
-	   	var dxlevel = "81";										//updating dxlevel below
+	   	var dxlevel = "81";//updating dxlevel below
 		function updatedxlevel()
 		{
-
-			if(document.getElementById('toaster').checked) {
-			dxlevel = "81";
-			}else if(document.getElementById('stable').checked) {
-			dxlevel = "81";
-			}else if(document.getElementById('fine').checked) {
-			dxlevel = "91";
-			}else if(document.getElementById('fancy').checked) {
-			dxlevel = "98";
-			}else if(document.getElementById('felik').checked) {
-			dxlevel = "81";
-			}
-
-			// reffering by index is gross
-			//var gfxsel = document.getElementById("gfx_selector");
-			// if(gfxsel.selectedIndex == 0) {
-			// dxlevel = "81";
-			// }else if(gfxsel.selectedIndex == 1) { // toaster
-			// dxlevel = "81";
-			// }else if(gfxsel.selectedIndex == 2) { // stable
-			// dxlevel = "81";
-			// }else if(gfxsel.selectedIndex == 3) { // fine
-			// dxlevel = "91";
-			// }else if(gfxsel.selectedIndex == 4) { // fancy
-			// dxlevel = "98";
-			// }
-
+			switch ( $("#gfx_selector").val() ) {
+					case "toaster" :
+					case "stable" :
+					case "felik" :
+						dxlevel = "81";
+					break;
+					case "fine" :
+						dxlevel = "91";
+					break;
+					case "fancy" :
+						dxlevel = "98";
+					break;
+				}
 
 			document.getElementById('loptions').value = "-dxlevel " + dxlevel + " " + screenmod +" -w " + screen.width + " -h " + screen.height + " -console -noborder -novid";
 		}
@@ -114,5 +100,5 @@ http://cfg.tf*/
 		}
 
 		$(document).ready(function(){											//tooltips
-		$('[data-toggle="tooltip"]').tooltip();
+			$('[data-toggle="tooltip"]').tooltip();
 		});
