@@ -16,67 +16,16 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" integrity="sha384-dNpIIXE8U05kAbPhy3G1cz+yZmTzA6CY8Vg/u2L9xRnHjJiAK76m2BIEaSEV+/aU" crossorigin="anonymous">
 
-		<style>
-			#overlay {
-	      background: #ffffff;
-	      color: #666666;
-	      position: fixed;
-	      height: 100%;
-	      width: 100%;
-	      z-index: 5000;
-	      top: 0;
-	      left: 0;
-	      float: left;
-	      text-align: center;
-	      padding-top: 25%;
-	    }
-			#wrapper {
-				width: 60%;
-			}
-			#wrapper .container {
-				max-width: 100%; display: block;
-			}
-			textarea {
-		    overflow-y: scroll;
-				height: 150px;
-				resize: none;
-			}
-			.table > tbody > tr > td {
-				vertical-align: middle;
-				text-align: center;
-			}
-
-      /* replace <hr> with bottom borders */ .tab-pane { border-bottom: rgb(236, 240, 241) solid 1px; margin-bottom: 21px; padding-bottom: 21px; }
-	      .colored-block {
-        width: 100%;
-        padding: 60px 0px;
-        color: #f7f7f7;
-
-		}
-		.dark { background: #222;
-		color: #666;
-		box-shadow: inset 0px 0px 10px rgba(0,0,0,0.9);		}
-		.lessdark { background: #474747;
-		color: #666		}
-		.shadowed{
-		box-shadow: inset 0px 0px 10px rgba(0,0,0,0.9)
-		}
-		.shadowed_out{
-		box-shadow: 0px 0px 10px rgba(0,0,0,0.9)
-		}
-
-		</style>
-
     <link rel="stylesheet" href="./css/pygments.css">
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/bootstrap-select.min.css">
 
 
-    <script type="text/javascript" src="/js/jszip.js"></script>
-    <script type="text/javascript" src="/js/jszip-utils.js"></script>
-		<script type="text/javascript" src="/js/utility.js"></script>
-    <script type="text/javascript" src="/js/FileSaver.js"></script>
-    <script type="text/javascript" src="/js/bootstrap-select.min.js"></script>
+    <script type="text/javascript" src="./js/jszip.js"></script>
+    <script type="text/javascript" src="./js/jszip-utils.js"></script>
+		<script type="text/javascript" src="./js/utility.js"></script>
+    <script type="text/javascript" src="./js/FileSaver.js"></script>
+    <script type="text/javascript" src="./js/bootstrap-select.min.js"></script>
 
   </head>
   <body>
@@ -84,7 +33,7 @@
   <nav class="navbar navbar-default" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="/"><i class="fa fa-cogs" aria-hidden="true"></i> CFG.TF</a>
+				<a class="navbar-brand" href="./"><i class="fa fa-cogs" aria-hidden="true"></i> CFG.TF</a>
 			</div>
 			<ul class="nav navbar-nav">
 				<li>
@@ -112,120 +61,117 @@
 			</ul>
 		</div>
 	</nav>
-<script>
-$(function(){
+  <script>
+  $(function(){
 
-    $('.vividworknav').animate({'margin-top': '0px'}, 600);
+      $('.vividworknav').animate({'margin-top': '0px'}, 600);
 
-});
-</script>
+  });
+  </script>
 
-<section class="colored-block dark">
-<div class="container" >
-<h1>Welcome to <strong>CFG.TF</strong></h1>
-<h3>An open-source hub dedicated to <br>Team Fortress 2 configuration</h3>
-</div>
+  <section class="text-center jumbotron" style="margin-bottom: 0 !important;">
+    <h1>Welcome to <strong>CFG.TF</strong></h1>
+    <h3>An open-source hub dedicated to Team Fortress 2 configuration.</h3>
+  </section>
+
+
+<section id="generator_choser" class="container-fluid shadowed_out">
+
+  <a href="./make">
+    <div class="vividworknav">
+      <img src="./img/cl_ref.jpg" />
+      <h2 class="text-center text-muted">Client</h2>
+      <div class="work-text-content">
+        <h2>Generate a client config</h2>
+        <p>I'm a regular TF2 player wanting to optimize my game.</p>
+      </div>
+    </div>
+  </a>
+
+  <a href="./server">
+    <div class="vividworknav">
+      <img src="./img/srv_ref.jpg" />
+      <h2 class="text-center text-muted">Server</h2>
+      <div class="work-text-content">
+        <h2>Generate a server config</h2>
+        <p>I'm a server owner wanting to create a set of configuration files to easily set up my server settings &amp; plugins.</p>
+      </div>
+    </div>
+  </a>
+
 </section>
 
-
-<div class="container-fluid shadowed_out">
-  <div class="vividworknav"> <img src="./img/cl_ref.jpg" />
-    <a href="./make">
-      <div class="work-text-content">
-        <p>
-          <h2>Make a client config</h2></p>
-        <p>Im a regular TF2 player willing to optimize my game.</p>
+  <section class="container" style="margin-top: 6%; margin-bottom: 6%;">
+    <div class="row">
+      <div class="jumbotron">
+        <h1>Introducing CFG.TF</h1>
+        <p>A simple custom config creating tool. No additional scripting knowlege required. Easy and powerful.</p>
+        <p><a href="./faq" class="btn btn-primary btn-lg">Any questions? See the F.A.Q.</a></p>
       </div>
-    </a>
-  </div>
-  <div class="vividworknav"> <img src="./img/srv_ref.jpg" />
-    <a href="./server">
-      <div class="work-text-content">
-        <div class="work-text-content">
-          <p>
-            <h2>Make a server config</h2></p>
-          <p>I'm a server owner and I want to create a set of configuration<br> files to easily set up my server settings &amp; plugins.</p>
-        </div>
     </div>
-    </a>
-  </div>
-  <section class="colored-block lessdark">
-    <div class="container"> </div>
+    <div class="row center-block">
+      <h3>Opinion of the day</h3>
+      <blockquote>
+        <script language="JavaScript">
+          var r_text = new Array();
+          r_text[0] = "<p>Nice, it's a good upgrade from tf2mate.</p><small>Failw1zard on <cite title='Source'>Teamfortress.TV</cite></small>";
+          r_text[1] = "<p>someone should sticky this</p><small>yahoo from <cite title='Source'>Teamfortress.TV</cite></small>";
+          r_text[2] = "<p>This is honestly fucking useful. Use it people</p><small>Raczoo from <cite title='Source'>Reddit</cite></small>";
+          r_text[3] = "<p>fuck you this is terrible it ruined my game</p><small>WEGWEGABIT from <cite title='Source'>r/truetf2</cite></small>";
+          r_text[4] = "<p>...</p><small>feedback from <cite title='Source'>UGC forums</cite></small>";
+          r_text[5] = "<p>remeber this</p><small>MrGlitchyypants from <cite title='Source'>Reddit</cite></small>";
+          r_text[6] = "<p>I feel like if what you are making teamed up with huds.tf and hit.tf, it would be the hub for all TF2 customization, easily accessible to newer players, although that seems like WAY too much work for just one person.</p><small>Thole from <cite title='Source'>Teamfortress.TV</cite></small>";
+          r_text[7] = "<p>Don't use to many HUD elements</p><footer>Comanglia from <cite title='Source'>Teamfortress.TV</cite></footer>";
+          r_text[8] = "<p>It's about time someone finally made something like this! Mad respect</p><small>Koi - from our <cite title='Source'>Discord server</cite></small>";
+          r_text[9] = "<p>now this is what i call a nut website</p><small>bleghfarec - from our <cite title='Source'>Discord server</cite></small>";
+          r_text[10] = "<p>can all top players upload their configs so we never have another _____'s config thread ever again</p><small>knsume from <cite title='Source'>Teamfortress.TV</cite></small>";
+          r_text[11] = "<p>Awesome, actually quite a lot of useful information about network conditions. I also noticed that a config really matters on my desktop without a proper videocard.</p><small>teamworktf from <cite title='Source'>Reddit</cite></small>";
+          var i = Math.floor(12*Math.random())
+          document.write(r_text[i]);
+        </script>
+      </blockquote>
+    </div>
   </section>
-</div>
 
-<div class="container" style="margin-top: 6%; margin-bottom: 6%;">
-
-      <div class="row">
-	  <div class="jumbotron" style="margin-bottom: 10%;">
-   <h1>Introducing CFG.TF</h1>
-  <p>A simple custom config creating tool. <br>No additional scripting knowlege required. Easy and powerful.</p>
-  <br>
-  <p><a href="./faq" class="btn btn-primary btn-lg">Any questions? See the F.A.Q.</a></p>
-</div>
-
-
-
-
-      </div><center>
-	  <p><h3>Opinion of the day</h3><br></p>
-	     <blockquote>
-	  <script language="JavaScript">
-			<!--
-			var r_text = new Array ();
-			r_text[0] = "<p>Nice, it's a good upgrade from tf2mate.</p><small>Failw1zard on <cite title='Source'>Teamfortress.TV</cite></small>";
-			r_text[1] = "<p>someone should sticky this</p><small>yahoo from <cite title='Source'>Teamfortress.TV</cite></small>";
-			r_text[2] = "<p>This is honestly fucking useful. Use it people</p><small>Raczoo from <cite title='Source'>Reddit</cite></small>";
-			r_text[3] = "<p>fuck you this is terrible it ruined my game</p><small>WEGWEGABIT from <cite title='Source'>r/truetf2</cite></small>";
-			r_text[4] = "<p>...</p><small>feedback from <cite title='Source'>UGC forums</cite></small>";
-			r_text[5] = "<p>remeber this</p><small>MrGlitchyypants from <cite title='Source'>Reddit</cite></small>";
-			r_text[6] = "<p>I feel like if what you are making teamed up with huds.tf and hit.tf, it would be the hub for all TF2 customization, easily accessible to newer players, although that seems like WAY too much work for just one person.</p><small>Thole from <cite title='Source'>Teamfortress.TV</cite></small>";
-			r_text[7] = "<p>Don't use to many HUD elements</p><small>Comanglia from <cite title='Source'>Teamfortress.TV</cite></small>";
-			var i = Math.floor(8*Math.random())
-
-			document.write(r_text[i]);
-
-			//-->
-			</script>
-	</blockquote>
-	</center>
-    </div>
-
-	<div class="container">
-	<center><p><h1>Check out other cool sites</h1><br><br></p>
-	<div class="col-md-2">
-	<a href = "http://www.teamfortress.tv/" target="_blank"><img src="./img/partner/tftv.jpg" class="img-circle img-thumbnail"><br>
-	<p style="margin-top: 10%;">TF.GG</p></a>
-
-	  </div>
-	<div class="col-md-2">
-	<a href = "http://comp.tf/" target="_blank"><img src="./img/partner/comptf.jpg" class="img-circle img-thumbnail"><br>
-	<p style="margin-top: 10%;">comp.tf</p></a>
-
-	  </div>
-	<div class="col-md-2">
-	<a href = "http://hit.tf" target="_blank"><img src="./img/partner/hittf.jpg" class="img-circle img-thumbnail"><br>
-	<p style="margin-top: 10%;">hit.tf</p></a>
-
-	  </div>
-	<div class="col-md-2">
-	<a href = "http://pan.tf" target="_blank"><img src="./img/partner/rsp.jpg" class="img-circle img-thumbnail"><br>
-	<p style="margin-top: 10%;">Ready Steady Pan</p></a>
-
-	  </div>
-	<div class="col-md-2">
-	<a href = "http://www.kritzkast.com/" target="_blank"><img src="./img/partner/kritz.jpg" class="img-circle img-thumbnail"><br>
-	<p style="margin-top: 10%;">KritzKast</p></a>
-	  </div>
-	<div class="col-md-2">
-	<a href = "http://whitelist.tf/" target="_blank"><img src="./img/partner/whitelist.jpg" class="img-circle img-thumbnail"><br>
-	<p style="margin-top: 10%;">whitelist.tf</p></a>
-	  </div>
-	  </center>
-	  </div>
+  <section class="container">
+    <center>
+      <p>
+        <h1>Check out other cool sites</h1><br><br></p>
+      <div class="col-md-2">
+        <a href="http://www.teamfortress.tv/" target="_blank"><img src="./img/partner/tftv.jpg" class="img-circle img-thumbnail"><br>
+          <p>TF.GG</p>
+        </a>
+      </div>
+      <div class="col-md-2">
+        <a href="http://comp.tf/" target="_blank"><img src="./img/partner/comptf.jpg" class="img-circle img-thumbnail"><br>
+          <p>comp.tf</p>
+        </a>
+      </div>
+      <div class="col-md-2">
+        <a href="http://hit.tf" target="_blank"><img src="./img/partner/hittf.jpg" class="img-circle img-thumbnail"><br>
+          <p>hit.tf</p>
+        </a>
+      </div>
+      <div class="col-md-2">
+        <a href="http://pan.tf" target="_blank"><img src="./img/partner/rsp.jpg" class="img-circle img-thumbnail"><br>
+          <p>Ready Steady Pan</p>
+        </a>
+      </div>
+      <div class="col-md-2">
+        <a href="http://www.kritzkast.com/" target="_blank"><img src="./img/partner/kritz.jpg" class="img-circle img-thumbnail"><br>
+          <p>KritzKast</p>
+        </a>
+      </div>
+      <div class="col-md-2">
+        <a href="http://whitelist.tf/" target="_blank"><img src="./img/partner/whitelist.jpg" class="img-circle img-thumbnail"><br>
+          <p>whitelist.tf</p>
+        </a>
+      </div>
+    </center>
+  </section>
 
 
-  <footer>
+  <footer class="footer">
     <div class="container-fluid row">
 
       <div class="col-md-4 text-center">

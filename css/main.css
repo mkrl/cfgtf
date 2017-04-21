@@ -1,9 +1,3 @@
-ul.nav ul {
-  list-style:none;
-  margin: 0;
-  padding: 0 0 0 25px;
-}
-
 #downloader_application form {
   margin-bottom: 10px;
 }
@@ -22,3 +16,137 @@ ul.nav ul {
 .support_cr {border-bottom-color: #39B642 !important;}
 .support_op {border-bottom-color: #C42122 !important;}
 .support_nd {border-bottom-color: #8CC84B !important;}
+
+#overlay {
+  background: #ffffff;
+  color: #666666;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 5000;
+  top: 0;
+  left: 0;
+  float: left;
+  text-align: center;
+  padding-top: 25%;
+}
+#wrapper {
+  width: 60%;
+}
+#wrapper .container {
+  max-width: 100%;
+  display: block;
+}
+.colored-block {
+  width: 100%;
+  padding: 60px 0px;
+  color: #f7f7f7;
+}
+.dark {
+  background: #222;
+  color: #666;
+  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.9);
+}
+.lessdark {
+  background: #474747;
+  color: #666
+}
+.shadowed {
+  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.9)
+}
+.shadowed_out {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.9)
+}
+.footer {
+  margin-top: 10%;
+  color: rgb(102, 102, 102);
+  background: rgb(34, 34, 34);
+  padding: 35px 0 40px 0;
+  border-top: 1px solid rgb(0, 0, 0);
+}
+
+.vividworknav {
+  background-color: black;
+	margin-top: -50px;
+  width: 50%;
+  height: auto;
+  float: left;
+  padding: 0;
+  position: relative;
+}
+.vividworknav:hover img {
+  opacity: 0.3;
+}
+.vividworknav:hover .work-text-content {
+  opacity: 1;
+}
+.vividworknav img {
+  padding: 0;
+  width: 100%;
+  display: block;
+  opacity: 1;
+}
+.vividworknav img,
+.work-text-content {
+  -webkit-transition: opacity 0.5s ease-out;
+  -moz-transition: opacity 0.5s ease-out;
+  -o-transition: opacity 0.5s ease-out;
+  transition: opacity 0.5s ease-out;
+}
+.work-text-content {
+  position: absolute;
+  color: white;
+  left: 0;
+  top: 25%;
+  right: 0;
+  bottom: 0;
+  font-size: 24px;
+  text-align: center;
+  opacity: 0;
+}
+
+#generator_choser {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.navbar {
+  margin-bottom: 0;
+}
+
+
+@-moz-keyframes spin {
+  from { -moz-transform: rotate(0deg); }
+  to { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  from { -webkit-transform: rotate(0deg); }
+  to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
+}
+#loading_logo {
+  background-image: url('../img/tf2logo.png');
+  width: 80px;
+  height: 80px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin: 0 auto;
+  background-position: center center;
+
+  -webkit-animation-name: spin;
+  -webkit-animation-duration: 2000ms;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  -moz-animation-name: spin;
+  -moz-animation-duration: 2000ms;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-timing-function: linear;
+  -ms-animation-name: spin;
+  -ms-animation-duration: 2000ms;
+  -ms-animation-iteration-count: infinite;
+  -ms-animation-timing-function: linear;
+  -o-transition: rotate(3600deg);
+}
