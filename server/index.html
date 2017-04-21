@@ -127,7 +127,7 @@
 				<li class="form-inline">
   			    <label>
   			      Hostname : <a href="#" data-toggle="tooltip" title="This name will appear in game browser and on top of the scoreboard."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
-  						<input class="form-control input-sm" type="text" size="35" value="CFG.TF MGE [Pony | 100% crits | RP | VIP]" id="hostname"/> 
+  						<input class="form-control input-sm" type="text" size="35" placeholder="CFG.TF MGE [Pony | 100% crits | RP | VIP]" id="hostname"/>
   			    </label>
   			  </li>
 				<li class="form-inline">
@@ -699,9 +699,9 @@
 
 <p class="hide" id="result"></p>
 	<!--   CONNECT OPTIONS  -->
-	  <script>
+  <script>
   $(document).ready(function() {
-    var copyTextareaBtn = document.querySelector('#loptions_copy');
+    var copyTextareaBtn = document.querySelector('#loptions');
 
     copyTextareaBtn.addEventListener('click', function(event) {
     var copyTextarea = document.querySelector('#loptions');
@@ -710,14 +710,17 @@
     try {
       var successful = document.execCommand('copy');
       var msg = successful ? 'successful' : 'unsuccessful';
-      $("#loptions_copy").removeClass('btn-primary').addClass('btn-success');
+      $("#clipboard_copy_info_text").html('Copied to clipboard');
+      $("#clipboard_copy_info").addClass('text-success');
+      setTimeout(function(){
+        $("#clipboard_copy_info_text").html('Click to copy launch options to clipboard');
+        $("#clipboard_copy_info").removeClass('text-success');
+      }, 2000);
     } catch (err) {
-      $("#loptions_copy").removeClass('btn-primary').addClass('btn-danger');
+      $("#clipboard_copy_info").addClass('text-danger');
     }
     });
   });
-  </script>
-  <script>
   </script>
 
 		<div class="panel panel-primary">
@@ -726,7 +729,8 @@
 		  </div>
 		  <div class="panel-body">
 				<div class="well well-lg">
-					 <button data-toggle="tooltip" title="Copy to clipboard" id="loptions_copy" class="btn btn-primary" type="button"><i class="fa fa-clipboard" aria-hidden="true"></i></button><input type="text" class="form-control" id="loptions" onclick="this.setSelectionRange(0, this.value.length)" value="" readonly/>
+					<input type="text" class="form-control" id="loptions" onclick="this.setSelectionRange(0, this.value.length)" value="" readonly/>
+          <p class="text-center" id="clipboard_copy_info"><i class="fa fa-clipboard" aria-hidden="true"></i> <span id="clipboard_copy_info_text">Click to copy launch options to clipboard</span></p>
 				</div>
 		  </div>
 		</div>
