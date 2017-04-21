@@ -154,3 +154,8 @@
   white-space: pre-wrap;
   padding-left: 2em;
 }
+
+blockquote {
+  border-left-color: rgba(44, 62, 80, 0.25);
+  font-style: italic;
+}
