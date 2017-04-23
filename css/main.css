@@ -160,3 +160,4 @@ blockquote {
 /* multiselector has bad contrast on text */ .bootstrap-select > .dropdown-toggle.bs-placeholder { color: white !important; }
 /* separate the lists a bit more, its too squashed */ .radio label, .checkbox label { padding-top: 8px; }
 /* re-pad unstyled lists */ .list-unstyled { padding-left: 2em; }
+#partners p { margin-top: 1em; margin-bottom: 1em;}
