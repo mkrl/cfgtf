@@ -18,16 +18,6 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" integrity="sha384-dNpIIXE8U05kAbPhy3G1cz+yZmTzA6CY8Vg/u2L9xRnHjJiAK76m2BIEaSEV+/aU" crossorigin="anonymous">
 
-		<style>
-      /* give clipboard copy some room */ #loptions { width: 95%; } #loptions_copy { float:left; }
-      /* align titles of crosshair switcher table with content */ #switcherdiv th:not(:last-child) { text-align: center; }
-      /* multiselector has bad contrast on text */ .bootstrap-select > .dropdown-toggle.bs-placeholder { color: white !important; }
-      /* remove bullet points on li */ * { list-style: none; }
-      /* separate the lists a bit more, its too squashed */ .radio label, .checkbox label { padding-top: 8px; }
-      /* replace <hr> with bottom borders */ .tab-pane { border-bottom: rgb(236, 240, 241) solid 1px; margin-bottom: 21px; padding-bottom: 21px; }
-
-		</style>
-
     <link rel="stylesheet" href="../css/pygments.css">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/bootstrap-select.min.css">
@@ -315,7 +305,7 @@
 		<div id="tweaks">
 			<h3>Tweaks</h3>
 			<p class="text-muted">Executed automatically</p>
-      <ul class="checkbox">
+      <ul class="checkbox list-unstyled">
   			<li>
   		    <label>
   		      <input type="checkbox" name="tweaks" data-name="tweaks" data-url="../make/cfg/null.cfg" checked />
@@ -348,7 +338,7 @@
 		<div id="custom_cfgs">
 			<h3>Custom configs</h3>
 			<p class="text-muted">Executed manually</p>
-			<ul class="checkbox">
+			<ul class="checkbox list-unstyled">
 				<li>
 			    <label>
 			      <input type="checkbox" name="configs" data-name="configs" data-url="../make/cfg/jump.cfg" />
@@ -373,7 +363,7 @@
 			<div id="demo_support">
 				<h3>Demo Support</h3>
 				<p class="text-muted">Automatically record games <a href="https://wiki.teamfortress.com/wiki/Help:Recording_demos" data-toggle="tooltip" title="Automatically record POV demos of your games. [Click] to visit the official TF2 Wiki for detailed explanation of demo features."  target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a></p>
-        <ul class="checkbox">
+        <ul class="checkbox list-unstyled">
   				<li class="form-inline">
   			    <label>
   			      Demo Support
@@ -434,13 +424,14 @@
 				</ul>
 			</div>
 		</div>
+    <hr>
 	</div>
 
   <div class="tab-pane fade" id="files">
   <!--   SCRIPTS  -->
 		<div id="scripts">
 			<h3>Scripts</h3>
-			<ul class="checkbox">
+			<ul class="checkbox list-unstyled">
 				<li>
 			    <label>
 			      <input type="checkbox" name="scripts" data-name="scripts" data-url="../make/scripts/surfaceproperties.txt" />
@@ -452,7 +443,7 @@
 			<hr>
 
 			<h3><abbr title="Valve Pak" class="initialism">VPK</abbr> files</h3>
-			<ul class="checkbox">
+			<ul class="checkbox list-unstyled">
 				<li>
 			    <label>
 			      <input type="checkbox" name="vpks" data-name="vpks" data-url="../make/vpks/explosions_muzzle_flash.vpk" />
@@ -482,7 +473,7 @@
 			</ul>
 			<hr>
 			<h3>Addons</h3>
-			<ul class="checkbox">
+			<ul class="checkbox list-unstyled">
 				<li>
 			    <label>
 			      <input type="checkbox" name="sourceres" data-name="sourceres" data-url="" />
@@ -497,13 +488,13 @@
 			  </li>
 			</ul>
 		</div>
-
+    <hr>
   </div>
 
   <div class="tab-pane fade" id="viewmod">
 	<!--   VIEWMODEL  -->
 	<h3>Viewmodel settings</h3>
-	<ul class="checkbox">
+	<ul class="checkbox list-unstyled">
   	<li class="form-inline">
       <label>
   			Viewmodel <th><abbr title="Field of View" class="initialism">FOV</abbr></th>
@@ -525,7 +516,7 @@
 	</ul>
 	<hr>
 	<h3>Adjust viewmodels and crosshairs for each class:</h3>
-	<ul class="checkbox">
+	<ul class="checkbox list-unstyled">
 		<li>
 	    <label>
 	      <input type="checkbox" id="crosshairswitcherid" name="crosshairswitcher" data-name="crosshairswitcher" data-url="" />
@@ -533,7 +524,6 @@
 	    </label>
 	  </li>
 	</ul>
-	<br>
 	<script>
 	$(document).ready(function(){
     $('#crosshairswitcherid').change(function(){
@@ -2021,13 +2011,13 @@
 
 
 
-
+    <hr>
 	</div>
   <div class="tab-pane fade" id="damage">
 	<!--  nable killso HITSOUNDS AND PITCH AND STUFF  -->
 	<h3>Combat Text</h3>
 	<p class="text-muted">Damage numbers that appear on screen</p>
-  <ul class="checkbox">
+  <ul class="checkbox list-unstyled">
   	<li>
       <label>
         <input type="checkbox" id="comtoggle" data-name="comtoggle" data-url="" checked />
@@ -2052,7 +2042,7 @@
 	<p class="text-muted">Sounds that play when you do damage</p>
 
   <div class="disabled">
-  	<ul class="checkbox">
+  	<ul class="checkbox list-unstyled">
   		<li>
   	    <label>
   	      <input type="checkbox" id="hittoggle" data-name="hittoggle" data-url="" checked />
@@ -2099,7 +2089,7 @@
 
     </div>
     <p class="text-muted">Sounds that play when you kill</p>
-  	<ul class="checkbox">
+  	<ul class="checkbox list-unstyled">
   		<li>
   	    <label>
   	      <input type="checkbox" id="killtoggle" data-name="killtoggle" data-url="" />
@@ -2127,7 +2117,6 @@
 		<h3>Custom hitsounds and killsounds:</h3>
 		<p>
 		There are already a few hitsounds that you can select from in the "Advanced Options" in-game menu. Optionally, you can select a custom hit/killsound (or choose none here and use your own one).
-		<br>
     <p class="text-warning"><i class="fa fa-volume-up" aria-hidden="true"></i> Warning! The sound you select will autoplay on click.</p>
 		</p>
 
@@ -2301,20 +2290,17 @@
 			</audio>
       </label>
 		</li>
+    <hr>
 	</div>
   <div class="tab-pane fade" id="network">
 	<!--   CONNECTION SETTINGS  -->
 	<h3>Connection settings</h3>
 	<p>Set to "good connection" by default. Don't touch if you don't understand what this is. If you are curious, here is a <a href="/read/interp/" target="_blank">small article about connection settings</a>.</p>
-	<br>
 	<div class="btn-group" role="group" aria-label="Connection type">
 	<button type="button" class="btn btn-default" onclick="autoFillGood()">Good connection</button>
 	<button type="button" class="btn btn-default" onclick="autoFillBad()">Bad connection</button>
 	<button type="button" class="btn btn-default" onclick="autoFillComp()">Competitive connection</button>
 	</div>
-	<br>
-	<br>
-	<br>
 	<li>
     <label>
 			cl_cmdrate
@@ -2345,13 +2331,14 @@
       <input class="form-control" type="text" size="6"  id="rate" onkeypress="return isNumberKey(event)" value="60000" />
     </label>
     </li>
+  <hr>
 	</div>
   <div class="tab-pane fade" id="binds">
 	<!--   CUSTOM INPUT  -->
 	<h3>Custom bindings:</h3>
 	<p>You may enter anything here, not just binds. Same formatting rules as for the TF2 console. This will be executed at the end of your config and overwrite existing binds.</p>
-	<br>
 	<textarea id="bindings" placeholder="bind kp_minus &quot;say !add spire&quot;" class="form-control"></textarea>
+  <hr>
 	</div>
 </div>
 </div>
@@ -2430,69 +2417,66 @@
 	</script>
 </div>
 
-<script type="text/javascript" src="../js/downloader.js"></script>
-
-
+  <script type="text/javascript" src="../js/downloader.js"></script>
 </div>
 
+  <footer class="footer">
+    <div class="container-fluid row">
 
-<p> </p>
+      <div class="col-md-4 text-center">
+        <ul class="list-unstyled">
+            <li><a href="//discord.gg/79cbsTu" target="_blank">Join our Discord</a></li>
+            <li><a href="//www.teamfortress.tv/40062/a-simple-custom-config-generator" target="_blank">Discuss on TFTV</a></li>
+            <li><a href="//github.com/mkrl/mkrl.github.io/issues" target="_blank">Report an issue</a></li>
+            <li><a href="//github.com/mkrl/mkrl.github.io" target="_blank">View the source code</a></li>
+        </ul>
+      </div>
 
+      <div class="col-md-4 text-center">
+        <p>CFG.TF</p>
+        <p><small>a custom TF2 config generator by <a href="https://steamcommunity.com/id/2x100/" target="_blank">200</a></small></p>
+        <script>
+          (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+              (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+              m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+          })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+          ga('create', 'UA-97817107-1', 'auto');
+          ga('send', 'pageview');
+        </script>
+      </div>
 
- <script>
-    jQuery(window).on('load', function(){
-    jQuery('#overlay').fadeOut();
-    });
-</script>
+      <div class="col-md-4">
+        <p class="text-center">~
+          <script language="JavaScript">
+            var fhsh = document.createElement('script');
+            var fhs_id_h = "3234623";
+            fhsh.src = "//s1.freehostedscripts.net/ocount.php?site=" + fhs_id_h + "&name=configs&a=1";
+            document.head.appendChild(fhsh);
+            document.write("<span id='h_" + fhs_id_h + "'></span>");
+          </script> generated so far.
+        </p>
+      </div>
 
-<footer class="footer">
-  <div class="container-fluid row">
-
-    <div class="col-md-4 text-center">
-      <ul class="list-unstyled">
-          <li><a href="//discord.gg/79cbsTu" target="_blank">Join our Discord</a></li>
-          <li><a href="//www.teamfortress.tv/40062/a-simple-custom-config-generator" target="_blank">Discuss on TFTV</a></li>
-          <li><a href="//github.com/mkrl/mkrl.github.io/issues" target="_blank">Report an issue</a></li>
-          <li><a href="//github.com/mkrl/mkrl.github.io" target="_blank">View the source code</a></li>
-      </ul>
     </div>
+  </footer>
 
-    <div class="col-md-4 text-center">
-      <p>CFG.TF</p>
-      <p><small>a custom TF2 config generator by <a href="https://steamcommunity.com/id/2x100/" target="_blank">200</a></small></p>
-      <script>
-        (function(i, s, o, g, r, a, m) {
-          i['GoogleAnalyticsObject'] = r;
-          i[r] = i[r] || function() {
-            (i[r].q = i[r].q || []).push(arguments)
-          }, i[r].l = 1 * new Date();
-          a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0];
-          a.async = 1;
-          a.src = g;
-          m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-        ga('create', 'UA-97817107-1', 'auto');
-        ga('send', 'pageview');
-      </script>
-    </div>
-
-    <div class="col-md-4">
-      <p class="text-center">~
-        <script language="JavaScript">
-          var fhsh = document.createElement('script');
-          var fhs_id_h = "3234623";
-          fhsh.src = "//s1.freehostedscripts.net/ocount.php?site=" + fhs_id_h + "&name=configs&a=1";
-          document.head.appendChild(fhsh);
-          document.write("<span id='h_" + fhs_id_h + "'></span>");
-        </script> generated so far.
-      </p>
-    </div>
-
+  <div class="jumbotron" id="overlay">
+    <div id="loading_logo"></div>
+    <p>Hang on a minute...</p>
+    <noscript><p>Please enable javascript in your browser to continue.</p></noscript>
   </div>
-</footer>
-
-
+   <script>
+      jQuery(window).on('load', function(){
+        jQuery('#overlay').fadeOut();
+      });
+  </script>
 
   </body>
 </html>

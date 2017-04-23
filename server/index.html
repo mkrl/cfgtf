@@ -18,17 +18,7 @@
     <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" integrity="sha384-dNpIIXE8U05kAbPhy3G1cz+yZmTzA6CY8Vg/u2L9xRnHjJiAK76m2BIEaSEV+/aU" crossorigin="anonymous">
 
 		<style>
-			#loading_logo {
-				background-image: url('../img/tf2logo_server.png') !important;
-			}
-
-      /* give clipboard copy some room */ #loptions { width: 95%; } #loptions_copy { float:left; }
-      /* align titles of crosshair switcher table with content */ #switcherdiv th:not(:last-child) { text-align: center; }
-      /* multiselector has bad contrast on text */ .bootstrap-select > .dropdown-toggle.bs-placeholder { color: white !important; }
-      /* remove bullet points on li */ * { list-style: none; }
-      /* separate the lists a bit more, its too squashed */ .radio label, .checkbox label { padding-top: 8px; }
-      /* replace <hr> with bottom borders */ .tab-pane { border-bottom: rgb(236, 240, 241) solid 1px; margin-bottom: 21px; padding-bottom: 21px; }
-
+			/* different loading logo on server page */ #loading_logo {background-image: url('../img/tf2logo_server.png') !important;}
 		</style>
 
     <link rel="stylesheet" href="../css/pygments.css">
@@ -43,11 +33,10 @@
 
   </head>
   <body>
-	<div id="overlay">
-    <!-- <img src="../img/loading.gif" alt="Loading" /><br> -->
+	<div class="jumbotron" id="overlay">
 	  <div id="loading_logo"></div>
-		<br>Hang on a minute...
-    <noscript>Please enable javascript in your browser to continue.</noscript>
+		<p>Hang on a minute...</p>
+    <noscript><p>Please enable javascript in your browser to continue.</p></noscript>
 	</div>
     <nav class="navbar navbar-default" role="navigation">
 		<div class="container">

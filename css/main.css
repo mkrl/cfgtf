@@ -18,8 +18,6 @@
 .support_nd {border-bottom-color: #8CC84B !important;}
 
 #overlay {
-  background: #ffffff;
-  color: #666666;
   position: fixed;
   height: 100%;
   width: 100%;
@@ -105,7 +103,7 @@
   opacity: 0;
 }
 
-#generator_choser {
+#generator_chooser {
   padding-left: 0;
   padding-right: 0;
 }
@@ -156,6 +154,9 @@
 }
 
 blockquote {
-  border-left-color: rgba(44, 62, 80, 0.25);
   font-style: italic;
 }
+
+/* multiselector has bad contrast on text */ .bootstrap-select > .dropdown-toggle.bs-placeholder { color: white !important; }
+/* separate the lists a bit more, its too squashed */ .radio label, .checkbox label { padding-top: 8px; }
+/* re-pad unstyled lists */ .list-unstyled { padding-left: 2em; }
