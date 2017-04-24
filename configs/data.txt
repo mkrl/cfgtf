@@ -65,6 +65,48 @@
       "<a href=./thalash.zip>Download</a>",
       "<a href=http://www.youtube.com/TLR6843>YouTube</a>",
       "<a href=https://www.twitch.tv/tlr6843>Twitch</a>"
-    ]	
+    ],	
+    [
+      "ShaDowBurn",
+      "<a href=./shadowburn.zip>Download</a>",
+      "<a href=https://www.youtube.com/user/SDBShaDowBurn>YouTube</a>",
+      "<a href=https://www.twitch.tv/sdburn>Twitch</a>"
+    ],	
+    [
+      "carnage",
+      "<a href=./carnage.zip>Download</a>",
+      "<a href=https://www.youtube.com/channel/UCtUA90b-7hGzV8cWlK-3vdA>YouTube</a>",
+      "<a href=https://www.twitch.tv/carnagejohnson>Twitch</a>"
+    ],	
+    [
+      "cookye",
+      "<a href=./cookye.zip>Download</a>",
+      "-",
+      "<a href=https://www.twitch.tv/kukkyee>Twitch</a>"
+    ],	
+    [
+      "Sideshow",
+      "<a href=./Sideshow.zip>Download</a>",
+      "<a href=https://www.youtube.com/user/Sideshow1994>YouTube</a>",
+      "<a href=https://www.twitch.tv/sideshow>Twitch</a>"
+    ],	
+    [
+      "Kaptain",
+      "<a href=./Kaptain.zip>Download</a>",
+      "<a href=https://www.youtube.com/channel/UCuDKTNlFqlh4P_sOJF5N1YA>YouTube</a>",
+      "<a href=https://www.twitch.tv/kaptain__>Twitch</a>"
+    ],	
+    [
+      "Admirable",
+      "<a href=./admirable.zip>Download</a>",
+      "-",
+      "<a href=https://www.twitch.tv/admirableplayer>Twitch</a>"
+    ],	
+    [
+      "alle",
+      "<a href=./alle.zip>Download</a>",
+      "<a href=https://www.youtube.com/user/allebwai>YouTube</a>",
+      "-"
+    ]
   ]
 }

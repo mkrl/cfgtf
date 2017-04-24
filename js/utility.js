@@ -1,5 +1,5 @@
 /* Various page processing stuff for CFG.tf
-http://cfg.tf*/
+http://cfg.tf */
 
 function updateConnect() {
     var srvaddr = document.getElementById("ip").value;;
@@ -11,6 +11,23 @@ function updateConnect() {
     }
 
 }
+
+var room = 40;	//dynamic bind fields
+function education_fields() {
+ 
+    room++;
+    var objTo = document.getElementById('education_fields')
+    var divtest = document.createElement("div");
+	divtest.setAttribute("class", "form-group removeclass"+room);
+	var rdiv = 'removeclass'+room;
+    divtest.innerHTML = '<div class="col-sm-3 nopadding"> <div class="form-group"> <input type="text" class="form-control" id="key'+room+'" name="Keys[]" value="" placeholder="Key"> </div></div><div class="col-sm-3 nopadding"> <div class="form-group"> <div class="input-group"><input type="text" class="form-control" id="command'+room+'" name="Commands[]" value="" placeholder="Command"> <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields('+ room +');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div></div></div></div><div class="clear"></div>';
+    
+    objTo.appendChild(divtest)
+}
+   function remove_education_fields(rid) {
+	   $('.removeclass'+rid).remove();
+   }
+
 
 
 function installPackage(file) {
@@ -70,7 +87,7 @@ function isNumberKey(evt) //allowing numbers and decimal points
 
     return true;
 }
-var dxlevel = "81"; //updating dxlevel below
+var dxlevel = "91"; //updating dxlevel below
 function updatedxlevel() {
     switch ($("#gfx_selector").val()) {
         case "toaster":
@@ -87,6 +104,9 @@ function updatedxlevel() {
         case "fancy":
         case "felikeyecandy":
             dxlevel = "98";
+            break;
+        case "myown":
+            dxlevel = "91";
             break;
     }
 

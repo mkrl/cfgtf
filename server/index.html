@@ -17,6 +17,10 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" integrity="sha384-dNpIIXE8U05kAbPhy3G1cz+yZmTzA6CY8Vg/u2L9xRnHjJiAK76m2BIEaSEV+/aU" crossorigin="anonymous">
 
+		<style>
+			/* different loading logo on server page */ #loading_logo {background-image: url('../img/tf2logo_server.png') !important;}
+		</style>
+
     <link rel="stylesheet" href="../css/pygments.css">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/bootstrap-select.min.css">
@@ -29,21 +33,12 @@
 
   </head>
   <body>
-    <div class="jumbotron" id="overlay">
-      <div id="loading_logo">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 464 462.9">
-          <path fill="#3498db" d="M213 19.2A213 213 0 0 0 19.7 212H160a74.4 74.4 0 0 1 53-52.6V19.2zm38 0v140.4a74.4 74.4 0 0 1 52.4 52.3h140.4A213 213 0 0 0 251 19zM19.5 250A213 213 0 0 0 213 443.4V303.2a74.4 74.4 0 0 1-53.3-53.3H19.5zm284 0a74.4 74.4 0 0 1-52.5 53v140.4A213 213 0 0 0 443.8 250H303.6z"/>
-        </svg>
-      </div>
-      <p>Hang on a minute...</p>
-      <noscript><p>Please enable javascript in your browser to continue.</p></noscript>
-    </div>
-     <script>
-      jQuery(window).on('load', function(){
-        jQuery('#overlay').fadeOut();
-      });
-    </script>
-
+	<div class="jumbotron" id="overlay">
+	  <div id="loading_logo"></div>
+	  <br>
+		<p>Hang on a minute...</p>
+    <noscript><p>Please enable javascript in your browser to continue.</p></noscript>
+	</div>
     <nav class="navbar navbar-default" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
@@ -65,6 +60,9 @@
 				  </ul>
 				</li>
 			</ul>
+							<li>
+					<a href="../../configs">Configs</a>
+				</li>
 			<ul class="nav navbar-nav navbar-right">
 				<li>
 					<a href="../faq/">FAQ</a>
@@ -706,7 +704,7 @@
       $("#clipboard_copy_info_text").html('Copied to clipboard');
       $("#clipboard_copy_info").addClass('text-success');
       setTimeout(function(){
-        $("#clipboard_copy_info_text").html('Click to copy launch options to clipboard');
+        $("#clipboard_copy_info_text").html('Click to copy connect options to clipboard');
         $("#clipboard_copy_info").removeClass('text-success');
       }, 2000);
     } catch (err) {
@@ -723,7 +721,7 @@
 		  <div class="panel-body">
 				<div class="well well-lg">
 					<input type="text" class="form-control" id="loptions" onclick="this.setSelectionRange(0, this.value.length)" value="" readonly/>
-          <p class="text-center" id="clipboard_copy_info"><i class="fa fa-clipboard" aria-hidden="true"></i> <span id="clipboard_copy_info_text">Click to copy launch options to clipboard</span></p>
+          <br><p class="text-center" id="clipboard_copy_info"><i class="fa fa-clipboard" aria-hidden="true"></i> <span id="clipboard_copy_info_text">Click to copy connect options to clipboard</span></p>
 				</div>
 		  </div>
 		</div>
@@ -740,15 +738,25 @@
 
 </div>
 
+
+<p> </p>
+
+
+ <script>
+    jQuery(window).on('load', function(){
+    jQuery('#overlay').fadeOut();
+    });
+</script>
+
 <footer class="footer">
   <div class="container-fluid row">
 
     <div class="col-md-4 text-center">
       <ul class="list-unstyled">
           <li><a href="//discord.gg/79cbsTu" target="_blank">Join our Discord</a></li>
-          <li><a href="//www.teamfortress.tv/40062/a-simple-custom-config-generator" target="_blank">Discuss on TFTV</a></li>
-          <li><a href="//github.com/mkrl/mkrl.github.io/issues" target="_blank">Report an issue</a></li>
-          <li><a href="//github.com/mkrl/mkrl.github.io" target="_blank">View the source code</a></li>
+          <li><a href="//www.teamfortress.tv/40869/cfg-tf" target="_blank">Discuss on TFTV</a></li>
+          <li><a href="//github.com/mkrl/cfgtf/issues" target="_blank">Report an issue</a></li>
+          <li><a href="//github.com/mkrl/cfgtf" target="_blank">View the source code</a></li>
       </ul>
     </div>
 
@@ -786,5 +794,6 @@
 
   </div>
 </footer>
+
   </body>
 </html>

@@ -2,6 +2,12 @@
   margin-bottom: 10px;
 }
 
+/* hiding horizontal scrollbar */
+body{
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
 #downloader_application ul {
   list-style-type: none;
 }
@@ -53,7 +59,9 @@
   box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.9)
 }
 .shadowed_out {
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.9)
+-webkit-box-shadow: 0px 0px 34px 13px rgba(0,0,0,0.14);
+-moz-box-shadow: 0px 0px 34px 13px rgba(0,0,0,0.14);
+box-shadow: 0px 0px 34px 13px rgba(0,0,0,0.14);
 }
 .footer {
   margin-top: 10%;
@@ -64,12 +72,12 @@
 }
 
 .vividworknav {
-  background-color: black;
+  background-color: #222;
 	margin-top: -50px;
   width: 50%;
   height: auto;
   float: left;
-  padding: 0;
+  padding-bottom: 1%;
   position: relative;
 }
 .vividworknav:hover img {
@@ -110,6 +118,9 @@
 
 .navbar {
   margin-bottom: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
 }
 
 @-moz-keyframes spin {
@@ -125,6 +136,7 @@
   to {transform:rotate(360deg);}
 }
 #loading_logo {
+  background-image: url('../img/tf2logo.png');
   width: 80px;
   height: 80px;
   background-repeat: no-repeat;
@@ -160,3 +172,8 @@ blockquote {
 /* separate the lists a bit more, its too squashed */ .radio label, .checkbox label { padding-top: 8px; }
 /* re-pad unstyled lists */ .list-unstyled { padding-left: 2em; }
 #partners p { margin-top: 1em; margin-bottom: 1em;}
+
+p.header-remote {
+	display: inline-block; margin-bottom: 10%;
+
+}
