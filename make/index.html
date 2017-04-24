@@ -36,6 +36,20 @@
 
   </head>
   <body>
+	<div class="jumbotron" id="overlay">
+		  <div id="loading_logo">
+			<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 464 462.9">
+			  <path fill="#f39c12" d="M213 19.2A213 213 0 0 0 19.7 212H160a74.4 74.4 0 0 1 53-52.6V19.2zm38 0v140.4a74.4 74.4 0 0 1 52.4 52.3h140.4A213 213 0 0 0 251 19zM19.5 250A213 213 0 0 0 213 443.4V303.2a74.4 74.4 0 0 1-53.3-53.3H19.5zm284 0a74.4 74.4 0 0 1-52.5 53v140.4A213 213 0 0 0 443.8 250H303.6z"/>
+			</svg>
+		  </div>
+		  <br><p>Hang on a minute...</p>
+		  <noscript><p>Please enable javascript in your browser to continue.</p></noscript>
+		</div>
+		 <script>
+			jQuery(window).on('load', function(){
+			  jQuery('#overlay').fadeOut();
+			});
+		</script>
     <nav class="navbar navbar-default" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
@@ -1775,26 +1789,30 @@
   <div class="tab-pane fade" id="viewmod">
 	<!--   VIEWMODEL  -->
 	<h3>Viewmodel settings</h3>
+<div id="global_viewmodel_settings">
+  	<ul class="checkbox list-unstyled">
+    	<li class="form-inline">
+        <label>
+    			Viewmodel <th><abbr title="Field of View" class="initialism">FOV</abbr></th>
+          <input class="form-control input-sm" type="text" size="6"  id="v_fov" onkeypress="return isNumberKey(event)" value="75" />
+        </label>
+      </li>
+  		<li>
+  	    <label>
+  	      <input type="checkbox" id="modeltoggle" data-name="modeltoggle" data-url="" checked />
+  	      Draw viewmodels
+  	    </label>
+  	  </li>
+  		<li>
+  	    <label>
+  	      <input type="checkbox" id="minmodtoggle" data-name="modeltoggle" data-url="" checked />
+  	      Use minimal viewmodels
+  	    </label>
+  	  </li>
+  	</ul>
+  </div>
 	<ul class="checkbox list-unstyled">
-  	<li class="form-inline">
-      <label>
-  			Viewmodel <th><abbr title="Field of View" class="initialism">FOV</abbr></th>
-        <input class="form-control input-sm" type="text" size="6"  id="v_fov" onkeypress="return isNumberKey(event)" value="75" />
-      </label>
-    </li>
-		<li>
-	    <label>
-	      <input type="checkbox" id="modeltoggle" data-name="modeltoggle" data-url="" checked />
-	      Draw viewmodels
-	    </label>
-	  </li>
-		<li>
-	    <label>
-	      <input type="checkbox" id="minmodtoggle" data-name="modeltoggle" data-url="" checked />
-	      Use minimal viewmodels
-	    </label>
-		</li>
-		<li>
+  		<li>
 	    <label>
 	      <input type="checkbox" id="fliptoggle" data-name="fliptoggle" data-url="" />
 	      Left-handed viewmodels
@@ -1808,7 +1826,9 @@
     </li>
 	</ul>
 	<hr>
-	<h3>Adjust viewmodels and crosshairs for each class:</h3>
+	<h3>Class specific weapon viewmodels and crosshairs</h3>
+  <p class="text-muted">Selecting this will disable the viewmodel settings above</p>
+
 	<ul class="checkbox list-unstyled">
 		<li>
 	    <label>
@@ -1819,13 +1839,43 @@
 	</ul>
 	<script>
 	$(document).ready(function(){
+    // toggles the whole div when #crosshairswitcherid checked/unchecked
     $('#crosshairswitcherid').change(function(){
-        if(this.checked)
-            $('#switcherdiv').fadeIn(400);
-        else
-            $('#switcherdiv').fadeOut(400);
-
+        if(this.checked) {
+          $('#switcherdiv').fadeIn(400);
+          // disable viewmodel settings when switcher enabled
+          $('#global_viewmodel_settings input').prop('disabled', true);
+          $('#global_viewmodel_settings').fadeTo('fast', '0.6');
+        }
+        else {
+          $('#switcherdiv').fadeOut(400);
+          $('#global_viewmodel_settings input').prop('disabled', false);
+          $('#global_viewmodel_settings').fadeTo('fast', '1');
+        }
     });
+
+    // fades in the minimal viewmodel checkbox for pre-enabled viewmodels
+    $('.viewmodel_checkbox').each(function(){
+      var viewmodelch = $(this);
+      var weaponid = $(viewmodelch).attr("id");
+      if(viewmodelch.is(':checked')) {
+        $('#' + weaponid + '_min.viewmodel_minimal_checkbox').fadeIn(400);
+      } else {
+        $('#' + weaponid + '_min.viewmodel_minimal_checkbox').fadeOut(400);
+      };
+    });
+
+    // toggles the min-viewmodel label (with checkbox child) when the input is checked/unchecked
+    $("#switcherdiv .viewmodel_options .viewmodel_checkbox").change(function() {
+        var weaponid = $(this).attr("id");
+        if($(this).is(':checked')) {
+          $('#' + weaponid + '_min.viewmodel_minimal_checkbox').fadeIn(400);
+        } else {
+          $('#' + weaponid + '_min.viewmodel_minimal_checkbox').fadeOut(400);
+        }
+    });
+
+
 	});
 	</script>
 
@@ -1850,10 +1900,10 @@
 						<!-- SCOUT -->
 						<table class="table table-striped table-hover ">
 						  <thead>
-							<th></th>
-							<th>Crosshair</th>
-							<th>Display weapon</th>
-							<th><abbr title="Field of View" class="initialism">FOV</abbr></th>
+  							<th></th>
+  							<th>Crosshair</th>
+  							<th>Display weapon</th>
+  							<th><abbr title="Field of View" class="initialism">FOV</abbr></th>
 						  </thead>
 						  <tr>
 							<td><b>Primary</b></td>
@@ -1900,7 +1950,16 @@
 
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_1_1" data-name="cs_draw_1_1" data-url="" /></td>
+							<td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_1_1" data-name="cs_draw_1_1" data-url=""/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_1_1_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_1_1_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_1_1" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						  <tr>
@@ -1947,7 +2006,16 @@
 						</select>
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_1_2" data-name="cs_draw_1_2" data-url="" /></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_1_2" data-name="cs_draw_1_2" data-url=""/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_1_2_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_1_2_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_1_2" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						  <tr>
@@ -1994,7 +2062,16 @@
 						</select>
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_1_3" data-name="cs_draw_1_3" data-url="" checked/></td>
+							<td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_1_3" data-name="cs_draw_1_3" data-url="" checked/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_1_3_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_1_3_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_1_3" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						</table>
@@ -2061,7 +2138,16 @@
 
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_2_1" data-name="cs_draw_2_1" data-url="" /></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_2_1" data-name="cs_draw_2_1" data-url=""/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted" id="cs_draw_2_1_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_2_1_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_2_1" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						  <tr>
@@ -2108,7 +2194,16 @@
 						</select>
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_2_2" data-name="cs_draw_2_2" data-url="" /></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_2_2" data-name="cs_draw_2_2" data-url=""/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_2_2_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_2_2_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_2_2" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						  <tr>
@@ -2155,7 +2250,16 @@
 						</select>
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_2_3" data-name="cs_draw_1_3" data-url="" checked/></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_2_3" data-name="cs_draw_2_3" data-url="" checked/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_2_3_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_2_3_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_2_3" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						</table>
@@ -2224,7 +2328,16 @@
 
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_3_1" data-name="cs_draw_3_1" data-url="" /></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_3_1" data-name="cs_draw_3_1" data-url=""/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_3_1_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_3_1_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3" id="cs_fov_3_1" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						  <tr>
@@ -2271,7 +2384,16 @@
 						</select>
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_3_2" data-name="cs_draw_3_2" data-url="" /></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_3_2" data-name="cs_draw_3_2" data-url=""/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_3_2_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_3_2_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_3_2" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						  <tr>
@@ -2318,7 +2440,16 @@
 						</select>
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_3_3" data-name="cs_draw_3_3" data-url="" checked/></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_3_3" data-name="cs_draw_3_3" data-url="" checked/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_3_3_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_3_3_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_3_3" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						</table>
@@ -2387,7 +2518,16 @@
 
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_4_1" data-name="cs_draw_4_1" data-url="" /></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_4_1" data-name="cs_draw_4_1" data-url=""/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_4_1_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_4_1_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_4_1" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						  <tr>
@@ -2434,7 +2574,16 @@
 						</select>
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_4_2" data-name="cs_draw_4_2" data-url="" /></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_4_2" data-name="cs_draw_4_2" data-url=""/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_4_2_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_4_2_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_4_2" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						  <tr>
@@ -2481,7 +2630,16 @@
 						</select>
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_4_3" data-name="cs_draw_4_3" data-url="" checked/></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_4_3" data-name="cs_draw_4_3" data-url="" checked/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_4_3_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_4_3_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_4_3" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						</table>
@@ -2548,7 +2706,16 @@
 
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_5_1" data-name="cs_draw_5_1" data-url="" /></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_5_1" data-name="cs_draw_5_1" data-url=""/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_5_1_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_5_1_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_5_1" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						  <tr>
@@ -2595,7 +2762,16 @@
 						</select>
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_5_2" data-name="cs_draw_5_2" data-url="" /></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_5_2" data-name="cs_draw_5_2" data-url=""/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_5_2_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_5_2_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_5_2" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						  <tr>
@@ -2642,7 +2818,16 @@
 						</select>
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_5_3" data-name="cs_draw_5_3" data-url="" checked/></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_5_3" data-name="cs_draw_5_3" data-url="" checked/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_5_3_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_5_3_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_5_3" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						</table>
@@ -2710,7 +2895,16 @@
 
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_6_1" data-name="cs_draw_6_1" data-url="" /></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_6_1" data-name="cs_draw_6_1" data-url=""/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_6_1_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_6_1_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_6_1" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						  <tr>
@@ -2757,7 +2951,16 @@
 						</select>
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_6_2" data-name="cs_draw_6_2" data-url="" /></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_6_2" data-name="cs_draw_6_2" data-url=""/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_6_2_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_6_2_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_6_2" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						  <tr>
@@ -2804,7 +3007,16 @@
 						</select>
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_6_3" data-name="cs_draw_6_3" data-url="" checked/></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_6_3" data-name="cs_draw_6_3" data-url="" checked/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_6_3_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_6_3_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_6_3" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						</table>
@@ -2870,7 +3082,16 @@
 
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_7_1" data-name="cs_draw_7_1" data-url="" /></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_7_1" data-name="cs_draw_7_1" data-url=""/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_7_1_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_7_1_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_7_1" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						  <tr>
@@ -2917,7 +3138,16 @@
 						</select>
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_7_2" data-name="cs_draw_7_2" data-url="" /></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_7_2" data-name="cs_draw_7_2" data-url=""/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_7_2_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_7_2_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_7_2" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						  <tr>
@@ -2964,7 +3194,16 @@
 						</select>
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_7_3" data-name="cs_draw_7_3" data-url="" checked/></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_7_3" data-name="cs_draw_7_3" data-url="" checked/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_7_3_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_7_3_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_7_3" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						</table>
@@ -3029,7 +3268,16 @@
 
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_8_1" data-name="cs_draw_8_1" data-url="" /></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_8_1" data-name="cs_draw_8_1" data-url=""/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_8_1_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_8_1_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_8_1" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						  <tr>
@@ -3076,7 +3324,16 @@
 						</select>
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_8_2" data-name="cs_draw_8_2" data-url="" /></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_8_2" data-name="cs_draw_8_2" data-url=""/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_8_2_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_8_2_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_8_2" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						  <tr>
@@ -3123,7 +3380,16 @@
 						</select>
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_8_3" data-name="cs_draw_8_3" data-url="" checked/></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_8_3" data-name="cs_draw_8_3" data-url="" checked/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_8_3_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_8_3_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_8_3" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						</table>
@@ -3191,7 +3457,16 @@
 
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_9_1" data-name="cs_draw_9_1" data-url="" /></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_9_1" data-name="cs_draw_9_1" data-url=""/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_9_1_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_9_1_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_9_1" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						  <tr>
@@ -3238,7 +3513,16 @@
 						</select>
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_9_2" data-name="cs_draw_9_2" data-url="" /></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_9_2" data-name="cs_draw_9_2" data-url=""/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_9_2_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_9_2_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_9_2" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						  <tr>
@@ -3285,7 +3569,16 @@
 						</select>
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_9_3" data-name="cs_draw_9_3" data-url="" checked/></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_9_3" data-name="cs_draw_9_3" data-url="" checked/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_9_3_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_9_3_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_9_3" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						</table>
@@ -3761,18 +4054,5 @@
 
     </div>
   </footer>
-
-  <div class="jumbotron" id="overlay">
-    <div id="loading_logo"></div>
-	<br>
-    <p>Hang on a minute...</p>
-    <noscript><p>Please enable javascript in your browser to continue.</p></noscript>
-  </div>
-   <script>
-      jQuery(window).on('load', function(){
-        jQuery('#overlay').fadeOut();
-      });
-  </script>
-
   </body>
 </html>
