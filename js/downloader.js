@@ -90,7 +90,13 @@ jQuery(function ($) {
 			} else {
 			var minmodel = "0"
 		}
+ 		if($("#fliptoggle").is(':checked')){
+			var fliptoggle = "1"
+			} else {
+			var fliptoggle = "0"
+		}
 		var v_fov = $('#v_fov').val();
+		var vmodelbind = $('#vmodelbind').val();
 
 		//combat text settings
  		if($("#battoggle").is(':checked')){
@@ -459,8 +465,8 @@ jQuery(function ($) {
 
 
 
-
-
+		
+		var bindarr = "";
         // find every checked item
         $(this).find(":checked").each(function () {
 
@@ -510,18 +516,33 @@ jQuery(function ($) {
 
             }
 			if(iswhat == "sourceres") {
-				zip.file("addons/SourceRes.dll" + filename, urlToPromise("../make/addons/SourceRes/addons/SourceRes.dll"), {binary:true});
-				zip.file("addons/SourceRes.vdf" + filename, urlToPromise("../make/addons/SourceRes/addons/SourceRes.vdf"), {binary:true});
+				zip.file("addons/SourceRes.dll", urlToPromise("../make/addons/SourceRes/addons/SourceRes.dll"), {binary:true});
+				zip.file("addons/SourceRes.vdf", urlToPromise("../make/addons/SourceRes/addons/SourceRes.vdf"), {binary:true});
+            }
+			if(iswhat == "casting") {
+				zip.file("addons/CastingEssentials.dll", urlToPromise("../make/addons/CastingEssentials/addons/CastingEssentials.dll"), {binary:true});
+				zip.file("addons/CastingEssentials.vdf", urlToPromise("../make/addons/CastingEssentials/addons/CastingEssentials.vdf"), {binary:true});
+				zip.file("materials/debug/debugfbtexture1.vmt", urlToPromise("../make/addons/CastingEssentials/materials/debug/debugfbtexture1.vmt"), {binary:true});
             }
 			if(iswhat == "prec") {
-				zip.file("addons/PREC.cfg" + filename, urlToPromise("../make/addons/prec/addons/PREC.cfg"), {binary:true});
-				zip.file("addons/PREC.dll" + filename, urlToPromise("../make/addons/prec/addons/PREC.dll"), {binary:true});
-				zip.file("addons/PREC.vdf" + filename, urlToPromise("../make/addons/prec/addons/PREC.vdf"), {binary:true});
-				zip.file("addons/readme_prec.txt" + filename, urlToPromise("../make/addons/prec/addons/readme_prec.txt"), {binary:true});
+				zip.file("addons/PREC.cfg", urlToPromise("../make/addons/prec/addons/PREC.cfg"), {binary:true});
+				zip.file("addons/PREC.dll", urlToPromise("../make/addons/prec/addons/PREC.dll"), {binary:true});
+				zip.file("addons/PREC.vdf", urlToPromise("../make/addons/prec/addons/PREC.vdf"), {binary:true});
+				zip.file("addons/readme_prec.txt", urlToPromise("../make/addons/prec/addons/readme_prec.txt"), {binary:true});
             }
 			if(iswhat == "tweaks") {
 				zip.file("cfg/tweaks/" + filename, urlToPromise(url), {binary:true});
 				customs = customs + "exec tweaks/" + filename.slice(0, -4) + "\n";
+            }			
+			if(iswhat == "bindscheck") {
+				var i = 1;
+				while (i <= room) {
+					if(typeof $("#key"+i).val() !== 'undefined' && typeof $("#key"+i).val() !== 'undefined'){
+					bindarr = bindarr + "\nbind "+$("#key"+i).val() +" "+$("#command"+i).val();
+					}
+					i++
+				}
+
             }
 			if(iswhat == "tweaks_fastclass") {
 
@@ -535,16 +556,15 @@ jQuery(function ($) {
 				}
 
             }
-			zip.file('cfg/custom.cfg', '//Tweaks, custom binds, all the stuff usually goes here\n\n\n' +customs + '\n\n' + bindings + '\necho "------------- Thanks for using CFG.TF -------------"\necho "------------- Create your own custom config at https://cfg.tf -------------"'); //load custom tweaks and config
+			zip.file('cfg/custom.cfg', '//Tweaks, custom settings, all the stuff usually goes here\n\n\n' +customs + '\n\n' + bindings + '\necho "------------- Thanks for using CFG.TF -------------"\necho "------------- Create your own custom config at https://cfg.tf -------------"'); //load custom tweaks and config
 
         });
 
-
 		//building and downloading static configs
 		zip.file("cfg/autoexec.cfg", "exec gfx\nexec binds\nexec settings\nexec network\nexec custom"); 				//autoexec
-		zip.file("cfg/settings.cfg", "//General TF2 settings, like autoheal, min viewmodels, fastswitch, etc.\n\ntf_medigun_autoheal 1\ncl_autoreload 1\nhud_fastswitch 1\ntf_use_min_viewmodels " + minmodel +"\nr_drawviewmodel " + drawviewmodel + "\nfov_desired 90\nviewmodel_fov " + v_fov + "\n\ntf_remember_activeweapon 1\ntf_remember_lastswitched 1\nsb_dontshow_maxplayer_warning 1\ntf_spectate_pyrovision 0\nviewmodel_fov_demo 75\n\ntf_dingalingaling " + hittoggle + "\ntf_dingalingaling_repeat_delay " + hitdelay + "\ntf_dingaling_pitchmindmg " + hitmin + " \ntf_dingaling_pitchmaxdmg " + hitmax + "\ntf_dingaling_lasthit " + killtoggle + "\ntf_dingaling_lasthit_volume " + killvol + "\ntf_dingaling_lasthit_pitchmindmg " + killmin + "\ntf_dingaling_lasthit_pitchmaxdmg " + killmax + "\n\n\ntf_training_has_prompted_for_training 1\ntf_training_has_prompted_for_offline_practice 1\ntf_training_has_prompted_for_forums 1\ntf_training_has_prompted_for_options 1\ntf_training_has_prompted_for_loadout 1\ntf_mvm_tabs_discovered 3\ntf_matchmaking_ticket_help 0\ntf_coach_request_nevershowagain 1\n\nhud_combattext " + comtoggle + "\nhud_combattext_batching " + battoggle + "\nhud_combattext_batching_window " + batwindow + "\n\nds_kill_delay 15.000000\nds_enable " + ds_mode + "\nds_dir " + ds_folder + "\nds_notify "+ ds_notify + "\nds_sound " + ds_sound + "\nds_min_streak " + ds_ks + "\nds_autodelete " + ds_delete + "\nds_screens " + ds_screen); 	//settings
+		zip.file("cfg/settings.cfg", "//General TF2 settings, like autoheal, min viewmodels, fastswitch, etc.\n\ntf_medigun_autoheal 1\ncl_autoreload 1\nhud_fastswitch 1\ntf_use_min_viewmodels " + minmodel +"\nr_drawviewmodel " + drawviewmodel + "\nfov_desired 90\nviewmodel_fov " + v_fov + "\nbindtoggle "+vmodelbind+" r_drawviewmodel\ncl_flipviewmodels "+fliptoggle+"\n\ntf_remember_activeweapon 1\ntf_remember_lastswitched 1\nsb_dontshow_maxplayer_warning 1\ntf_spectate_pyrovision 0\nviewmodel_fov_demo 75\n\ntf_dingalingaling " + hittoggle + "\ntf_dingalingaling_repeat_delay " + hitdelay + "\ntf_dingaling_pitchmindmg " + hitmin + " \ntf_dingaling_pitchmaxdmg " + hitmax + "\ntf_dingaling_lasthit " + killtoggle + "\ntf_dingaling_lasthit_volume " + killvol + "\ntf_dingaling_lasthit_pitchmindmg " + killmin + "\ntf_dingaling_lasthit_pitchmaxdmg " + killmax + "\n\n\ntf_training_has_prompted_for_training 1\ntf_training_has_prompted_for_offline_practice 1\ntf_training_has_prompted_for_forums 1\ntf_training_has_prompted_for_options 1\ntf_training_has_prompted_for_loadout 1\ntf_mvm_tabs_discovered 3\ntf_matchmaking_ticket_help 0\ntf_coach_request_nevershowagain 1\n\nhud_combattext " + comtoggle + "\nhud_combattext_batching " + battoggle + "\nhud_combattext_batching_window " + batwindow + "\n\nds_kill_delay 15.000000\nds_enable " + ds_mode + "\nds_dir " + ds_folder + "\nds_notify "+ ds_notify + "\nds_sound " + ds_sound + "\nds_min_streak " + ds_ks + "\nds_autodelete " + ds_delete + "\nds_screens " + ds_screen); 	//settings
 		zip.file("cfg/network.cfg", "//Connection settings\n\ncl_cmdrate " + cmdrate + "\ncl_interp " + interp + "\ncl_interp_ratio " + intratio +"\ncl_lagcompensation 1\ncl_pred_optimize 2\ncl_smooth 0\ncl_smoothtime 0.01\ncl_updaterate " + uprate + "\nrate " + rate + "\n");  	//network
-		zip.file("cfg/binds.cfg", urlToPromise("../make/cfg/binds.cfg"), {binary:true}); 	//binds
+		zip.file("cfg/binds.cfg", "//stock non class-specific binds\n////Made with cfg.tf - custom Team Fortress 2 config generator\n\n"+bindarr); 	//binds
 
 
         // when everything has been downloaded, we can trigger the dl

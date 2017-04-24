@@ -8,94 +8,22 @@
     <title>CFG.TF - About</title>
 
     <!-- Latest compiled and minified CSS -->
-		<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="./css/bootstrap.min.main.css"> -->
+
     <!-- Latest compiled and minified JavaScript -->
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" integrity="sha384-dNpIIXE8U05kAbPhy3G1cz+yZmTzA6CY8Vg/u2L9xRnHjJiAK76m2BIEaSEV+/aU" crossorigin="anonymous">
 
-		<style>
-			#overlay {
-	      background: #ffffff;
-	      color: #666666;
-	      position: fixed;
-	      height: 100%;
-	      width: 100%;
-	      z-index: 5000;
-	      top: 0;
-	      left: 0;
-	      float: left;
-	      text-align: center;
-	      padding-top: 25%;
-	    }
-			#wrapper {
-				width: 60%;
-			}
-			#wrapper .container {
-				max-width: 100%; display: block;
-			}
-			textarea {
-		    overflow-y: scroll;
-				height: 150px;
-				resize: none;
-			}
-			.table > tbody > tr > td {
-				vertical-align: middle;
-				text-align: center;
-			}
-			@-moz-keyframes spin {
-			    from { -moz-transform: rotate(0deg); }
-			    to { -moz-transform: rotate(360deg); }
-			}
-			@-webkit-keyframes spin {
-			    from { -webkit-transform: rotate(0deg); }
-			    to { -webkit-transform: rotate(360deg); }
-			}
-			@keyframes spin {
-			    from {transform:rotate(0deg);}
-			    to {transform:rotate(360deg);}
-			}
-			#loading_logo {
-				background-image: url('../img/tf2logo.png');
-				width: 80px;
-				height: 80px;
-				background-repeat: no-repeat;
-				background-size: contain;
-				margin: 0 auto;
-				background-position: center center;
+    <link rel="stylesheet" href="../../css/pygments.css">
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/bootstrap-select.min.css">
 
-				-webkit-animation-name: spin;
-		    -webkit-animation-duration: 2000ms;
-		    -webkit-animation-iteration-count: infinite;
-		    -webkit-animation-timing-function: linear;
-		    -moz-animation-name: spin;
-		    -moz-animation-duration: 2000ms;
-		    -moz-animation-iteration-count: infinite;
-		    -moz-animation-timing-function: linear;
-		    -ms-animation-name: spin;
-		    -ms-animation-duration: 2000ms;
-		    -ms-animation-iteration-count: infinite;
-		    -ms-animation-timing-function: linear;
-		    -o-transition: rotate(3600deg);
-			}
-
-      /* give clipboard copy some room */ #loptions { width: 95%; } #loptions_copy { float:left; }
-      /* align titles of crosshair switcher table with content */ #switcherdiv th:not(:last-child) { text-align: center; }
-      /* multiselector has bad contrast on text */ .bootstrap-select > .dropdown-toggle.bs-placeholder { color: white !important; }
-      /* remove bullet points on li */ * { list-style: none; }
-      /* separate the lists a bit more, its too squashed */ .radio label, .checkbox label { padding-top: 8px; }
-      /* replace <hr> with bottom borders */ .tab-pane { border-bottom: rgb(236, 240, 241) solid 1px; margin-bottom: 21px; padding-bottom: 21px; }
-
-		</style>
-
-    <link rel="stylesheet" href="/css/pygments.css">
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/bootstrap-select.min.css">
-
-		<script type="text/javascript" src="/js/utility.js"></script>
-    <script type="text/javascript" src="/js/bootstrap-select.min.js"></script>
+		<script type="text/javascript" src="../../js/utility.js"></script>
+    <script type="text/javascript" src="../../js/bootstrap-select.min.js"></script>
 
   </head>
   <body>
@@ -103,157 +31,141 @@
     <nav class="navbar navbar-default" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="/"><i class="fa fa-cogs" aria-hidden="true"></i> CFG.TF</a>
+				<a class="navbar-brand" href="../../"><i class="fa fa-cogs" aria-hidden="true"></i> CFG.TF</a>
 			</div>
 			<ul class="nav navbar-nav">
 				<li>
-					<a href="/make">Generate</a>
-				</li>				
+					<a href="../../make">Generate</a>
+				</li>
 				<li>
-					<a href="/server">Server config</a>
+					<a href="../../server">Server config</a>
 				</li>
 				<li class="dropdown active">
 				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Articles<span class="caret"></span></a>
 				  <ul class="dropdown-menu" role="menu">
-					<li><a href="/read/interp">Networking in Source games</a></li>
-					<li><a href="/read/health">Health care</a></li>
+					<li><a href="../../read/interp">Networking in Source games</a></li>
+					<li class="active"><a href="../../read/health">Health care</a></li>
 					<li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=154435696" target="_blank"><i class="fa fa-external-link"></i>  Scripting guide</a></li>
 				  </ul>
+				  				<li>
+					<a href="../../configs">Configs</a>
+				</li>
 				</li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li>
-					<a href="/faq/">FAQ</a>
-				</li>				
+					<a href="../../faq/">FAQ</a>
+				</li>
 				<li>
-					<a href="/about/">About</a>
+					<a href="../../about/">About</a>
 				</li>
 			</ul>
 		</div>
 	</nav>
-    <div class="container-fluid">
-		<div class="row content">
-		    <div class="col-sm-3 sidenav">
-				<!-- magic -->
-			</div>
-
-		<div class="col-sm-9">
-		<div id="wrapper">
-<br>
-<p>
-<h1>Taking care of your health while playing</h1>
-<p class="text-muted">The original article by /u/gahd95 can be found <a href="https://www.reddit.com/r/GlobalOffensive/comments/64aq95/psa_please_take_care_of_yourself_while_playing/" target="_blank">here on /r/GlobalOffinsive</a> </p>
-</p>
-<br>
-<div><p>I have made a post like this before. But i still hear about people getting damaged wrists, elbows and backs.</p>
-
-<p>Not only this, but people get long time health problems, that can be so easily countered. <strong>Even if you do not have symptoms</strong> <em>yet</em></p>
-
-
-<p>First off <a href="https://en.wikipedia.org/wiki/Carpal_tunnel_syndrome" target="_blank">Carpal tunnel syndrome</a> is a real thing. Not a joke.</p><br>
-
-<p><h3>Stretch you wrist</h3></p><br>
-<p>There is various exercises that should be done between matches.</p>
-
-<p><a href="http://i.imgur.com/i6gaRmf.jpg"  target="_blank">This is something you can easily do at your desk while waiting in que</a></p>
-
-<p><a href="https://sites.google.com/site/activecarephysiotherapyclinic/_/rsrc/1472868011477/wrist-hand-exercises/WRISTEX.jpg" target="_blank">This one is awesome too. It feel super good after a tense match. Trust me.</a> (also helps your elbows)</p>
-
-<p><a href="http://www.wikihow.com/Strengthen-Your-Wrists" target="_blank">If you are some weirdo who goes to the gym</a></p>
-
-<p>If you have pains already you should really take action. This is something that if not prevented and treated can lead to an operation and can even be permanent. Olafmeister have experienced this problem previously.</p>
-
-<p>There is also toys that are suppose to help. Like a <a href="https://www.amazon.com/Letigo-Wrist-Gyroscope-Strengthener-Power/dp/B018K6D048/ref=sr_1_1?ie=UTF8&amp;qid=1491701040&amp;sr=8-1-spons&amp;keywords=powerball&amp;psc=1" target="_blank">Powerball</a>  This will span at high a high RPM while you just hold it still.</p>
-
-<p>If you feel general irritation and/or pain in your wrist (especially while gaming) You should get a <a href="https://www.amazon.com/Mueller-Fitted-Wrist-Brace-Number/dp/B002NLGNW8/ref=sr_1_3_a_it?ie=UTF8&amp;qid=1491701135&amp;sr=8-3&amp;keywords=wrist%2Bsupport&amp;th=1" target="_blank">Wrist Protector</a> I recommend one with a metal metal rail. Just wear it when you are not playing or using your hands. Like when sleeping or while watching TV.  Do not use it excessively tho. This will make your muscles weaker.</p>
-<br>
-<p><h3>Take a break</h3></p><br>
-
-
-<p>You guys might also have heard about streamers and gamers dying after marathon gaming. This is usually due to blood clots forming in their legs, due to poor blood circulation. This can happen over longer periods of time if you are sitting down for long periods of time.</p>
-
-<p>It is important to stand up in a while. When working it is recommended that you stand for at least 30 minutes for every sitting 1 hour. But like that is going to happen. I recommend standing up for 2-3 minutes every 20 minutes. Which properly is hard as well if you are playing competitive. But between matches or in the halftime, just stand for as much as you can. even if it is 15 seconds. Jump a few times, get that blood flowing. </p>
-
-<p>I usually go pee, refill my water bottle, open a window or just go outside for a few minutes to catch some fresh air between games.</p>
-
-<p>TL;DR : Stand up as often and as much as you can. Unless you wanna die from blood clots in your legs.</p>
-
-<p>&nbsp;</p>
-
-<p>Eye strain. Between games, while you are jumping around, do not look at a monitor. Go outside, get some fresh air. Look around.
-<a href="https://www.youtube.com/watch?v=TH66vhcpcFc" target="_blank">Here is some good but properly unnecessary eye exercises</a></p>
-<br>
-<p><h3>Drink water</h3></p><br>
-
-<p>I cannot stress this enough. Water is what helps your bodys blood circulation, metabolism, regulation of body temperature, waste removal and detoxification. </p>
-
-<p>If you game for a long time just drinking energy drink or sodas, this can be bad for your whole body (obviously) But lack of water can cause damage to your liver in the long run. Some studies even suggest that dehydration is a hazard in traffic. This is because it will slow down your brain activity. You will react slower. Drink water, get better reactions, get global.</p>
-
-<p>If you have a hard time tracking and/or remembering to drink water. Then there is various apps like <a href="https://play.google.com/store/apps/details?id=com.northpark.drinkwater" target="_blank">This one</a> that will lend you a hand.</p>
-
-<p><a href="http://www.h4hinitiative.com/tools/hydration-calculator" target="_blank">Check here if you drink enough water</a> You will be surprised i promise.</p>
-<br>
-<p><h3>Take care</h3></p><br>
-<p>Do not take your body for granted. You only have one. You might be fine now, but we are pretty much the first people to grow up with mouse and keyboards and this amount of PC usage everywhere. That means we do not completely know the long term effects. Do not try to find out. There is a good chance that it does not have the most healthy outcome.</p>
-
-<p>&nbsp;</p>
-
-<p>Be nice to each other. Watch your mental health as well. Pro tip: disable both voice and text chat if you feel like you are getting angry.</p>
-
-<p>There is a difference between helpful critique and flaming. Do not flame your teammate. If you get flamed, either just ignore it. But if he calls no info and is only being a prick, just mute him. Do not waste your valuable energy on someone who cannot even watch their temper.</p>
-
-<p>&nbsp;</p>
-
-<p><strong>TL;DR</strong></p>
-
-<p><strong>Watch your wrist and avoid First off</strong> <a href="https://en.wikipedia.org/wiki/Carpal_tunnel_syndrome" target="_blank">CTS</a> </p>
-
-<p><strong>watch your blood circulation so you do not die from blood clots</strong></p>
-
-<p><strong>drink water so you do not dehydrate and lose your games</strong></p>
-
-<p><strong>take breaks where you do not look at monitors between games</strong></p>
-
-<p><strong>watch your mental health as well</strong></p>
-</div>
-<br>
-
- </div>
-</div>
-
-
-
+  <div id="wrapper" class="container-fluid">
+    <div class="row content">
+      <div class="alert alert-info page-header"><i class="fa fa-info-circle" aria-hidden="true"></i> The original article by <strong>/u/gahd95</strong> can be found on <a class="alert-link" href="https://www.reddit.com/r/GlobalOffensive/comments/64aq95/psa_please_take_care_of_yourself_while_playing/" target="_blank"><i class="fa fa-reddit-alien" aria-hidden="true"></i> /r/GlobalOffensive</a></div>
+      <h1 class="page-header">Taking care of your health while playing</h1>
+      <div>
+        <ul>
+          <li>I have made a post like this before. But i still hear about people getting damaged wrists, elbows and backs.</li>
+          <li>Not only this, but people get long time health problems, that can be so easily countered. <strong>Even if you do not have symptoms</strong> <em>yet</em></li>
+          <li>First off <a href="https://en.wikipedia.org/wiki/Carpal_tunnel_syndrome" target="_blank">Carpal tunnel syndrome</a> is a real thing. Not a joke.</li>
+        </ul>
+        <h3>Stretch you wrist</h3>
+        <ul>
+          <li>There is various exercises that should be done between matches.</li>
+          <li><a href="http://i.imgur.com/i6gaRmf.jpg" target="_blank">This is something you can easily do at your desk while waiting in que</a></li>
+          <li><a href="https://sites.google.com/site/activecarephysiotherapyclinic/_/rsrc/1472868011477/wrist-hand-exercises/WRISTEX.jpg" target="_blank">This one is awesome too. It feel super good after a tense match. Trust me.</a> (also helps your elbows)</li>
+          <li><a href="http://www.wikihow.com/Strengthen-Your-Wrists" target="_blank">If you are some weirdo who goes to the gym</a></li>
+          <li>If you have pains already you should really take action. This is something that if not prevented and treated can lead to an operation and can even be permanent. Olafmeister have experienced this problem previously.</li>
+          <li>There is also toys that are suppose to help. Like a <a href="https://www.amazon.com/Letigo-Wrist-Gyroscope-Strengthener-Power/dp/B018K6D048/ref=sr_1_1?ie=UTF8&amp;qid=1491701040&amp;sr=8-1-spons&amp;keywords=powerball&amp;psc=1" target="_blank">Powerball</a> This will span at high a high RPM while you just hold it still.</li>
+          <li>If you feel general irritation and/or pain in your wrist (especially while gaming) You should get a <a href="https://www.amazon.com/Mueller-Fitted-Wrist-Brace-Number/dp/B002NLGNW8/ref=sr_1_3_a_it?ie=UTF8&amp;qid=1491701135&amp;sr=8-3&amp;keywords=wrist%2Bsupport&amp;th=1" target="_blank">Wrist Protector</a> I recommend one with a metal metal rail. Just wear it when you are not playing or using your hands. Like when sleeping or while watching TV. Do not use it excessively tho. This will make your muscles weaker.</li>
+        </ul>
+        <h3>Take a break</h3>
+        <ul>
+          <li>You guys might also have heard about streamers and gamers dying after marathon gaming. This is usually due to blood clots forming in their legs, due to poor blood circulation. This can happen over longer periods of time if you are sitting down
+            for long periods of time.</li>
+          <li>It is important to stand up in a while. When working it is recommended that you stand for at least 30 minutes for every sitting 1 hour. But like that is going to happen. I recommend standing up for 2-3 minutes every 20 minutes. Which properly
+            is hard as well if you are playing competitive. But between matches or in the halftime, just stand for as much as you can. even if it is 15 seconds. Jump a few times, get that blood flowing. </li>
+          <li>I usually go pee, refill my water bottle, open a window or just go outside for a few minutes to catch some fresh air between games.</li>
+          <li>TL;DR : Stand up as often and as much as you can. Unless you wanna die from blood clots in your legs.</li>
+          <li>Eye strain. Between games, while you are jumping around, do not look at a monitor. Go outside, get some fresh air. Look around. <a href="https://www.youtube.com/watch?v=TH66vhcpcFc" target="_blank">Here is some good but properly unnecessary eye exercises</a></li>
+        </ul>
+        <h3>Drink water</h3>
+        <ul>
+          <li>I cannot stress this enough. Water is what helps your bodys blood circulation, metabolism, regulation of body temperature, waste removal and detoxification. </li>
+          <li>If you game for a long time just drinking energy drink or sodas, this can be bad for your whole body (obviously) But lack of water can cause damage to your liver in the long run. Some studies even suggest that dehydration is a hazard in traffic.
+            This is because it will slow down your brain activity. You will react slower. Drink water, get better reactions, get global.</li>
+          <li>If you have a hard time tracking and/or remembering to drink water. Then there is various apps like <a href="https://play.google.com/store/apps/details?id=com.northpark.drinkwater" target="_blank">This one</a> that will lend you a hand.</li>
+          <li><a href="http://www.h4hinitiative.com/tools/hydration-calculator" target="_blank">Check here if you drink enough water</a> You will be surprised i promise.</li>
+        </ul>
+        <h3>Take care</h3>
+        <ul>
+          <li>Do not take your body for granted. You only have one. You might be fine now, but we are pretty much the first people to grow up with mouse and keyboards and this amount of PC usage everywhere. That means we do not completely know the long term
+            effects. Do not try to find out. There is a good chance that it does not have the most healthy outcome.</li>
+          <li>Be nice to each other. Watch your mental health as well. Pro tip: disable both voice and text chat if you feel like you are getting angry.</li>
+          <li>There is a difference between helpful critique and flaming. Do not flame your teammate. If you get flamed, either just ignore it. But if he calls no info and is only being a prick, just mute him. Do not waste your valuable energy on someone who
+            cannot even watch their temper.</li>
+        </ul>
+        <h3>TL;DR</h3>
+        <ul>
+          <li>Watch your wrist and avoid First off <a href="https://en.wikipedia.org/wiki/Carpal_tunnel_syndrome" target="_blank">CTS</a> </li>
+          <li>watch your blood circulation so you do not die from blood clots</li>
+          <li>drink water so you do not dehydrate and lose your games</li>
+          <li>take breaks where you do not look at monitors between games</li>
+          <li>watch your mental health as well</li>
+        </ul>
+      </div>
+    </div>
   </div>
- </div>
 
-<footer>
-  <div class="container">
-  <p class="pull-right">~<script language="JavaScript">var fhsh = document.createElement('script');var fhs_id_h = "3234623";
-fhsh.src = "//s1.freehostedscripts.net/ocount.php?site="+fhs_id_h+"&name=configs&a=1";
-document.head.appendChild(fhsh);document.write("<span id='h_"+fhs_id_h+"'></span>");
-</script><br> generated so far.</p>
-        <p class="pull-left">
-    	<small>
-		<a href="https://discord.gg/79cbsTu" target="_blank">Join our Discord</a> <br>
-		<a href="http://www.teamfortress.tv/40869/cfg-tf" target="_blank">Discuss on TFTV</a><br>
-		<a href="https://github.com/mkrl/cfgtf/issues" target="_blank">Report an issue</a><br>
-		<a href="https://github.com/mkrl/cfgtf" target="_blank">View the source code</a>
-		</small>
-		</p>
-        
-	<center><p> CFG.TF <br><small> a custom TF2 config generator by <a href="https://steamcommunity.com/id/2x100/" target="_blank">200</a></small> </p></center>
- <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  <footer class="footer">
+    <div class="container-fluid row">
 
-  ga('create', 'UA-97817107-1', 'auto');
-  ga('send', 'pageview');
+      <div class="col-md-4 text-center">
+        <ul class="list-unstyled">
+            <li><a href="//discord.gg/79cbsTu" target="_blank">Join our Discord</a></li>
+            <li><a href="//www.teamfortress.tv/40869/cfg-tf" target="_blank">Discuss on TFTV</a></li>
+            <li><a href="//github.com/mkrl/cfgtf/issues" target="_blank">Report an issue</a></li>
+            <li><a href="//github.com/mkrl/cfgtf" target="_blank">View the source code</a></li>
+        </ul>
+      </div>
 
-</script>   
-  </div>
-</footer>
+      <div class="col-md-4 text-center">
+        <p>CFG.TF</p>
+        <p><small>a custom TF2 config generator by <a href="https://steamcommunity.com/id/2x100/" target="_blank">200</a></small></p>
+        <script>
+          (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+              (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+              m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+          })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+          ga('create', 'UA-97817107-1', 'auto');
+          ga('send', 'pageview');
+        </script>
+      </div>
+
+      <div class="col-md-4">
+        <p class="text-center">~
+          <script language="JavaScript">
+            var fhsh = document.createElement('script');
+            var fhs_id_h = "3234623";
+            fhsh.src = "//s1.freehostedscripts.net/ocount.php?site=" + fhs_id_h + "&name=configs&a=1";
+            document.head.appendChild(fhsh);
+            document.write("<span id='h_" + fhs_id_h + "'></span>");
+          </script> generated so far.
+        </p>
+      </div>
+
+    </div>
+  </footer>
 
   </body>
 </html>

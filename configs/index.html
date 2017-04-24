@@ -8,14 +8,19 @@
     <title>CFG.TF - Configs</title>
 
     <!-- Latest compiled and minified CSS -->
-		<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="./css/bootstrap.min.main.css"> -->
+
     <!-- Latest compiled and minified JavaScript -->
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" integrity="sha384-dNpIIXE8U05kAbPhy3G1cz+yZmTzA6CY8Vg/u2L9xRnHjJiAK76m2BIEaSEV+/aU" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="../css/pygments.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/bootstrap-select.min.css">
 		<style>
 			#overlay {
 	      background: #ffffff;
@@ -45,44 +50,7 @@
 				vertical-align: middle;
 				text-align: center;
 			}
-			@-moz-keyframes spin {
-			    from { -moz-transform: rotate(0deg); }
-			    to { -moz-transform: rotate(360deg); }
-			}
-			@-webkit-keyframes spin {
-			    from { -webkit-transform: rotate(0deg); }
-			    to { -webkit-transform: rotate(360deg); }
-			}
-			@keyframes spin {
-			    from {transform:rotate(0deg);}
-			    to {transform:rotate(360deg);}
-			}
-			#loading_logo {
-				background-image: url('../img/tf2logo.png');
-				width: 80px;
-				height: 80px;
-				background-repeat: no-repeat;
-				background-size: contain;
-				margin: 0 auto;
-				background-position: center center;
 
-				-webkit-animation-name: spin;
-		    -webkit-animation-duration: 2000ms;
-		    -webkit-animation-iteration-count: infinite;
-		    -webkit-animation-timing-function: linear;
-		    -moz-animation-name: spin;
-		    -moz-animation-duration: 2000ms;
-		    -moz-animation-iteration-count: infinite;
-		    -moz-animation-timing-function: linear;
-		    -ms-animation-name: spin;
-		    -ms-animation-duration: 2000ms;
-		    -ms-animation-iteration-count: infinite;
-		    -ms-animation-timing-function: linear;
-		    -o-transition: rotate(3600deg);
-			}
-
-      /* give clipboard copy some room */ #loptions { width: 95%; } #loptions_copy { float:left; }
-      /* align titles of crosshair switcher table with content */ #switcherdiv th:not(:last-child) { text-align: center; }
       /* multiselector has bad contrast on text */ .bootstrap-select > .dropdown-toggle.bs-placeholder { color: white !important; }
       /* remove bullet points on li */ * 
       /* separate the lists a bit more, its too squashed */ .radio label, .checkbox label { padding-top: 8px; }
@@ -116,21 +84,21 @@
 				<li class="dropdown">
 				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Articles<span class="caret"></span></a>
 				  <ul class="dropdown-menu" role="menu">
-					<li><a href="/read/interp">Networking in Source games</a></li>
-					<li><a href="/read/health">Health care</a></li>
+					<li><a href="../read/interp">Networking in Source games</a></li>
+					<li><a href="../read/health">Health care</a></li>
 					<li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=154435696" target="_blank"><i class="fa fa-external-link"></i>  Scripting guide</a></li>
 				  </ul>
 				</li>
-				<li>
-					<a href="/configs">Configs</a>
+				<li class="active">
+					<a href="../configs">Configs</a>
 				</li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li>
-					<a href="/faq/">FAQ</a>
+					<a href="../faq/">FAQ</a>
 				</li>				
 				<li>
-					<a href="/about/">About</a>
+					<a href="../about/">About</a>
 				</li>
 			</ul>
 		</div>
@@ -184,34 +152,52 @@
 } );
  </script>
  
-<footer>
-  <div class="container">
-  <p class="pull-right">~<script language="JavaScript">var fhsh = document.createElement('script');var fhs_id_h = "3234623";
-fhsh.src = "//s1.freehostedscripts.net/ocount.php?site="+fhs_id_h+"&name=configs&a=1";
-document.head.appendChild(fhsh);document.write("<span id='h_"+fhs_id_h+"'></span>");
-</script><br> generated so far.</p>
-        <p class="pull-left">
-    	<small>
-		<a href="https://discord.gg/79cbsTu" target="_blank">Join our Discord</a> <br>
-		<a href="http://www.teamfortress.tv/40869/cfg-tf" target="_blank">Discuss on TFTV</a><br>
-		<a href="https://github.com/mkrl/cfgtf/issues" target="_blank">Report an issue</a><br>
-		<a href="https://github.com/mkrl/cfgtf" target="_blank">View the source code</a>
-		</small>
-		</p>
-        
-	<center><p> CFG.TF <br><small> a custom TF2 config generator by <a href="https://steamcommunity.com/id/2x100/" target="_blank">200</a></small> </p></center>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  <footer class="footer">
+    <div class="container-fluid row">
 
-  ga('create', 'UA-97817107-1', 'auto');
-  ga('send', 'pageview');
+      <div class="col-md-4 text-center">
+        <ul class="list-unstyled">
+            <li><a href="//discord.gg/79cbsTu" target="_blank">Join our Discord</a></li>
+            <li><a href="//www.teamfortress.tv/40869/cfg-tf" target="_blank">Discuss on TFTV</a></li>
+            <li><a href="//github.com/mkrl/cfgtf/issues" target="_blank">Report an issue</a></li>
+            <li><a href="//github.com/mkrl/cfgtf" target="_blank">View the source code</a></li>
+        </ul>
+      </div>
 
-</script>    
-  </div>
-</footer>
+      <div class="col-md-4 text-center">
+        <p>CFG.TF</p>
+        <p><small>a custom TF2 config generator by <a href="https://steamcommunity.com/id/2x100/" target="_blank">200</a></small></p>
+        <script>
+          (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+              (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+              m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+          })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+          ga('create', 'UA-97817107-1', 'auto');
+          ga('send', 'pageview');
+        </script>
+      </div>
+
+      <div class="col-md-4">
+        <p class="text-center">~
+          <script language="JavaScript">
+            var fhsh = document.createElement('script');
+            var fhs_id_h = "3234623";
+            fhsh.src = "//s1.freehostedscripts.net/ocount.php?site=" + fhs_id_h + "&name=configs&a=1";
+            document.head.appendChild(fhsh);
+            document.write("<span id='h_" + fhs_id_h + "'></span>");
+          </script> generated so far.
+        </p>
+      </div>
+
+    </div>
+  </footer>
 
   </body>
 </html>
