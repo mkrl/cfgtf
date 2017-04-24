@@ -1,223 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Automatically generate Team Fortress 2 configs, including custom VPKs, tweaks, crosshair switcher and more. Get a good fps boost without stupid unnecessary stuff." />
-    <title>CFG.TF - FAQ</title>
 
-    <!-- Latest compiled and minified CSS -->
-		<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <!-- Latest compiled and minified JavaScript -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Automatically generate Team Fortress 2 configs, including custom VPKs, tweaks, crosshair switcher and more. Get a good fps boost without stupid unnecessary stuff." />
+  <title>CFG.TF - FAQ</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
+  <!-- <link rel="stylesheet" href="./css/bootstrap.min.main.css"> -->
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" integrity="sha384-dNpIIXE8U05kAbPhy3G1cz+yZmTzA6CY8Vg/u2L9xRnHjJiAK76m2BIEaSEV+/aU" crossorigin="anonymous">
+  <link rel="stylesheet" href="../css/pygments.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/bootstrap-select.min.css">
+  <script type="text/javascript" src="../js/utility.js"></script>
+  <script type="text/javascript" src="../js/bootstrap-select.min.js"></script>
+</head>
 
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" integrity="sha384-dNpIIXE8U05kAbPhy3G1cz+yZmTzA6CY8Vg/u2L9xRnHjJiAK76m2BIEaSEV+/aU" crossorigin="anonymous">
-
-		<style>
-			#overlay {
-	      background: #ffffff;
-	      color: #666666;
-	      position: fixed;
-	      height: 100%;
-	      width: 100%;
-	      z-index: 5000;
-	      top: 0;
-	      left: 0;
-	      float: left;
-	      text-align: center;
-	      padding-top: 25%;
-	    }
-			#wrapper {
-				width: 60%;
-			}
-			#wrapper .container {
-				max-width: 100%; display: block;
-			}
-			textarea {
-		    overflow-y: scroll;
-				height: 150px;
-				resize: none;
-			}
-			.table > tbody > tr > td {
-				vertical-align: middle;
-				text-align: center;
-			}
-			@-moz-keyframes spin {
-			    from { -moz-transform: rotate(0deg); }
-			    to { -moz-transform: rotate(360deg); }
-			}
-			@-webkit-keyframes spin {
-			    from { -webkit-transform: rotate(0deg); }
-			    to { -webkit-transform: rotate(360deg); }
-			}
-			@keyframes spin {
-			    from {transform:rotate(0deg);}
-			    to {transform:rotate(360deg);}
-			}
-			#loading_logo {
-				background-image: url('../img/tf2logo.png');
-				width: 80px;
-				height: 80px;
-				background-repeat: no-repeat;
-				background-size: contain;
-				margin: 0 auto;
-				background-position: center center;
-
-				-webkit-animation-name: spin;
-		    -webkit-animation-duration: 2000ms;
-		    -webkit-animation-iteration-count: infinite;
-		    -webkit-animation-timing-function: linear;
-		    -moz-animation-name: spin;
-		    -moz-animation-duration: 2000ms;
-		    -moz-animation-iteration-count: infinite;
-		    -moz-animation-timing-function: linear;
-		    -ms-animation-name: spin;
-		    -ms-animation-duration: 2000ms;
-		    -ms-animation-iteration-count: infinite;
-		    -ms-animation-timing-function: linear;
-		    -o-transition: rotate(3600deg);
-			}
-
-      /* give clipboard copy some room */ #loptions { width: 95%; } #loptions_copy { float:left; }
-      /* align titles of crosshair switcher table with content */ #switcherdiv th:not(:last-child) { text-align: center; }
-      /* multiselector has bad contrast on text */ .bootstrap-select > .dropdown-toggle.bs-placeholder { color: white !important; }
-      /* remove bullet points on li */ * 
-      /* separate the lists a bit more, its too squashed */ .radio label, .checkbox label { padding-top: 8px; }
-      /* replace <hr> with bottom borders */ .tab-pane { border-bottom: rgb(236, 240, 241) solid 1px; margin-bottom: 21px; padding-bottom: 21px; }
-
-		</style>
-
-    <link rel="stylesheet" href="/css/pygments.css">
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/bootstrap-select.min.css">
-
-		<script type="text/javascript" src="/js/utility.js"></script>
-    <script type="text/javascript" src="/js/bootstrap-select.min.js"></script>
-
-  </head>
-  <body>
-
+<body>
   <nav class="navbar navbar-default" role="navigation">
-		<div class="container">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="/"><i class="fa fa-cogs" aria-hidden="true"></i> CFG.TF</a>
-			</div>
-			<ul class="nav navbar-nav">
-				<li>
-					<a href="/make">Generate</a>
-				</li>				
-				<li>
-					<a href="/server">Server config</a>
-				</li>
-				<li class="dropdown">
-				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Articles<span class="caret"></span></a>
-				  <ul class="dropdown-menu" role="menu">
-					<li><a href="/read/interp">Networking in Source games</a></li>
-					<li><a href="/read/health">Health care</a></li>
-					<li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=154435696" target="_blank"><i class="fa fa-external-link"></i>  Scripting guide</a></li>
-				  </ul>
-				</li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li class="active">
-					<a href="/faq/">FAQ</a>
-				</li>				
-				<li>
-					<a href="/about/">About</a>
-				</li>
-			</ul>
-		</div>
-	</nav>
-    <div class="container-fluid">
-		<div class="row content">
-		    <div class="col-sm-3 sidenav">
-				<!-- magic -->
-			</div>
+    <div class="container">
+      <div class="navbar-header"> <a class="navbar-brand" href="../"><i class="fa fa-cogs" aria-hidden="true"></i> CFG.TF</a> </div>
+      <ul class="nav navbar-nav">
+        <li> <a href="../make">Generate</a> </li>
+        <li> <a href="../server">Server config</a> </li>
+        <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Articles<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="../read/interp">Networking in Source games</a></li>
+            <li><a href="../read/health">Health care</a></li>
+            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=154435696" target="_blank"><i class="fa fa-external-link"></i>  Scripting guide</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="active"> <a href="../faq/">FAQ</a> </li>
+        <li> <a href="../about/">About</a> </li>
+      </ul>
+    </div>
+  </nav>
+  <div id="wrapper" class="container-fluid">
+    <div class="row content">
+      <h1>Frequently Asked Questions</h1>
+      <hr>
+      <div class="panel panel-default">
 
-		<div class="col-sm-9">
-		<div id="wrapper">
-<br>
-<p>
-<h1>Frequently Asked Questions</h1>
-<hr><br>
-<div class="panel panel-default">
-  <div class="panel-heading"><h3>Why do I need this?</h3></div>
-  <div class="panel-body">
-    <p>Even if TF2 is an old game, it has gone through so much updates and patches that it is now nearly impossible to make it run at constant 120+ frames per second on mid-tier PC. And that is absolutely required for playing fast paced shooter comfortably. This app generates a set of premade settings that helps your game to run faster and smoother.
-  </p></div>
+        <div class="panel-heading">
+          <h3>Why do I need this?</h3>
+        </div>
+        <div class="panel-body">
+          <p>Even though TF2 is an old game, it has gone through so many updates and patches that it is now quite difficult run it at 120+ frames per second on mid-tier PC. And that is absolutely required for playing fast paced shooter comfortably. This app generates a set of premade settings that helps your game to run faster and smoother. </p>
+        </div>
 
-   <div class="panel-heading"><h3>My game controls and binds act werid, some keys are not working.</h3></div>
-  <div class="panel-body">
-    <p>Please make sure you have installed it on 100% blank clean TF2 with absolutely <b>no</b> configs and custom files. You may also have to disable Steam Cloud since it may store some settings. <br> You can wipe all your custom stuff by removing /cfg and /custom folders from your /tf folder and launching the game with <br><code>-autoconfig</code> option.<br>If you are sure that you did everything right and there is an error in this site - you are welcome to <a href="https://discord.gg/79cbsTu" target="_blank">join our Discord</a> where you can report a problem or ask for help.
-  </p></div>
-   <div class="panel-heading"><h3>Is there a chance to add X feature?</h3></div>
-  <div class="panel-body">
-    <p>Yes! You are more then welcome to suggest anything you'd like. If it is reasonable and is possible to implement, it is going directly to the do-do list. Hit us up on Discord!
-  </p></div>
-   <div class="panel-heading"><h3>The file/config is outdated.</h3></div>
-  <div class="panel-body">
-    <p>We are trying to keep all the stuff up to date, but since there are no static links provided by config authors, all the files have to be updated manually so there may be a delay. Feel free to inform us if we need to update anything.
-  </p></div>
-   <div class="panel-heading"><h3>Can I put my own settings or binds? How do I do that?</h3></div>
-  <div class="panel-body">
-    <p>Of course you can. There is a "Custom binds/settings" tab at the end of the generator where you can put any custom commands you like. They will overwrite existing settings so be careful. Also, its good to have a general idea about Source games scripting when doing things like this.
-  </p></div>
-   <div class="panel-heading"><h3>My TF2 looks like poop. I didn't select the worst config here.</h3></div>
-  <div class="panel-body">First of all, make sure you are using the launch options provided. Secondly, remember - you will generally always have to sacrifice something to see a performance increase. Or spend a lot of money on good PC and play without gfx config at all.
-    <p>
-  </p></div>
-   <div class="panel-heading"><h3>Where do I change settings after I have installed this?</h3></div>
-  <div class="panel-body">Inside your /tf/cfg folder there are going to be several files:<p><br><code>binds.cfg</code> - keyboard mappings<br><code>settings.cfg</code> - general TF2 settings like viewmodels, hitsounds, etc.<br><code>gfx.cfg</code> - the entire graphics config.<br><br>Also, if you want to configure your crosshairs and you have a crosshair switcher installed, check out <code>CROSSHAIRSWITCHER-README.txt</code></p>
-</div>
+        <div class="panel-heading">
+          <h3>My game controls and binds act werid, some keys are not working.</h3>
+        </div>
+        <div class="panel-body">
+          <p>Please make sure you have installed it on 100% default, clean TF2 with absolutely <b>no</b> configs and custom files. You may also have to disable Steam Cloud as it may restore some old settings. You can wipe all your custom stuff by removing the /cfg and /custom folders from your /tf folder and launching the game with <code>-autoconfig</code> launch option. If you are sure that you did everything right and that there is an error on this site - you are welcome to <a href="https://discord.gg/79cbsTu" target="_blank">join our Discord</a> where you can report a problem or ask for help.</p>
+        </div>
+
+        <div class="panel-heading">
+          <h3>Is there a chance to add X feature?</h3>
+        </div>
+        <div class="panel-body">
+          <p>Yes! You are more then welcome to suggest anything you'd like. If it is reasonable and is possible to implement, it is going directly to the to-do list. Hit us up on <a href="https://discord.gg/79cbsTu" target="_blank">Discord!</a> </p>
+        </div>
+
+        <div class="panel-heading">
+          <h3>The file/config is outdated.</h3>
+        </div>
+        <div class="panel-body">
+          <p>We try to keep all the stuff up to date, but since there are no static links provided by config authors, all the files have to be updated manually so there may be a delay. Feel free to inform us if we need to update anything. </p>
+        </div>
+
+        <div class="panel-heading">
+          <h3>Can I put my own settings or binds? How do I do that?</h3>
+        </div>
+        <div class="panel-body">
+          <p>Of course you can. There is a "Custom binds/settings" tab at the end of the generator where you can put any custom commands you like. They will overwrite existing settings so be careful. Also, its good to have a general idea about Source games scripting when doing things like this. </p>
+        </div>
+
+        <div class="panel-heading">
+          <h3>My TF2 looks like poop. I didn't select the worst config here.</h3></div>
+        <div class="panel-body">
+          <p>First of all, make sure you are using the launch options provided. Secondly, remember - you will generally always have to sacrifice something to see a performance increase. Or spend a lot of money on good PC and play without gfx config at all.</p>
+        </div>
+
+        <div class="panel-heading">
+          <h3>Where do I change settings after I have installed this?</h3>
+        </div>
+        <div class="panel-body"><p>Inside your /tf/cfg folder there are going to be several files:</p>
+          <p><code>binds.cfg</code> - keyboard mappings</p>
+          <p><code>settings.cfg</code> - general TF2 settings like viewmodels, hitsounds, etc.</p>
+          <p><code>gfx.cfg</code> - the entire graphics config.</p>
+          <p>Also, if you want to configure your crosshairs and you have a crosshair switcher installed, check out <code>CROSSHAIRSWITCHER-README.txt</code></p>
+        </div>
+
+      </div>
+      <hr>
+      <h3 class="text-center"><a href="https://discord.gg/79cbsTu" target="_blank">Still have questions? Contact us on Discord.</a></h3>
+    </div>
   </div>
-  <hr>
-  <br>
-  <br>
-  <center><h3><a href="https://discord.gg/79cbsTu" target="_blank">Still have questions? Contact us on Discord.</a></h3></center>
-</div>
-</div>
+  <footer class="footer">
+    <div class="container-fluid row">
+      <div class="col-md-4 text-center">
+        <ul class="list-unstyled">
+          <li><a href="//discord.gg/79cbsTu" target="_blank">Join our Discord</a></li>
+          <li><a href="//www.teamfortress.tv/40062/a-simple-custom-config-generator" target="_blank">Discuss on TFTV</a></li>
+          <li><a href="//github.com/mkrl/mkrl.github.io/issues" target="_blank">Report an issue</a></li>
+          <li><a href="//github.com/mkrl/mkrl.github.io" target="_blank">View the source code</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4 text-center">
+        <p>CFG.TF</p>
+        <p><small>a custom TF2 config generator by <a href="https://steamcommunity.com/id/2x100/" target="_blank">200</a></small></p>
+        <script>
+          (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+              (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+              m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+          })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+          ga('create', 'UA-97817107-1', 'auto');
+          ga('send', 'pageview');
+        </script>
+      </div>
+      <div class="col-md-4">
+        <p class="text-center">~
+          <script language="JavaScript">
+            var fhsh = document.createElement('script');
+            var fhs_id_h = "3234623";
+            fhsh.src = "//s1.freehostedscripts.net/ocount.php?site=" + fhs_id_h + "&name=configs&a=1";
+            document.head.appendChild(fhsh);
+            document.write("<span id='h_" + fhs_id_h + "'></span>");
+          </script> generated so far. </p>
+      </div>
+    </div>
+  </footer>
+</body>
 
-
-
- </div>
-</div>
-
-
-
-  </div>
- </div>
-
-<footer>
-  <div class="container">
-  <p class="pull-right">~<script language="JavaScript">var fhsh = document.createElement('script');var fhs_id_h = "3234623";
-fhsh.src = "//s1.freehostedscripts.net/ocount.php?site="+fhs_id_h+"&name=configs&a=1";
-document.head.appendChild(fhsh);document.write("<span id='h_"+fhs_id_h+"'></span>");
-</script><br> generated so far.</p>
-        <p class="pull-left">
-    	<small>
-		<a href="https://discord.gg/79cbsTu" target="_blank">Join our Discord</a> <br>
-		<a href="http://www.teamfortress.tv/40869/cfg-tf" target="_blank">Discuss on TFTV</a><br>
-		<a href="https://github.com/mkrl/cfgtf/issues" target="_blank">Report an issue</a><br>
-		<a href="https://github.com/mkrl/cfgtf" target="_blank">View the source code</a>
-		</small>
-		</p>
-        
-	<center><p> CFG.TF <br><small> a custom TF2 config generator by <a href="https://steamcommunity.com/id/2x100/" target="_blank">200</a></small> </p></center>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-97817107-1', 'auto');
-  ga('send', 'pageview');
-
-</script>    
-  </div>
-</footer>
-
-  </body>
 </html>

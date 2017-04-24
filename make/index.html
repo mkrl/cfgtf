@@ -8,87 +8,15 @@
     <title>CFG.TF - Generate</title>
 
     <!-- Latest compiled and minified CSS -->
-		<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="./css/bootstrap.min.main.css"> -->
+
     <!-- Latest compiled and minified JavaScript -->
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" integrity="sha384-dNpIIXE8U05kAbPhy3G1cz+yZmTzA6CY8Vg/u2L9xRnHjJiAK76m2BIEaSEV+/aU" crossorigin="anonymous">
-
-		<style>
-			#overlay {
-	      background: #ffffff;
-	      color: #666666;
-	      position: fixed;
-	      height: 100%;
-	      width: 100%;
-	      z-index: 5000;
-	      top: 0;
-	      left: 0;
-	      float: left;
-	      text-align: center;
-	      padding-top: 25%;
-	    }
-			#wrapper {
-				width: 60%;
-			}
-			#wrapper .container {
-				max-width: 100%; display: block;
-			}
-			textarea {
-		    overflow-y: scroll;
-				height: 150px;
-				resize: none;
-			}
-			.table > tbody > tr > td {
-				vertical-align: middle;
-				text-align: center;
-			}
-			@-moz-keyframes spin {
-			    from { -moz-transform: rotate(0deg); }
-			    to { -moz-transform: rotate(360deg); }
-			}
-			@-webkit-keyframes spin {
-			    from { -webkit-transform: rotate(0deg); }
-			    to { -webkit-transform: rotate(360deg); }
-			}
-			@keyframes spin {
-			    from {transform:rotate(0deg);}
-			    to {transform:rotate(360deg);}
-			}
-			#loading_logo {
-				background-image: url('../img/tf2logo.png');
-				width: 80px;
-				height: 80px;
-				background-repeat: no-repeat;
-				background-size: contain;
-				margin: 0 auto;
-				background-position: center center;
-
-				-webkit-animation-name: spin;
-		    -webkit-animation-duration: 2000ms;
-		    -webkit-animation-iteration-count: infinite;
-		    -webkit-animation-timing-function: linear;
-		    -moz-animation-name: spin;
-		    -moz-animation-duration: 2000ms;
-		    -moz-animation-iteration-count: infinite;
-		    -moz-animation-timing-function: linear;
-		    -ms-animation-name: spin;
-		    -ms-animation-duration: 2000ms;
-		    -ms-animation-iteration-count: infinite;
-		    -ms-animation-timing-function: linear;
-		    -o-transition: rotate(3600deg);
-			}
-
-      /* give clipboard copy some room */ #loptions { width: 95%; } #loptions_copy { float:left; }
-      /* align titles of crosshair switcher table with content */ #switcherdiv th:not(:last-child) { text-align: center; }
-      /* multiselector has bad contrast on text */ .bootstrap-select > .dropdown-toggle.bs-placeholder { color: white !important; }
-      /* remove bullet points on li */ * { list-style: none; }
-      /* separate the lists a bit more, its too squashed */ .radio label, .checkbox label { padding-top: 8px; }
-      /* replace <hr> with bottom borders */ .tab-pane { border-bottom: rgb(236, 240, 241) solid 1px; margin-bottom: 21px; padding-bottom: 21px; }
-
-		</style>
 
     <link rel="stylesheet" href="../css/pygments.css">
     <link rel="stylesheet" href="../css/main.css">
@@ -99,52 +27,77 @@
 		<script type="text/javascript" src="../js/utility.js"></script>
     <script type="text/javascript" src="../js/FileSaver.js"></script>
     <script type="text/javascript" src="../js/bootstrap-select.min.js"></script>
+    <script type="text/javascript" src="../js/unveil.js"></script>
+    <script>
+      $(document).ready(function() {
+        $("img").unveil();
+
+      });
+    </script>
+
 
   </head>
   <body>
-	<div id="overlay">
-    <!-- <img src="../img/loading.gif" alt="Loading" /><br> -->
-	  <div id="loading_logo"></div>
-		<br>Hang on a minute...
-    <noscript>Please enable javascript in your browser to continue.</noscript>
-	</div>
+    <div class="jumbotron" id="overlay">
+      <div id="loading_logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 464 462.9">
+          <path fill="#f39c12" d="M213 19.2A213 213 0 0 0 19.7 212H160a74.4 74.4 0 0 1 53-52.6V19.2zm38 0v140.4a74.4 74.4 0 0 1 52.4 52.3h140.4A213 213 0 0 0 251 19zM19.5 250A213 213 0 0 0 213 443.4V303.2a74.4 74.4 0 0 1-53.3-53.3H19.5zm284 0a74.4 74.4 0 0 1-52.5 53v140.4A213 213 0 0 0 443.8 250H303.6z"/>
+        </svg>
+      </div>
+      <p>Hang on a minute...</p>
+      <noscript><p>Please enable javascript in your browser to continue.</p></noscript>
+    </div>
+     <script>
+        jQuery(window).on('load', function(){
+          jQuery('#overlay').fadeOut();
+        });
+    </script>
+
     <nav class="navbar navbar-default" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="/"><i class="fa fa-cogs" aria-hidden="true"></i> CFG.TF</a>
+				<a class="navbar-brand" href="../"><i class="fa fa-cogs" aria-hidden="true"></i> CFG.TF</a>
 			</div>
 			<ul class="nav navbar-nav">
 				<li class="active">
-					<a href="/make">Generate</a>
-				</li>				
+					<a href="../make">Generate</a>
+				</li>
 				<li>
-					<a href="/server">Server config</a>
+					<a href="../server">Server config</a>
 				</li>
 				<li class="dropdown">
 				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Articles<span class="caret"></span></a>
 				  <ul class="dropdown-menu" role="menu">
-					<li><a href="/read/interp">Networking in Source games</a></li>
-					<li><a href="/read/health">Health care</a></li>
+					<li><a href="../read/interp">Networking in Source games</a></li>
+					<li><a href="../read/health">Health care</a></li>
 					<li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=154435696" target="_blank"><i class="fa fa-external-link"></i>  Scripting guide</a></li>
 				  </ul>
 				</li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li>
-					<a href="/faq/">FAQ</a>
-				</li>				
+					<a href="../faq/">FAQ</a>
+				</li>
 				<li>
-					<a href="/about/">About</a>
+					<a href="../about/">About</a>
 				</li>
 			</ul>
 		</div>
 	</nav>
   <div id="wrapper" class="container-fluid">
 		<div class="row content">
-			<h1>TF2 custom config generator</h1>
-			<p>
-			  2.1.6
-			</p>
+			<h1>TF2 custom config generator <small><span id="version"></span></small></h1>
+      <script type="text/javascript">
+        // Gets version number from text file and injects it above into #version
+        $(document).ready(function(){
+          var read = new XMLHttpRequest();
+          read.open('GET', './version.txt', false);
+          read.send();
+
+          var siteVersion = read.responseText;
+          $('#version').html(siteVersion);
+        });
+      </script>
       <div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><i class="fa fa-exclamation-circle" aria-hidden="true"></i> This tool will overwrite all of your binds. It is recommended to be installed on a blank <abbr title="Team Fortress 2" class="initialism">TF2</abbr>, without any prior configs installed. Please make a backup of your <abbr title="Config" class="initialism">CFG</abbr> and custom folders before using this if you want to save your old binds. You can wipe your configs by clearing your custom and cfg folders and launching <abbr title="Team Fortress 2" class="initialism">TF2</abbr> with -autoconfig launch option. </div>
 			<div class="alert alert-dismissible alert-info"><button type="button" class="close" data-dismiss="alert">&times;</button><i class="fa fa-info-circle" aria-hidden="true"></i> This tool is intended to be used with <a href="https://en.wikipedia.org/wiki/QWERTY" class="alert-link" target="_blank">QWERTY</a> keyboards, anything else is unsupported.</div>
 
@@ -165,217 +118,677 @@
 			  <div class="tab-pane fade active in" id="graphics">
 				<!--   GFX  -->
 			  <h3>Graphic config</h3>
-				
-				<p>Determine the look and performance of your game</p>
-				<p class="text-muted">Remember - you will generally always have to sacrifice something to see a performance increase. Selecting a config will show a demonstration with the pros and cons of the config explained.</p>
-				<br>
-				<ul>
-				<li>
-					<label>
-						<input type="radio" name="gfx" id="myown" data-name="gfx" data-url="../make/cfg/nogfx.txt" checked="checked" />
-						None
-					</label>
-				</li>
-			  <li>
-			    <label>
-			      <input type="radio" name="gfx" id="toaster" onclick="updatedxlevel();" data-name="gfx" data-url="../make/cfg/c_toaster.txt" />
-			      Comanglia's Toaster
-			    </label>
-			  </li>
-			  <li>
-			    <label>
-			      <input type="radio" name="gfx" id="stable" onclick="updatedxlevel();" data-name="gfx" data-url="../make/cfg/c_stability.txt" />
-			      Comanglia's Stability
-			    </label>
-			  </li>
-			  <li>
-			    <label>
-			      <input type="radio" name="gfx" id="fine" onclick="updatedxlevel();" data-name="gfx" data-url="../make/cfg/c_maxfps_hq.txt" />
-			      Comanglia's Max FPS for High Quality PCs
-			    </label>
-			  </li>
-			  <li>
-			    <label>
-			      <input type="radio" name="gfx" id="fancy" onclick="updatedxlevel();" data-name="gfx" data-url="../make/cfg/c_cinema.txt" />
-			      Comanglia's Cinema
-			    </label>
-			  </li>
-			  <li>
-			    <label>
-			      <input type="radio" name="gfx" id="felik" onclick="updatedxlevel();" data-name="gfx" data-url="../make/cfg/f_gfx.txt" />
-			      Felik's Config
-			    </label>
-			  </li>
-			  </ul>
+
+				<p class="text-muted">Determine the look and performance of your game</p>
+				<p class="alert alert-info">Remember - you will generally always have to sacrifice something to see a performance increase. Selecting a config will show a demonstration with the pros and cons of the config explained.</p>
+
+        <ul class="checkbox list-unstyled">
+          <li>
+            <label class="form-inline">
+              Graphics setting config
+              <select class="form-control selectpicker" id="gfx_selector">
+                <option value="myown" data-name="gfx" onclick="updatedxlevel();" id="myown" data-url="../make/cfg/nogfx.txt" selected="selected">None</option>
+						    <optgroup label="Comanglia">
+                  <option value="toaster" data-name="gfx" onclick="updatedxlevel();" id="toaster" data-url="../make/cfg/c_toaster.txt">Comanglia: Toaster</option>
+                  <option value="stable" data-name="gfx" onclick="updatedxlevel();" id="stable" data-url="../make/cfg/c_stability.txt">Comanglia: Stability</option>
+                  <option value="fine" data-name="gfx" onclick="updatedxlevel();" id="fine" data-url="../make/cfg/c_maxfps_hq.txt">Comanglia: Max FPS for High Quality PCs</option>
+                  <option value="fancy" data-name="gfx" onclick="updatedxlevel();" id="fancy" data-url="../make/cfg/c_cinema.txt">Comanglia: Cinema</option>
+  							</optgroup>
+                <optgroup label="Felik">
+                  <option value="felik" data-name="gfx" onclick="updatedxlevel();" id="felik" data-url="../make/cfg/f_base.txt">Felik</option>
+                  <option value="feliklowend" data-name="gfx" onclick="updatedxlevel();" id="feliklowend" data-url="../make/cfg/f_lowend.txt">Felik: Low End</option>
+                  <option value="felikeyecandy" data-name="gfx" onclick="updatedxlevel();" id="felikeyecandy" data-url="../make/cfg/f_eyecandy.txt">Felik: Eye Candy</option>
+                </optgroup>
+                <optgroup label="Rhapsody">
+                  <option value="rhapsodydx9" data-name="gfx" onclick="updatedxlevel();" id="rhapsodydx9" data-url="../make/cfg/r_base.txt">Rhapsody: DX9</option>
+                  <option value="rhapsodydx8" data-name="gfx" onclick="updatedxlevel();" id="rhapsodydx8" data-url="../make/cfg/r_base.txt">Rhapsody: DX8</option>
+                </optgroup>
+              </select>
+            </label>
+          </li>
+          <li id="gfx_force_settings" style="display:none;">
+            <label>
+              <input type="checkbox" id="gfx_force_settings_cb" data-name="gfx_force_settings" data-url="" /> Force custom settings <a href="#" data-toggle="tooltip" title="Force certain options to be enabled or disabled, overriding the settings in the selected config."  ><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+            </label>
+          </li>
+        </ul>
 
 	<!-- CONFIG PREVIEWS -->
-	<script>
-		$(document).ready(function() {
-		$("input[name$='gfx']").click(function() {
-			var showme = $(this).attr('id');
-			$("div.desc").hide();
-			$("#preview" + showme).fadeIn(400);
-		});
-		});
+  <script>
+    $(document).ready(function() {
+      $("#gfx_selector").change(function() {
+          var showme = this.value;
+          $("div.desc").hide();
+          $("#preview" + showme).fadeIn(400);
+          updatedxlevel();
+          $("#preview" + showme + " img").trigger("unveil");
+          console.log('unveil ' + showme);
+      });
+  	});
 	</script>
-
 	<div id="previewtoaster" class="desc" style="display: none;">
 		<div class="panel-body">
+      <h3>Comanglia's "Toaster" config</h3>
+      <p>Bare minimum, with a focus on simply running the game.</p>
+      <p>This is probably the ugliest looking config you can get here. It disables a lot of things, and gives your TF2 that nice "blocky" oldschool look.</p>
+      <p><a href="http://www.teamfortress.tv/25328/comanglias-config-fps-guide" target="_blank">Source</a></p>
+      <div id="carousel_toaster" class="carousel slide" data-ride="carousel" data-interval="0">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#carousel_toaster" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel_toaster" data-slide-to="1"></li>
+          <li data-target="#carousel_toaster" data-slide-to="2"></li>
+          <li data-target="#carousel_toaster" data-slide-to="3"></li>
+          <li data-target="#carousel_toaster" data-slide-to="4"></li>
+        </ol>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
 
-				<div class="col-md-6">
-					<img class="img-responsive img-rounded" src="../img/cfg/toaster.jpg" alt="Comanglia's Toaster Config">
-				</div>
+          <div class="item active">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_toaster/badwater/pl_badwater0001.jpg" alt="Comanglia's HQ Config">
+          </div>
 
-				<div class="col-md-6">
-					<h3>Comanglia's "Toaster" config</h3>
-					<p>Bare minimum, with a focus on simply running the game.</p>
-					<p>This is probably the ugliest looking config you can get here. It disables a lot of things, and gives your TF2 that nice "blocky" oldschool look.</p>
-					<p><a href="http://www.teamfortress.tv/25328/comanglias-config-fps-guide" target="_blank">Source</a></p>
-          <p class="alert alert-info"><i class="fa fa-info-circle" aria-hidden="true"></i> This config can actually underperform on moderate hardware, even achieving lower frames than <a class="alert-link" onclick="document.getElementById('stable').click();document.getElementById('gfx_selector').selectedIndex=2;">Comanglia Stability</a> on identical hardware.</p>
-					<h3 class="text-success">Pros</h3>
-					<ul class="list-group">
-					  <li class="list-group-item list-group-item-success">Maximum FPS for underpowered computers</li>
-					  <li class="list-group-item list-group-item-success">Minimizes visual clutter</li>
-					  <li class="list-group-item list-group-item-success">Oldschool&trade; feeling</li>
-					</ul>
-					<h3 class="text-danger">Cons</h3>
-					<ul class="list-group">
-					  <li class="list-group-item list-group-item-danger">Minor FPS gain for powerful PCs</li>
-					  <li class="list-group-item list-group-item-danger">Sharp, distracting blocky textures</li>
-					  <li class="list-group-item list-group-item-danger">Disables glow outline on team mates/mission objective/Scottish Resistance stickies</li>
-					  <li class="list-group-item list-group-item-danger">No sheens on killstreak weapons</li>
-					  <li class="list-group-item list-group-item-danger">No shadows and most props are disabled</li>
-					  <li class="list-group-item list-group-item-danger">No 3D skybox</li>
-					</ul>
-				</div>
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_toaster/badwater/pl_badwater0002.jpg" alt="Comanglia's HQ Config">
+          </div>
 
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_toaster/badwater/pl_badwater0003.jpg" alt="Comanglia's HQ Config">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_toaster/badwater/pl_badwater0004.jpg" alt="Comanglia's HQ Config">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_toaster/badwater/pl_badwater0005.jpg" alt="Comanglia's HQ Config">
+          </div>
+        </div>
+
+          <!-- Left and right controls -->
+          <a class="left carousel-control" href="#carousel_toaster" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="right carousel-control" href="#carousel_toaster" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+        <p class="alert alert-info"><i class="fa fa-info-circle" aria-hidden="true"></i> This config can actually underperform on moderate hardware, even achieving lower frames than <a class="alert-link" onclick="document.getElementById('stable').click();document.getElementById('gfx_selector').selectedIndex=2;">Comanglia Stability</a> on identical hardware.</p>
+
+        <div class="col-md-6">
+          <h3 class="text-success">Pros</h3>
+          <ul class="list-group">
+            <li class="list-group-item list-group-item-success">Maximum FPS for underpowered computers</li>
+            <li class="list-group-item list-group-item-success">Minimizes visual clutter</li>
+            <li class="list-group-item list-group-item-success">Oldschool&trade; feeling</li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <h3 class="text-danger">Cons</h3>
+          <ul class="list-group">
+            <li class="list-group-item list-group-item-danger">Minor FPS gain for powerful PCs</li>
+            <li class="list-group-item list-group-item-danger">Sharp, distracting blocky textures</li>
+            <li class="list-group-item list-group-item-danger">Disables glow outline on team mates/mission objective/Scottish Resistance stickies</li>
+            <li class="list-group-item list-group-item-danger">No sheens on killstreak weapons</li>
+            <li class="list-group-item list-group-item-danger">No shadows and most props are disabled</li>
+            <li class="list-group-item list-group-item-danger">No 3D skybox</li>
+          </ul>
+        </div>
 		</div>
 	</div>
 
 	<div id="previewstable" class="desc" style="display: none;">
 	  <div class="panel-body">
+      <h3>Comanglia's "Stability" config</h3>
+      <p>A solid option for older PCs, with a focus on stability.</p>
+      <p><a href="http://www.teamfortress.tv/25328/comanglias-config-fps-guide" target="_blank">Source</a></p>
+        <div id="carousel_stability" class="carousel slide" data-ride="carousel" data-interval="0">
+          <!-- Indicators -->
+          <ol class="carousel-indicators">
+            <li data-target="#carousel_stability" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel_stability" data-slide-to="1"></li>
+            <li data-target="#carousel_stability" data-slide-to="2"></li>
+            <li data-target="#carousel_stability" data-slide-to="3"></li>
+            <li data-target="#carousel_stability" data-slide-to="4"></li>
+          </ol>
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner" role="listbox">
 
-			<div class="col-md-6">
-				<img class="img-responsive img-rounded" src="../img/cfg/stable.jpg" alt="Comanglia's Stability Config">
-			</div>
+            <div class="item active">
+              <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_stability/badwater/pl_badwater0001.jpg" alt="Comanglia's HQ Config">
+            </div>
 
-			<div class="col-md-6">
-				<h3>Comanglia's "Stability" config</h3>
-				<p>A solid option for older PCs, with a focus on stability.</p>
-				<p><a href="http://www.teamfortress.tv/25328/comanglias-config-fps-guide" target="_blank">Source</a></p>
+            <div class="item">
+              <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_stability/badwater/pl_badwater0002.jpg" alt="Comanglia's HQ Config">
+            </div>
+
+            <div class="item">
+              <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_stability/badwater/pl_badwater0003.jpg" alt="Comanglia's HQ Config">
+            </div>
+
+            <div class="item">
+              <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_stability/badwater/pl_badwater0004.jpg" alt="Comanglia's HQ Config">
+            </div>
+
+            <div class="item">
+              <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_stability/badwater/pl_badwater0005.jpg" alt="Comanglia's HQ Config">
+            </div>
+          </div>
+
+            <!-- Left and right controls -->
+            <a class="left carousel-control" href="#carousel_stability" role="button" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carousel_stability" role="button" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+      <div class="col-md-6">
         <h3 class="text-success">Pros</h3>
-				<ul class="list-group">
-				  <li class="list-group-item list-group-item-success">Decent fps gain for underpowered computers</li>
-				  <li class="list-group-item list-group-item-success">A great choice for midrange PCs</li>
-				  <li class="list-group-item list-group-item-success">Minimizes visual clutter</li>
-				  <li class="list-group-item list-group-item-success">Smoother textures compared to <a class="alert-link" onclick="document.getElementById('toaster').click();document.getElementById('gfx_selector').selectedIndex=1;">Toaster CFG</a></li>
-				</ul>
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-success">Decent fps gain for underpowered computers</li>
+          <li class="list-group-item list-group-item-success">A great choice for midrange PCs</li>
+          <li class="list-group-item list-group-item-success">Minimizes visual clutter</li>
+          <li class="list-group-item list-group-item-success">Smoother textures compared to <a class="alert-link" onclick="document.getElementById('toaster').click();document.getElementById('gfx_selector').selectedIndex=1;">Toaster CFG</a></li>
+        </ul>
+      </div>
+      <div class="col-md-6">
         <h3 class="text-danger">Cons</h3>
-				<ul class="list-group">
-				  <li class="list-group-item list-group-item-danger">Small fps gain for decent PCs</li>
-				  <li class="list-group-item list-group-item-danger">Disables glow outline on team mates/mission objective/Scottish Resistance stickies</li>
-				  <li class="list-group-item list-group-item-danger">No sheens on killstreak weapons</li>
-				  <li class="list-group-item list-group-item-danger">No shadows and some props are disabled</li>
-				  <li class="list-group-item list-group-item-danger">No 3D skybox</li>
-				</ul>
-			</div>
-
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-danger">Small fps gain for decent PCs</li>
+          <li class="list-group-item list-group-item-danger">Disables glow outline on team mates/mission objective/Scottish Resistance stickies</li>
+          <li class="list-group-item list-group-item-danger">No sheens on killstreak weapons</li>
+          <li class="list-group-item list-group-item-danger">No shadows and some props are disabled</li>
+          <li class="list-group-item list-group-item-danger">No 3D skybox</li>
+        </ul>
+      </div>
 	  </div>
 	</div>
 
 	<div id="previewfine" class="desc" style="display: none;">
 	  <div class="panel-body">
+		  <h3>Comanglia's "Max FPS for High Quality PCs" config</h3>
+			<p>For modern multi-core PCs, with a focus on maximum FPS while retaining modern graphics settings. Looks good, performs well.</p>
+			<p><a href="http://www.teamfortress.tv/25328/comanglias-config-fps-guide" target="_blank">Source</a></p>
+      <div id="carousel_hq" class="carousel slide" data-ride="carousel" data-interval="0">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#carousel_hq" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel_hq" data-slide-to="1"></li>
+          <li data-target="#carousel_hq" data-slide-to="2"></li>
+          <li data-target="#carousel_hq" data-slide-to="3"></li>
+          <li data-target="#carousel_hq" data-slide-to="4"></li>
+        </ol>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
 
-			<div class="col-md-6">
-				<img class="img-responsive img-rounded" src="../img/cfg/hq.jpg" alt="Comanglia's Max FPS for High Quality PCs">
-			</div>
+          <div class="item active">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_hq/badwater/pl_badwater0001.jpg" alt="Comanglia's HQ Config">
+          </div>
 
-			<div class="col-md-6">
-				<h3>Comanglia's "Max FPS for High Quality PCs" config</h3>
-				<p>For modern multi-core PCs, with a focus on maximum FPS while retaining modern graphics settings. Looks good, performs well.</p>
-				<p><a href="http://www.teamfortress.tv/25328/comanglias-config-fps-guide" target="_blank">Source</a></p>
-				<p class="alert alert-info"><i class="fa fa-info-circle" aria-hidden="true"></i> Requires quad-core CPU or better</p>
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_hq/badwater/pl_badwater0002.jpg" alt="Comanglia's HQ Config">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_hq/badwater/pl_badwater0003.jpg" alt="Comanglia's HQ Config">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_hq/badwater/pl_badwater0004.jpg" alt="Comanglia's HQ Config">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_hq/badwater/pl_badwater0005.jpg" alt="Comanglia's HQ Config">
+          </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#carousel_hq" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel_hq" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+
+			<p class="alert alert-info"><i class="fa fa-info-circle" aria-hidden="true"></i> Requires quad-core CPU or better</p>
+
+      <div class="col-md-6">
         <h3 class="text-success">Pros</h3>
-				<ul class="list-group">
-				  <li class="list-group-item list-group-item-success">Decent fps gain for good computers</li>
-				  <li class="list-group-item list-group-item-success">A great performance choice for a modern/modern a few years ago PCs</li>
-				  <li class="list-group-item list-group-item-success">Looks good, textures are bright and shine</li>
-				  <li class="list-group-item list-group-item-success">Sheens on killstreak weapons</li>
-				  <li class="list-group-item list-group-item-success">Enables glow outline on team mates/mission objective/Scottish Resistance stickies</li>
-				  <li class="list-group-item list-group-item-success">Works with <code>-dxlevel 81</code></li>
-				</ul>
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-success">Decent fps gain for good computers</li>
+          <li class="list-group-item list-group-item-success">A great performance choice for a modern/modern a few years ago PCs</li>
+          <li class="list-group-item list-group-item-success">Looks good, textures are bright and shine</li>
+          <li class="list-group-item list-group-item-success">Sheens on killstreak weapons</li>
+          <li class="list-group-item list-group-item-success">Works with <code>-dxlevel 81</code></li>
+        </ul>
+      </div>
+      <div class="col-md-6">
         <h3 class="text-danger">Cons</h3>
-				<ul class="list-group">
-				  <li class="list-group-item list-group-item-danger">Small/No FPS gain for old PCs</li>
-				  <li class="list-group-item list-group-item-danger">May be slower than Comanglia Stability config depending on your video card</li>
-				  <li class="list-group-item list-group-item-danger">Poor shadows and a few props are still disabled</li>
-				  <li class="list-group-item list-group-item-danger">Still not look as good as vanilla TF2</li>
-				  <li class="list-group-item list-group-item-danger">No 3D skybox</li>
-				</ul>
-			</div>
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-danger">Small/No FPS gain for old PCs</li>
+          <li class="list-group-item list-group-item-danger">Disables glow outline on team mates/mission objective/Scottish Resistance stickies</li>
+          <li class="list-group-item list-group-item-danger">May be slower than Comanglia Stability config depending on your video card</li>
+          <li class="list-group-item list-group-item-danger">Poor shadows and a few props are still disabled</li>
+          <li class="list-group-item list-group-item-danger">Doesn't look as good as vanilla TF2</li>
+          <li class="list-group-item list-group-item-danger">No 3D skybox</li>
+        </ul>
+      </div>
 
 	  </div>
   </div>
 
 	<div id="previewfancy" class="desc" style="display: none;">
 	  <div class="panel-body">
+			<h3>Comanglia's "Cinema" config</h3>
+			<p>Take a look at this. This is TF2 at its maximum potential. This is what quality water and 3D skyboxes look like.</p>
+			<p><a href="http://www.teamfortress.tv/25328/comanglias-config-fps-guide" target="_blank">Source</a></p>
 
-			<div class="col-md-6">
-				<img class="img-responsive img-rounded" src="../img/cfg/max.jpg" alt="Comanglia's Cinema Config">
-			</div>
+      <div id="carousel_fancy" class="carousel slide" data-ride="carousel" data-interval="0">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#carousel_fancy" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel_fancy" data-slide-to="1"></li>
+          <li data-target="#carousel_fancy" data-slide-to="2"></li>
+          <li data-target="#carousel_fancy" data-slide-to="3"></li>
+          <li data-target="#carousel_fancy" data-slide-to="4"></li>
+        </ol>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
 
-			<div class="col-md-6">
-				<h3>Comanglia's "Cinema" config</h3>
-				<p>Take a look at this. This is TF2 at its maximum potential. This is what quality water and 3D skyboxes look like.</p>
-				<p><a href="http://www.teamfortress.tv/25328/comanglias-config-fps-guide" target="_blank">Source</a></p>
-        <p class="alert alert-info"><i class="fa fa-info-circle" aria-hidden="true"></i> You need a high spec PC to run this comfortably. Designed for rendering videos at high quality, not for realtime gameplay.</p>
+          <div class="item active">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_cinema/badwater/pl_badwater0001.jpg" alt="Comanglia's Cinema Config">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_cinema/badwater/pl_badwater0002.jpg" alt="Comanglia's Cinema Config">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_cinema/badwater/pl_badwater0003.jpg" alt="Comanglia's Cinema Config">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_cinema/badwater/pl_badwater0004.jpg" alt="Comanglia's Cinema Config">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_cinema/badwater/pl_badwater0005.jpg" alt="Comanglia's Cinema Config">
+          </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#carousel_fancy" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel_fancy" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+
+      <p class="alert alert-info"><i class="fa fa-info-circle" aria-hidden="true"></i> You need a high spec PC to run this comfortably. Designed for rendering videos at high quality, not for realtime gameplay.</p>
+      <div class="col-md-6">
         <h3 class="text-success">Pros</h3>
-				<ul class="list-group">
-				  <li class="list-group-item list-group-item-success">So nice and shiny</li>
-				  <li class="list-group-item list-group-item-success">HDR resolution textures, everything looks as good as it was originally intended.</li>
-				  <li class="list-group-item list-group-item-success">Even more bright sheens on killstreak weapons</li>
-				  <li class="list-group-item list-group-item-success">Enables glow outline on team mates/mission objective/Scottish Resistance stickies</li>
-				  <li class="list-group-item list-group-item-success">Does not remove anything, it's even a more enhanced than the highest graphical settings possible in the game's menu</li>
-				  <li class="list-group-item list-group-item-success">Good stability with demo replays</li>
-				</ul>
+  			<ul class="list-group">
+  			  <li class="list-group-item list-group-item-success">So nice and shiny</li>
+  			  <li class="list-group-item list-group-item-success">HDR resolution textures, everything looks as good as it was originally intended.</li>
+  			  <li class="list-group-item list-group-item-success">Even more bright sheens on killstreak weapons</li>
+  			  <li class="list-group-item list-group-item-success">Enables glow outline on team mates/mission objective/Scottish Resistance stickies</li>
+  			  <li class="list-group-item list-group-item-success">Does not remove anything, it's even a more enhanced than the highest graphical settings possible in the game's menu</li>
+  			  <li class="list-group-item list-group-item-success">Good stability with demo replays</li>
+  			</ul>
+      </div>
+      <div class="col-md-6">
         <h3 class="text-danger">Cons</h3>
-				<ul class="list-group">
-				  <li class="list-group-item list-group-item-danger">The worst performance choice for any PC</li>
-				  <li class="list-group-item list-group-item-danger">Literally unplayable unless you have a high powered computer</li>
-				</ul>
-			</div>
+  			<ul class="list-group">
+  			  <li class="list-group-item list-group-item-danger">The worst performance choice for any PC</li>
+  			  <li class="list-group-item list-group-item-danger">Literally unplayable unless you have a high powered computer</li>
+  			</ul>
+      </div>
+		</div>
+  </div>
 
-			</div>
-	  </div>
+	<div id="previewfelik" class="desc" style="display: none;">
+	  <div class="panel-body">
+      <h3>Felik's config</h3>
+      <p>Various optimizations for TF2, and soon to be for other Source Engine based games.</p>
+      <p><a href="https://gitlab.com/felik/TF2-Config/" target="_blank">Source</a></p>
 
-		<div id="previewfelik" class="desc" style="display: none;">
-		  <div class="panel-body">
+      <div id="carousel_felik" class="carousel slide" data-ride="carousel" data-interval="0">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#carousel_felik" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel_felik" data-slide-to="1"></li>
+          <li data-target="#carousel_felik" data-slide-to="2"></li>
+          <li data-target="#carousel_felik" data-slide-to="3"></li>
+          <li data-target="#carousel_felik" data-slide-to="4"></li>
+        </ol>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
 
-				<div class="col-md-6">
-					<img class="img-responsive img-rounded disabled" src="../img/cfg/what.jpg" alt="Felik's Config">
-				</div>
+          <div class="item active">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/felik/badwater/pl_badwater0001.jpg" alt="Comanglia's Cinema Config">
+          </div>
 
-				<div class="col-md-6">
-					<h3><span class="badge badge-info">New</span> Felik's config</h3>
-					<p>Similar looking to Comanglia's Stability config (actual pics are going to be here soon).</p>
-					<p><a href="https://gitlab.com/felik/TF2-Config/" target="_blank">Source</a></p>
-          <h3 class="text-success">Pros</h3>
-					<ul class="list-group">
-					  <li class="list-group-item list-group-item-success">Decent FPS gain for good computers</li>
-					  <li class="list-group-item list-group-item-success">A great performance choice for modern PCs</li>
-					  <li class="list-group-item list-group-item-success">Looks good, textures are high quality</li>
-					</ul>
-          <h3 class="text-danger">Cons</h3>
-					<ul class="list-group">
-					  <li class="list-group-item list-group-item-danger">May be slower than Comanglia CFG depending on your specs</li>
-					  <li class="list-group-item list-group-item-danger">No shadows</li>
-					  <li class="list-group-item list-group-item-danger">No 3D skybox</li>
-					</ul>
-				</div>
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/felik/badwater/pl_badwater0002.jpg" alt="Comanglia's Cinema Config">
+          </div>
 
-				</div>
-		  </div>
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/felik/badwater/pl_badwater0003.jpg" alt="Comanglia's Cinema Config">
+          </div>
 
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/felik/badwater/pl_badwater0004.jpg" alt="Comanglia's Cinema Config">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/felik/badwater/pl_badwater0005.jpg" alt="Comanglia's Cinema Config">
+          </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#carousel_felik" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel_felik" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <h3 class="text-success">Pros</h3>
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-success">Decent FPS gain for good computers</li>
+          <li class="list-group-item list-group-item-success">A great performance choice for modern PCs</li>
+          <li class="list-group-item list-group-item-success">Looks good, textures are high quality</li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <h3 class="text-danger">Cons</h3>
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-danger">No shadows</li>
+          <li class="list-group-item list-group-item-danger">No 3D skybox</li>
+        </ul>
+      </div>
+
+		</div>
+  </div>
+
+  <div id="previewfeliklowend" class="desc" style="display: none;">
+    <div class="panel-body">
+      <h3><span class="badge badge-info">New</span> Felik's "Low End" config</h3>
+      <p>Felik's config with the provided <code>low_end.cfg</code></p>
+      <p><a href="https://gitlab.com/felik/TF2-Config/" target="_blank">Source</a></p>
+
+      <div id="carousel_felikle" class="carousel slide" data-ride="carousel" data-interval="0">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#carousel_felikle" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel_felikle" data-slide-to="1"></li>
+          <li data-target="#carousel_felikle" data-slide-to="2"></li>
+          <li data-target="#carousel_felikle" data-slide-to="3"></li>
+          <li data-target="#carousel_felikle" data-slide-to="4"></li>
+        </ol>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+
+          <div class="item active">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_lowend/badwater/pl_badwater0001.jpg" alt="Felik's Low End Config">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_lowend/badwater/pl_badwater0002.jpg" alt="Felik's Low End Config">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_lowend/badwater/pl_badwater0003.jpg" alt="Felik's Low End Config">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_lowend/badwater/pl_badwater0004.jpg" alt="Felik's Low End Config">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_lowend/badwater/pl_badwater0005.jpg" alt="Felik's Low End Config">
+          </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#carousel_felikle" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel_felikle" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <h3 class="text-success">Pros</h3>
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-success">Will run on low end GPUs</li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <h3 class="text-danger">Cons</h3>
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-danger">No shadows</li>
+          <li class="list-group-item list-group-item-danger">Ugly ubercharges</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="previewfelikeyecandy" class="desc" style="display: none;">
+    <div class="panel-body">
+      <h3><span class="badge badge-info">New</span> Felik's "Eye Candy" config</h3>
+      <p>Felik's config with the graphic enhancement additions from <code>maximum_graphics.cfg</code> <code>gibs_on.cfg</code> <code>ragdolls_on.cfg</code> <code>shadows_on.cfg</code> <code>tracers_on.cfg</code> <code>textures.cfg</code></p>
+      <p><a href="https://gitlab.com/felik/TF2-Config/" target="_blank">Source</a></p>
+
+      <div id="carousel_felikeyecandy" class="carousel slide" data-ride="carousel" data-interval="0">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#carousel_felikeyecandy" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel_felikeyecandy" data-slide-to="1"></li>
+          <li data-target="#carousel_felikeyecandy" data-slide-to="2"></li>
+          <li data-target="#carousel_felikeyecandy" data-slide-to="3"></li>
+          <li data-target="#carousel_felikeyecandy" data-slide-to="4"></li>
+        </ol>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+
+          <div class="item active">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_eyecandy/badwater/pl_badwater0001.jpg" alt="Felik's Eye Candy config">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_eyecandy/badwater/pl_badwater0002.jpg" alt="Felik's Eye Candy config">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_eyecandy/badwater/pl_badwater0003.jpg" alt="Felik's Eye Candy config">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_eyecandy/badwater/pl_badwater0004.jpg" alt="Felik's Eye Candy config">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_eyecandy/badwater/pl_badwater0005.jpg" alt="Felik's Eye Candy config">
+          </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#carousel_felikeyecandy" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel_felikeyecandy" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <h3 class="text-success">Pros</h3>
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-success">Looks nice</li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <h3 class="text-danger">Cons</h3>
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-danger">Requires a high spec system</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="previewrhapsodydx9" class="desc" style="display: none;">
+    <div class="panel-body">
+      <h3><span class="badge badge-info">New</span> Rhapsody</h3>
+      <p>Rhapsody's config with DirectX 9.0 enabled.</p>
+      <p><a href="https://github.com/RhapsodySL/perfconfig" target="_blank">Source</a></p>
+
+      <div id="carousel_rhapsodydx9" class="carousel slide" data-ride="carousel" data-interval="0">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#carousel_rhapsodydx9" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel_rhapsodydx9" data-slide-to="1"></li>
+          <li data-target="#carousel_rhapsodydx9" data-slide-to="2"></li>
+          <li data-target="#carousel_rhapsodydx9" data-slide-to="3"></li>
+          <li data-target="#carousel_rhapsodydx9" data-slide-to="4"></li>
+        </ol>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+
+          <div class="item active">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/rhapsody_dx9/badwater/pl_badwater0001.jpg" alt="Felik's Eye Candy config">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/rhapsody_dx9/badwater/pl_badwater0002.jpg" alt="Felik's Eye Candy config">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/rhapsody_dx9/badwater/pl_badwater0003.jpg" alt="Felik's Eye Candy config">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/rhapsody_dx9/badwater/pl_badwater0004.jpg" alt="Felik's Eye Candy config">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/rhapsody_dx9/badwater/pl_badwater0005.jpg" alt="Felik's Eye Candy config">
+          </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#carousel_rhapsodydx9" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel_rhapsodydx9" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <h3 class="text-success">Pros</h3>
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-success">High quality shadows</li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <h3 class="text-danger">Cons</h3>
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-danger">?</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="previewrhapsodydx8" class="desc" style="display: none;">
+    <div class="panel-body">
+      <h3><span class="badge badge-info">New</span> Rhapsody</h3>
+      <p>Rhapsody's config with DirectX 8.1 enabled.</p>
+      <p><a href="https://github.com/RhapsodySL/perfconfig" target="_blank">Source</a></p>
+
+      <div id="carousel_rhapsodydx8" class="carousel slide" data-ride="carousel" data-interval="0">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#carousel_rhapsodydx8" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel_rhapsodydx8" data-slide-to="1"></li>
+          <li data-target="#carousel_rhapsodydx8" data-slide-to="2"></li>
+          <li data-target="#carousel_rhapsodydx8" data-slide-to="3"></li>
+          <li data-target="#carousel_rhapsodydx8" data-slide-to="4"></li>
+        </ol>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+
+          <div class="item active">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/rhapsody_dx8/badwater/pl_badwater0001.jpg" alt="Felik's Eye Candy config">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/rhapsody_dx8/badwater/pl_badwater0002.jpg" alt="Felik's Eye Candy config">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/rhapsody_dx8/badwater/pl_badwater0003.jpg" alt="Felik's Eye Candy config">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/rhapsody_dx8/badwater/pl_badwater0004.jpg" alt="Felik's Eye Candy config">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/rhapsody_dx8/badwater/pl_badwater0005.jpg" alt="Felik's Eye Candy config">
+          </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#carousel_rhapsodydx9" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel_rhapsodydx9" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <h3 class="text-success">Pros</h3>
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-success">High quality shadows</li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <h3 class="text-danger">Cons</h3>
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-danger">?</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+
+
+  <hr>
 	</div>
 
   <div class="tab-pane fade" id="cfgs">
@@ -383,7 +796,7 @@
 		<div id="tweaks">
 			<h3>Tweaks</h3>
 			<p class="text-muted">Executed automatically</p>
-      <ul class="checkbox">
+      <ul class="checkbox list-unstyled">
   			<li>
   		    <label>
   		      <input type="checkbox" name="tweaks" data-name="tweaks" data-url="../make/cfg/null.cfg" checked />
@@ -416,7 +829,7 @@
 		<div id="custom_cfgs">
 			<h3>Custom configs</h3>
 			<p class="text-muted">Executed manually</p>
-			<ul class="checkbox">
+			<ul class="checkbox list-unstyled">
 				<li>
 			    <label>
 			      <input type="checkbox" name="configs" data-name="configs" data-url="../make/cfg/jump.cfg" />
@@ -441,7 +854,7 @@
 			<div id="demo_support">
 				<h3>Demo Support</h3>
 				<p class="text-muted">Automatically record games <a href="https://wiki.teamfortress.com/wiki/Help:Recording_demos" data-toggle="tooltip" title="Automatically record POV demos of your games. [Click] to visit the official TF2 Wiki for detailed explanation of demo features."  target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a></p>
-        <ul class="checkbox">
+        <ul class="checkbox list-unstyled">
   				<li class="form-inline">
   			    <label>
   			      Demo Support
@@ -502,13 +915,14 @@
 				</ul>
 			</div>
 		</div>
+    <hr>
 	</div>
 
   <div class="tab-pane fade" id="files">
   <!--   SCRIPTS  -->
 		<div id="scripts">
 			<h3>Scripts</h3>
-			<ul class="checkbox">
+			<ul class="checkbox list-unstyled">
 				<li>
 			    <label>
 			      <input type="checkbox" name="scripts" data-name="scripts" data-url="../make/scripts/surfaceproperties.txt" />
@@ -520,7 +934,7 @@
 			<hr>
 
 			<h3><abbr title="Valve Pak" class="initialism">VPK</abbr> files</h3>
-			<ul class="checkbox">
+			<ul class="checkbox list-unstyled">
 				<li>
 			    <label>
 			      <input type="checkbox" name="vpks" data-name="vpks" data-url="../make/vpks/explosions_muzzle_flash.vpk" />
@@ -550,7 +964,7 @@
 			</ul>
 			<hr>
 			<h3>Addons</h3>
-			<ul class="checkbox">
+			<ul class="checkbox list-unstyled">
 				<li>
 			    <label>
 			      <input type="checkbox" name="sourceres" data-name="sourceres" data-url="" />
@@ -565,35 +979,39 @@
 			  </li>
 			</ul>
 		</div>
-
+    <hr>
   </div>
 
   <div class="tab-pane fade" id="viewmod">
 	<!--   VIEWMODEL  -->
 	<h3>Viewmodel settings</h3>
-	<ul class="checkbox">
-  	<li class="form-inline">
-      <label>
-  			Viewmodel <th><abbr title="Field of View" class="initialism">FOV</abbr></th>
-        <input class="form-control input-sm" type="text" size="6"  id="v_fov" onkeypress="return isNumberKey(event)" value="75" />
-      </label>
-    </li>
-		<li>
-	    <label>
-	      <input type="checkbox" id="modeltoggle" data-name="modeltoggle" data-url="" checked />
-	      Draw viewmodels
-	    </label>
-	  </li>
-		<li>
-	    <label>
-	      <input type="checkbox" id="minmodtoggle" data-name="modeltoggle" data-url="" checked />
-	      Use minimal viewmodels
-	    </label>
-	  </li>
-	</ul>
+  <div id="global_viewmodel_settings">
+  	<ul class="checkbox list-unstyled">
+    	<li class="form-inline">
+        <label>
+    			Viewmodel <th><abbr title="Field of View" class="initialism">FOV</abbr></th>
+          <input class="form-control input-sm" type="text" size="6"  id="v_fov" onkeypress="return isNumberKey(event)" value="75" />
+        </label>
+      </li>
+  		<li>
+  	    <label>
+  	      <input type="checkbox" id="modeltoggle" data-name="modeltoggle" data-url="" checked />
+  	      Draw viewmodels
+  	    </label>
+  	  </li>
+  		<li>
+  	    <label>
+  	      <input type="checkbox" id="minmodtoggle" data-name="modeltoggle" data-url="" checked />
+  	      Use minimal viewmodels
+  	    </label>
+  	  </li>
+  	</ul>
+  </div>
 	<hr>
-	<h3>Adjust viewmodels and crosshairs for each class:</h3>
-	<ul class="checkbox">
+	<h3>Class specific weapon viewmodels and crosshairs</h3>
+  <p class="text-muted">Selecting this will disable the viewmodel settings above</p>
+
+	<ul class="checkbox list-unstyled">
 		<li>
 	    <label>
 	      <input type="checkbox" id="crosshairswitcherid" name="crosshairswitcher" data-name="crosshairswitcher" data-url="" />
@@ -601,16 +1019,45 @@
 	    </label>
 	  </li>
 	</ul>
-	<br>
 	<script>
 	$(document).ready(function(){
+    // toggles the whole div when #crosshairswitcherid checked/unchecked
     $('#crosshairswitcherid').change(function(){
-        if(this.checked)
-            $('#switcherdiv').fadeIn(400);
-        else
-            $('#switcherdiv').fadeOut(400);
-
+        if(this.checked) {
+          $('#switcherdiv').fadeIn(400);
+          // disable viewmodel settings when switcher enabled
+          $('#global_viewmodel_settings input').prop('disabled', true);
+          $('#global_viewmodel_settings').fadeTo('fast', '0.6');
+        }
+        else {
+          $('#switcherdiv').fadeOut(400);
+          $('#global_viewmodel_settings input').prop('disabled', false);
+          $('#global_viewmodel_settings').fadeTo('fast', '1');
+        }
     });
+
+    // fades in the minimal viewmodel checkbox for pre-enabled viewmodels
+    $('.viewmodel_checkbox').each(function(){
+      var viewmodelch = $(this);
+      var weaponid = $(viewmodelch).attr("id");
+      if(viewmodelch.is(':checked')) {
+        $('#' + weaponid + '_min.viewmodel_minimal_checkbox').fadeIn(400);
+      } else {
+        $('#' + weaponid + '_min.viewmodel_minimal_checkbox').fadeOut(400);
+      };
+    });
+
+    // toggles the min-viewmodel label (with checkbox child) when the input is checked/unchecked
+    $("#switcherdiv .viewmodel_options .viewmodel_checkbox").change(function() {
+        var weaponid = $(this).attr("id");
+        if($(this).is(':checked')) {
+          $('#' + weaponid + '_min.viewmodel_minimal_checkbox').fadeIn(400);
+        } else {
+          $('#' + weaponid + '_min.viewmodel_minimal_checkbox').fadeOut(400);
+        }
+    });
+
+
 	});
 	</script>
 
@@ -635,10 +1082,10 @@
 						<!-- SCOUT -->
 						<table class="table table-striped table-hover ">
 						  <thead>
-							<th></th>
-							<th>Crosshair</th>
-							<th>Display weapon</th>
-							<th><abbr title="Field of View" class="initialism">FOV</abbr></th>
+  							<th></th>
+  							<th>Crosshair</th>
+  							<th>Display weapon</th>
+  							<th><abbr title="Field of View" class="initialism">FOV</abbr></th>
 						  </thead>
 						  <tr>
 							<td><b>Primary</b></td>
@@ -685,7 +1132,16 @@
 
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_1_1" data-name="cs_draw_1_1" data-url="" /></td>
+							<td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_1_1" data-name="cs_draw_1_1" data-url=""/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_1_1_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_1_1_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_1_1" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						  <tr>
@@ -732,7 +1188,16 @@
 						</select>
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_1_2" data-name="cs_draw_1_2" data-url="" /></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_1_2" data-name="cs_draw_1_2" data-url=""/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_1_2_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_1_2_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_1_2" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						  <tr>
@@ -779,7 +1244,16 @@
 						</select>
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_1_3" data-name="cs_draw_1_3" data-url="" checked/></td>
+							<td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_1_3" data-name="cs_draw_1_3" data-url="" checked/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_1_3_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_1_3_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_1_3" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						</table>
@@ -846,7 +1320,16 @@
 
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_2_1" data-name="cs_draw_2_1" data-url="" /></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_2_1" data-name="cs_draw_2_1" data-url=""/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted" id="cs_draw_2_1_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_2_1_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_2_1" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						  <tr>
@@ -893,7 +1376,16 @@
 						</select>
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_2_2" data-name="cs_draw_2_2" data-url="" /></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_2_2" data-name="cs_draw_2_2" data-url=""/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_2_2_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_2_2_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_2_2" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						  <tr>
@@ -940,7 +1432,16 @@
 						</select>
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_2_3" data-name="cs_draw_1_3" data-url="" checked/></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_2_3" data-name="cs_draw_2_3" data-url="" checked/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_2_3_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_2_3_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_2_3" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						</table>
@@ -1009,7 +1510,16 @@
 
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_3_1" data-name="cs_draw_3_1" data-url="" /></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_3_1" data-name="cs_draw_3_1" data-url=""/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_3_1_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_3_1_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3" id="cs_fov_3_1" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						  <tr>
@@ -1056,7 +1566,16 @@
 						</select>
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_3_2" data-name="cs_draw_3_2" data-url="" /></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_3_2" data-name="cs_draw_3_2" data-url=""/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_3_2_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_3_2_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_3_2" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						  <tr>
@@ -1103,7 +1622,16 @@
 						</select>
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_3_3" data-name="cs_draw_3_3" data-url="" checked/></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_3_3" data-name="cs_draw_3_3" data-url="" checked/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_3_3_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_3_3_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_3_3" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						</table>
@@ -1172,7 +1700,16 @@
 
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_4_1" data-name="cs_draw_4_1" data-url="" /></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_4_1" data-name="cs_draw_4_1" data-url=""/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_4_1_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_4_1_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_4_1" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						  <tr>
@@ -1219,7 +1756,16 @@
 						</select>
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_4_2" data-name="cs_draw_4_2" data-url="" /></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_4_2" data-name="cs_draw_4_2" data-url=""/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_4_2_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_4_2_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_4_2" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						  <tr>
@@ -1266,7 +1812,16 @@
 						</select>
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_4_3" data-name="cs_draw_4_3" data-url="" checked/></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_4_3" data-name="cs_draw_4_3" data-url="" checked/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_4_3_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_4_3_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_4_3" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						</table>
@@ -1333,7 +1888,16 @@
 
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_5_1" data-name="cs_draw_5_1" data-url="" /></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_5_1" data-name="cs_draw_5_1" data-url=""/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_5_1_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_5_1_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_5_1" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						  <tr>
@@ -1380,7 +1944,16 @@
 						</select>
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_5_2" data-name="cs_draw_5_2" data-url="" /></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_5_2" data-name="cs_draw_5_2" data-url=""/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_5_2_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_5_2_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_5_2" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						  <tr>
@@ -1427,7 +2000,16 @@
 						</select>
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_5_3" data-name="cs_draw_5_3" data-url="" checked/></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_5_3" data-name="cs_draw_5_3" data-url="" checked/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_5_3_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_5_3_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_5_3" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						</table>
@@ -1495,7 +2077,16 @@
 
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_6_1" data-name="cs_draw_6_1" data-url="" /></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_6_1" data-name="cs_draw_6_1" data-url=""/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_6_1_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_6_1_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_6_1" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						  <tr>
@@ -1542,7 +2133,16 @@
 						</select>
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_6_2" data-name="cs_draw_6_2" data-url="" /></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_6_2" data-name="cs_draw_6_2" data-url=""/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_6_2_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_6_2_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_6_2" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						  <tr>
@@ -1589,7 +2189,16 @@
 						</select>
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_6_3" data-name="cs_draw_6_3" data-url="" checked/></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_6_3" data-name="cs_draw_6_3" data-url="" checked/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_6_3_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_6_3_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_6_3" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						</table>
@@ -1655,7 +2264,16 @@
 
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_7_1" data-name="cs_draw_7_1" data-url="" /></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_7_1" data-name="cs_draw_7_1" data-url=""/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_7_1_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_7_1_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_7_1" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						  <tr>
@@ -1702,7 +2320,16 @@
 						</select>
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_7_2" data-name="cs_draw_7_2" data-url="" /></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_7_2" data-name="cs_draw_7_2" data-url=""/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_7_2_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_7_2_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_7_2" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						  <tr>
@@ -1749,7 +2376,16 @@
 						</select>
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_7_3" data-name="cs_draw_7_3" data-url="" checked/></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_7_3" data-name="cs_draw_7_3" data-url="" checked/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_7_3_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_7_3_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_7_3" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						</table>
@@ -1814,7 +2450,16 @@
 
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_8_1" data-name="cs_draw_8_1" data-url="" /></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_8_1" data-name="cs_draw_8_1" data-url=""/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_8_1_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_8_1_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_8_1" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						  <tr>
@@ -1861,7 +2506,16 @@
 						</select>
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_8_2" data-name="cs_draw_8_2" data-url="" /></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_8_2" data-name="cs_draw_8_2" data-url=""/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_8_2_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_8_2_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_8_2" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						  <tr>
@@ -1908,7 +2562,16 @@
 						</select>
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_8_3" data-name="cs_draw_8_3" data-url="" checked/></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_8_3" data-name="cs_draw_8_3" data-url="" checked/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_8_3_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_8_3_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_8_3" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						</table>
@@ -1976,7 +2639,16 @@
 
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_9_1" data-name="cs_draw_9_1" data-url="" /></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_9_1" data-name="cs_draw_9_1" data-url=""/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_9_1_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_9_1_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_9_1" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						  <tr>
@@ -2023,7 +2695,16 @@
 						</select>
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_9_2" data-name="cs_draw_9_2" data-url="" /></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_9_2" data-name="cs_draw_9_2" data-url=""/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_9_2_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_9_2_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_9_2" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						  <tr>
@@ -2070,7 +2751,16 @@
 						</select>
 
 							</td>
-							<td><input type="checkbox" id="cs_draw_9_3" data-name="cs_draw_9_3" data-url="" checked/></td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_9_3" data-name="cs_draw_9_3" data-url="" checked/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_9_3_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_9_3_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
 							<td><input class="form-control" type="text" size="3"  id="cs_fov_9_3" onkeypress="return isNumberKey(event)" value="75" /></td>
 						  </tr>
 						</table>
@@ -2089,13 +2779,13 @@
 
 
 
-
+    <hr>
 	</div>
   <div class="tab-pane fade" id="damage">
 	<!--  nable killso HITSOUNDS AND PITCH AND STUFF  -->
 	<h3>Combat Text</h3>
 	<p class="text-muted">Damage numbers that appear on screen</p>
-  <ul class="checkbox">
+  <ul class="checkbox list-unstyled">
   	<li>
       <label>
         <input type="checkbox" id="comtoggle" data-name="comtoggle" data-url="" checked />
@@ -2120,7 +2810,7 @@
 	<p class="text-muted">Sounds that play when you do damage</p>
 
   <div class="disabled">
-  	<ul class="checkbox">
+  	<ul class="checkbox list-unstyled">
   		<li>
   	    <label>
   	      <input type="checkbox" id="hittoggle" data-name="hittoggle" data-url="" checked />
@@ -2167,7 +2857,7 @@
 
     </div>
     <p class="text-muted">Sounds that play when you kill</p>
-  	<ul class="checkbox">
+  	<ul class="checkbox list-unstyled">
   		<li>
   	    <label>
   	      <input type="checkbox" id="killtoggle" data-name="killtoggle" data-url="" />
@@ -2195,7 +2885,6 @@
 		<h3>Custom hitsounds and killsounds:</h3>
 		<p>
 		There are already a few hitsounds that you can select from in the "Advanced Options" in-game menu. Optionally, you can select a custom hit/killsound (or choose none here and use your own one).
-		<br>
     <p class="text-warning"><i class="fa fa-volume-up" aria-hidden="true"></i> Warning! The sound you select will autoplay on click.</p>
 		</p>
 
@@ -2369,20 +3058,17 @@
 			</audio>
       </label>
 		</li>
+    <hr>
 	</div>
   <div class="tab-pane fade" id="network">
 	<!--   CONNECTION SETTINGS  -->
 	<h3>Connection settings</h3>
 	<p>Set to "good connection" by default. Don't touch if you don't understand what this is. If you are curious, here is a <a href="/read/interp/" target="_blank">small article about connection settings</a>.</p>
-	<br>
 	<div class="btn-group" role="group" aria-label="Connection type">
 	<button type="button" class="btn btn-default" onclick="autoFillGood()">Good connection</button>
 	<button type="button" class="btn btn-default" onclick="autoFillBad()">Bad connection</button>
 	<button type="button" class="btn btn-default" onclick="autoFillComp()">Competitive connection</button>
 	</div>
-	<br>
-	<br>
-	<br>
 	<li>
     <label>
 			cl_cmdrate
@@ -2413,13 +3099,14 @@
       <input class="form-control" type="text" size="6"  id="rate" onkeypress="return isNumberKey(event)" value="60000" />
     </label>
     </li>
+  <hr>
 	</div>
   <div class="tab-pane fade" id="binds">
 	<!--   CUSTOM INPUT  -->
 	<h3>Custom bindings:</h3>
 	<p>You may enter anything here, not just binds. Same formatting rules as for the TF2 console. This will be executed at the end of your config and overwrite existing binds.</p>
-	<br>
 	<textarea id="bindings" placeholder="bind kp_minus &quot;say !add spire&quot;" class="form-control"></textarea>
+  <hr>
 	</div>
 </div>
 </div>
@@ -2439,7 +3126,7 @@
 	<!--   LAUNCH OPTIONS  -->
   <script>
   $(document).ready(function() {
-    var copyTextareaBtn = document.querySelector('#loptions_copy');
+    var copyTextareaBtn = document.querySelector('#loptions');
 
     copyTextareaBtn.addEventListener('click', function(event) {
     var copyTextarea = document.querySelector('#loptions');
@@ -2448,9 +3135,14 @@
     try {
       var successful = document.execCommand('copy');
       var msg = successful ? 'successful' : 'unsuccessful';
-      $("#loptions_copy").removeClass('btn-primary').addClass('btn-success');
+      $("#clipboard_copy_info_text").html('Copied to clipboard');
+      $("#clipboard_copy_info").addClass('text-success');
+      setTimeout(function(){
+        $("#clipboard_copy_info_text").html('Click to copy launch options to clipboard');
+        $("#clipboard_copy_info").removeClass('text-success');
+      }, 2000);
     } catch (err) {
-      $("#loptions_copy").removeClass('btn-primary').addClass('btn-danger');
+      $("#clipboard_copy_info").addClass('text-danger');
     }
     });
   });
@@ -2462,7 +3154,8 @@
 		  </div>
 		  <div class="panel-body">
 				<div class="well well-lg">
-					 <button data-toggle="tooltip" title="Copy launch options to clipboard" id="loptions_copy" class="btn btn-primary" type="button"><i class="fa fa-clipboard" aria-hidden="true"></i></button><input type="text" class="form-control" id="loptions" onclick="this.setSelectionRange(0, this.value.length)" value="" readonly/>
+					<input type="text" class="form-control" id="loptions" onclick="this.setSelectionRange(0, this.value.length)" value="" readonly/>
+          <p class="text-center" id="clipboard_copy_info"><i class="fa fa-clipboard" aria-hidden="true"></i> <span id="clipboard_copy_info_text">Click to copy launch options to clipboard</span></p>
 				</div>
 				<div class="well">
 					<li>
@@ -2492,50 +3185,55 @@
 	</script>
 </div>
 
-<script type="text/javascript" src="../js/downloader.js"></script>
-
-
+  <script type="text/javascript" src="../js/downloader.js"></script>
 </div>
 
+  <footer class="footer">
+    <div class="container-fluid row">
 
-<p> </p>
+      <div class="col-md-4 text-center">
+        <ul class="list-unstyled">
+            <li><a href="//discord.gg/79cbsTu" target="_blank">Join our Discord</a></li>
+            <li><a href="//www.teamfortress.tv/40062/a-simple-custom-config-generator" target="_blank">Discuss on TFTV</a></li>
+            <li><a href="//github.com/mkrl/mkrl.github.io/issues" target="_blank">Report an issue</a></li>
+            <li><a href="//github.com/mkrl/mkrl.github.io" target="_blank">View the source code</a></li>
+        </ul>
+      </div>
 
+      <div class="col-md-4 text-center">
+        <p>CFG.TF</p>
+        <p><small>a custom TF2 config generator by <a href="https://steamcommunity.com/id/2x100/" target="_blank">200</a></small></p>
+        <script>
+          (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+              (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+              m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+          })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+          ga('create', 'UA-97817107-1', 'auto');
+          ga('send', 'pageview');
+        </script>
+      </div>
 
- <script>
-    jQuery(window).on('load', function(){
-    jQuery('#overlay').fadeOut();
-    });
-</script>
+      <div class="col-md-4">
+        <p class="text-center">~
+          <script language="JavaScript">
+            var fhsh = document.createElement('script');
+            var fhs_id_h = "3234623";
+            fhsh.src = "//s1.freehostedscripts.net/ocount.php?site=" + fhs_id_h + "&name=configs&a=1";
+            document.head.appendChild(fhsh);
+            document.write("<span id='h_" + fhs_id_h + "'></span>");
+          </script> generated so far.
+        </p>
+      </div>
 
-<footer>
-  <div class="container">
-  <p class="pull-right">~<script language="JavaScript">var fhsh = document.createElement('script');var fhs_id_h = "3234623";
-fhsh.src = "//s1.freehostedscripts.net/ocount.php?site="+fhs_id_h+"&name=configs&a=1";
-document.head.appendChild(fhsh);document.write("<span id='h_"+fhs_id_h+"'></span>");
-</script><br> generated so far.</p>
-        <p class="pull-left">
-    	<small>
-		<a href="https://discord.gg/79cbsTu" target="_blank">Join our Discord</a> <br>
-		<a href="http://www.teamfortress.tv/40869/cfg-tf" target="_blank">Discuss on TFTV</a><br>
-		<a href="https://github.com/mkrl/cfgtf/issues" target="_blank">Report an issue</a><br>
-		<a href="https://github.com/mkrl/cfgtf" target="_blank">View the source code</a>
-		</small>
-		</p>
-        
-	<center><p> CFG.TF <br><small> a custom TF2 config generator by <a href="https://steamcommunity.com/id/2x100/" target="_blank">200</a></small> </p></center>
-
-	<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-97817107-1', 'auto');
-  ga('send', 'pageview');
-
-</script>    
-  </div>
-</footer>
+    </div>
+  </footer>
 
   </body>
 </html>

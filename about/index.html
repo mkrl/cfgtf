@@ -1,242 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Automatically generate Team Fortress 2 configs, including custom VPKs, tweaks, crosshair switcher and more. Get a good fps boost without stupid unnecessary stuff." />
-    <title>CFG.TF - About</title>
 
-    <!-- Latest compiled and minified CSS -->
-		<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <!-- Latest compiled and minified JavaScript -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Automatically generate Team Fortress 2 configs, including custom VPKs, tweaks, crosshair switcher and more. Get a good fps boost without stupid unnecessary stuff." />
+  <title>CFG.TF - About</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
+  <!-- <link rel="stylesheet" href="./css/bootstrap.min.main.css"> -->
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" integrity="sha384-dNpIIXE8U05kAbPhy3G1cz+yZmTzA6CY8Vg/u2L9xRnHjJiAK76m2BIEaSEV+/aU" crossorigin="anonymous">
+  <link rel="stylesheet" href="../css/pygments.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/bootstrap-select.min.css">
+  <script type="text/javascript" src="../js/utility.js"></script>
+  <script type="text/javascript" src="../js/bootstrap-select.min.js"></script>
+</head>
 
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" integrity="sha384-dNpIIXE8U05kAbPhy3G1cz+yZmTzA6CY8Vg/u2L9xRnHjJiAK76m2BIEaSEV+/aU" crossorigin="anonymous">
-
-		<style>
-			#overlay {
-	      background: #ffffff;
-	      color: #666666;
-	      position: fixed;
-	      height: 100%;
-	      width: 100%;
-	      z-index: 5000;
-	      top: 0;
-	      left: 0;
-	      float: left;
-	      text-align: center;
-	      padding-top: 25%;
-	    }
-			#wrapper {
-				width: 60%;
-			}
-			#wrapper .container {
-				max-width: 100%; display: block;
-			}
-			textarea {
-		    overflow-y: scroll;
-				height: 150px;
-				resize: none;
-			}
-			.table > tbody > tr > td {
-				vertical-align: middle;
-				text-align: center;
-			}
-			@-moz-keyframes spin {
-			    from { -moz-transform: rotate(0deg); }
-			    to { -moz-transform: rotate(360deg); }
-			}
-			@-webkit-keyframes spin {
-			    from { -webkit-transform: rotate(0deg); }
-			    to { -webkit-transform: rotate(360deg); }
-			}
-			@keyframes spin {
-			    from {transform:rotate(0deg);}
-			    to {transform:rotate(360deg);}
-			}
-			#loading_logo {
-				background-image: url('../img/tf2logo.png');
-				width: 80px;
-				height: 80px;
-				background-repeat: no-repeat;
-				background-size: contain;
-				margin: 0 auto;
-				background-position: center center;
-
-				-webkit-animation-name: spin;
-		    -webkit-animation-duration: 2000ms;
-		    -webkit-animation-iteration-count: infinite;
-		    -webkit-animation-timing-function: linear;
-		    -moz-animation-name: spin;
-		    -moz-animation-duration: 2000ms;
-		    -moz-animation-iteration-count: infinite;
-		    -moz-animation-timing-function: linear;
-		    -ms-animation-name: spin;
-		    -ms-animation-duration: 2000ms;
-		    -ms-animation-iteration-count: infinite;
-		    -ms-animation-timing-function: linear;
-		    -o-transition: rotate(3600deg);
-			}
-
-      /* give clipboard copy some room */ #loptions { width: 95%; } #loptions_copy { float:left; }
-      /* align titles of crosshair switcher table with content */ #switcherdiv th:not(:last-child) { text-align: center; }
-      /* multiselector has bad contrast on text */ .bootstrap-select > .dropdown-toggle.bs-placeholder { color: white !important; }
-      /* remove bullet points on li */ * 
-      /* separate the lists a bit more, its too squashed */ .radio label, .checkbox label { padding-top: 8px; }
-      /* replace <hr> with bottom borders */ .tab-pane { border-bottom: rgb(236, 240, 241) solid 1px; margin-bottom: 21px; padding-bottom: 21px; }
-
-		</style>
-
-    <link rel="stylesheet" href="/css/pygments.css">
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/bootstrap-select.min.css">
-
-		<script type="text/javascript" src="/js/utility.js"></script>
-    <script type="text/javascript" src="/js/bootstrap-select.min.js"></script>
-
-  </head>
-  <body>
-
-    <nav class="navbar navbar-default" role="navigation">
-		<div class="container">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="/"><i class="fa fa-cogs" aria-hidden="true"></i> CFG.TF</a>
-			</div>
-			<ul class="nav navbar-nav">
-				<li>
-					<a href="/make">Generate</a>
-				</li>				
-				<li>
-					<a href="/server">Server config</a>
-				</li>
-				<li class="dropdown">
-				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Articles<span class="caret"></span></a>
-				  <ul class="dropdown-menu" role="menu">
-					<li><a href="/read/interp">Networking in Source games</a></li>
-					<li><a href="/read/health">Health care</a></li>
-					<li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=154435696" target="_blank"><i class="fa fa-external-link"></i>  Scripting guide</a></li>
-				  </ul>
-				</li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li>
-					<a href="/faq/">FAQ</a>
-				</li>				
-				<li class="active">
-					<a href="/about/">About</a>
-				</li>
-			</ul>
-		</div>
-	</nav>
-    <div class="container-fluid">
-		<div class="row content">
-		    <div class="col-sm-3 sidenav">
-				<!-- magic -->
-			</div>
-
-		<div class="col-sm-9">
-		<div id="wrapper">
-<br>
-<p>
-<h1>About CFG.TF</h1>
-<br>
-			</p>
-			<p>
-			 CFG.TF is a free open-source cross-platform Team Fortress 2 config generator. <br>Even if TF2 is an old game, it has gone through so much updates and patches that it is now nearly impossible to make it run at constant 120+ frames per second on mid-tier PC. And that is absolutely required for playing fast paced shooter comfortably. Ever dreamed of optimizing your game experience in just a few clicks? Well, here is your chance. This app generates a set of premade settings that helps your game to run faster and smoother. 
-			</p><br>
-			<h3>How do I use it?</h3>
-			<br>		<ul>
-						<li>
-					  		 Fill all the necessary information in the forms. Make sure you went through all the tabs before pressing "Generate config" button. Most of the settings are already set for optimal TF2 performance at mid-quality PCs. Every confusing parameter has a question mark you can hover on to get a detailed explaination on what it is.
-						</li>
-						<br>
-						<li>
-							Press the "Generate config" button. Once finished, your browser will download an archive. <br>Extract it to your "Team Fortress 2/tf" folder. Usually it can be found in something like "C:\Program Files (x86)\Steam\steamapps\common\Team Fortress 2\tf".
-						</li>
-						<br>
-						<li>
-							Scroll to the bottom of the page and click on white bar with text under "Launch options". Copy that. Right click on TF2 in your Steam Library, press 'Properties' and then 'Launch Options'. Paste given text there. Without this it may not work like its supposed to.
-						</li>
-						<br>
-						<li>
-							Thats it, you can now play.
-						</li>
-						</ul>
-			<br>
-			<br>
-			<br>
-			<br>
-			<h3>How it works?</h3>
-			<br>
-			<p>
-			 100% Javascript-powered, it works entirely in your browser. You can even download it from the GitHub page and use it on your computer (you are going to need a kind of simple http-server to run i. If you use Node.js on Windows, you can install http-server <code>npm install -g http-server</code> and launch it from server.bat from the project root). 
-			<p>
-			 Stuff used: 
-			</p>
-			</p>		<ul>
-						<li>
-							<a href="https://github.com/Stuk/jszip">JSZip</a>, the main core of this app.
-						</li>
-						<li>
-							<a href="http://getbootstrap.com/">Bootstrap 3</a>, extremely powerful and simple to use web framework.
-						</li>
-						<li>
-							Javascript and jQuery for file and form processing.
-						</li>
-						</ul>
-			
-			<br>
-					
-
-
-			<br>
-			<br>
-			<p>
-			 Sweet thanks to people who contributed and made original configs I use here: <a href="http://www.teamfortress.tv/user/Comanglia">Comanglia</a>, <a href="http://www.teamfortress.tv/user/broesel">broesel</a>, also <a href ="http://www.teamfortress.tv/user/Hrbls">Hrbls</a>, Tricky_X, <a href="http://www.teamfortress.tv/user/xJeebsx">xJeebsx</a> and <a href="http://www.teamfortress.tv/user/springrolls">springrolls</a> for taking care of the NoHatsMod. Thanks to everyone who submitted bug reports and general feedback. <br>
-			 I would also like to thank people that contributed directly to this site by submiting pull requests to improve it. Special thanks to <a href="https://github.com/xiyzzc" target="_blank">xiyzzc</a> for doing a very huge work for this site by improving all my terrible code.
-			</p>
-</p>
-
-
- </div>
-</div>
-
-
-
+<body>
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+      <div class="navbar-header"> <a class="navbar-brand" href="../"><i class="fa fa-cogs" aria-hidden="true"></i> CFG.TF</a> </div>
+      <ul class="nav navbar-nav">
+        <li> <a href="../make">Generate</a> </li>
+        <li> <a href="../server">Server config</a> </li>
+        <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Articles<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="../read/interp">Networking in Source games</a></li>
+            <li><a href="../read/health">Health care</a></li>
+            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=154435696" target="_blank"><i class="fa fa-external-link"></i>  Scripting guide</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li> <a href="../faq/">FAQ</a> </li>
+        <li class="active"> <a href="../about/">About</a> </li>
+      </ul>
+    </div>
+  </nav>
+  <div id="wrapper" class="container-fluid">
+    <div class="row content">
+      <h1 class="page-header">About CFG.TF</h1>
+      <p> CFG.TF is a free open-source cross-platform Team Fortress 2 config generator. Even if TF2 is an old game, it has gone through so much updates and patches that it is now nearly impossible to make it run at constant 120+ frames per second on mid-tier
+        PC. And that is absolutely required for playing fast paced shooter comfortably. Ever dreamed of optimizing your game experience in just a few clicks? Well, here is your chance. This app generates a set of premade settings that helps your game
+        to run faster and smoother. </p>
+      <h3>How do I use it?</h3>
+      <ul>
+        <li>Fill all the necessary information in the forms. Make sure you went through all the tabs before pressing "Generate config" button. Most of the settings are already set for optimal TF2 performance at mid-quality PCs. Every confusing parameter has
+          a question mark you can hover on to get a detailed explaination on what it is. </li>
+        <li>Press the "Generate config" button. Once finished, your browser will download an archive. Extract it to your "Team Fortress 2/tf" folder. Usually it can be found in something like "C:\Program Files (x86)\Steam\steamapps\common\Team Fortress 2\tf".</li>
+        <li>Scroll to the bottom of the page and click on white bar with text under "Launch options". Copy that. Right click on TF2 in your Steam Library, press 'Properties' and then 'Launch Options'. Paste given text there. Without this it may not work like
+          its supposed to. </li>
+        <li>Thats it, you can now play.</li>
+      </ul>
+      <h3>How it works</h3>
+      <p>100% Javascript-powered, it works entirely in your browser. You can even <a href="//github.com/mkrl/cfgtf/archive/master.zip">download</a> it from the GitHub page and run it offline on your computer!</p>
+      <p class="text-muted">In order to run a website on your PC, you will require a http server. If you use Node.js, you can run <code>npm install -g http-server</code> and launch it from server.bat from the project root. Alternatively, just open the relevent index.html file in your browser. make/index.html for client configs, server/index.html for server configs.</p>
+      <p>Stuff used:</p>
+      <ul>
+        <li><a href="//github.com/Stuk/jszip">JSZip</a>, the main core of this app. </li>
+        <li><a href="//getbootstrap.com/">Bootstrap 3</a>, extremely powerful and simple to use web framework. </li>
+        <li>Javascript and <a href="//jquery.com">jQuery</a> for file and form processing. </li>
+      </ul>
+      <h3>Thanks</h3>
+      <p>Sweet thanks to people who contributed and made original configs I use here: <a href="http://www.teamfortress.tv/user/Comanglia">Comanglia</a>, <a href="http://www.teamfortress.tv/user/broesel">broesel</a>, also <a href="http://www.teamfortress.tv/user/Hrbls">Hrbls</a>,
+        Tricky_X, <a href="http://www.teamfortress.tv/user/xJeebsx">xJeebsx</a> and <a href="http://www.teamfortress.tv/user/springrolls">springrolls</a> for taking care of the NoHatsMod. Thanks to everyone who submitted bug reports and general feedback.
+        I would also like to thank people that contributed directly to this site by submiting pull requests to improve it. Special thanks to <a href="https://github.com/xiyzzc" target="_blank">xiyzzc</a>
+        <!-- :D -->for doing huge work for this site by improving all my concept code.</p>
+    </div>
   </div>
- </div>
+  <footer class="footer">
+    <div class="container-fluid row">
+      <div class="col-md-4 text-center">
+        <ul class="list-unstyled">
+          <li><a href="//discord.gg/79cbsTu" target="_blank">Join our Discord</a></li>
+          <li><a href="//www.teamfortress.tv/40062/a-simple-custom-config-generator" target="_blank">Discuss on TFTV</a></li>
+          <li><a href="//github.com/mkrl/mkrl.github.io/issues" target="_blank">Report an issue</a></li>
+          <li><a href="//github.com/mkrl/mkrl.github.io" target="_blank">View the source code</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4 text-center">
+        <p>CFG.TF</p>
+        <p><small>a custom TF2 config generator by <a href="https://steamcommunity.com/id/2x100/" target="_blank">200</a></small></p>
+        <script>
+          (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+              (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+              m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+          })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+          ga('create', 'UA-97817107-1', 'auto');
+          ga('send', 'pageview');
+        </script>
+      </div>
+      <div class="col-md-4">
+        <p class="text-center">~
+          <script language="JavaScript">
+            var fhsh = document.createElement('script');
+            var fhs_id_h = "3234623";
+            fhsh.src = "//s1.freehostedscripts.net/ocount.php?site=" + fhs_id_h + "&name=configs&a=1";
+            document.head.appendChild(fhsh);
+            document.write("<span id='h_" + fhs_id_h + "'></span>");
+          </script> generated so far. </p>
+      </div>
+    </div>
+  </footer>
+</body>
 
-<footer>
-  <div class="container">
-  <p class="pull-right">~<script language="JavaScript">var fhsh = document.createElement('script');var fhs_id_h = "3234623";
-fhsh.src = "//s1.freehostedscripts.net/ocount.php?site="+fhs_id_h+"&name=configs&a=1";
-document.head.appendChild(fhsh);document.write("<span id='h_"+fhs_id_h+"'></span>");
-</script><br> generated so far.</p>
-        <p class="pull-left">
-    	<small>
-		<a href="https://discord.gg/79cbsTu" target="_blank">Join our Discord</a> <br>
-		<a href="http://www.teamfortress.tv/40869/cfg-tf" target="_blank">Discuss on TFTV</a><br>
-		<a href="https://github.com/mkrl/cfgtf/issues" target="_blank">Report an issue</a><br>
-		<a href="https://github.com/mkrl/cfgtf" target="_blank">View the source code</a>
-		</small>
-		</p>
-        
-	<center><p> CFG.TF <br><small> a custom TF2 config generator by <a href="https://steamcommunity.com/id/2x100/" target="_blank">200</a></small> </p></center>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-97817107-1', 'auto');
-  ga('send', 'pageview');
-
-</script>    
-  </div>
-</footer>
-
-  </body>
 </html>
