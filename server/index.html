@@ -33,12 +33,20 @@
 
   </head>
   <body>
-	<div class="jumbotron" id="overlay">
-	  <div id="loading_logo"></div>
-	  <br>
-		<p>Hang on a minute...</p>
-    <noscript><p>Please enable javascript in your browser to continue.</p></noscript>
-	</div>
+<div class="jumbotron" id="overlay">
+   <div id="loading_logo">
+     <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 464 462.9">
+       <path fill="#3498db" d="M213 19.2A213 213 0 0 0 19.7 212H160a74.4 74.4 0 0 1 53-52.6V19.2zm38 0v140.4a74.4 74.4 0 0 1 52.4 52.3h140.4A213 213 0 0 0 251 19zM19.5 250A213 213 0 0 0 213 443.4V303.2a74.4 74.4 0 0 1-53.3-53.3H19.5zm284 0a74.4 74.4 0 0 1-52.5 53v140.4A213 213 0 0 0 443.8 250H303.6z"/>
+     </svg>
+   </div>
+   <br><p>Hang on a minute...</p>
+   <noscript><p>Please enable javascript in your browser to continue.</p></noscript>
+ </div>
+  <script>
+   jQuery(window).on('load', function(){
+     jQuery('#overlay').fadeOut();
+   });
+ </script>
     <nav class="navbar navbar-default" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
@@ -59,10 +67,11 @@
 					<li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=154435696" target="_blank"><i class="fa fa-external-link"></i>  Scripting guide</a></li>
 				  </ul>
 				</li>
-			</ul>
 							<li>
 					<a href="../../configs">Configs</a>
 				</li>
+			</ul>
+
 			<ul class="nav navbar-nav navbar-right">
 				<li>
 					<a href="../faq/">FAQ</a>
@@ -742,11 +751,6 @@
 <p> </p>
 
 
- <script>
-    jQuery(window).on('load', function(){
-    jQuery('#overlay').fadeOut();
-    });
-</script>
 
 <footer class="footer">
   <div class="container-fluid row">

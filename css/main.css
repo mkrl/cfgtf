@@ -136,7 +136,6 @@ box-shadow: 0px 0px 34px 13px rgba(0,0,0,0.14);
   to {transform:rotate(360deg);}
 }
 #loading_logo {
-  background-image: url('../img/tf2logo.png');
   width: 80px;
   height: 80px;
   background-repeat: no-repeat;
