@@ -1,4 +1,4 @@
-jQuery(function ($) {
+jQuery(function($) {
 	"use strict";
 
 	var Promise = window.Promise;
@@ -9,10 +9,10 @@ jQuery(function ($) {
 	/**
 	 * Reset the message.
 	 */
-	function resetMessage () {
+	function resetMessage() {
 		$("#result")
-		.removeClass()
-		.text("");
+			.removeClass()
+			.text("");
 	}
 	/**
 	 * show a successful message.
@@ -21,8 +21,8 @@ jQuery(function ($) {
 	function showMessage(text) {
 		resetMessage();
 		$("#result")
-		.addClass("alert alert-success")
-		.text(text);
+			.addClass("alert alert-success")
+			.text(text);
 	}
 	/**
 	 * show an error message.
@@ -31,8 +31,8 @@ jQuery(function ($) {
 	function showError(text) {
 		resetMessage();
 		$("#result")
-		.addClass("alert alert-danger")
-		.text(text);
+			.addClass("alert alert-danger")
+			.text(text);
 	}
 	/**
 	 * Update the progress bar.
@@ -40,11 +40,11 @@ jQuery(function ($) {
 	 */
 	function updatePercent(percent) {
 		$("#progress_bar").removeClass("hide")
-		.find(".progress-bar")
-		.attr("aria-valuenow", percent)
-		.css({
-			width : percent + "%"
-		});
+			.find(".progress-bar")
+			.attr("aria-valuenow", percent)
+			.css({
+				width: percent + "%"
+			});
 	}
 
 	/**
@@ -54,8 +54,8 @@ jQuery(function ($) {
 	 */
 	function urlToPromise(url) {
 		return new Promise(function(resolve, reject) {
-			JSZipUtils.getBinaryContent(url, function (err, data) {
-				if(err) {
+			JSZipUtils.getBinaryContent(url, function(err, data) {
+				if (err) {
 					reject(err);
 				} else {
 					resolve(data);
@@ -64,12 +64,12 @@ jQuery(function ($) {
 		});
 	}
 
-	if(!JSZip.support.blob) {
+	if (!JSZip.support.blob) {
 		showError("This only works with a good browser!");
 		return;
 	}
 
-	var $form = $("#download_form").on("submit", function () {
+	var $form = $("#download_form").on("submit", function() {
 
 		resetMessage();
 
@@ -80,43 +80,43 @@ jQuery(function ($) {
 		// !!!!IMPORTANT!!!! All the selectable html fields (non-text forms) should have data-name and data-url attributes or everything breaks
 
 		//viewmodel settings
-		if($("#modeltoggle").is(':checked')){
+		if ($("#modeltoggle").is(':checked')) {
 			var drawviewmodel = "1"
-			} else {
+		} else {
 			var drawviewmodel = "0"
 		}
-		if($("#minmodtoggle").is(':checked')){
+		if ($("#minmodtoggle").is(':checked')) {
 			var minmodel = "1"
-			} else {
+		} else {
 			var minmodel = "0"
 		}
-		if($("#fliptoggle").is(':checked')){
+		if ($("#fliptoggle").is(':checked')) {
 			var fliptoggle = "1"
-			} else {
+		} else {
 			var fliptoggle = "0"
 		}
 		var v_fov = $('#v_fov').val();
 		var vmodelbind = $('#vmodelbind').val();
 
 		//combat text settings
-		if($("#battoggle").is(':checked')){
+		if ($("#battoggle").is(':checked')) {
 			var battoggle = "1"
-			} else {
+		} else {
 			var battoggle = "0"
 		}
-		if($("#comtoggle").is(':checked')){
+		if ($("#comtoggle").is(':checked')) {
 			var comtoggle = "1"
-			} else {
+		} else {
 			var comtoggle = "0"
 		}
-		if($("#hittoggle").is(':checked')){
+		if ($("#hittoggle").is(':checked')) {
 			var hittoggle = "1"
-			} else {
+		} else {
 			var hittoggle = "0"
 		}
-		if($("#killtoggle").is(':checked')){
+		if ($("#killtoggle").is(':checked')) {
 			var killtoggle = "1"
-			} else {
+		} else {
 			var killtoggle = "0"
 		}
 
@@ -139,14 +139,14 @@ jQuery(function ($) {
 		var rate = $('#rate').val();
 
 		//demo support
-		if($("#ds_delete").is(':checked')){
+		if ($("#ds_delete").is(':checked')) {
 			var ds_delete = "1"
-			} else {
+		} else {
 			var ds_delete = "0"
 		}
-		if($("#ds_screen").is(':checked')){
+		if ($("#ds_screen").is(':checked')) {
 			var ds_screen = "1"
-			} else {
+		} else {
 			var ds_screen = "0"
 		}
 
@@ -161,593 +161,669 @@ jQuery(function ($) {
 
 		//getting switcher values (if selected)
 
-		if($("#crosshairswitcherid").is(':checked')){
+		if ($("#crosshairswitcherid").is(':checked')) {
 
 			//getting a lot of dumb vars for class settings (PLEASE remake this into any kind of loop, is way too ugly. use arrays, maybe?)
 
 			//scout
-			var cross1_1  = $("[name='cs_col_1_1n']").val();
-			var style1_1=cross1_1[0];
-			var size1_1=cross1_1[1];
-			var color1_1=cross1_1[2];
-			if($("#cs_draw_1_1").is(':checked')){ // check for min models only when viewmodels are on
-		if($("#cs_draw_1_1_min input").is(':checked')) {
-		  var minmodel1_1 = "; tf_use_min_viewmodels 1"; // included semi-colon in string because I would rather not print a lonely semi-colon into the config when its disabled
-		} else if($("#cs_draw_1_1_min input").not(':checked')) {
-		  var minmodel1_1 = "; tf_use_min_viewmodels 0";
-		}
-		var model1_1 = $('#cs_fov_1_1').val()
+			var cross1_1 = $("[name='cs_col_1_1n']").val();
+			var style1_1 = cross1_1[0];
+			var size1_1 = cross1_1[1];
+			var color1_1 = cross1_1[2];
+			if ($("#cs_draw_1_1").is(':checked')) { // check for min models only when viewmodels are on
+				if ($("#cs_draw_1_1_min input").is(':checked')) {
+					var minmodel1_1 = "; tf_use_min_viewmodels 1"; // included semi-colon in string because I would rather not print a lonely semi-colon into the config when its disabled
+				} else if ($("#cs_draw_1_1_min input").not(':checked')) {
+					var minmodel1_1 = "; tf_use_min_viewmodels 0";
+				}
+				var model1_1 = $('#cs_fov_1_1').val()
 			} else {
-			var model1_1 = "off";
-		var minmodel1_1 = ""; // blank it because there's no if/else when this is printed
+				var model1_1 = "off";
+				var minmodel1_1 = ""; // blank it because there's no if/else when this is printed
 			}
 
-			var cross1_2  = $("[name='cs_col_1_2n']").val();
-			var style1_2=cross1_2[0];
-			var size1_2=cross1_2[1];
-			var color1_2=cross1_2[2];
-	  if($("#cs_draw_1_2").is(':checked')){
-		if($("#cs_draw_1_2_min input").is(':checked')) {
-		  var minmodel1_2 = "; tf_use_min_viewmodels 1";
-		} else if($("#cs_draw_1_2_min input").not(':checked')) {
-		  var minmodel1_2 = "; tf_use_min_viewmodels 0";
-		}
-		var model1_2 = $('#cs_fov_1_2').val()
-	  } else {
-		var model1_2 = "off";
-		var minmodel1_2 = "";
-	  }
-
-			var cross1_3  = $("[name='cs_col_1_3n']").val();
-			var style1_3=cross1_3[0];
-			var size1_3=cross1_3[1];
-			var color1_3=cross1_3[2];
-	  if($("#cs_draw_1_3").is(':checked')){
-		if($("#cs_draw_1_3_min input").is(':checked')) {
-		  var minmodel1_3 = "; tf_use_min_viewmodels 1";
-		} else if($("#cs_draw_1_3_min input").not(':checked')) {
-		  var minmodel1_3 = "; tf_use_min_viewmodels 0";
-		}
-		var model1_3 = $('#cs_fov_1_3').val()
+			var cross1_2 = $("[name='cs_col_1_2n']").val();
+			var style1_2 = cross1_2[0];
+			var size1_2 = cross1_2[1];
+			var color1_2 = cross1_2[2];
+			if ($("#cs_draw_1_2").is(':checked')) {
+				if ($("#cs_draw_1_2_min input").is(':checked')) {
+					var minmodel1_2 = "; tf_use_min_viewmodels 1";
+				} else if ($("#cs_draw_1_2_min input").not(':checked')) {
+					var minmodel1_2 = "; tf_use_min_viewmodels 0";
+				}
+				var model1_2 = $('#cs_fov_1_2').val()
 			} else {
-			var model1_3 = "off";
-		var minmodel1_3 = "";
+				var model1_2 = "off";
+				var minmodel1_2 = "";
+			}
+
+			var cross1_3 = $("[name='cs_col_1_3n']").val();
+			var style1_3 = cross1_3[0];
+			var size1_3 = cross1_3[1];
+			var color1_3 = cross1_3[2];
+			if ($("#cs_draw_1_3").is(':checked')) {
+				if ($("#cs_draw_1_3_min input").is(':checked')) {
+					var minmodel1_3 = "; tf_use_min_viewmodels 1";
+				} else if ($("#cs_draw_1_3_min input").not(':checked')) {
+					var minmodel1_3 = "; tf_use_min_viewmodels 0";
+				}
+				var model1_3 = $('#cs_fov_1_3').val()
+			} else {
+				var model1_3 = "off";
+				var minmodel1_3 = "";
 			}
 
 
 
 			//soldier
-			var cross2_1  = $("[name='cs_col_2_1n']").val();
-			var style2_1=cross2_1[0];
-			var size2_1=cross2_1[1];
-			var color2_1=cross2_1[2];
-	  if($("#cs_draw_2_1").is(':checked')){
-		if($("#cs_draw_2_1_min input").is(':checked')) {
-		  var minmodel2_1 = "; tf_use_min_viewmodels 1";
-		} else if($("#cs_draw_2_1_min input").not(':checked')) {
-		  var minmodel2_1 = "; tf_use_min_viewmodels 0";
-		}
-		var model2_1 = $('#cs_fov_2_1').val()
-	  } else {
-		var model2_1 = "off";
-		var minmodel2_1 = "";
-	  }
+			var cross2_1 = $("[name='cs_col_2_1n']").val();
+			var style2_1 = cross2_1[0];
+			var size2_1 = cross2_1[1];
+			var color2_1 = cross2_1[2];
+			if ($("#cs_draw_2_1").is(':checked')) {
+				if ($("#cs_draw_2_1_min input").is(':checked')) {
+					var minmodel2_1 = "; tf_use_min_viewmodels 1";
+				} else if ($("#cs_draw_2_1_min input").not(':checked')) {
+					var minmodel2_1 = "; tf_use_min_viewmodels 0";
+				}
+				var model2_1 = $('#cs_fov_2_1').val()
+			} else {
+				var model2_1 = "off";
+				var minmodel2_1 = "";
+			}
 
-			var cross2_2  = $("[name='cs_col_2_2n']").val();
-			var style2_2=cross2_2[0];
-			var size2_2=cross2_2[1];
-			var color2_2=cross2_2[2];
-	  if($("#cs_draw_2_2").is(':checked')){
-		if($("#cs_draw_2_2_min input").is(':checked')) {
-		  var minmodel2_2 = "; tf_use_min_viewmodels 1";
-		} else if($("#cs_draw_2_2_min input").not(':checked')) {
-		  var minmodel2_2 = "; tf_use_min_viewmodels 0";
-		}
-		var model2_2 = $('#cs_fov_2_2').val()
-	  } else {
-		var model2_2 = "off";
-		var minmodel2_2 = "";
-	  }
+			var cross2_2 = $("[name='cs_col_2_2n']").val();
+			var style2_2 = cross2_2[0];
+			var size2_2 = cross2_2[1];
+			var color2_2 = cross2_2[2];
+			if ($("#cs_draw_2_2").is(':checked')) {
+				if ($("#cs_draw_2_2_min input").is(':checked')) {
+					var minmodel2_2 = "; tf_use_min_viewmodels 1";
+				} else if ($("#cs_draw_2_2_min input").not(':checked')) {
+					var minmodel2_2 = "; tf_use_min_viewmodels 0";
+				}
+				var model2_2 = $('#cs_fov_2_2').val()
+			} else {
+				var model2_2 = "off";
+				var minmodel2_2 = "";
+			}
 
-			var cross2_3  = $("[name='cs_col_2_3n']").val();
-			var style2_3=cross2_3[0];
-			var size2_3=cross2_3[1];
-			var color2_3=cross2_3[2];
-	  if($("#cs_draw_2_3").is(':checked')){
-		if($("#cs_draw_2_3_min input").is(':checked')) {
-		  var minmodel2_3 = "; tf_use_min_viewmodels 1";
-		} else if($("#cs_draw_2_3_min input").not(':checked')) {
-		  var minmodel2_3 = "; tf_use_min_viewmodels 0";
-		}
-		var model2_3 = $('#cs_fov_2_3').val()
-	  } else {
-		var model2_3 = "off";
-		var minmodel2_3 = "";
-	  }
+			var cross2_3 = $("[name='cs_col_2_3n']").val();
+			var style2_3 = cross2_3[0];
+			var size2_3 = cross2_3[1];
+			var color2_3 = cross2_3[2];
+			if ($("#cs_draw_2_3").is(':checked')) {
+				if ($("#cs_draw_2_3_min input").is(':checked')) {
+					var minmodel2_3 = "; tf_use_min_viewmodels 1";
+				} else if ($("#cs_draw_2_3_min input").not(':checked')) {
+					var minmodel2_3 = "; tf_use_min_viewmodels 0";
+				}
+				var model2_3 = $('#cs_fov_2_3').val()
+			} else {
+				var model2_3 = "off";
+				var minmodel2_3 = "";
+			}
 
 
 
 			//pyro
-			var cross3_1  = $("[name='cs_col_3_1n']").val();
-			var style3_1=cross3_1[0];
-			var size3_1=cross3_1[1];
-			var color3_1=cross3_1[2];
-	  if($("#cs_draw_3_1").is(':checked')){
-		if($("#cs_draw_3_1_min input").is(':checked')) {
-		  var minmodel3_1 = "; tf_use_min_viewmodels 1";
-		} else if($("#cs_draw_3_1_min input").not(':checked')) {
-		  var minmodel3_1 = "; tf_use_min_viewmodels 0";
-		}
-		var model3_1 = $('#cs_fov_3_1').val()
-	  } else {
-		var model3_1 = "off";
-		var minmodel3_1 = "";
-	  }
+			var cross3_1 = $("[name='cs_col_3_1n']").val();
+			var style3_1 = cross3_1[0];
+			var size3_1 = cross3_1[1];
+			var color3_1 = cross3_1[2];
+			if ($("#cs_draw_3_1").is(':checked')) {
+				if ($("#cs_draw_3_1_min input").is(':checked')) {
+					var minmodel3_1 = "; tf_use_min_viewmodels 1";
+				} else if ($("#cs_draw_3_1_min input").not(':checked')) {
+					var minmodel3_1 = "; tf_use_min_viewmodels 0";
+				}
+				var model3_1 = $('#cs_fov_3_1').val()
+			} else {
+				var model3_1 = "off";
+				var minmodel3_1 = "";
+			}
 
-			var cross3_2  = $("[name='cs_col_3_2n']").val();
-			var style3_2=cross3_2[0];
-			var size3_2=cross3_2[1];
-			var color3_2=cross3_2[2];
-	  if($("#cs_draw_3_2").is(':checked')){
-		if($("#cs_draw_3_2_min input").is(':checked')) {
-		  var minmodel3_2 = "; tf_use_min_viewmodels 1";
-		} else if($("#cs_draw_3_2_min input").not(':checked')) {
-		  var minmodel3_2 = "; tf_use_min_viewmodels 0";
-		}
-		var model3_2 = $('#cs_fov_3_2').val()
-	  } else {
-		var model3_2 = "off";
-		var minmodel3_2 = "";
-	  }
+			var cross3_2 = $("[name='cs_col_3_2n']").val();
+			var style3_2 = cross3_2[0];
+			var size3_2 = cross3_2[1];
+			var color3_2 = cross3_2[2];
+			if ($("#cs_draw_3_2").is(':checked')) {
+				if ($("#cs_draw_3_2_min input").is(':checked')) {
+					var minmodel3_2 = "; tf_use_min_viewmodels 1";
+				} else if ($("#cs_draw_3_2_min input").not(':checked')) {
+					var minmodel3_2 = "; tf_use_min_viewmodels 0";
+				}
+				var model3_2 = $('#cs_fov_3_2').val()
+			} else {
+				var model3_2 = "off";
+				var minmodel3_2 = "";
+			}
 
-			var cross3_3  = $("[name='cs_col_3_3n']").val();
-			var style3_3=cross3_3[0];
-			var size3_3=cross3_3[1];
-			var color3_3=cross3_3[2];
-	  if($("#cs_draw_3_3").is(':checked')){
-		if($("#cs_draw_3_3_min input").is(':checked')) {
-		  var minmodel3_3 = "; tf_use_min_viewmodels 1";
-		} else if($("#cs_draw_3_3_min input").not(':checked')) {
-		  var minmodel3_3 = "; tf_use_min_viewmodels 0";
-		}
-		var model3_3 = $('#cs_fov_3_3').val()
-	  } else {
-		var model3_3 = "off";
-		var minmodel3_3 = "";
-	  }
+			var cross3_3 = $("[name='cs_col_3_3n']").val();
+			var style3_3 = cross3_3[0];
+			var size3_3 = cross3_3[1];
+			var color3_3 = cross3_3[2];
+			if ($("#cs_draw_3_3").is(':checked')) {
+				if ($("#cs_draw_3_3_min input").is(':checked')) {
+					var minmodel3_3 = "; tf_use_min_viewmodels 1";
+				} else if ($("#cs_draw_3_3_min input").not(':checked')) {
+					var minmodel3_3 = "; tf_use_min_viewmodels 0";
+				}
+				var model3_3 = $('#cs_fov_3_3').val()
+			} else {
+				var model3_3 = "off";
+				var minmodel3_3 = "";
+			}
 
 
 
 			//demo
-			var cross4_1  = $("[name='cs_col_4_1n']").val();
-			var style4_1=cross4_1[0];
-			var size4_1=cross4_1[1];
-			var color4_1=cross4_1[2];
-	  if($("#cs_draw_4_1").is(':checked')){
-		if($("#cs_draw_4_1_min input").is(':checked')) {
-		  var minmodel4_1 = "; tf_use_min_viewmodels 1";
-		} else if($("#cs_draw_4_1_min input").not(':checked')) {
-		  var minmodel4_1 = "; tf_use_min_viewmodels 0";
-		}
-		var model4_1 = $('#cs_fov_4_1').val()
-	  } else {
-		var model4_1 = "off";
-		var minmodel4_1 = "";
-	  }
+			var cross4_1 = $("[name='cs_col_4_1n']").val();
+			var style4_1 = cross4_1[0];
+			var size4_1 = cross4_1[1];
+			var color4_1 = cross4_1[2];
+			if ($("#cs_draw_4_1").is(':checked')) {
+				if ($("#cs_draw_4_1_min input").is(':checked')) {
+					var minmodel4_1 = "; tf_use_min_viewmodels 1";
+				} else if ($("#cs_draw_4_1_min input").not(':checked')) {
+					var minmodel4_1 = "; tf_use_min_viewmodels 0";
+				}
+				var model4_1 = $('#cs_fov_4_1').val()
+			} else {
+				var model4_1 = "off";
+				var minmodel4_1 = "";
+			}
 
-			var cross4_2  = $("[name='cs_col_4_2n']").val();
-			var style4_2=cross4_2[0];
-			var size4_2=cross4_2[1];
-			var color4_2=cross4_2[2];
-	  if($("#cs_draw_4_2").is(':checked')){
-		if($("#cs_draw_4_2_min input").is(':checked')) {
-		  var minmodel4_2 = "; tf_use_min_viewmodels 1";
-		} else if($("#cs_draw_4_2_min input").not(':checked')) {
-		  var minmodel4_2 = "; tf_use_min_viewmodels 0";
-		}
-		var model4_2 = $('#cs_fov_4_2').val()
-	  } else {
-		var model4_2 = "off";
-		var minmodel4_2 = "";
-	  }
+			var cross4_2 = $("[name='cs_col_4_2n']").val();
+			var style4_2 = cross4_2[0];
+			var size4_2 = cross4_2[1];
+			var color4_2 = cross4_2[2];
+			if ($("#cs_draw_4_2").is(':checked')) {
+				if ($("#cs_draw_4_2_min input").is(':checked')) {
+					var minmodel4_2 = "; tf_use_min_viewmodels 1";
+				} else if ($("#cs_draw_4_2_min input").not(':checked')) {
+					var minmodel4_2 = "; tf_use_min_viewmodels 0";
+				}
+				var model4_2 = $('#cs_fov_4_2').val()
+			} else {
+				var model4_2 = "off";
+				var minmodel4_2 = "";
+			}
 
-			var cross4_3  = $("[name='cs_col_4_3n']").val();
-			var style4_3=cross4_3[0];
-			var size4_3=cross4_3[1];
-			var color4_3=cross4_3[2];
-	  if($("#cs_draw_4_3").is(':checked')){
-		if($("#cs_draw_4_3_min input").is(':checked')) {
-		  var minmodel4_3 = "; tf_use_min_viewmodels 1";
-		} else if($("#cs_draw_4_3_min input").not(':checked')) {
-		  var minmodel4_3 = "; tf_use_min_viewmodels 0";
-		}
-		var model4_3 = $('#cs_fov_4_3').val()
-	  } else {
-		var model4_3 = "off";
-		var minmodel4_3 = "";
-	  }
+			var cross4_3 = $("[name='cs_col_4_3n']").val();
+			var style4_3 = cross4_3[0];
+			var size4_3 = cross4_3[1];
+			var color4_3 = cross4_3[2];
+			if ($("#cs_draw_4_3").is(':checked')) {
+				if ($("#cs_draw_4_3_min input").is(':checked')) {
+					var minmodel4_3 = "; tf_use_min_viewmodels 1";
+				} else if ($("#cs_draw_4_3_min input").not(':checked')) {
+					var minmodel4_3 = "; tf_use_min_viewmodels 0";
+				}
+				var model4_3 = $('#cs_fov_4_3').val()
+			} else {
+				var model4_3 = "off";
+				var minmodel4_3 = "";
+			}
 
 
 
 			//hwg
-			var cross5_1  = $("[name='cs_col_5_1n']").val();
-			var style5_1=cross5_1[0];
-			var size5_1=cross5_1[1];
-			var color5_1=cross5_1[2];
-	  if($("#cs_draw_5_1").is(':checked')){
-		if($("#cs_draw_5_1_min input").is(':checked')) {
-		  var minmodel5_1 = "; tf_use_min_viewmodels 1";
-		} else if($("#cs_draw_5_1_min input").not(':checked')) {
-		  var minmodel5_1 = "; tf_use_min_viewmodels 0";
-		}
-		var model5_1 = $('#cs_fov_5_1').val()
-	  } else {
-		var model5_1 = "off";
-		var minmodel5_1 = "";
-	  }
+			var cross5_1 = $("[name='cs_col_5_1n']").val();
+			var style5_1 = cross5_1[0];
+			var size5_1 = cross5_1[1];
+			var color5_1 = cross5_1[2];
+			if ($("#cs_draw_5_1").is(':checked')) {
+				if ($("#cs_draw_5_1_min input").is(':checked')) {
+					var minmodel5_1 = "; tf_use_min_viewmodels 1";
+				} else if ($("#cs_draw_5_1_min input").not(':checked')) {
+					var minmodel5_1 = "; tf_use_min_viewmodels 0";
+				}
+				var model5_1 = $('#cs_fov_5_1').val()
+			} else {
+				var model5_1 = "off";
+				var minmodel5_1 = "";
+			}
 
-			var cross5_2  = $("[name='cs_col_5_2n']").val();
-			var style5_2=cross5_2[0];
-			var size5_2=cross5_2[1];
-			var color5_2=cross5_2[2];
-	  if($("#cs_draw_5_2").is(':checked')){
-		if($("#cs_draw_5_2_min input").is(':checked')) {
-		  var minmodel5_2 = "; tf_use_min_viewmodels 1";
-		} else if($("#cs_draw_5_2_min input").not(':checked')) {
-		  var minmodel5_2 = "; tf_use_min_viewmodels 0";
-		}
-		var model5_2 = $('#cs_fov_5_2').val()
-	  } else {
-		var model5_2 = "off";
-		var minmodel5_2 = "";
-	  }
+			var cross5_2 = $("[name='cs_col_5_2n']").val();
+			var style5_2 = cross5_2[0];
+			var size5_2 = cross5_2[1];
+			var color5_2 = cross5_2[2];
+			if ($("#cs_draw_5_2").is(':checked')) {
+				if ($("#cs_draw_5_2_min input").is(':checked')) {
+					var minmodel5_2 = "; tf_use_min_viewmodels 1";
+				} else if ($("#cs_draw_5_2_min input").not(':checked')) {
+					var minmodel5_2 = "; tf_use_min_viewmodels 0";
+				}
+				var model5_2 = $('#cs_fov_5_2').val()
+			} else {
+				var model5_2 = "off";
+				var minmodel5_2 = "";
+			}
 
-			var cross5_3  = $("[name='cs_col_5_3n']").val();
-			var style5_3=cross5_3[0];
-			var size5_3=cross5_3[1];
-			var color5_3=cross5_3[2];
-	  if($("#cs_draw_5_3").is(':checked')){
-		if($("#cs_draw_5_3_min input").is(':checked')) {
-		  var minmodel5_3 = "; tf_use_min_viewmodels 1";
-		} else if($("#cs_draw_5_3_min input").not(':checked')) {
-		  var minmodel5_3 = "; tf_use_min_viewmodels 0";
-		}
-		var model5_3 = $('#cs_fov_5_3').val()
-	  } else {
-		var model5_3 = "off";
-		var minmodel5_3 = "";
-	  }
+			var cross5_3 = $("[name='cs_col_5_3n']").val();
+			var style5_3 = cross5_3[0];
+			var size5_3 = cross5_3[1];
+			var color5_3 = cross5_3[2];
+			if ($("#cs_draw_5_3").is(':checked')) {
+				if ($("#cs_draw_5_3_min input").is(':checked')) {
+					var minmodel5_3 = "; tf_use_min_viewmodels 1";
+				} else if ($("#cs_draw_5_3_min input").not(':checked')) {
+					var minmodel5_3 = "; tf_use_min_viewmodels 0";
+				}
+				var model5_3 = $('#cs_fov_5_3').val()
+			} else {
+				var model5_3 = "off";
+				var minmodel5_3 = "";
+			}
 
 
 
 			//engineer
-			var cross6_1  = $("[name='cs_col_6_1n']").val();
-			var style6_1=cross6_1[0];
-			var size6_1=cross6_1[1];
-			var color6_1=cross6_1[2];
-	  if($("#cs_draw_6_1").is(':checked')){
-		if($("#cs_draw_6_1_min input").is(':checked')) {
-		  var minmodel6_1 = "; tf_use_min_viewmodels 1";
-		} else if($("#cs_draw_6_1_min input").not(':checked')) {
-		  var minmodel6_1 = "; tf_use_min_viewmodels 0";
-		}
-		var model6_1 = $('#cs_fov_6_1').val()
-	  } else {
-		var model6_1 = "off";
-		var minmodel6_1 = "";
-	  }
+			var cross6_1 = $("[name='cs_col_6_1n']").val();
+			var style6_1 = cross6_1[0];
+			var size6_1 = cross6_1[1];
+			var color6_1 = cross6_1[2];
+			if ($("#cs_draw_6_1").is(':checked')) {
+				if ($("#cs_draw_6_1_min input").is(':checked')) {
+					var minmodel6_1 = "; tf_use_min_viewmodels 1";
+				} else if ($("#cs_draw_6_1_min input").not(':checked')) {
+					var minmodel6_1 = "; tf_use_min_viewmodels 0";
+				}
+				var model6_1 = $('#cs_fov_6_1').val()
+			} else {
+				var model6_1 = "off";
+				var minmodel6_1 = "";
+			}
 
-			var cross6_2  = $("[name='cs_col_6_2n']").val();
-			var style6_2=cross6_2[0];
-			var size6_2=cross6_2[1];
-			var color6_2=cross6_2[2];
-	  if($("#cs_draw_6_2").is(':checked')){
-		if($("#cs_draw_6_2_min input").is(':checked')) {
-		  var minmodel6_2 = "; tf_use_min_viewmodels 1";
-		} else if($("#cs_draw_6_2_min input").not(':checked')) {
-		  var minmodel6_2 = "; tf_use_min_viewmodels 0";
-		}
-		var model6_2 = $('#cs_fov_6_2').val()
-	  } else {
-		var model6_2 = "off";
-		var minmodel6_2 = "";
-	  }
+			var cross6_2 = $("[name='cs_col_6_2n']").val();
+			var style6_2 = cross6_2[0];
+			var size6_2 = cross6_2[1];
+			var color6_2 = cross6_2[2];
+			if ($("#cs_draw_6_2").is(':checked')) {
+				if ($("#cs_draw_6_2_min input").is(':checked')) {
+					var minmodel6_2 = "; tf_use_min_viewmodels 1";
+				} else if ($("#cs_draw_6_2_min input").not(':checked')) {
+					var minmodel6_2 = "; tf_use_min_viewmodels 0";
+				}
+				var model6_2 = $('#cs_fov_6_2').val()
+			} else {
+				var model6_2 = "off";
+				var minmodel6_2 = "";
+			}
 
-			var cross6_3  = $("[name='cs_col_6_3n']").val();
-			var style6_3=cross6_3[0];
-			var size6_3=cross6_3[1];
-			var color6_3=cross6_3[2];
-	  if($("#cs_draw_6_3").is(':checked')){
-		if($("#cs_draw_6_3_min input").is(':checked')) {
-		  var minmodel6_3 = "; tf_use_min_viewmodels 1";
-		} else if($("#cs_draw_6_3_min input").not(':checked')) {
-		  var minmodel6_3 = "; tf_use_min_viewmodels 0";
-		}
-		var model6_3 = $('#cs_fov_6_3').val()
-	  } else {
-		var model6_3 = "off";
-		var minmodel6_3 = "";
-	  }
+			var cross6_3 = $("[name='cs_col_6_3n']").val();
+			var style6_3 = cross6_3[0];
+			var size6_3 = cross6_3[1];
+			var color6_3 = cross6_3[2];
+			if ($("#cs_draw_6_3").is(':checked')) {
+				if ($("#cs_draw_6_3_min input").is(':checked')) {
+					var minmodel6_3 = "; tf_use_min_viewmodels 1";
+				} else if ($("#cs_draw_6_3_min input").not(':checked')) {
+					var minmodel6_3 = "; tf_use_min_viewmodels 0";
+				}
+				var model6_3 = $('#cs_fov_6_3').val()
+			} else {
+				var model6_3 = "off";
+				var minmodel6_3 = "";
+			}
 
 
 
 			//medic
-			var cross7_1  = $("[name='cs_col_7_1n']").val();
-			var style7_1=cross7_1[0];
-			var size7_1=cross7_1[1];
-			var color7_1=cross7_1[2];
-	  if($("#cs_draw_7_1").is(':checked')){
-		if($("#cs_draw_7_1_min input").is(':checked')) {
-		  var minmodel7_1 = "; tf_use_min_viewmodels 1";
-		} else if($("#cs_draw_7_1_min input").not(':checked')) {
-		  var minmodel7_1 = "; tf_use_min_viewmodels 0";
-		}
-		var model7_1 = $('#cs_fov_7_1').val()
-	  } else {
-		var model7_1 = "off";
-		var minmodel7_1 = "";
-	  }
+			var cross7_1 = $("[name='cs_col_7_1n']").val();
+			var style7_1 = cross7_1[0];
+			var size7_1 = cross7_1[1];
+			var color7_1 = cross7_1[2];
+			if ($("#cs_draw_7_1").is(':checked')) {
+				if ($("#cs_draw_7_1_min input").is(':checked')) {
+					var minmodel7_1 = "; tf_use_min_viewmodels 1";
+				} else if ($("#cs_draw_7_1_min input").not(':checked')) {
+					var minmodel7_1 = "; tf_use_min_viewmodels 0";
+				}
+				var model7_1 = $('#cs_fov_7_1').val()
+			} else {
+				var model7_1 = "off";
+				var minmodel7_1 = "";
+			}
 
-			var cross7_2  = $("[name='cs_col_7_2n']").val();
-			var style7_2=cross7_2[0];
-			var size7_2=cross7_2[1];
-			var color7_2=cross7_2[2];
-	  if($("#cs_draw_7_2").is(':checked')){
-		if($("#cs_draw_7_2_min input").is(':checked')) {
-		  var minmodel7_2 = "; tf_use_min_viewmodels 1";
-		} else if($("#cs_draw_7_2_min input").not(':checked')) {
-		  var minmodel7_2 = "; tf_use_min_viewmodels 0";
-		}
-		var model7_2 = $('#cs_fov_7_2').val()
-	  } else {
-		var model7_2 = "off";
-		var minmodel7_2 = "";
-	  }
+			var cross7_2 = $("[name='cs_col_7_2n']").val();
+			var style7_2 = cross7_2[0];
+			var size7_2 = cross7_2[1];
+			var color7_2 = cross7_2[2];
+			if ($("#cs_draw_7_2").is(':checked')) {
+				if ($("#cs_draw_7_2_min input").is(':checked')) {
+					var minmodel7_2 = "; tf_use_min_viewmodels 1";
+				} else if ($("#cs_draw_7_2_min input").not(':checked')) {
+					var minmodel7_2 = "; tf_use_min_viewmodels 0";
+				}
+				var model7_2 = $('#cs_fov_7_2').val()
+			} else {
+				var model7_2 = "off";
+				var minmodel7_2 = "";
+			}
 
-			var cross7_3  = $("[name='cs_col_7_3n']").val();
-			var style7_3=cross7_3[0];
-			var size7_3=cross7_3[1];
-			var color7_3=cross7_3[2];
-	  if($("#cs_draw_7_3").is(':checked')){
-		if($("#cs_draw_7_3_min input").is(':checked')) {
-		  var minmodel7_3 = "; tf_use_min_viewmodels 1";
-		} else if($("#cs_draw_7_3_min input").not(':checked')) {
-		  var minmodel7_3 = "; tf_use_min_viewmodels 0";
-		}
-		var model7_3 = $('#cs_fov_7_3').val()
-	  } else {
-		var model7_3 = "off";
-		var minmodel7_3 = "";
-	  }
+			var cross7_3 = $("[name='cs_col_7_3n']").val();
+			var style7_3 = cross7_3[0];
+			var size7_3 = cross7_3[1];
+			var color7_3 = cross7_3[2];
+			if ($("#cs_draw_7_3").is(':checked')) {
+				if ($("#cs_draw_7_3_min input").is(':checked')) {
+					var minmodel7_3 = "; tf_use_min_viewmodels 1";
+				} else if ($("#cs_draw_7_3_min input").not(':checked')) {
+					var minmodel7_3 = "; tf_use_min_viewmodels 0";
+				}
+				var model7_3 = $('#cs_fov_7_3').val()
+			} else {
+				var model7_3 = "off";
+				var minmodel7_3 = "";
+			}
 
 
 
 			//sniper
-			var cross8_1  = $("[name='cs_col_8_1n']").val();
-			var style8_1=cross8_1[0];
-			var size8_1=cross8_1[1];
-			var color8_1=cross8_1[2];
-	  if($("#cs_draw_8_1").is(':checked')){
-		if($("#cs_draw_8_1_min input").is(':checked')) {
-		  var minmodel8_1 = "; tf_use_min_viewmodels 1";
-		} else if($("#cs_draw_8_1_min input").not(':checked')) {
-		  var minmodel8_1 = "; tf_use_min_viewmodels 0";
-		}
-		var model8_1 = $('#cs_fov_8_1').val()
-	  } else {
-		var model8_1 = "off";
-		var minmodel8_1 = "";
-	  }
+			var cross8_1 = $("[name='cs_col_8_1n']").val();
+			var style8_1 = cross8_1[0];
+			var size8_1 = cross8_1[1];
+			var color8_1 = cross8_1[2];
+			if ($("#cs_draw_8_1").is(':checked')) {
+				if ($("#cs_draw_8_1_min input").is(':checked')) {
+					var minmodel8_1 = "; tf_use_min_viewmodels 1";
+				} else if ($("#cs_draw_8_1_min input").not(':checked')) {
+					var minmodel8_1 = "; tf_use_min_viewmodels 0";
+				}
+				var model8_1 = $('#cs_fov_8_1').val()
+			} else {
+				var model8_1 = "off";
+				var minmodel8_1 = "";
+			}
 
-			var cross8_2  = $("[name='cs_col_8_2n']").val();
-			var style8_2=cross8_2[0];
-			var size8_2=cross8_2[1];
-			var color8_2=cross8_2[2];
-	  if($("#cs_draw_8_2").is(':checked')){
-		if($("#cs_draw_8_2_min input").is(':checked')) {
-		  var minmodel8_2 = "; tf_use_min_viewmodels 1";
-		} else if($("#cs_draw_8_2_min input").not(':checked')) {
-		  var minmodel8_2 = "; tf_use_min_viewmodels 0";
-		}
-		var model8_2 = $('#cs_fov_8_2').val()
-	  } else {
-		var model8_2 = "off";
-		var minmodel8_2 = "";
-	  }
+			var cross8_2 = $("[name='cs_col_8_2n']").val();
+			var style8_2 = cross8_2[0];
+			var size8_2 = cross8_2[1];
+			var color8_2 = cross8_2[2];
+			if ($("#cs_draw_8_2").is(':checked')) {
+				if ($("#cs_draw_8_2_min input").is(':checked')) {
+					var minmodel8_2 = "; tf_use_min_viewmodels 1";
+				} else if ($("#cs_draw_8_2_min input").not(':checked')) {
+					var minmodel8_2 = "; tf_use_min_viewmodels 0";
+				}
+				var model8_2 = $('#cs_fov_8_2').val()
+			} else {
+				var model8_2 = "off";
+				var minmodel8_2 = "";
+			}
 
-			var cross8_3  = $("[name='cs_col_8_3n']").val();
-			var style8_3=cross8_3[0];
-			var size8_3=cross8_3[1];
-			var color8_3=cross8_3[2];
-	  if($("#cs_draw_8_3").is(':checked')){
-		if($("#cs_draw_8_3_min input").is(':checked')) {
-		  var minmodel8_3 = "; tf_use_min_viewmodels 1";
-		} else if($("#cs_draw_8_3_min input").not(':checked')) {
-		  var minmodel8_3 = "; tf_use_min_viewmodels 0";
-		}
-		var model8_3 = $('#cs_fov_8_3').val()
-	  } else {
-		var model8_3 = "off";
-		var minmodel8_3 = "";
-	  }
+			var cross8_3 = $("[name='cs_col_8_3n']").val();
+			var style8_3 = cross8_3[0];
+			var size8_3 = cross8_3[1];
+			var color8_3 = cross8_3[2];
+			if ($("#cs_draw_8_3").is(':checked')) {
+				if ($("#cs_draw_8_3_min input").is(':checked')) {
+					var minmodel8_3 = "; tf_use_min_viewmodels 1";
+				} else if ($("#cs_draw_8_3_min input").not(':checked')) {
+					var minmodel8_3 = "; tf_use_min_viewmodels 0";
+				}
+				var model8_3 = $('#cs_fov_8_3').val()
+			} else {
+				var model8_3 = "off";
+				var minmodel8_3 = "";
+			}
 
 
 
 			//spy
-			var cross9_1  = $("[name='cs_col_9_1n']").val();
-			var style9_1=cross9_1[0];
-			var size9_1=cross9_1[1];
-			var color9_1=cross9_1[2];
-	  if($("#cs_draw_9_1").is(':checked')){
-		if($("#cs_draw_9_1_min input").is(':checked')) {
-		  var minmodel9_1 = "; tf_use_min_viewmodels 1";
-		} else if($("#cs_draw_9_1_min input").not(':checked')) {
-		  var minmodel9_1 = "; tf_use_min_viewmodels 0";
+			var cross9_1 = $("[name='cs_col_9_1n']").val();
+			var style9_1 = cross9_1[0];
+			var size9_1 = cross9_1[1];
+			var color9_1 = cross9_1[2];
+			if ($("#cs_draw_9_1").is(':checked')) {
+				if ($("#cs_draw_9_1_min input").is(':checked')) {
+					var minmodel9_1 = "; tf_use_min_viewmodels 1";
+				} else if ($("#cs_draw_9_1_min input").not(':checked')) {
+					var minmodel9_1 = "; tf_use_min_viewmodels 0";
+				}
+				var model9_1 = $('#cs_fov_9_1').val()
+			} else {
+				var model9_1 = "off";
+				var minmodel9_1 = "";
+			}
+
+			var cross9_2 = $("[name='cs_col_9_2n']").val();
+			var style9_2 = cross9_2[0];
+			var size9_2 = cross9_2[1];
+			var color9_2 = cross9_2[2];
+			if ($("#cs_draw_9_2").is(':checked')) {
+				if ($("#cs_draw_9_2_min input").is(':checked')) {
+					var minmodel9_2 = "; tf_use_min_viewmodels 1";
+				} else if ($("#cs_draw_9_2_min input").not(':checked')) {
+					var minmodel9_2 = "; tf_use_min_viewmodels 0";
+				}
+				var model9_2 = $('#cs_fov_9_2').val()
+			} else {
+				var model9_2 = "off";
+				var minmodel9_2 = "";
+			}
+
+			var cross9_3 = $("[name='cs_col_9_3n']").val();
+			var style9_3 = cross9_3[0];
+			var size9_3 = cross9_3[1];
+			var color9_3 = cross9_3[2];
+			if ($("#cs_draw_9_3").is(':checked')) {
+				if ($("#cs_draw_9_3_min input").is(':checked')) {
+					var minmodel9_3 = "; tf_use_min_viewmodels 1";
+				} else if ($("#cs_draw_9_3_min input").not(':checked')) {
+					var minmodel9_3 = "; tf_use_min_viewmodels 0";
+				}
+				var model9_3 = $('#cs_fov_9_3').val()
+			} else {
+				var model9_3 = "off";
+				var minmodel9_3 = "";
+			}
+
 		}
-		var model9_1 = $('#cs_fov_9_1').val()
-	  } else {
-		var model9_1 = "off";
-		var minmodel9_1 = "";
-	  }
-
-			var cross9_2  = $("[name='cs_col_9_2n']").val();
-			var style9_2=cross9_2[0];
-			var size9_2=cross9_2[1];
-			var color9_2=cross9_2[2];
-	  if($("#cs_draw_9_2").is(':checked')){
-		if($("#cs_draw_9_2_min input").is(':checked')) {
-		  var minmodel9_2 = "; tf_use_min_viewmodels 1";
-		} else if($("#cs_draw_9_2_min input").not(':checked')) {
-		  var minmodel9_2 = "; tf_use_min_viewmodels 0";
-		}
-		var model9_2 = $('#cs_fov_9_2').val()
-	  } else {
-		var model9_2 = "off";
-		var minmodel9_2 = "";
-	  }
-
-			var cross9_3  = $("[name='cs_col_9_3n']").val();
-			var style9_3=cross9_3[0];
-			var size9_3=cross9_3[1];
-			var color9_3=cross9_3[2];
-	  if($("#cs_draw_9_3").is(':checked')){
-		if($("#cs_draw_9_3_min input").is(':checked')) {
-		  var minmodel9_3 = "; tf_use_min_viewmodels 1";
-		} else if($("#cs_draw_9_3_min input").not(':checked')) {
-		  var minmodel9_3 = "; tf_use_min_viewmodels 0";
-		}
-		var model9_3 = $('#cs_fov_9_3').val()
-	  } else {
-		var model9_3 = "off";
-		var minmodel9_3 = "";
-	  }
-
-		}
 
 
 
-	var bindarr = "";
+		var bindarr = "";
 
 
 		// find every checked item
-		$(this).find(":checked").each(function () {
+		$(this).find(":checked").each(function() {
 
 			var $this = $(this);
 			var url = $this.data("url");
 			var iswhat = $this.data("name");
 			var filename = url.replace(/.*\//g, "");
-			if(iswhat == "gfx") {
-				zip.file("cfg/gfx.cfg", urlToPromise(url), {binary:true});
+			if (iswhat == "gfx") {
+				zip.file("cfg/gfx.cfg", urlToPromise(url), {
+					binary: true
+				});
 			}
-			if(iswhat == "scripts") {
-				zip.file("custom/runfasterpls/scripts/" + filename, urlToPromise(url), {binary:true});
+			if (iswhat == "scripts") {
+				zip.file("custom/runfasterpls/scripts/" + filename, urlToPromise(url), {
+					binary: true
+				});
 			}
-			if(iswhat == "hitsound") {
-				zip.file("custom/damage/sound/ui/hitsound.wav", urlToPromise(url), {binary:true});
+			if (iswhat == "hitsound") {
+				zip.file("custom/damage/sound/ui/hitsound.wav", urlToPromise(url), {
+					binary: true
+				});
 			}
-			if(iswhat == "killsound") {
-				zip.file("custom/damage/sound/ui/killsound.wav", urlToPromise(url), {binary:true});
+			if (iswhat == "killsound") {
+				zip.file("custom/damage/sound/ui/killsound.wav", urlToPromise(url), {
+					binary: true
+				});
 			}
-			if(iswhat == "vpks") {
-				zip.file("custom/" + filename, urlToPromise(url), {binary:true});
+			if (iswhat == "vpks") {
+				zip.file("custom/" + filename, urlToPromise(url), {
+					binary: true
+				});
 			}
-			if(iswhat == "configs") {
-				zip.file("cfg/" + filename, urlToPromise(url), {binary:true});
+			if (iswhat == "configs") {
+				zip.file("cfg/" + filename, urlToPromise(url), {
+					binary: true
+				});
 			}
-			if(iswhat == "crosshairswitcher") {
-				zip.file("cfg/demoman.cfg", urlToPromise("../make/cfg/class/demoman.cfg"), {binary:true});
-				zip.file("cfg/demoplayback.cfg", urlToPromise("../make/cfg/class/demoplayback.cfg"), {binary:true});
-				zip.file("cfg/engineer.cfg", urlToPromise("../make/cfg/class/engineer.cfg"), {binary:true});
-				zip.file("cfg/heavyweapons.cfg", urlToPromise("../make/cfg/class/heavyweapons.cfg"), {binary:true});
-				zip.file("cfg/insourcetv.cfg", urlToPromise("../make/cfg/class/insourcetv.cfg"), {binary:true});
-				zip.file("cfg/CROSSHAIRSWITCHER-INSTRUCTIONS.txt", urlToPromise("../make/cfg/class/CROSSHAIRSWITCHER-INSTRUCTIONS.txt"), {binary:true});
-				zip.file("cfg/medic.cfg", urlToPromise("../make/cfg/class/medic.cfg"), {binary:true});
-				zip.file("cfg/pyro.cfg", urlToPromise("../make/cfg/class/pyro.cfg"), {binary:true});
-				zip.file("cfg/scout.cfg", urlToPromise("../make/cfg/class/scout.cfg"), {binary:true});
-				zip.file("cfg/sniper.cfg", urlToPromise("../make/cfg/class/sniper.cfg"), {binary:true});
-				zip.file("cfg/soldier.cfg", urlToPromise("../make/cfg/class/soldier.cfg"), {binary:true});
-				zip.file("cfg/spy.cfg", urlToPromise("../make/cfg/class/spy.cfg"), {binary:true});
-				zip.file("cfg/crosshairswitcher/binds.cfg", urlToPromise("../make/cfg/class/crosshairswitcher/binds.cfg"), {binary:true});
-				zip.file("cfg/crosshairswitcher/crosshairs.cfg", urlToPromise("../make/cfg/class/crosshairswitcher/crosshairs.cfg"), {binary:true});
-				zip.file("cfg/crosshairswitcher/defaultcrosshair.cfg", urlToPromise("../make/cfg/class/crosshairswitcher/defaultcrosshair.cfg"), {binary:true});
-				zip.file("cfg/crosshairswitcher/disable.cfg", urlToPromise("../make/cfg/class/crosshairswitcher/disable.cfg"), {binary:true});
-				zip.file("cfg/crosshairswitcher/settings.cfg", '//   use the aliases like this: size; color; type; viewmodel FOV or viewmodel off\n//  _______________________________________________________________________________\n// |SIZES:  tiny      [18] |COLORS:  red    | mint    |TYPES:  cross_with_dot      |\n// |IIIIII  smallest  [20] |IIIIIII  green  | lime    |IIIIII  half_cross_with_dot |\n// |        small     [24] |         blue   | skyblue |        ring                |\n// |        medium    [28] |         yellow | black   |        ex                  |\n// |        big       [32] |         cyan   | grey    |        dot                 |\n// |        biggest   [36] |         pink   | white   |        open_cross          |\n// |        huge      [40] |         orange |         |        cross               |\n// |        invisible [00] |         purple |         |        default             |\n//  IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII\n\nalias default_primary_crosshair   "medium; green; cross; 84"\nalias default_secondary_crosshair "medium; cyan; cross_with_dot; 84"\nalias default_melee_crosshair     "big; yellow; open_cross; 84"\n\n//SCOUT\nalias scout_primary       "'+ size1_1 + '; ' + color1_1 + '; ' + style1_1 + '; ' + model1_1 + minmodel1_1 + '"\nalias scout_secondary     "'+ size1_2 + '; ' + color1_2 + '; ' + style1_2 + '; ' + model1_2 + minmodel1_2 + '"\nalias scout_melee         "'+ size1_3 + '; ' + color1_3 + '; ' + style1_3 + '; ' + model1_3 + minmodel1_3 + '"\n\n//SOLDIER\nalias soldier_primary     "'+ size2_1 + '; ' + color2_1 + '; ' + style2_1 + '; ' + model2_1 + minmodel2_1 + '"\nalias soldier_secondary   "'+ size2_2 + '; ' + color2_2 + '; ' + style2_2 + '; ' + model2_2 + minmodel2_2 + '"\nalias soldier_melee       "'+ size2_3 + '; ' + color2_3 + '; ' + style2_3 + '; ' + model2_3 + minmodel2_3 + '"\n\n//PYRO\nalias pyro_primary        "'+ size3_1 + '; ' + color3_1 + '; ' + style3_1 + '; ' + model3_1 + minmodel3_1 + '"\nalias pyro_secondary      "'+ size3_2 + '; ' + color3_2 + '; ' + style3_2 + '; ' + model3_2 + minmodel3_2 + '"\nalias pyro_melee          "'+ size3_3 + '; ' + color3_3 + '; ' + style3_3 + '; ' + model3_3 + minmodel3_3 + '"\n\n//DEMOMAN\nalias demoman_primary     "'+ size4_1 + '; ' + color4_1 + '; ' + style4_1 + '; ' + model4_1 + minmodel4_1 + '"\nalias demoman_secondary   "'+ size4_2 + '; ' + color4_2 + '; ' + style4_2 + '; ' + model4_2 + minmodel4_2 + '"\nalias demoman_melee       "'+ size4_3 + '; ' + color4_3 + '; ' + style4_3 + '; ' + model4_3 + minmodel4_3 + '"\n\n//HEAVY\nalias heavy_primary       "'+ size5_1 + '; ' + color5_1 + '; ' + style5_1 + '; ' + model5_1 + minmodel5_1 + '"\nalias heavy_secondary     "'+ size5_2 + '; ' + color5_2 + '; ' + style5_2 + '; ' + model5_2 + minmodel5_2 + '"\nalias heavy_melee         "'+ size5_3 + '; ' + color5_3 + '; ' + style5_3 + '; ' + model5_3 + minmodel5_3 + '"\n\n//ENGINEER\nalias engineer_primary    "'+ size6_1 + '; ' + color6_1 + '; ' + style6_1 + '; ' + model6_1 + minmodel6_1 + '"\nalias engineer_secondary  "'+ size6_2 + '; ' + color6_2 + '; ' + style6_2 + '; ' + model6_2 + minmodel6_2 + '"\nalias engineer_melee      "'+ size6_3 + '; ' + color6_3 + '; ' + style6_3 + '; ' + model6_3 + minmodel6_3 + '"\n\n//MEDIC\nalias medic_primary       "'+ size7_1 + '; ' + color7_1 + '; ' + style7_1 + '; ' + model7_1 + minmodel7_1 + '"\nalias medic_secondary     "'+ size7_2 + '; ' + color7_2 + '; ' + style7_2 + '; ' + model7_2 + minmodel7_2 + '"\nalias medic_melee         "'+ size7_3 + '; ' + color7_3 + '; ' + style7_3 + '; ' + model7_3 + minmodel7_3 + '"\n\n//SNIPER\nalias sniper_primary      "'+ size8_1 + '; ' + color8_1 + '; ' + style8_1 + '; ' + model8_1 + minmodel8_1 + '"\nalias sniper_secondary    "'+ size8_2 + '; ' + color8_2 + '; ' + style8_2 + '; ' + model8_2 + minmodel8_2 + '"\nalias sniper_melee        "'+ size8_3 + '; ' + color8_3 + '; ' + style8_3 + '; ' + model8_3 + minmodel8_3 + '"\n\n//SPY\nalias spy_primary         "'+ size9_1 + '; ' + color9_1 + '; ' + style9_1 + '; ' + model9_1 + minmodel9_1 + '"\nalias spy_secondary       "'+ size9_2 + '; ' + color9_2 + '; ' + style9_2 + '; ' + model9_2 + minmodel9_2 + '"\nalias spy_melee           "'+ size9_3 + '; ' + color9_3 + '; ' + style9_3 + '; ' + model9_3 + minmodel9_3 + '"');
-				zip.file("cfg/crosshairswitcher/shorten.cfg", urlToPromise("../make/cfg/class/crosshairswitcher/shorten.cfg"), {binary:true});
-				zip.file("cfg/crosshairswitcher/switcher.cfg", urlToPromise("../make/cfg/class/crosshairswitcher/switcher.cfg"), {binary:true});
-				zip.file("cfg/crosshairswitcher/weapons.cfg", urlToPromise("../make/cfg/class/crosshairswitcher/weapons.cfg"), {binary:true});
+			if (iswhat == "crosshairswitcher") {
+				zip.file("cfg/demoman.cfg", urlToPromise("../make/cfg/class/demoman.cfg"), {
+					binary: true
+				});
+				zip.file("cfg/demoplayback.cfg", urlToPromise("../make/cfg/class/demoplayback.cfg"), {
+					binary: true
+				});
+				zip.file("cfg/engineer.cfg", urlToPromise("../make/cfg/class/engineer.cfg"), {
+					binary: true
+				});
+				zip.file("cfg/heavyweapons.cfg", urlToPromise("../make/cfg/class/heavyweapons.cfg"), {
+					binary: true
+				});
+				zip.file("cfg/insourcetv.cfg", urlToPromise("../make/cfg/class/insourcetv.cfg"), {
+					binary: true
+				});
+				zip.file("cfg/CROSSHAIRSWITCHER-INSTRUCTIONS.txt", urlToPromise("../make/cfg/class/CROSSHAIRSWITCHER-INSTRUCTIONS.txt"), {
+					binary: true
+				});
+				zip.file("cfg/medic.cfg", urlToPromise("../make/cfg/class/medic.cfg"), {
+					binary: true
+				});
+				zip.file("cfg/pyro.cfg", urlToPromise("../make/cfg/class/pyro.cfg"), {
+					binary: true
+				});
+				zip.file("cfg/scout.cfg", urlToPromise("../make/cfg/class/scout.cfg"), {
+					binary: true
+				});
+				zip.file("cfg/sniper.cfg", urlToPromise("../make/cfg/class/sniper.cfg"), {
+					binary: true
+				});
+				zip.file("cfg/soldier.cfg", urlToPromise("../make/cfg/class/soldier.cfg"), {
+					binary: true
+				});
+				zip.file("cfg/spy.cfg", urlToPromise("../make/cfg/class/spy.cfg"), {
+					binary: true
+				});
+				zip.file("cfg/crosshairswitcher/binds.cfg", urlToPromise("../make/cfg/class/crosshairswitcher/binds.cfg"), {
+					binary: true
+				});
+				zip.file("cfg/crosshairswitcher/crosshairs.cfg", urlToPromise("../make/cfg/class/crosshairswitcher/crosshairs.cfg"), {
+					binary: true
+				});
+				zip.file("cfg/crosshairswitcher/defaultcrosshair.cfg", urlToPromise("../make/cfg/class/crosshairswitcher/defaultcrosshair.cfg"), {
+					binary: true
+				});
+				zip.file("cfg/crosshairswitcher/disable.cfg", urlToPromise("../make/cfg/class/crosshairswitcher/disable.cfg"), {
+					binary: true
+				});
+				zip.file("cfg/crosshairswitcher/settings.cfg", '//   use the aliases like this: size; color; type; viewmodel FOV or viewmodel off\n//  _______________________________________________________________________________\n// |SIZES:  tiny      [18] |COLORS:  red    | mint    |TYPES:  cross_with_dot      |\n// |IIIIII  smallest  [20] |IIIIIII  green  | lime    |IIIIII  half_cross_with_dot |\n// |        small     [24] |         blue   | skyblue |        ring                |\n// |        medium    [28] |         yellow | black   |        ex                  |\n// |        big       [32] |         cyan   | grey    |        dot                 |\n// |        biggest   [36] |         pink   | white   |        open_cross          |\n// |        huge      [40] |         orange |         |        cross               |\n// |        invisible [00] |         purple |         |        default             |\n//  IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII\n\nalias default_primary_crosshair   "medium; green; cross; 84"\nalias default_secondary_crosshair "medium; cyan; cross_with_dot; 84"\nalias default_melee_crosshair     "big; yellow; open_cross; 84"\n\n//SCOUT\nalias scout_primary       "' + size1_1 + '; ' + color1_1 + '; ' + style1_1 + '; ' + model1_1 + minmodel1_1 + '"\nalias scout_secondary     "' + size1_2 + '; ' + color1_2 + '; ' + style1_2 + '; ' + model1_2 + minmodel1_2 + '"\nalias scout_melee         "' + size1_3 + '; ' + color1_3 + '; ' + style1_3 + '; ' + model1_3 + minmodel1_3 + '"\n\n//SOLDIER\nalias soldier_primary     "' + size2_1 + '; ' + color2_1 + '; ' + style2_1 + '; ' + model2_1 + minmodel2_1 + '"\nalias soldier_secondary   "' + size2_2 + '; ' + color2_2 + '; ' + style2_2 + '; ' + model2_2 + minmodel2_2 + '"\nalias soldier_melee       "' + size2_3 + '; ' + color2_3 + '; ' + style2_3 + '; ' + model2_3 + minmodel2_3 + '"\n\n//PYRO\nalias pyro_primary        "' + size3_1 + '; ' + color3_1 + '; ' + style3_1 + '; ' + model3_1 + minmodel3_1 + '"\nalias pyro_secondary      "' + size3_2 + '; ' + color3_2 + '; ' + style3_2 + '; ' + model3_2 + minmodel3_2 + '"\nalias pyro_melee          "' + size3_3 + '; ' + color3_3 + '; ' + style3_3 + '; ' + model3_3 + minmodel3_3 + '"\n\n//DEMOMAN\nalias demoman_primary     "' + size4_1 + '; ' + color4_1 + '; ' + style4_1 + '; ' + model4_1 + minmodel4_1 + '"\nalias demoman_secondary   "' + size4_2 + '; ' + color4_2 + '; ' + style4_2 + '; ' + model4_2 + minmodel4_2 + '"\nalias demoman_melee       "' + size4_3 + '; ' + color4_3 + '; ' + style4_3 + '; ' + model4_3 + minmodel4_3 + '"\n\n//HEAVY\nalias heavy_primary       "' + size5_1 + '; ' + color5_1 + '; ' + style5_1 + '; ' + model5_1 + minmodel5_1 + '"\nalias heavy_secondary     "' + size5_2 + '; ' + color5_2 + '; ' + style5_2 + '; ' + model5_2 + minmodel5_2 + '"\nalias heavy_melee         "' + size5_3 + '; ' + color5_3 + '; ' + style5_3 + '; ' + model5_3 + minmodel5_3 + '"\n\n//ENGINEER\nalias engineer_primary    "' + size6_1 + '; ' + color6_1 + '; ' + style6_1 + '; ' + model6_1 + minmodel6_1 + '"\nalias engineer_secondary  "' + size6_2 + '; ' + color6_2 + '; ' + style6_2 + '; ' + model6_2 + minmodel6_2 + '"\nalias engineer_melee      "' + size6_3 + '; ' + color6_3 + '; ' + style6_3 + '; ' + model6_3 + minmodel6_3 + '"\n\n//MEDIC\nalias medic_primary       "' + size7_1 + '; ' + color7_1 + '; ' + style7_1 + '; ' + model7_1 + minmodel7_1 + '"\nalias medic_secondary     "' + size7_2 + '; ' + color7_2 + '; ' + style7_2 + '; ' + model7_2 + minmodel7_2 + '"\nalias medic_melee         "' + size7_3 + '; ' + color7_3 + '; ' + style7_3 + '; ' + model7_3 + minmodel7_3 + '"\n\n//SNIPER\nalias sniper_primary      "' + size8_1 + '; ' + color8_1 + '; ' + style8_1 + '; ' + model8_1 + minmodel8_1 + '"\nalias sniper_secondary    "' + size8_2 + '; ' + color8_2 + '; ' + style8_2 + '; ' + model8_2 + minmodel8_2 + '"\nalias sniper_melee        "' + size8_3 + '; ' + color8_3 + '; ' + style8_3 + '; ' + model8_3 + minmodel8_3 + '"\n\n//SPY\nalias spy_primary         "' + size9_1 + '; ' + color9_1 + '; ' + style9_1 + '; ' + model9_1 + minmodel9_1 + '"\nalias spy_secondary       "' + size9_2 + '; ' + color9_2 + '; ' + style9_2 + '; ' + model9_2 + minmodel9_2 + '"\nalias spy_melee           "' + size9_3 + '; ' + color9_3 + '; ' + style9_3 + '; ' + model9_3 + minmodel9_3 + '"');
+				zip.file("cfg/crosshairswitcher/shorten.cfg", urlToPromise("../make/cfg/class/crosshairswitcher/shorten.cfg"), {
+					binary: true
+				});
+				zip.file("cfg/crosshairswitcher/switcher.cfg", urlToPromise("../make/cfg/class/crosshairswitcher/switcher.cfg"), {
+					binary: true
+				});
+				zip.file("cfg/crosshairswitcher/weapons.cfg", urlToPromise("../make/cfg/class/crosshairswitcher/weapons.cfg"), {
+					binary: true
+				});
 
 			}
-			if(iswhat == "sourceres") {
-				zip.file("addons/SourceRes.dll", urlToPromise("../make/addons/SourceRes/addons/SourceRes.dll"), {binary:true});
-				zip.file("addons/SourceRes.vdf", urlToPromise("../make/addons/SourceRes/addons/SourceRes.vdf"), {binary:true});
+			if (iswhat == "sourceres") {
+				zip.file("addons/SourceRes.dll", urlToPromise("../make/addons/SourceRes/addons/SourceRes.dll"), {
+					binary: true
+				});
+				zip.file("addons/SourceRes.vdf", urlToPromise("../make/addons/SourceRes/addons/SourceRes.vdf"), {
+					binary: true
+				});
 			}
-			if(iswhat == "prec") {
-				zip.file("addons/PREC.cfg", urlToPromise("../make/addons/prec/addons/PREC.cfg"), {binary:true});
-				zip.file("addons/PREC.dll", urlToPromise("../make/addons/prec/addons/PREC.dll"), {binary:true});
-				zip.file("addons/PREC.vdf", urlToPromise("../make/addons/prec/addons/PREC.vdf"), {binary:true});
-				zip.file("addons/readme_prec.txt", urlToPromise("../make/addons/prec/addons/readme_prec.txt"), {binary:true});
+			if (iswhat == "prec") {
+				zip.file("addons/PREC.cfg", urlToPromise("../make/addons/prec/addons/PREC.cfg"), {
+					binary: true
+				});
+				zip.file("addons/PREC.dll", urlToPromise("../make/addons/prec/addons/PREC.dll"), {
+					binary: true
+				});
+				zip.file("addons/PREC.vdf", urlToPromise("../make/addons/prec/addons/PREC.vdf"), {
+					binary: true
+				});
+				zip.file("addons/readme_prec.txt", urlToPromise("../make/addons/prec/addons/readme_prec.txt"), {
+					binary: true
+				});
 			}
-			if(iswhat == "casting") {
-				zip.file("addons/CastingEssentials.dll", urlToPromise("../make/addons/CastingEssentials/addons/CastingEssentials.dll"), {binary:true});
-				zip.file("addons/CastingEssentials.vdf", urlToPromise("../make/addons/CastingEssentials/addons/CastingEssentials.vdf"), {binary:true});
-				zip.file("materials/debug/debugfbtexture1.vmt", urlToPromise("../make/addons/CastingEssentials/materials/debug/debugfbtexture1.vmt"), {binary:true});
-			 }
-			if(iswhat == "tweaks") {
-				zip.file("cfg/tweaks/" + filename, urlToPromise(url), {binary:true});
+			if (iswhat == "casting") {
+				zip.file("addons/CastingEssentials.dll", urlToPromise("../make/addons/CastingEssentials/addons/CastingEssentials.dll"), {
+					binary: true
+				});
+				zip.file("addons/CastingEssentials.vdf", urlToPromise("../make/addons/CastingEssentials/addons/CastingEssentials.vdf"), {
+					binary: true
+				});
+				zip.file("materials/debug/debugfbtexture1.vmt", urlToPromise("../make/addons/CastingEssentials/materials/debug/debugfbtexture1.vmt"), {
+					binary: true
+				});
+			}
+			if (iswhat == "tweaks") {
+				zip.file("cfg/tweaks/" + filename, urlToPromise(url), {
+					binary: true
+				});
 				customs = customs + "exec tweaks/" + filename.slice(0, -4) + "\n";
 			}
-			if(iswhat == "bindscheck") {
-			var i = 1;
-			while (i <= room) {
-				if(typeof $("#key"+i).val() !== 'undefined' && typeof $("#key"+i).val() !== 'undefined'){
-				bindarr = bindarr + "\nbind "+$("#key"+i).val() +" "+$("#command"+i).val();
+			if (iswhat == "bindscheck") {
+				var i = 1;
+				while (i <= room) {
+					if (typeof $("#key" + i).val() !== 'undefined' && typeof $("#key" + i).val() !== 'undefined') {
+						bindarr = bindarr + "\nbind " + $("#key" + i).val() + " " + $("#command" + i).val();
+					}
+					i++
 				}
-				i++
-			}
 			}
 
-			if(iswhat == "tweaks_fastclass") {
+			if (iswhat == "tweaks_fastclass") {
 
 
-				if($("#crosshairswitcherid").is(':checked')){
-					zip.file("cfg/tweaks/fastclass.cfg", urlToPromise("../make/cfg/fastclass_cs.cfg"), {binary:true});
+				if ($("#crosshairswitcherid").is(':checked')) {
+					zip.file("cfg/tweaks/fastclass.cfg", urlToPromise("../make/cfg/fastclass_cs.cfg"), {
+						binary: true
+					});
 					customs = customs + "exec tweaks/fastclass.cfg\n";
 				} else {
-					zip.file("cfg/tweaks/fastclass.cfg", urlToPromise("../make/cfg/fastclass.cfg"), {binary:true});
+					zip.file("cfg/tweaks/fastclass.cfg", urlToPromise("../make/cfg/fastclass.cfg"), {
+						binary: true
+					});
 					customs = customs + "exec tweaks/fastclass.cfg\n";
 				}
 
 			}
-			zip.file('cfg/custom.cfg', '//Tweaks, custom settings, all the stuff usually goes here\n\n\n' +customs + '\n\n' + bindings + '\necho "------------- Thanks for using CFG.TF -------------"\necho "------------- Create your own custom config at https://cfg.tf -------------"'); //load custom tweaks and config
+			zip.file('cfg/custom.cfg', '//Tweaks, custom settings, all the stuff usually goes here\n\n\n' + customs + '\n\n' + bindings + '\necho "------------- Thanks for using CFG.TF -------------"\necho "------------- Create your own custom config at https://cfg.tf -------------"'); //load custom tweaks and config
 
 		});
 
 
 		//building and downloading static configs
-		zip.file("cfg/autoexec.cfg", "exec gfx\nexec binds\nexec settings\nexec network\nexec custom"); 				//autoexec
-		zip.file("cfg/settings.cfg", "//General TF2 settings, like autoheal, min viewmodels, fastswitch, etc.\n\ntf_medigun_autoheal 1\ncl_autoreload 1\nhud_fastswitch 1\ntf_use_min_viewmodels " + minmodel +"\nr_drawviewmodel " + drawviewmodel + "\nfov_desired 90\nviewmodel_fov " + v_fov + "\nbindtoggle "+vmodelbind+" r_drawviewmodel\ncl_flipviewmodels "+fliptoggle+"\n\ntf_remember_activeweapon 1\ntf_remember_lastswitched 1\nsb_dontshow_maxplayer_warning 1\ntf_spectate_pyrovision 0\nviewmodel_fov_demo 75\n\ntf_dingalingaling " + hittoggle + "\ntf_dingalingaling_repeat_delay " + hitdelay + "\ntf_dingaling_pitchmindmg " + hitmin + " \ntf_dingaling_pitchmaxdmg " + hitmax + "\ntf_dingaling_lasthit " + killtoggle + "\ntf_dingaling_lasthit_volume " + killvol + "\ntf_dingaling_lasthit_pitchmindmg " + killmin + "\ntf_dingaling_lasthit_pitchmaxdmg " + killmax + "\n\n\ntf_training_has_prompted_for_training 1\ntf_training_has_prompted_for_offline_practice 1\ntf_training_has_prompted_for_forums 1\ntf_training_has_prompted_for_options 1\ntf_training_has_prompted_for_loadout 1\ntf_mvm_tabs_discovered 3\ntf_matchmaking_ticket_help 0\ntf_coach_request_nevershowagain 1\n\nhud_combattext " + comtoggle + "\nhud_combattext_batching " + battoggle + "\nhud_combattext_batching_window " + batwindow + "\n\nds_kill_delay 15.000000\nds_enable " + ds_mode + "\nds_dir " + ds_folder + "\nds_notify "+ ds_notify + "\nds_sound " + ds_sound + "\nds_min_streak " + ds_ks + "\nds_autodelete " + ds_delete + "\nds_screens " + ds_screen); 	//settings
-		zip.file("cfg/network.cfg", "//Connection settings\n\ncl_cmdrate " + cmdrate + "\ncl_interp " + interp + "\ncl_interp_ratio " + intratio +"\ncl_lagcompensation 1\ncl_pred_optimize 2\ncl_smooth 0\ncl_smoothtime 0.01\ncl_updaterate " + uprate + "\nrate " + rate + "\n");  	//network
-		zip.file("cfg/binds.cfg", "//stock non class-specific binds\n////Made with cfg.tf - custom Team Fortress 2 config generator\n\n"+bindarr); 	//binds
+		zip.file("cfg/autoexec.cfg", "exec gfx\nexec binds\nexec settings\nexec network\nexec custom"); //autoexec
+		zip.file("cfg/settings.cfg", "//General TF2 settings, like autoheal, min viewmodels, fastswitch, etc.\n\ntf_medigun_autoheal 1\ncl_autoreload 1\nhud_fastswitch 1\ntf_use_min_viewmodels " + minmodel + "\nr_drawviewmodel " + drawviewmodel + "\nfov_desired 90\nviewmodel_fov " + v_fov + "\nbindtoggle " + vmodelbind + " r_drawviewmodel\ncl_flipviewmodels " + fliptoggle + "\n\ntf_remember_activeweapon 1\ntf_remember_lastswitched 1\nsb_dontshow_maxplayer_warning 1\ntf_spectate_pyrovision 0\nviewmodel_fov_demo 75\n\ntf_dingalingaling " + hittoggle + "\ntf_dingalingaling_repeat_delay " + hitdelay + "\ntf_dingaling_pitchmindmg " + hitmin + " \ntf_dingaling_pitchmaxdmg " + hitmax + "\ntf_dingaling_lasthit " + killtoggle + "\ntf_dingaling_lasthit_volume " + killvol + "\ntf_dingaling_lasthit_pitchmindmg " + killmin + "\ntf_dingaling_lasthit_pitchmaxdmg " + killmax + "\n\n\ntf_training_has_prompted_for_training 1\ntf_training_has_prompted_for_offline_practice 1\ntf_training_has_prompted_for_forums 1\ntf_training_has_prompted_for_options 1\ntf_training_has_prompted_for_loadout 1\ntf_mvm_tabs_discovered 3\ntf_matchmaking_ticket_help 0\ntf_coach_request_nevershowagain 1\n\nhud_combattext " + comtoggle + "\nhud_combattext_batching " + battoggle + "\nhud_combattext_batching_window " + batwindow + "\n\nds_kill_delay 15.000000\nds_enable " + ds_mode + "\nds_dir " + ds_folder + "\nds_notify " + ds_notify + "\nds_sound " + ds_sound + "\nds_min_streak " + ds_ks + "\nds_autodelete " + ds_delete + "\nds_screens " + ds_screen); //settings
+		zip.file("cfg/network.cfg", "//Connection settings\n\ncl_cmdrate " + cmdrate + "\ncl_interp " + interp + "\ncl_interp_ratio " + intratio + "\ncl_lagcompensation 1\ncl_pred_optimize 2\ncl_smooth 0\ncl_smoothtime 0.01\ncl_updaterate " + uprate + "\nrate " + rate + "\n"); //network
+		zip.file("cfg/binds.cfg", "//stock non class-specific binds\n////Made with cfg.tf - custom Team Fortress 2 config generator\n\n" + bindarr); //binds
 
 
 		// when everything has been downloaded, we can trigger the dl
-		zip.generateAsync({type:"blob"}, function updateCallback(metadata) {
-			var msg = "Packing : " + metadata.percent.toFixed(2) + " %";
-			if(metadata.currentFile) {
-				msg += ", current file = " + metadata.currentFile;
-			}
-			showMessage(msg);
-			updatePercent(metadata.percent|0);
-		})
-		.then(function callback(blob) {
+		zip.generateAsync({
+				type: "blob"
+			}, function updateCallback(metadata) {
+				var msg = "Packing : " + metadata.percent.toFixed(2) + " %";
+				if (metadata.currentFile) {
+					msg += ", current file = " + metadata.currentFile;
+				}
+				showMessage(msg);
+				updatePercent(metadata.percent | 0);
+			})
+			.then(function callback(blob) {
 
-			// see FileSaver.js
-			saveAs(blob, "config.zip");
+				// see FileSaver.js
+				saveAs(blob, "config.zip");
 
-			showMessage("Done! Extract this archive to your /tf folder.");
-		}, function (e) {
-			showError(e);
-		});
+				showMessage("Done! Extract this archive to your /tf folder.");
+			}, function(e) {
+				showError(e);
+			});
 
 		return false;
 	});
