@@ -1,91 +1,91 @@
 jQuery(function ($) {
-    "use strict";
+	"use strict";
 
-    var Promise = window.Promise;
-    if (!Promise) {
-        Promise = JSZip.external.Promise;
-    }
+	var Promise = window.Promise;
+	if (!Promise) {
+		Promise = JSZip.external.Promise;
+	}
 
-    /**
-     * Reset the message.
-     */
-    function resetMessage () {
-        $("#result")
-        .removeClass()
-        .text("");
-    }
-    /**
-     * show a successful message.
-     * @param {String} text the text to show.
-     */
-    function showMessage(text) {
-        resetMessage();
-        $("#result")
-        .addClass("alert alert-success")
-        .text(text);
-    }
-    /**
-     * show an error message.
-     * @param {String} text the text to show.
-     */
-    function showError(text) {
-        resetMessage();
-        $("#result")
-        .addClass("alert alert-danger")
-        .text(text);
-    }
-    /**
-     * Update the progress bar.
-     * @param {Integer} percent the current percent
-     */
-    function updatePercent(percent) {
-        $("#progress_bar").removeClass("hide")
-        .find(".progress-bar")
-        .attr("aria-valuenow", percent)
-        .css({
-            width : percent + "%"
-        });
-    }
+	/**
+	 * Reset the message.
+	 */
+	function resetMessage () {
+		$("#result")
+		.removeClass()
+		.text("");
+	}
+	/**
+	 * show a successful message.
+	 * @param {String} text the text to show.
+	 */
+	function showMessage(text) {
+		resetMessage();
+		$("#result")
+		.addClass("alert alert-success")
+		.text(text);
+	}
+	/**
+	 * show an error message.
+	 * @param {String} text the text to show.
+	 */
+	function showError(text) {
+		resetMessage();
+		$("#result")
+		.addClass("alert alert-danger")
+		.text(text);
+	}
+	/**
+	 * Update the progress bar.
+	 * @param {Integer} percent the current percent
+	 */
+	function updatePercent(percent) {
+		$("#progress_bar").removeClass("hide")
+		.find(".progress-bar")
+		.attr("aria-valuenow", percent)
+		.css({
+			width : percent + "%"
+		});
+	}
 
-    /**
-     * Fetch the content and return the associated promise.
-     * @param {String} url the url of the content to fetch.
-     * @return {Promise} the promise containing the data.
-     */
-    function urlToPromise(url) {
-        return new Promise(function(resolve, reject) {
-            JSZipUtils.getBinaryContent(url, function (err, data) {
-                if(err) {
-                    reject(err);
-                } else {
-                    resolve(data);
-                }
-            });
-        });
-    }
+	/**
+	 * Fetch the content and return the associated promise.
+	 * @param {String} url the url of the content to fetch.
+	 * @return {Promise} the promise containing the data.
+	 */
+	function urlToPromise(url) {
+		return new Promise(function(resolve, reject) {
+			JSZipUtils.getBinaryContent(url, function (err, data) {
+				if(err) {
+					reject(err);
+				} else {
+					resolve(data);
+				}
+			});
+		});
+	}
 
-    if(!JSZip.support.blob) {
-        showError("This only works with a good browser!");
-        return;
-    }
+	if(!JSZip.support.blob) {
+		showError("This only works with a good browser!");
+		return;
+	}
 
-    var $form = $("#download_form").on("submit", function () {
+	var $form = $("#download_form").on("submit", function () {
 
-        resetMessage();
+		resetMessage();
 
-        var zip = new JSZip();
+		var zip = new JSZip();
 		var customs = ""; //a var to store all the extra stuff to add to autoexec
 
- 		//getting values form inputs
+		//getting values form inputs
 		// !!!!IMPORTANT!!!! All the selectable html fields (non-text forms) should have data-name and data-url attributes or everything breaks
 
 		//viewmodel settings
- 		if($("#modeltoggle").is(':checked')){
+		if($("#modeltoggle").is(':checked')){
 			var drawviewmodel = "1"
 			} else {
 			var drawviewmodel = "0"
 		}
- 		if($("#minmodtoggle").is(':checked')){
+		if($("#minmodtoggle").is(':checked')){
 			var minmodel = "1"
 			} else {
 			var minmodel = "0"
@@ -99,22 +99,22 @@ jQuery(function ($) {
 		var vmodelbind = $('#vmodelbind').val();
 
 		//combat text settings
- 		if($("#battoggle").is(':checked')){
+		if($("#battoggle").is(':checked')){
 			var battoggle = "1"
 			} else {
 			var battoggle = "0"
 		}
-  		if($("#comtoggle").is(':checked')){
+		if($("#comtoggle").is(':checked')){
 			var comtoggle = "1"
 			} else {
 			var comtoggle = "0"
 		}
- 		if($("#hittoggle").is(':checked')){
+		if($("#hittoggle").is(':checked')){
 			var hittoggle = "1"
 			} else {
 			var hittoggle = "0"
 		}
- 		if($("#killtoggle").is(':checked')){
+		if($("#killtoggle").is(':checked')){
 			var killtoggle = "1"
 			} else {
 			var killtoggle = "0"
@@ -139,7 +139,7 @@ jQuery(function ($) {
 		var rate = $('#rate').val();
 
 		//demo support
- 		if($("#ds_delete").is(':checked')){
+		if($("#ds_delete").is(':checked')){
 			var ds_delete = "1"
 			} else {
 			var ds_delete = "0"
@@ -171,47 +171,47 @@ jQuery(function ($) {
 			var size1_1=cross1_1[1];
 			var color1_1=cross1_1[2];
 			if($("#cs_draw_1_1").is(':checked')){ // check for min models only when viewmodels are on
-        if($("#cs_draw_1_1_min input").is(':checked')) {
-          var minmodel1_1 = "; tf_use_min_viewmodels 1"; // included semi-colon in string because I would rather not print a lonely semi-colon into the config when its disabled
-        } else if($("#cs_draw_1_1_min input").not(':checked')) {
-          var minmodel1_1 = "; tf_use_min_viewmodels 0";
-        }
-        var model1_1 = $('#cs_fov_1_1').val()
+		if($("#cs_draw_1_1_min input").is(':checked')) {
+		  var minmodel1_1 = "; tf_use_min_viewmodels 1"; // included semi-colon in string because I would rather not print a lonely semi-colon into the config when its disabled
+		} else if($("#cs_draw_1_1_min input").not(':checked')) {
+		  var minmodel1_1 = "; tf_use_min_viewmodels 0";
+		}
+		var model1_1 = $('#cs_fov_1_1').val()
 			} else {
-  			var model1_1 = "off";
-        var minmodel1_1 = ""; // blank it because there's no if/else when this is printed
+			var model1_1 = "off";
+		var minmodel1_1 = ""; // blank it because there's no if/else when this is printed
 			}
 
 			var cross1_2  = $("[name='cs_col_1_2n']").val();
 			var style1_2=cross1_2[0];
 			var size1_2=cross1_2[1];
 			var color1_2=cross1_2[2];
-      if($("#cs_draw_1_2").is(':checked')){
-        if($("#cs_draw_1_2_min input").is(':checked')) {
-          var minmodel1_2 = "; tf_use_min_viewmodels 1";
-        } else if($("#cs_draw_1_2_min input").not(':checked')) {
-          var minmodel1_2 = "; tf_use_min_viewmodels 0";
-        }
-        var model1_2 = $('#cs_fov_1_2').val()
-      } else {
-        var model1_2 = "off";
-        var minmodel1_2 = "";
-      }
+	  if($("#cs_draw_1_2").is(':checked')){
+		if($("#cs_draw_1_2_min input").is(':checked')) {
+		  var minmodel1_2 = "; tf_use_min_viewmodels 1";
+		} else if($("#cs_draw_1_2_min input").not(':checked')) {
+		  var minmodel1_2 = "; tf_use_min_viewmodels 0";
+		}
+		var model1_2 = $('#cs_fov_1_2').val()
+	  } else {
+		var model1_2 = "off";
+		var minmodel1_2 = "";
+	  }
 
 			var cross1_3  = $("[name='cs_col_1_3n']").val();
 			var style1_3=cross1_3[0];
 			var size1_3=cross1_3[1];
 			var color1_3=cross1_3[2];
-      if($("#cs_draw_1_3").is(':checked')){
-        if($("#cs_draw_1_3_min input").is(':checked')) {
-          var minmodel1_3 = "; tf_use_min_viewmodels 1";
-        } else if($("#cs_draw_1_3_min input").not(':checked')) {
-          var minmodel1_3 = "; tf_use_min_viewmodels 0";
-        }
-        var model1_3 = $('#cs_fov_1_3').val()
+	  if($("#cs_draw_1_3").is(':checked')){
+		if($("#cs_draw_1_3_min input").is(':checked')) {
+		  var minmodel1_3 = "; tf_use_min_viewmodels 1";
+		} else if($("#cs_draw_1_3_min input").not(':checked')) {
+		  var minmodel1_3 = "; tf_use_min_viewmodels 0";
+		}
+		var model1_3 = $('#cs_fov_1_3').val()
 			} else {
-  			var model1_3 = "off";
-        var minmodel1_3 = "";
+			var model1_3 = "off";
+		var minmodel1_3 = "";
 			}
 
 
@@ -221,49 +221,49 @@ jQuery(function ($) {
 			var style2_1=cross2_1[0];
 			var size2_1=cross2_1[1];
 			var color2_1=cross2_1[2];
-      if($("#cs_draw_2_1").is(':checked')){
-        if($("#cs_draw_2_1_min input").is(':checked')) {
-          var minmodel2_1 = "; tf_use_min_viewmodels 1";
-        } else if($("#cs_draw_2_1_min input").not(':checked')) {
-          var minmodel2_1 = "; tf_use_min_viewmodels 0";
-        }
-        var model2_1 = $('#cs_fov_2_1').val()
-      } else {
-        var model2_1 = "off";
-        var minmodel2_1 = "";
-      }
+	  if($("#cs_draw_2_1").is(':checked')){
+		if($("#cs_draw_2_1_min input").is(':checked')) {
+		  var minmodel2_1 = "; tf_use_min_viewmodels 1";
+		} else if($("#cs_draw_2_1_min input").not(':checked')) {
+		  var minmodel2_1 = "; tf_use_min_viewmodels 0";
+		}
+		var model2_1 = $('#cs_fov_2_1').val()
+	  } else {
+		var model2_1 = "off";
+		var minmodel2_1 = "";
+	  }
 
 			var cross2_2  = $("[name='cs_col_2_2n']").val();
 			var style2_2=cross2_2[0];
 			var size2_2=cross2_2[1];
 			var color2_2=cross2_2[2];
-      if($("#cs_draw_2_2").is(':checked')){
-        if($("#cs_draw_2_2_min input").is(':checked')) {
-          var minmodel2_2 = "; tf_use_min_viewmodels 1";
-        } else if($("#cs_draw_2_2_min input").not(':checked')) {
-          var minmodel2_2 = "; tf_use_min_viewmodels 0";
-        }
-        var model2_2 = $('#cs_fov_2_2').val()
-      } else {
-        var model2_2 = "off";
-        var minmodel2_2 = "";
-      }
+	  if($("#cs_draw_2_2").is(':checked')){
+		if($("#cs_draw_2_2_min input").is(':checked')) {
+		  var minmodel2_2 = "; tf_use_min_viewmodels 1";
+		} else if($("#cs_draw_2_2_min input").not(':checked')) {
+		  var minmodel2_2 = "; tf_use_min_viewmodels 0";
+		}
+		var model2_2 = $('#cs_fov_2_2').val()
+	  } else {
+		var model2_2 = "off";
+		var minmodel2_2 = "";
+	  }
 
 			var cross2_3  = $("[name='cs_col_2_3n']").val();
 			var style2_3=cross2_3[0];
 			var size2_3=cross2_3[1];
 			var color2_3=cross2_3[2];
-      if($("#cs_draw_2_3").is(':checked')){
-        if($("#cs_draw_2_3_min input").is(':checked')) {
-          var minmodel2_3 = "; tf_use_min_viewmodels 1";
-        } else if($("#cs_draw_2_3_min input").not(':checked')) {
-          var minmodel2_3 = "; tf_use_min_viewmodels 0";
-        }
-        var model2_3 = $('#cs_fov_2_3').val()
-      } else {
-        var model2_3 = "off";
-        var minmodel2_3 = "";
-      }
+	  if($("#cs_draw_2_3").is(':checked')){
+		if($("#cs_draw_2_3_min input").is(':checked')) {
+		  var minmodel2_3 = "; tf_use_min_viewmodels 1";
+		} else if($("#cs_draw_2_3_min input").not(':checked')) {
+		  var minmodel2_3 = "; tf_use_min_viewmodels 0";
+		}
+		var model2_3 = $('#cs_fov_2_3').val()
+	  } else {
+		var model2_3 = "off";
+		var minmodel2_3 = "";
+	  }
 
 
 
@@ -272,49 +272,49 @@ jQuery(function ($) {
 			var style3_1=cross3_1[0];
 			var size3_1=cross3_1[1];
 			var color3_1=cross3_1[2];
-      if($("#cs_draw_3_1").is(':checked')){
-        if($("#cs_draw_3_1_min input").is(':checked')) {
-          var minmodel3_1 = "; tf_use_min_viewmodels 1";
-        } else if($("#cs_draw_3_1_min input").not(':checked')) {
-          var minmodel3_1 = "; tf_use_min_viewmodels 0";
-        }
-        var model3_1 = $('#cs_fov_3_1').val()
-      } else {
-        var model3_1 = "off";
-        var minmodel3_1 = "";
-      }
+	  if($("#cs_draw_3_1").is(':checked')){
+		if($("#cs_draw_3_1_min input").is(':checked')) {
+		  var minmodel3_1 = "; tf_use_min_viewmodels 1";
+		} else if($("#cs_draw_3_1_min input").not(':checked')) {
+		  var minmodel3_1 = "; tf_use_min_viewmodels 0";
+		}
+		var model3_1 = $('#cs_fov_3_1').val()
+	  } else {
+		var model3_1 = "off";
+		var minmodel3_1 = "";
+	  }
 
 			var cross3_2  = $("[name='cs_col_3_2n']").val();
 			var style3_2=cross3_2[0];
 			var size3_2=cross3_2[1];
 			var color3_2=cross3_2[2];
-      if($("#cs_draw_3_2").is(':checked')){
-        if($("#cs_draw_3_2_min input").is(':checked')) {
-          var minmodel3_2 = "; tf_use_min_viewmodels 1";
-        } else if($("#cs_draw_3_2_min input").not(':checked')) {
-          var minmodel3_2 = "; tf_use_min_viewmodels 0";
-        }
-        var model3_2 = $('#cs_fov_3_2').val()
-      } else {
-        var model3_2 = "off";
-        var minmodel3_2 = "";
-      }
+	  if($("#cs_draw_3_2").is(':checked')){
+		if($("#cs_draw_3_2_min input").is(':checked')) {
+		  var minmodel3_2 = "; tf_use_min_viewmodels 1";
+		} else if($("#cs_draw_3_2_min input").not(':checked')) {
+		  var minmodel3_2 = "; tf_use_min_viewmodels 0";
+		}
+		var model3_2 = $('#cs_fov_3_2').val()
+	  } else {
+		var model3_2 = "off";
+		var minmodel3_2 = "";
+	  }
 
 			var cross3_3  = $("[name='cs_col_3_3n']").val();
 			var style3_3=cross3_3[0];
 			var size3_3=cross3_3[1];
 			var color3_3=cross3_3[2];
-      if($("#cs_draw_3_3").is(':checked')){
-        if($("#cs_draw_3_3_min input").is(':checked')) {
-          var minmodel3_3 = "; tf_use_min_viewmodels 1";
-        } else if($("#cs_draw_3_3_min input").not(':checked')) {
-          var minmodel3_3 = "; tf_use_min_viewmodels 0";
-        }
-        var model3_3 = $('#cs_fov_3_3').val()
-      } else {
-        var model3_3 = "off";
-        var minmodel3_3 = "";
-      }
+	  if($("#cs_draw_3_3").is(':checked')){
+		if($("#cs_draw_3_3_min input").is(':checked')) {
+		  var minmodel3_3 = "; tf_use_min_viewmodels 1";
+		} else if($("#cs_draw_3_3_min input").not(':checked')) {
+		  var minmodel3_3 = "; tf_use_min_viewmodels 0";
+		}
+		var model3_3 = $('#cs_fov_3_3').val()
+	  } else {
+		var model3_3 = "off";
+		var minmodel3_3 = "";
+	  }
 
 
 
@@ -323,49 +323,49 @@ jQuery(function ($) {
 			var style4_1=cross4_1[0];
 			var size4_1=cross4_1[1];
 			var color4_1=cross4_1[2];
-      if($("#cs_draw_4_1").is(':checked')){
-        if($("#cs_draw_4_1_min input").is(':checked')) {
-          var minmodel4_1 = "; tf_use_min_viewmodels 1";
-        } else if($("#cs_draw_4_1_min input").not(':checked')) {
-          var minmodel4_1 = "; tf_use_min_viewmodels 0";
-        }
-        var model4_1 = $('#cs_fov_4_1').val()
-      } else {
-        var model4_1 = "off";
-        var minmodel4_1 = "";
-      }
+	  if($("#cs_draw_4_1").is(':checked')){
+		if($("#cs_draw_4_1_min input").is(':checked')) {
+		  var minmodel4_1 = "; tf_use_min_viewmodels 1";
+		} else if($("#cs_draw_4_1_min input").not(':checked')) {
+		  var minmodel4_1 = "; tf_use_min_viewmodels 0";
+		}
+		var model4_1 = $('#cs_fov_4_1').val()
+	  } else {
+		var model4_1 = "off";
+		var minmodel4_1 = "";
+	  }
 
 			var cross4_2  = $("[name='cs_col_4_2n']").val();
 			var style4_2=cross4_2[0];
 			var size4_2=cross4_2[1];
 			var color4_2=cross4_2[2];
-      if($("#cs_draw_4_2").is(':checked')){
-        if($("#cs_draw_4_2_min input").is(':checked')) {
-          var minmodel4_2 = "; tf_use_min_viewmodels 1";
-        } else if($("#cs_draw_4_2_min input").not(':checked')) {
-          var minmodel4_2 = "; tf_use_min_viewmodels 0";
-        }
-        var model4_2 = $('#cs_fov_4_2').val()
-      } else {
-        var model4_2 = "off";
-        var minmodel4_2 = "";
-      }
+	  if($("#cs_draw_4_2").is(':checked')){
+		if($("#cs_draw_4_2_min input").is(':checked')) {
+		  var minmodel4_2 = "; tf_use_min_viewmodels 1";
+		} else if($("#cs_draw_4_2_min input").not(':checked')) {
+		  var minmodel4_2 = "; tf_use_min_viewmodels 0";
+		}
+		var model4_2 = $('#cs_fov_4_2').val()
+	  } else {
+		var model4_2 = "off";
+		var minmodel4_2 = "";
+	  }
 
 			var cross4_3  = $("[name='cs_col_4_3n']").val();
 			var style4_3=cross4_3[0];
 			var size4_3=cross4_3[1];
 			var color4_3=cross4_3[2];
-      if($("#cs_draw_4_3").is(':checked')){
-        if($("#cs_draw_4_3_min input").is(':checked')) {
-          var minmodel4_3 = "; tf_use_min_viewmodels 1";
-        } else if($("#cs_draw_4_3_min input").not(':checked')) {
-          var minmodel4_3 = "; tf_use_min_viewmodels 0";
-        }
-        var model4_3 = $('#cs_fov_4_3').val()
-      } else {
-        var model4_3 = "off";
-        var minmodel4_3 = "";
-      }
+	  if($("#cs_draw_4_3").is(':checked')){
+		if($("#cs_draw_4_3_min input").is(':checked')) {
+		  var minmodel4_3 = "; tf_use_min_viewmodels 1";
+		} else if($("#cs_draw_4_3_min input").not(':checked')) {
+		  var minmodel4_3 = "; tf_use_min_viewmodels 0";
+		}
+		var model4_3 = $('#cs_fov_4_3').val()
+	  } else {
+		var model4_3 = "off";
+		var minmodel4_3 = "";
+	  }
 
 
 
@@ -374,49 +374,49 @@ jQuery(function ($) {
 			var style5_1=cross5_1[0];
 			var size5_1=cross5_1[1];
 			var color5_1=cross5_1[2];
-      if($("#cs_draw_5_1").is(':checked')){
-        if($("#cs_draw_5_1_min input").is(':checked')) {
-          var minmodel5_1 = "; tf_use_min_viewmodels 1";
-        } else if($("#cs_draw_5_1_min input").not(':checked')) {
-          var minmodel5_1 = "; tf_use_min_viewmodels 0";
-        }
-        var model5_1 = $('#cs_fov_5_1').val()
-      } else {
-        var model5_1 = "off";
-        var minmodel5_1 = "";
-      }
+	  if($("#cs_draw_5_1").is(':checked')){
+		if($("#cs_draw_5_1_min input").is(':checked')) {
+		  var minmodel5_1 = "; tf_use_min_viewmodels 1";
+		} else if($("#cs_draw_5_1_min input").not(':checked')) {
+		  var minmodel5_1 = "; tf_use_min_viewmodels 0";
+		}
+		var model5_1 = $('#cs_fov_5_1').val()
+	  } else {
+		var model5_1 = "off";
+		var minmodel5_1 = "";
+	  }
 
 			var cross5_2  = $("[name='cs_col_5_2n']").val();
 			var style5_2=cross5_2[0];
 			var size5_2=cross5_2[1];
 			var color5_2=cross5_2[2];
-      if($("#cs_draw_5_2").is(':checked')){
-        if($("#cs_draw_5_2_min input").is(':checked')) {
-          var minmodel5_2 = "; tf_use_min_viewmodels 1";
-        } else if($("#cs_draw_5_2_min input").not(':checked')) {
-          var minmodel5_2 = "; tf_use_min_viewmodels 0";
-        }
-        var model5_2 = $('#cs_fov_5_2').val()
-      } else {
-        var model5_2 = "off";
-        var minmodel5_2 = "";
-      }
+	  if($("#cs_draw_5_2").is(':checked')){
+		if($("#cs_draw_5_2_min input").is(':checked')) {
+		  var minmodel5_2 = "; tf_use_min_viewmodels 1";
+		} else if($("#cs_draw_5_2_min input").not(':checked')) {
+		  var minmodel5_2 = "; tf_use_min_viewmodels 0";
+		}
+		var model5_2 = $('#cs_fov_5_2').val()
+	  } else {
+		var model5_2 = "off";
+		var minmodel5_2 = "";
+	  }
 
 			var cross5_3  = $("[name='cs_col_5_3n']").val();
 			var style5_3=cross5_3[0];
 			var size5_3=cross5_3[1];
 			var color5_3=cross5_3[2];
-      if($("#cs_draw_5_3").is(':checked')){
-        if($("#cs_draw_5_3_min input").is(':checked')) {
-          var minmodel5_3 = "; tf_use_min_viewmodels 1";
-        } else if($("#cs_draw_5_3_min input").not(':checked')) {
-          var minmodel5_3 = "; tf_use_min_viewmodels 0";
-        }
-        var model5_3 = $('#cs_fov_5_3').val()
-      } else {
-        var model5_3 = "off";
-        var minmodel5_3 = "";
-      }
+	  if($("#cs_draw_5_3").is(':checked')){
+		if($("#cs_draw_5_3_min input").is(':checked')) {
+		  var minmodel5_3 = "; tf_use_min_viewmodels 1";
+		} else if($("#cs_draw_5_3_min input").not(':checked')) {
+		  var minmodel5_3 = "; tf_use_min_viewmodels 0";
+		}
+		var model5_3 = $('#cs_fov_5_3').val()
+	  } else {
+		var model5_3 = "off";
+		var minmodel5_3 = "";
+	  }
 
 
 
@@ -425,49 +425,49 @@ jQuery(function ($) {
 			var style6_1=cross6_1[0];
 			var size6_1=cross6_1[1];
 			var color6_1=cross6_1[2];
-      if($("#cs_draw_6_1").is(':checked')){
-        if($("#cs_draw_6_1_min input").is(':checked')) {
-          var minmodel6_1 = "; tf_use_min_viewmodels 1";
-        } else if($("#cs_draw_6_1_min input").not(':checked')) {
-          var minmodel6_1 = "; tf_use_min_viewmodels 0";
-        }
-        var model6_1 = $('#cs_fov_6_1').val()
-      } else {
-        var model6_1 = "off";
-        var minmodel6_1 = "";
-      }
+	  if($("#cs_draw_6_1").is(':checked')){
+		if($("#cs_draw_6_1_min input").is(':checked')) {
+		  var minmodel6_1 = "; tf_use_min_viewmodels 1";
+		} else if($("#cs_draw_6_1_min input").not(':checked')) {
+		  var minmodel6_1 = "; tf_use_min_viewmodels 0";
+		}
+		var model6_1 = $('#cs_fov_6_1').val()
+	  } else {
+		var model6_1 = "off";
+		var minmodel6_1 = "";
+	  }
 
 			var cross6_2  = $("[name='cs_col_6_2n']").val();
 			var style6_2=cross6_2[0];
 			var size6_2=cross6_2[1];
 			var color6_2=cross6_2[2];
-      if($("#cs_draw_6_2").is(':checked')){
-        if($("#cs_draw_6_2_min input").is(':checked')) {
-          var minmodel6_2 = "; tf_use_min_viewmodels 1";
-        } else if($("#cs_draw_6_2_min input").not(':checked')) {
-          var minmodel6_2 = "; tf_use_min_viewmodels 0";
-        }
-        var model6_2 = $('#cs_fov_6_2').val()
-      } else {
-        var model6_2 = "off";
-        var minmodel6_2 = "";
-      }
+	  if($("#cs_draw_6_2").is(':checked')){
+		if($("#cs_draw_6_2_min input").is(':checked')) {
+		  var minmodel6_2 = "; tf_use_min_viewmodels 1";
+		} else if($("#cs_draw_6_2_min input").not(':checked')) {
+		  var minmodel6_2 = "; tf_use_min_viewmodels 0";
+		}
+		var model6_2 = $('#cs_fov_6_2').val()
+	  } else {
+		var model6_2 = "off";
+		var minmodel6_2 = "";
+	  }
 
 			var cross6_3  = $("[name='cs_col_6_3n']").val();
 			var style6_3=cross6_3[0];
 			var size6_3=cross6_3[1];
 			var color6_3=cross6_3[2];
-      if($("#cs_draw_6_3").is(':checked')){
-        if($("#cs_draw_6_3_min input").is(':checked')) {
-          var minmodel6_3 = "; tf_use_min_viewmodels 1";
-        } else if($("#cs_draw_6_3_min input").not(':checked')) {
-          var minmodel6_3 = "; tf_use_min_viewmodels 0";
-        }
-        var model6_3 = $('#cs_fov_6_3').val()
-      } else {
-        var model6_3 = "off";
-        var minmodel6_3 = "";
-      }
+	  if($("#cs_draw_6_3").is(':checked')){
+		if($("#cs_draw_6_3_min input").is(':checked')) {
+		  var minmodel6_3 = "; tf_use_min_viewmodels 1";
+		} else if($("#cs_draw_6_3_min input").not(':checked')) {
+		  var minmodel6_3 = "; tf_use_min_viewmodels 0";
+		}
+		var model6_3 = $('#cs_fov_6_3').val()
+	  } else {
+		var model6_3 = "off";
+		var minmodel6_3 = "";
+	  }
 
 
 
@@ -476,49 +476,49 @@ jQuery(function ($) {
 			var style7_1=cross7_1[0];
 			var size7_1=cross7_1[1];
 			var color7_1=cross7_1[2];
-      if($("#cs_draw_7_1").is(':checked')){
-        if($("#cs_draw_7_1_min input").is(':checked')) {
-          var minmodel7_1 = "; tf_use_min_viewmodels 1";
-        } else if($("#cs_draw_7_1_min input").not(':checked')) {
-          var minmodel7_1 = "; tf_use_min_viewmodels 0";
-        }
-        var model7_1 = $('#cs_fov_7_1').val()
-      } else {
-        var model7_1 = "off";
-        var minmodel7_1 = "";
-      }
+	  if($("#cs_draw_7_1").is(':checked')){
+		if($("#cs_draw_7_1_min input").is(':checked')) {
+		  var minmodel7_1 = "; tf_use_min_viewmodels 1";
+		} else if($("#cs_draw_7_1_min input").not(':checked')) {
+		  var minmodel7_1 = "; tf_use_min_viewmodels 0";
+		}
+		var model7_1 = $('#cs_fov_7_1').val()
+	  } else {
+		var model7_1 = "off";
+		var minmodel7_1 = "";
+	  }
 
 			var cross7_2  = $("[name='cs_col_7_2n']").val();
 			var style7_2=cross7_2[0];
 			var size7_2=cross7_2[1];
 			var color7_2=cross7_2[2];
-      if($("#cs_draw_7_2").is(':checked')){
-        if($("#cs_draw_7_2_min input").is(':checked')) {
-          var minmodel7_2 = "; tf_use_min_viewmodels 1";
-        } else if($("#cs_draw_7_2_min input").not(':checked')) {
-          var minmodel7_2 = "; tf_use_min_viewmodels 0";
-        }
-        var model7_2 = $('#cs_fov_7_2').val()
-      } else {
-        var model7_2 = "off";
-        var minmodel7_2 = "";
-      }
+	  if($("#cs_draw_7_2").is(':checked')){
+		if($("#cs_draw_7_2_min input").is(':checked')) {
+		  var minmodel7_2 = "; tf_use_min_viewmodels 1";
+		} else if($("#cs_draw_7_2_min input").not(':checked')) {
+		  var minmodel7_2 = "; tf_use_min_viewmodels 0";
+		}
+		var model7_2 = $('#cs_fov_7_2').val()
+	  } else {
+		var model7_2 = "off";
+		var minmodel7_2 = "";
+	  }
 
 			var cross7_3  = $("[name='cs_col_7_3n']").val();
 			var style7_3=cross7_3[0];
 			var size7_3=cross7_3[1];
 			var color7_3=cross7_3[2];
-      if($("#cs_draw_7_3").is(':checked')){
-        if($("#cs_draw_7_3_min input").is(':checked')) {
-          var minmodel7_3 = "; tf_use_min_viewmodels 1";
-        } else if($("#cs_draw_7_3_min input").not(':checked')) {
-          var minmodel7_3 = "; tf_use_min_viewmodels 0";
-        }
-        var model7_3 = $('#cs_fov_7_3').val()
-      } else {
-        var model7_3 = "off";
-        var minmodel7_3 = "";
-      }
+	  if($("#cs_draw_7_3").is(':checked')){
+		if($("#cs_draw_7_3_min input").is(':checked')) {
+		  var minmodel7_3 = "; tf_use_min_viewmodels 1";
+		} else if($("#cs_draw_7_3_min input").not(':checked')) {
+		  var minmodel7_3 = "; tf_use_min_viewmodels 0";
+		}
+		var model7_3 = $('#cs_fov_7_3').val()
+	  } else {
+		var model7_3 = "off";
+		var minmodel7_3 = "";
+	  }
 
 
 
@@ -527,49 +527,49 @@ jQuery(function ($) {
 			var style8_1=cross8_1[0];
 			var size8_1=cross8_1[1];
 			var color8_1=cross8_1[2];
-      if($("#cs_draw_8_1").is(':checked')){
-        if($("#cs_draw_8_1_min input").is(':checked')) {
-          var minmodel8_1 = "; tf_use_min_viewmodels 1";
-        } else if($("#cs_draw_8_1_min input").not(':checked')) {
-          var minmodel8_1 = "; tf_use_min_viewmodels 0";
-        }
-        var model8_1 = $('#cs_fov_8_1').val()
-      } else {
-        var model8_1 = "off";
-        var minmodel8_1 = "";
-      }
+	  if($("#cs_draw_8_1").is(':checked')){
+		if($("#cs_draw_8_1_min input").is(':checked')) {
+		  var minmodel8_1 = "; tf_use_min_viewmodels 1";
+		} else if($("#cs_draw_8_1_min input").not(':checked')) {
+		  var minmodel8_1 = "; tf_use_min_viewmodels 0";
+		}
+		var model8_1 = $('#cs_fov_8_1').val()
+	  } else {
+		var model8_1 = "off";
+		var minmodel8_1 = "";
+	  }
 
 			var cross8_2  = $("[name='cs_col_8_2n']").val();
 			var style8_2=cross8_2[0];
 			var size8_2=cross8_2[1];
 			var color8_2=cross8_2[2];
-      if($("#cs_draw_8_2").is(':checked')){
-        if($("#cs_draw_8_2_min input").is(':checked')) {
-          var minmodel8_2 = "; tf_use_min_viewmodels 1";
-        } else if($("#cs_draw_8_2_min input").not(':checked')) {
-          var minmodel8_2 = "; tf_use_min_viewmodels 0";
-        }
-        var model8_2 = $('#cs_fov_8_2').val()
-      } else {
-        var model8_2 = "off";
-        var minmodel8_2 = "";
-      }
+	  if($("#cs_draw_8_2").is(':checked')){
+		if($("#cs_draw_8_2_min input").is(':checked')) {
+		  var minmodel8_2 = "; tf_use_min_viewmodels 1";
+		} else if($("#cs_draw_8_2_min input").not(':checked')) {
+		  var minmodel8_2 = "; tf_use_min_viewmodels 0";
+		}
+		var model8_2 = $('#cs_fov_8_2').val()
+	  } else {
+		var model8_2 = "off";
+		var minmodel8_2 = "";
+	  }
 
 			var cross8_3  = $("[name='cs_col_8_3n']").val();
 			var style8_3=cross8_3[0];
 			var size8_3=cross8_3[1];
 			var color8_3=cross8_3[2];
-      if($("#cs_draw_8_3").is(':checked')){
-        if($("#cs_draw_8_3_min input").is(':checked')) {
-          var minmodel8_3 = "; tf_use_min_viewmodels 1";
-        } else if($("#cs_draw_8_3_min input").not(':checked')) {
-          var minmodel8_3 = "; tf_use_min_viewmodels 0";
-        }
-        var model8_3 = $('#cs_fov_8_3').val()
-      } else {
-        var model8_3 = "off";
-        var minmodel8_3 = "";
-      }
+	  if($("#cs_draw_8_3").is(':checked')){
+		if($("#cs_draw_8_3_min input").is(':checked')) {
+		  var minmodel8_3 = "; tf_use_min_viewmodels 1";
+		} else if($("#cs_draw_8_3_min input").not(':checked')) {
+		  var minmodel8_3 = "; tf_use_min_viewmodels 0";
+		}
+		var model8_3 = $('#cs_fov_8_3').val()
+	  } else {
+		var model8_3 = "off";
+		var minmodel8_3 = "";
+	  }
 
 
 
@@ -578,49 +578,49 @@ jQuery(function ($) {
 			var style9_1=cross9_1[0];
 			var size9_1=cross9_1[1];
 			var color9_1=cross9_1[2];
-      if($("#cs_draw_9_1").is(':checked')){
-        if($("#cs_draw_9_1_min input").is(':checked')) {
-          var minmodel9_1 = "; tf_use_min_viewmodels 1";
-        } else if($("#cs_draw_9_1_min input").not(':checked')) {
-          var minmodel9_1 = "; tf_use_min_viewmodels 0";
-        }
-        var model9_1 = $('#cs_fov_9_1').val()
-      } else {
-        var model9_1 = "off";
-        var minmodel9_1 = "";
-      }
+	  if($("#cs_draw_9_1").is(':checked')){
+		if($("#cs_draw_9_1_min input").is(':checked')) {
+		  var minmodel9_1 = "; tf_use_min_viewmodels 1";
+		} else if($("#cs_draw_9_1_min input").not(':checked')) {
+		  var minmodel9_1 = "; tf_use_min_viewmodels 0";
+		}
+		var model9_1 = $('#cs_fov_9_1').val()
+	  } else {
+		var model9_1 = "off";
+		var minmodel9_1 = "";
+	  }
 
 			var cross9_2  = $("[name='cs_col_9_2n']").val();
 			var style9_2=cross9_2[0];
 			var size9_2=cross9_2[1];
 			var color9_2=cross9_2[2];
-      if($("#cs_draw_9_2").is(':checked')){
-        if($("#cs_draw_9_2_min input").is(':checked')) {
-          var minmodel9_2 = "; tf_use_min_viewmodels 1";
-        } else if($("#cs_draw_9_2_min input").not(':checked')) {
-          var minmodel9_2 = "; tf_use_min_viewmodels 0";
-        }
-        var model9_2 = $('#cs_fov_9_2').val()
-      } else {
-        var model9_2 = "off";
-        var minmodel9_2 = "";
-      }
+	  if($("#cs_draw_9_2").is(':checked')){
+		if($("#cs_draw_9_2_min input").is(':checked')) {
+		  var minmodel9_2 = "; tf_use_min_viewmodels 1";
+		} else if($("#cs_draw_9_2_min input").not(':checked')) {
+		  var minmodel9_2 = "; tf_use_min_viewmodels 0";
+		}
+		var model9_2 = $('#cs_fov_9_2').val()
+	  } else {
+		var model9_2 = "off";
+		var minmodel9_2 = "";
+	  }
 
 			var cross9_3  = $("[name='cs_col_9_3n']").val();
 			var style9_3=cross9_3[0];
 			var size9_3=cross9_3[1];
 			var color9_3=cross9_3[2];
-      if($("#cs_draw_9_3").is(':checked')){
-        if($("#cs_draw_9_3_min input").is(':checked')) {
-          var minmodel9_3 = "; tf_use_min_viewmodels 1";
-        } else if($("#cs_draw_9_3_min input").not(':checked')) {
-          var minmodel9_3 = "; tf_use_min_viewmodels 0";
-        }
-        var model9_3 = $('#cs_fov_9_3').val()
-      } else {
-        var model9_3 = "off";
-        var minmodel9_3 = "";
-      }
+	  if($("#cs_draw_9_3").is(':checked')){
+		if($("#cs_draw_9_3_min input").is(':checked')) {
+		  var minmodel9_3 = "; tf_use_min_viewmodels 1";
+		} else if($("#cs_draw_9_3_min input").not(':checked')) {
+		  var minmodel9_3 = "; tf_use_min_viewmodels 0";
+		}
+		var model9_3 = $('#cs_fov_9_3').val()
+	  } else {
+		var model9_3 = "off";
+		var minmodel9_3 = "";
+	  }
 
 		}
 
@@ -629,31 +629,31 @@ jQuery(function ($) {
 	var bindarr = "";
 
 
-        // find every checked item
-        $(this).find(":checked").each(function () {
+		// find every checked item
+		$(this).find(":checked").each(function () {
 
-            var $this = $(this);
-            var url = $this.data("url");
+			var $this = $(this);
+			var url = $this.data("url");
 			var iswhat = $this.data("name");
-            var filename = url.replace(/.*\//g, "");
+			var filename = url.replace(/.*\//g, "");
 			if(iswhat == "gfx") {
 				zip.file("cfg/gfx.cfg", urlToPromise(url), {binary:true});
-            }
+			}
 			if(iswhat == "scripts") {
 				zip.file("custom/runfasterpls/scripts/" + filename, urlToPromise(url), {binary:true});
-            }
+			}
 			if(iswhat == "hitsound") {
 				zip.file("custom/damage/sound/ui/hitsound.wav", urlToPromise(url), {binary:true});
-            }
+			}
 			if(iswhat == "killsound") {
 				zip.file("custom/damage/sound/ui/killsound.wav", urlToPromise(url), {binary:true});
-            }
+			}
 			if(iswhat == "vpks") {
 				zip.file("custom/" + filename, urlToPromise(url), {binary:true});
-            }
+			}
 			if(iswhat == "configs") {
 				zip.file("cfg/" + filename, urlToPromise(url), {binary:true});
-            }
+			}
 			if(iswhat == "crosshairswitcher") {
 				zip.file("cfg/demoman.cfg", urlToPromise("../make/cfg/class/demoman.cfg"), {binary:true});
 				zip.file("cfg/demoplayback.cfg", urlToPromise("../make/cfg/class/demoplayback.cfg"), {binary:true});
@@ -676,26 +676,26 @@ jQuery(function ($) {
 				zip.file("cfg/crosshairswitcher/switcher.cfg", urlToPromise("../make/cfg/class/crosshairswitcher/switcher.cfg"), {binary:true});
 				zip.file("cfg/crosshairswitcher/weapons.cfg", urlToPromise("../make/cfg/class/crosshairswitcher/weapons.cfg"), {binary:true});
 
-            }
+			}
 			if(iswhat == "sourceres") {
 				zip.file("addons/SourceRes.dll", urlToPromise("../make/addons/SourceRes/addons/SourceRes.dll"), {binary:true});
 				zip.file("addons/SourceRes.vdf", urlToPromise("../make/addons/SourceRes/addons/SourceRes.vdf"), {binary:true});
-            }
+			}
 			if(iswhat == "prec") {
 				zip.file("addons/PREC.cfg", urlToPromise("../make/addons/prec/addons/PREC.cfg"), {binary:true});
 				zip.file("addons/PREC.dll", urlToPromise("../make/addons/prec/addons/PREC.dll"), {binary:true});
 				zip.file("addons/PREC.vdf", urlToPromise("../make/addons/prec/addons/PREC.vdf"), {binary:true});
 				zip.file("addons/readme_prec.txt", urlToPromise("../make/addons/prec/addons/readme_prec.txt"), {binary:true});
-            }
+			}
 			if(iswhat == "casting") {
 				zip.file("addons/CastingEssentials.dll", urlToPromise("../make/addons/CastingEssentials/addons/CastingEssentials.dll"), {binary:true});
 				zip.file("addons/CastingEssentials.vdf", urlToPromise("../make/addons/CastingEssentials/addons/CastingEssentials.vdf"), {binary:true});
 				zip.file("materials/debug/debugfbtexture1.vmt", urlToPromise("../make/addons/CastingEssentials/materials/debug/debugfbtexture1.vmt"), {binary:true});
-             }
+			 }
 			if(iswhat == "tweaks") {
 				zip.file("cfg/tweaks/" + filename, urlToPromise(url), {binary:true});
 				customs = customs + "exec tweaks/" + filename.slice(0, -4) + "\n";
-            }
+			}
 			if(iswhat == "bindscheck") {
 			var i = 1;
 			while (i <= room) {
@@ -717,10 +717,10 @@ jQuery(function ($) {
 					customs = customs + "exec tweaks/fastclass.cfg\n";
 				}
 
-            }
+			}
 			zip.file('cfg/custom.cfg', '//Tweaks, custom settings, all the stuff usually goes here\n\n\n' +customs + '\n\n' + bindings + '\necho "------------- Thanks for using CFG.TF -------------"\necho "------------- Create your own custom config at https://cfg.tf -------------"'); //load custom tweaks and config
 
-        });
+		});
 
 
 		//building and downloading static configs
@@ -728,29 +728,29 @@ jQuery(function ($) {
 		zip.file("cfg/settings.cfg", "//General TF2 settings, like autoheal, min viewmodels, fastswitch, etc.\n\ntf_medigun_autoheal 1\ncl_autoreload 1\nhud_fastswitch 1\ntf_use_min_viewmodels " + minmodel +"\nr_drawviewmodel " + drawviewmodel + "\nfov_desired 90\nviewmodel_fov " + v_fov + "\nbindtoggle "+vmodelbind+" r_drawviewmodel\ncl_flipviewmodels "+fliptoggle+"\n\ntf_remember_activeweapon 1\ntf_remember_lastswitched 1\nsb_dontshow_maxplayer_warning 1\ntf_spectate_pyrovision 0\nviewmodel_fov_demo 75\n\ntf_dingalingaling " + hittoggle + "\ntf_dingalingaling_repeat_delay " + hitdelay + "\ntf_dingaling_pitchmindmg " + hitmin + " \ntf_dingaling_pitchmaxdmg " + hitmax + "\ntf_dingaling_lasthit " + killtoggle + "\ntf_dingaling_lasthit_volume " + killvol + "\ntf_dingaling_lasthit_pitchmindmg " + killmin + "\ntf_dingaling_lasthit_pitchmaxdmg " + killmax + "\n\n\ntf_training_has_prompted_for_training 1\ntf_training_has_prompted_for_offline_practice 1\ntf_training_has_prompted_for_forums 1\ntf_training_has_prompted_for_options 1\ntf_training_has_prompted_for_loadout 1\ntf_mvm_tabs_discovered 3\ntf_matchmaking_ticket_help 0\ntf_coach_request_nevershowagain 1\n\nhud_combattext " + comtoggle + "\nhud_combattext_batching " + battoggle + "\nhud_combattext_batching_window " + batwindow + "\n\nds_kill_delay 15.000000\nds_enable " + ds_mode + "\nds_dir " + ds_folder + "\nds_notify "+ ds_notify + "\nds_sound " + ds_sound + "\nds_min_streak " + ds_ks + "\nds_autodelete " + ds_delete + "\nds_screens " + ds_screen); 	//settings
 		zip.file("cfg/network.cfg", "//Connection settings\n\ncl_cmdrate " + cmdrate + "\ncl_interp " + interp + "\ncl_interp_ratio " + intratio +"\ncl_lagcompensation 1\ncl_pred_optimize 2\ncl_smooth 0\ncl_smoothtime 0.01\ncl_updaterate " + uprate + "\nrate " + rate + "\n");  	//network
 		zip.file("cfg/binds.cfg", "//stock non class-specific binds\n////Made with cfg.tf - custom Team Fortress 2 config generator\n\n"+bindarr); 	//binds
-  
 
-        // when everything has been downloaded, we can trigger the dl
-        zip.generateAsync({type:"blob"}, function updateCallback(metadata) {
-            var msg = "Packing : " + metadata.percent.toFixed(2) + " %";
-            if(metadata.currentFile) {
-                msg += ", current file = " + metadata.currentFile;
-            }
-            showMessage(msg);
-            updatePercent(metadata.percent|0);
-        })
-        .then(function callback(blob) {
 
-            // see FileSaver.js
-            saveAs(blob, "config.zip");
+		// when everything has been downloaded, we can trigger the dl
+		zip.generateAsync({type:"blob"}, function updateCallback(metadata) {
+			var msg = "Packing : " + metadata.percent.toFixed(2) + " %";
+			if(metadata.currentFile) {
+				msg += ", current file = " + metadata.currentFile;
+			}
+			showMessage(msg);
+			updatePercent(metadata.percent|0);
+		})
+		.then(function callback(blob) {
 
-            showMessage("Done! Extract this archive to your /tf folder.");
-        }, function (e) {
-            showError(e);
-        });
+			// see FileSaver.js
+			saveAs(blob, "config.zip");
 
-        return false;
-    });
+			showMessage("Done! Extract this archive to your /tf folder.");
+		}, function (e) {
+			showError(e);
+		});
+
+		return false;
+	});
 
 
 });
