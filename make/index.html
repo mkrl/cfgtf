@@ -99,7 +99,7 @@
         });
       </script>
       <div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><i class="fa fa-exclamation-circle" aria-hidden="true"></i> This tool will overwrite all of your binds. It is recommended to be installed on a blank <abbr title="Team Fortress 2" class="initialism">TF2</abbr>, without any prior configs installed. Please make a backup of your <abbr title="Config" class="initialism">CFG</abbr> and custom folders before using this if you want to save your old binds. You can wipe your configs by clearing your custom and cfg folders and launching <abbr title="Team Fortress 2" class="initialism">TF2</abbr> with -autoconfig launch option. </div>
-	
+
 
 			<form action="#" id="download_form">
 				<!-- The form submit will not work without ul, so I added another class to remove padding? todo: fix this shit -->
@@ -791,803 +791,644 @@
 
   <hr>
 	</div>
-	  <div class="tab-pane fade" id="keys">
-	<!--  KEYS  -->
-	<h3>Key bindings</h3>
-	<p class="text-muted">Configure your keys. Default key bindings on this page are intended to be used with <a href="https://en.wikipedia.org/wiki/QWERTY" target="_blank">QWERTY</a> keyboards, if you use other layout you might want to change or disable them.</p>
-	<ul class="checkbox list-unstyled">
-  		<li>
-  	    <label>
+	<div class="tab-pane fade" id="keys">
+  <!--  KEYS  -->
+  <h3>Key bindings</h3>
+  <p class="text-muted">Configure your keys. Default key bindings on this page are intended to be used with <a href="https://en.wikipedia.org/wiki/QWERTY" target="_blank">QWERTY</a> keyboards, if you use other layout you might want to change or disable them.</p>
+  <ul class="checkbox list-unstyled">
+    <li> <label>
   	      <input type="checkbox" id="bindscheck" data-name="bindscheck" data-url="" checked />
   	      Enable key mappings <a href="#" data-toggle="tooltip" title="When this is selected, all the key mappings (key settings) below will be written into your binds.cfg file. If not, a blank file will be generated."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
-  	    </label>
-  		</li>
-	</ul>
-	<br>
-	<script>
-	$(document).ready(function(){
-    $('#bindscheck').change(function(){
-        if(this.checked)
-            $('#bindpan').fadeIn(400);
-        else
-            $('#bindpan').fadeOut(400);
-
-		});
-	});
-	</script>
-
-	<div class="panel panel-default" id="bindpan">
-  <div class="panel-heading">Key mappings</div>
-  <div class="panel-body">
-  
-<div id="education_fields">
-	<!-- KEY -->
-    <div class="form-group removeclass2">
-        <div class="col-sm-3 nopadding">
+  	    </label> </li>
+  </ul> <br>
+  <script>
+    $(document).ready(function() {
+      $('#bindscheck').change(function() {
+        if (this.checked) {
+          $('#bindpan').fadeIn(400);
+          $('#bindpan input').prop('required',true);
+        } else {
+          $('#bindpan').fadeOut(400);
+          $('#bindpan input').prop('required',false);
+        }
+      });
+    });
+  </script>
+  <div class="panel panel-default" id="bindpan">
+    <div class="panel-heading">Key mappings</div>
+    <div class="panel-body">
+      <div id="education_fields">
+        <!-- KEY -->
+        <div class="form-group removeclass2">
+          <div class="col-sm-3 nopadding">
+            <div class="form-group"> <input type="text" class="form-control" id="key1" name="Keys[]" value="w" placeholder="Key" required> </div>
+          </div>
+          <div class="col-sm-3 nopadding">
             <div class="form-group">
-                <input type="text" class="form-control" id="key2" name="Keys[]" value="a" placeholder="Key"> </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="command2" name="Commands[]" value="+moveleft" placeholder="Command">
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger" type="button" onclick="remove_education_fields(2);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-                    </div>
-                </div>
+              <div class="input-group"> <input type="text" class="form-control" id="command1" name="Commands[]" value="+forward" placeholder="Command" required>
+                <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(1);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div>
+              </div>
             </div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
-	<!-- /KEY -->
-	<!-- KEY -->
-    <div class="form-group removeclass3">
-        <div class="col-sm-3 nopadding">
+        <!-- /KEY -->
+        <!-- KEY -->
+        <div class="form-group removeclass2">
+          <div class="col-sm-3 nopadding">
+            <div class="form-group"> <input type="text" class="form-control" id="key2" name="Keys[]" value="a" placeholder="Key" required> </div>
+          </div>
+          <div class="col-sm-3 nopadding">
             <div class="form-group">
-                <input type="text" class="form-control" id="key3" name="Keys[]" value="s" placeholder="Key"> </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="command3" name="Commands[]" value="+back" placeholder="Command">
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger" type="button" onclick="remove_education_fields(3);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-                    </div>
-                </div>
+              <div class="input-group"> <input type="text" class="form-control" id="command2" name="Commands[]" value="+moveleft" placeholder="Command" required>
+                <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(2);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div>
+              </div>
             </div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
-	<!-- /KEY -->
-	<!-- KEY -->
-    <div class="form-group removeclass4">
-        <div class="col-sm-3 nopadding">
+        <!-- /KEY -->
+        <!-- KEY -->
+        <div class="form-group removeclass3">
+          <div class="col-sm-3 nopadding">
+            <div class="form-group"> <input type="text" class="form-control" id="key3" name="Keys[]" value="s" placeholder="Key" required> </div>
+          </div>
+          <div class="col-sm-3 nopadding">
             <div class="form-group">
-                <input type="text" class="form-control" id="key4" name="Keys[]" value="d" placeholder="Key"> </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="command4" name="Commands[]" value="+moveright" placeholder="Command">
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger" type="button" onclick="remove_education_fields(4);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-                    </div>
-                </div>
+              <div class="input-group"> <input type="text" class="form-control" id="command3" name="Commands[]" value="+back" placeholder="Command" required>
+                <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(3);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div>
+              </div>
             </div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
-	<!-- /KEY -->
-	<!-- KEY -->
-    <div class="form-group removeclass5">
-        <div class="col-sm-3 nopadding">
+        <!-- /KEY -->
+        <!-- KEY -->
+        <div class="form-group removeclass4">
+          <div class="col-sm-3 nopadding">
+            <div class="form-group"> <input type="text" class="form-control" id="key4" name="Keys[]" value="d" placeholder="Key" required> </div>
+          </div>
+          <div class="col-sm-3 nopadding">
             <div class="form-group">
-                <input type="text" class="form-control" id="key5" name="Keys[]" value="mouse1" placeholder="Key"> </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="command5" name="Commands[]" value="+attack" placeholder="Command">
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger" type="button" onclick="remove_education_fields(5);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-                    </div>
-                </div>
+              <div class="input-group"> <input type="text" class="form-control" id="command4" name="Commands[]" value="+moveright" placeholder="Command" required>
+                <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(4);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div>
+              </div>
             </div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
-	<!-- /KEY -->
-	<!-- KEY -->
-    <div class="form-group removeclass6">
-        <div class="col-sm-3 nopadding">
+        <!-- /KEY -->
+        <!-- KEY -->
+        <div class="form-group removeclass5">
+          <div class="col-sm-3 nopadding">
+            <div class="form-group"> <input type="text" class="form-control" id="key5" name="Keys[]" value="mouse1" placeholder="Key" required> </div>
+          </div>
+          <div class="col-sm-3 nopadding">
             <div class="form-group">
-                <input type="text" class="form-control" id="key6" name="Keys[]" value="mouse2" placeholder="Key"> </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="command6" name="Commands[]" value="+attack2" placeholder="Command">
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger" type="button" onclick="remove_education_fields(6);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-                    </div>
-                </div>
+              <div class="input-group"> <input type="text" class="form-control" id="command5" name="Commands[]" value="+attack" placeholder="Command" required>
+                <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(5);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div>
+              </div>
             </div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
-	<!-- /KEY -->
-	<!-- KEY -->
-    <div class="form-group removeclass7">
-        <div class="col-sm-3 nopadding">
+        <!-- /KEY -->
+        <!-- KEY -->
+        <div class="form-group removeclass6">
+          <div class="col-sm-3 nopadding">
+            <div class="form-group"> <input type="text" class="form-control" id="key6" name="Keys[]" value="mouse2" placeholder="Key" required> </div>
+          </div>
+          <div class="col-sm-3 nopadding">
             <div class="form-group">
-                <input type="text" class="form-control" id="key7" name="Keys[]" value="mwheelup" placeholder="Key"> </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="command7" name="Commands[]" value="invprev" placeholder="Command">
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger" type="button" onclick="remove_education_fields(7);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-                    </div>
-                </div>
+              <div class="input-group"> <input type="text" class="form-control" id="command6" name="Commands[]" value="+attack2" placeholder="Command" required>
+                <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(6);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div>
+              </div>
             </div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
-	<!-- /KEY -->
-	<!-- KEY -->
-    <div class="form-group removeclass8">
-        <div class="col-sm-3 nopadding">
+        <!-- /KEY -->
+        <!-- KEY -->
+        <div class="form-group removeclass7">
+          <div class="col-sm-3 nopadding">
+            <div class="form-group"> <input type="text" class="form-control" id="key7" name="Keys[]" value="mwheelup" placeholder="Key" required> </div>
+          </div>
+          <div class="col-sm-3 nopadding">
             <div class="form-group">
-                <input type="text" class="form-control" id="key8" name="Keys[]" value="mwheeldown" placeholder="Key"> </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="command8" name="Commands[]" value="invnext" placeholder="Command">
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger" type="button" onclick="remove_education_fields(8);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-                    </div>
-                </div>
+              <div class="input-group"> <input type="text" class="form-control" id="command7" name="Commands[]" value="invprev" placeholder="Command" required>
+                <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(7);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div>
+              </div>
             </div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
-	<!-- /KEY -->
-	<!-- KEY -->
-    <div class="form-group removeclass9">
-        <div class="col-sm-3 nopadding">
+        <!-- /KEY -->
+        <!-- KEY -->
+        <div class="form-group removeclass8">
+          <div class="col-sm-3 nopadding">
+            <div class="form-group"> <input type="text" class="form-control" id="key8" name="Keys[]" value="mwheeldown" placeholder="Key" required> </div>
+          </div>
+          <div class="col-sm-3 nopadding">
             <div class="form-group">
-                <input type="text" class="form-control" id="key9" name="Keys[]" value="0" placeholder="Key"> </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="command9" name="Commands[]" value="slot10" placeholder="Command">
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger" type="button" onclick="remove_education_fields(9);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-                    </div>
-                </div>
+              <div class="input-group"> <input type="text" class="form-control" id="command8" name="Commands[]" value="invnext" placeholder="Command" required>
+                <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(8);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div>
+              </div>
             </div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
-	<!-- /KEY -->
-	<!-- KEY -->
-    <div class="form-group removeclass10">
-        <div class="col-sm-3 nopadding">
+        <!-- /KEY -->
+        <!-- KEY -->
+        <div class="form-group removeclass9">
+          <div class="col-sm-3 nopadding">
+            <div class="form-group"> <input type="text" class="form-control" id="key9" name="Keys[]" value="0" placeholder="Key" required> </div>
+          </div>
+          <div class="col-sm-3 nopadding">
             <div class="form-group">
-                <input type="text" class="form-control" id="key10" name="Keys[]" value="1" placeholder="Key"> </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="command10" name="Commands[]" value="slot1" placeholder="Command">
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger" type="button" onclick="remove_education_fields(10);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-                    </div>
-                </div>
+              <div class="input-group"> <input type="text" class="form-control" id="command9" name="Commands[]" value="slot10" placeholder="Command" required>
+                <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(9);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div>
+              </div>
             </div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
-	<!-- /KEY -->
-	<!-- KEY -->
-    <div class="form-group removeclass11">
-        <div class="col-sm-3 nopadding">
+        <!-- /KEY -->
+        <!-- KEY -->
+        <div class="form-group removeclass10">
+          <div class="col-sm-3 nopadding">
+            <div class="form-group"> <input type="text" class="form-control" id="key10" name="Keys[]" value="1" placeholder="Key" required> </div>
+          </div>
+          <div class="col-sm-3 nopadding">
             <div class="form-group">
-                <input type="text" class="form-control" id="key11" name="Keys[]" value="2" placeholder="Key"> </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="command11" name="Commands[]" value="slot2" placeholder="Command">
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger" type="button" onclick="remove_education_fields(11);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-                    </div>
-                </div>
+              <div class="input-group"> <input type="text" class="form-control" id="command10" name="Commands[]" value="slot1" placeholder="Command" required>
+                <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(10);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div>
+              </div>
             </div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
-	<!-- /KEY -->
-	<!-- KEY -->
-    <div class="form-group removeclass12">
-        <div class="col-sm-3 nopadding">
+        <!-- /KEY -->
+        <!-- KEY -->
+        <div class="form-group removeclass11">
+          <div class="col-sm-3 nopadding">
+            <div class="form-group"> <input type="text" class="form-control" id="key11" name="Keys[]" value="2" placeholder="Key" required> </div>
+          </div>
+          <div class="col-sm-3 nopadding">
             <div class="form-group">
-                <input type="text" class="form-control" id="key12" name="Keys[]" value="3" placeholder="Key"> </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="command12" name="Commands[]" value="slot3" placeholder="Command">
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger" type="button" onclick="remove_education_fields(12);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-                    </div>
-                </div>
+              <div class="input-group"> <input type="text" class="form-control" id="command11" name="Commands[]" value="slot2" placeholder="Command" required>
+                <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(11);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div>
+              </div>
             </div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
-	<!-- /KEY -->
-	<!-- KEY -->
-    <div class="form-group removeclass13">
-        <div class="col-sm-3 nopadding">
+        <!-- /KEY -->
+        <!-- KEY -->
+        <div class="form-group removeclass12">
+          <div class="col-sm-3 nopadding">
+            <div class="form-group"> <input type="text" class="form-control" id="key12" name="Keys[]" value="3" placeholder="Key" required> </div>
+          </div>
+          <div class="col-sm-3 nopadding">
             <div class="form-group">
-                <input type="text" class="form-control" id="key13" name="Keys[]" value="4" placeholder="Key"> </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="command13" name="Commands[]" value="slot4" placeholder="Command">
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger" type="button" onclick="remove_education_fields(13);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-                    </div>
-                </div>
+              <div class="input-group"> <input type="text" class="form-control" id="command12" name="Commands[]" value="slot3" placeholder="Command" required>
+                <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(12);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div>
+              </div>
             </div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
-	<!-- /KEY -->
-	<!-- KEY -->
-    <div class="form-group removeclass14">
-        <div class="col-sm-3 nopadding">
+        <!-- /KEY -->
+        <!-- KEY -->
+        <div class="form-group removeclass13">
+          <div class="col-sm-3 nopadding">
+            <div class="form-group"> <input type="text" class="form-control" id="key13" name="Keys[]" value="4" placeholder="Key" required> </div>
+          </div>
+          <div class="col-sm-3 nopadding">
             <div class="form-group">
-                <input type="text" class="form-control" id="key14" name="Keys[]" value="5" placeholder="Key"> </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="command14" name="Commands[]" value="slot5" placeholder="Command">
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger" type="button" onclick="remove_education_fields(14);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-                    </div>
-                </div>
+              <div class="input-group"> <input type="text" class="form-control" id="command13" name="Commands[]" value="slot4" placeholder="Command" required>
+                <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(13);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div>
+              </div>
             </div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
-	<!-- /KEY -->
-	<!-- KEY -->
-    <div class="form-group removeclass15">
-        <div class="col-sm-3 nopadding">
+        <!-- /KEY -->
+        <!-- KEY -->
+        <div class="form-group removeclass14">
+          <div class="col-sm-3 nopadding">
+            <div class="form-group"> <input type="text" class="form-control" id="key14" name="Keys[]" value="5" placeholder="Key" required> </div>
+          </div>
+          <div class="col-sm-3 nopadding">
             <div class="form-group">
-                <input type="text" class="form-control" id="key15" name="Keys[]" value="6" placeholder="Key"> </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="command15" name="Commands[]" value="slot6" placeholder="Command">
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger" type="button" onclick="remove_education_fields(15);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-                    </div>
-                </div>
+              <div class="input-group"> <input type="text" class="form-control" id="command14" name="Commands[]" value="slot5" placeholder="Command" required>
+                <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(14);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div>
+              </div>
             </div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
-	<!-- /KEY -->
-	<!-- KEY -->
-    <div class="form-group removeclass16">
-        <div class="col-sm-3 nopadding">
+        <!-- /KEY -->
+        <!-- KEY -->
+        <div class="form-group removeclass15">
+          <div class="col-sm-3 nopadding">
+            <div class="form-group"> <input type="text" class="form-control" id="key15" name="Keys[]" value="6" placeholder="Key" required> </div>
+          </div>
+          <div class="col-sm-3 nopadding">
             <div class="form-group">
-                <input type="text" class="form-control" id="key16" name="Keys[]" value="7" placeholder="Key"> </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="command16" name="Commands[]" value="slot7" placeholder="Command">
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger" type="button" onclick="remove_education_fields(16);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-                    </div>
-                </div>
+              <div class="input-group"> <input type="text" class="form-control" id="command15" name="Commands[]" value="slot6" placeholder="Command" required>
+                <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(15);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div>
+              </div>
             </div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
-	<!-- /KEY -->
-	<!-- KEY -->
-    <div class="form-group removeclass17">
-        <div class="col-sm-3 nopadding">
+        <!-- /KEY -->
+        <!-- KEY -->
+        <div class="form-group removeclass16">
+          <div class="col-sm-3 nopadding">
+            <div class="form-group"> <input type="text" class="form-control" id="key16" name="Keys[]" value="7" placeholder="Key" required> </div>
+          </div>
+          <div class="col-sm-3 nopadding">
             <div class="form-group">
-                <input type="text" class="form-control" id="key17" name="Keys[]" value="8" placeholder="Key"> </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="command17" name="Commands[]" value="slot8" placeholder="Command">
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger" type="button" onclick="remove_education_fields(17);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-                    </div>
-                </div>
+              <div class="input-group"> <input type="text" class="form-control" id="command16" name="Commands[]" value="slot7" placeholder="Command" required>
+                <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(16);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div>
+              </div>
             </div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
-	<!-- /KEY -->
-	<!-- KEY -->
-    <div class="form-group removeclass18">
-        <div class="col-sm-3 nopadding">
+        <!-- /KEY -->
+        <!-- KEY -->
+        <div class="form-group removeclass17">
+          <div class="col-sm-3 nopadding">
+            <div class="form-group"> <input type="text" class="form-control" id="key17" name="Keys[]" value="8" placeholder="Key" required> </div>
+          </div>
+          <div class="col-sm-3 nopadding">
             <div class="form-group">
-                <input type="text" class="form-control" id="key18" name="Keys[]" value="9" placeholder="Key"> </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="command18" name="Commands[]" value="slot9" placeholder="Command">
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger" type="button" onclick="remove_education_fields(18);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-                    </div>
-                </div>
+              <div class="input-group"> <input type="text" class="form-control" id="command17" name="Commands[]" value="slot8" placeholder="Command" required>
+                <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(17);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div>
+              </div>
             </div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
-	<!-- /KEY -->
-	<!-- KEY -->
-    <div class="form-group removeclass19">
-        <div class="col-sm-3 nopadding">
+        <!-- /KEY -->
+        <!-- KEY -->
+        <div class="form-group removeclass18">
+          <div class="col-sm-3 nopadding">
+            <div class="form-group"> <input type="text" class="form-control" id="key18" name="Keys[]" value="9" placeholder="Key" required> </div>
+          </div>
+          <div class="col-sm-3 nopadding">
             <div class="form-group">
-                <input type="text" class="form-control" id="key19" name="Keys[]" value="q" placeholder="Key"> </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="command19" name="Commands[]" value="lastinv" placeholder="Command">
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger" type="button" onclick="remove_education_fields(19);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-                    </div>
-                </div>
+              <div class="input-group"> <input type="text" class="form-control" id="command18" name="Commands[]" value="slot9" placeholder="Command" required>
+                <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(18);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div>
+              </div>
             </div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
-	<!-- /KEY -->
-	<!-- KEY -->
-    <div class="form-group removeclass20">
-        <div class="col-sm-3 nopadding">
+        <!-- /KEY -->
+        <!-- KEY -->
+        <div class="form-group removeclass19">
+          <div class="col-sm-3 nopadding">
+            <div class="form-group"> <input type="text" class="form-control" id="key19" name="Keys[]" value="q" placeholder="Key" required> </div>
+          </div>
+          <div class="col-sm-3 nopadding">
             <div class="form-group">
-                <input type="text" class="form-control" id="key20" name="Keys[]" value="e" placeholder="Key"> </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="command20" name="Commands[]" value='"voicemenu 0 0"' placeholder="Command">
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger" type="button" onclick="remove_education_fields(20);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-                    </div>
-                </div>
+              <div class="input-group"> <input type="text" class="form-control" id="command19" name="Commands[]" value="lastinv" placeholder="Command" required>
+                <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(19);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div>
+              </div>
             </div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
-	<!-- /KEY -->
-	<!-- KEY -->
-    <div class="form-group removeclass21">
-        <div class="col-sm-3 nopadding">
+        <!-- /KEY -->
+        <!-- KEY -->
+        <div class="form-group removeclass20">
+          <div class="col-sm-3 nopadding">
+            <div class="form-group"> <input type="text" class="form-control" id="key20" name="Keys[]" value="e" placeholder="Key" required> </div>
+          </div>
+          <div class="col-sm-3 nopadding">
             <div class="form-group">
-                <input type="text" class="form-control" id="key21" name="Keys[]" value="u" placeholder="Key"> </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="command21" name="Commands[]" value="say_team" placeholder="Command">
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger" type="button" onclick="remove_education_fields(21);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-                    </div>
-                </div>
+              <div class="input-group"> <input type="text" class="form-control" id="command20" name="Commands[]" value="&quot;voicemenu 0 0&quot;" placeholder="Command" required>
+                <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(20);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div>
+              </div>
             </div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
-	<!-- /KEY -->
-	<!-- KEY -->
-    <div class="form-group removeclass22">
-        <div class="col-sm-3 nopadding">
+        <!-- /KEY -->
+        <!-- KEY -->
+        <div class="form-group removeclass21">
+          <div class="col-sm-3 nopadding">
+            <div class="form-group"> <input type="text" class="form-control" id="key21" name="Keys[]" value="u" placeholder="Key" required> </div>
+          </div>
+          <div class="col-sm-3 nopadding">
             <div class="form-group">
-                <input type="text" class="form-control" id="key22" name="Keys[]" value="y" placeholder="Key"> </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="command22" name="Commands[]" value="say" placeholder="Command">
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger" type="button" onclick="remove_education_fields(22);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-                    </div>
-                </div>
+              <div class="input-group"> <input type="text" class="form-control" id="command21" name="Commands[]" value="say_team" placeholder="Command" required>
+                <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(21);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div>
+              </div>
             </div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
-	<!-- /KEY -->
-	<!-- KEY -->
-    <div class="form-group removeclass23">
-        <div class="col-sm-3 nopadding">
+        <!-- /KEY -->
+        <!-- KEY -->
+        <div class="form-group removeclass22">
+          <div class="col-sm-3 nopadding">
+            <div class="form-group"> <input type="text" class="form-control" id="key22" name="Keys[]" value="y" placeholder="Key" required> </div>
+          </div>
+          <div class="col-sm-3 nopadding">
             <div class="form-group">
-                <input type="text" class="form-control" id="key23" name="Keys[]" value="t" placeholder="Key"> </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="command23" name="Commands[]" value='"impulse 201"' placeholder="Command">
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger" type="button" onclick="remove_education_fields(23);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-                    </div>
-                </div>
+              <div class="input-group"> <input type="text" class="form-control" id="command22" name="Commands[]" value="say" placeholder="Command" required>
+                <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(22);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div>
+              </div>
             </div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
-	<!-- /KEY -->
-	<!-- KEY -->
-    <div class="form-group removeclass24">
-        <div class="col-sm-3 nopadding">
+        <!-- /KEY -->
+        <!-- KEY -->
+        <div class="form-group removeclass23">
+          <div class="col-sm-3 nopadding">
+            <div class="form-group"> <input type="text" class="form-control" id="key23" name="Keys[]" value="t" placeholder="Key" required> </div>
+          </div>
+          <div class="col-sm-3 nopadding">
             <div class="form-group">
-                <input type="text" class="form-control" id="key24" name="Keys[]" value="o" placeholder="Key"> </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="command24" name="Commands[]" value="taunt" placeholder="Command">
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger" type="button" onclick="remove_education_fields(24);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-                    </div>
-                </div>
+              <div class="input-group"> <input type="text" class="form-control" id="command23" name="Commands[]" value="&quot;impulse 201&quot;" placeholder="Command" required>
+                <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(23);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div>
+              </div>
             </div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
-	<!-- /KEY -->
-	<!-- KEY -->
-    <div class="form-group removeclass25">
-        <div class="col-sm-3 nopadding">
+        <!-- /KEY -->
+        <!-- KEY -->
+        <div class="form-group removeclass24">
+          <div class="col-sm-3 nopadding">
+            <div class="form-group"> <input type="text" class="form-control" id="key24" name="Keys[]" value="o" placeholder="Key" required> </div>
+          </div>
+          <div class="col-sm-3 nopadding">
             <div class="form-group">
-                <input type="text" class="form-control" id="key25" name="Keys[]" value="z" placeholder="Key"> </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="command25" name="Commands[]" value="voice_menu_1" placeholder="Command">
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger" type="button" onclick="remove_education_fields(25);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-                    </div>
-                </div>
+              <div class="input-group"> <input type="text" class="form-control" id="command24" name="Commands[]" value="taunt" placeholder="Command" required>
+                <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(24);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div>
+              </div>
             </div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
-	<!-- /KEY -->
-	<!-- KEY -->
-    <div class="form-group removeclass26">
-        <div class="col-sm-3 nopadding">
+        <!-- /KEY -->
+        <!-- KEY -->
+        <div class="form-group removeclass25">
+          <div class="col-sm-3 nopadding">
+            <div class="form-group"> <input type="text" class="form-control" id="key25" name="Keys[]" value="z" placeholder="Key" required> </div>
+          </div>
+          <div class="col-sm-3 nopadding">
             <div class="form-group">
-                <input type="text" class="form-control" id="key26" name="Keys[]" value="x" placeholder="Key"> </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="command26" name="Commands[]" value="voice_menu_2" placeholder="Command">
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger" type="button" onclick="remove_education_fields(26);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-                    </div>
-                </div>
+              <div class="input-group"> <input type="text" class="form-control" id="command25" name="Commands[]" value="voice_menu_1" placeholder="Command" required>
+                <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(25);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div>
+              </div>
             </div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
-	<!-- /KEY -->
-	<!-- KEY -->
-    <div class="form-group removeclass27">
-        <div class="col-sm-3 nopadding">
+        <!-- /KEY -->
+        <!-- KEY -->
+        <div class="form-group removeclass26">
+          <div class="col-sm-3 nopadding">
+            <div class="form-group"> <input type="text" class="form-control" id="key26" name="Keys[]" value="x" placeholder="Key" required> </div>
+          </div>
+          <div class="col-sm-3 nopadding">
             <div class="form-group">
-                <input type="text" class="form-control" id="key27" name="Keys[]" value="c" placeholder="Key"> </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="command27" name="Commands[]" value="voice_menu_3" placeholder="Command">
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger" type="button" onclick="remove_education_fields(27);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-                    </div>
-                </div>
+              <div class="input-group"> <input type="text" class="form-control" id="command26" name="Commands[]" value="voice_menu_2" placeholder="Command" required>
+                <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(26);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div>
+              </div>
             </div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
-	<!-- /KEY -->
-	<!-- KEY -->
-    <div class="form-group removeclass28">
-        <div class="col-sm-3 nopadding">
+        <!-- /KEY -->
+        <!-- KEY -->
+        <div class="form-group removeclass27">
+          <div class="col-sm-3 nopadding">
+            <div class="form-group"> <input type="text" class="form-control" id="key27" name="Keys[]" value="c" placeholder="Key" required> </div>
+          </div>
+          <div class="col-sm-3 nopadding">
             <div class="form-group">
-                <input type="text" class="form-control" id="key28" name="Keys[]" value="," placeholder="Key"> </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="command28" name="Commands[]" value="changeclass" placeholder="Command">
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger" type="button" onclick="remove_education_fields(28);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-                    </div>
-                </div>
+              <div class="input-group"> <input type="text" class="form-control" id="command27" name="Commands[]" value="voice_menu_3" placeholder="Command" required>
+                <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(27);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div>
+              </div>
             </div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
-	<!-- /KEY -->
-	<!-- KEY -->
-    <div class="form-group removeclass29">
-        <div class="col-sm-3 nopadding">
+        <!-- /KEY -->
+        <!-- KEY -->
+        <div class="form-group removeclass28">
+          <div class="col-sm-3 nopadding">
+            <div class="form-group"> <input type="text" class="form-control" id="key28" name="Keys[]" value="," placeholder="Key" required> </div>
+          </div>
+          <div class="col-sm-3 nopadding">
             <div class="form-group">
-                <input type="text" class="form-control" id="key29" name="Keys[]" value="." placeholder="Key"> </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="command29" name="Commands[]" value="changeteam" placeholder="Command">
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger" type="button" onclick="remove_education_fields(29);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-                    </div>
-                </div>
+              <div class="input-group"> <input type="text" class="form-control" id="command28" name="Commands[]" value="changeclass" placeholder="Command" required>
+                <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(28);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div>
+              </div>
             </div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
-	<!-- /KEY -->
-	<!-- KEY -->
-    <div class="form-group removeclass30">
-        <div class="col-sm-3 nopadding">
+        <!-- /KEY -->
+        <!-- KEY -->
+        <div class="form-group removeclass29">
+          <div class="col-sm-3 nopadding">
+            <div class="form-group"> <input type="text" class="form-control" id="key29" name="Keys[]" value="." placeholder="Key" required> </div>
+          </div>
+          <div class="col-sm-3 nopadding">
             <div class="form-group">
-                <input type="text" class="form-control" id="key30" name="Keys[]" value="m" placeholder="Key"> </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="command30" name="Commands[]" value="open_charinfo_direct" placeholder="Command">
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger" type="button" onclick="remove_education_fields(30);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-                    </div>
-                </div>
+              <div class="input-group"> <input type="text" class="form-control" id="command29" name="Commands[]" value="changeteam" placeholder="Command" required>
+                <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(29);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div>
+              </div>
             </div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
-	<!-- /KEY -->
-	<!-- KEY -->
-    <div class="form-group removeclass31">
-        <div class="col-sm-3 nopadding">
+        <!-- /KEY -->
+        <!-- KEY -->
+        <div class="form-group removeclass30">
+          <div class="col-sm-3 nopadding">
+            <div class="form-group"> <input type="text" class="form-control" id="key30" name="Keys[]" value="m" placeholder="Key" required> </div>
+          </div>
+          <div class="col-sm-3 nopadding">
             <div class="form-group">
-                <input type="text" class="form-control" id="key31" name="Keys[]" value="n" placeholder="Key"> </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="command31" name="Commands[]" value="+quickswitchmenu" placeholder="Command">
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger" type="button" onclick="remove_education_fields(31);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-                    </div>
-                </div>
+              <div class="input-group"> <input type="text" class="form-control" id="command30" name="Commands[]" value="open_charinfo_direct" placeholder="Command" required>
+                <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(30);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div>
+              </div>
             </div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
-	<!-- /KEY -->
-	<!-- KEY -->
-    <div class="form-group removeclass32">
-        <div class="col-sm-3 nopadding">
+        <!-- /KEY -->
+        <!-- KEY -->
+        <div class="form-group removeclass31">
+          <div class="col-sm-3 nopadding">
+            <div class="form-group"> <input type="text" class="form-control" id="key31" name="Keys[]" value="n" placeholder="Key" required> </div>
+          </div>
+          <div class="col-sm-3 nopadding">
             <div class="form-group">
-                <input type="text" class="form-control" id="key32" name="Keys[]" value="space" placeholder="Key"> </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="command32" name="Commands[]" value="+jump" placeholder="Command">
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger" type="button" onclick="remove_education_fields(32);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-                    </div>
-                </div>
+              <div class="input-group"> <input type="text" class="form-control" id="command31" name="Commands[]" value="+quickswitchmenu" placeholder="Command" required>
+                <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(31);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div>
+              </div>
             </div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
-	<!-- /KEY -->
-	<!-- KEY -->
-    <div class="form-group removeclass33">
-        <div class="col-sm-3 nopadding">
+        <!-- /KEY -->
+        <!-- KEY -->
+        <div class="form-group removeclass32">
+          <div class="col-sm-3 nopadding">
+            <div class="form-group"> <input type="text" class="form-control" id="key32" name="Keys[]" value="space" placeholder="Key" required> </div>
+          </div>
+          <div class="col-sm-3 nopadding">
             <div class="form-group">
-                <input type="text" class="form-control" id="key33" name="Keys[]" value="ctrl" placeholder="Key"> </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="command33" name="Commands[]" value="+duck" placeholder="Command">
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger" type="button" onclick="remove_education_fields(33);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-                    </div>
-                </div>
+              <div class="input-group"> <input type="text" class="form-control" id="command32" name="Commands[]" value="+jump" placeholder="Command" required>
+                <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(32);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div>
+              </div>
             </div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
-	<!-- /KEY -->
-	<!-- KEY -->
-    <div class="form-group removeclass34">
-        <div class="col-sm-3 nopadding">
+        <!-- /KEY -->
+        <!-- KEY -->
+        <div class="form-group removeclass33">
+          <div class="col-sm-3 nopadding">
+            <div class="form-group"> <input type="text" class="form-control" id="key33" name="Keys[]" value="ctrl" placeholder="Key" required> </div>
+          </div>
+          <div class="col-sm-3 nopadding">
             <div class="form-group">
-                <input type="text" class="form-control" id="key34" name="Keys[]" value="tab" placeholder="Key"> </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="command34" name="Commands[]" value="+showscores" placeholder="Command">
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger" type="button" onclick="remove_education_fields(34);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-                    </div>
-                </div>
+              <div class="input-group"> <input type="text" class="form-control" id="command33" name="Commands[]" value="+duck" placeholder="Command" required>
+                <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(33);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div>
+              </div>
             </div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
-	<!-- /KEY -->
-	<!-- KEY -->
-    <div class="form-group removeclass35">
-        <div class="col-sm-3 nopadding">
+        <!-- /KEY -->
+        <!-- KEY -->
+        <div class="form-group removeclass34">
+          <div class="col-sm-3 nopadding">
+            <div class="form-group"> <input type="text" class="form-control" id="key34" name="Keys[]" value="tab" placeholder="Key" required> </div>
+          </div>
+          <div class="col-sm-3 nopadding">
             <div class="form-group">
-                <input type="text" class="form-control" id="key35" name="Keys[]" value="escape" placeholder="Key"> </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="command35" name="Commands[]" value="cancelselect" placeholder="Command">
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger" type="button" onclick="remove_education_fields(35);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-                    </div>
-                </div>
+              <div class="input-group"> <input type="text" class="form-control" id="command34" name="Commands[]" value="+showscores" placeholder="Command" required>
+                <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(34);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div>
+              </div>
             </div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
-	<!-- /KEY -->
-	<!-- KEY -->
-    <div class="form-group removeclass36">
-        <div class="col-sm-3 nopadding">
+        <!-- /KEY -->
+        <!-- KEY -->
+        <div class="form-group removeclass35">
+          <div class="col-sm-3 nopadding">
+            <div class="form-group"> <input type="text" class="form-control" id="key35" name="Keys[]" value="escape" placeholder="Key" required> </div>
+          </div>
+          <div class="col-sm-3 nopadding">
             <div class="form-group">
-                <input type="text" class="form-control" id="key36" name="Keys[]" value="j" placeholder="Key"> </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="command36" name="Commands[]" value="cl_trigger_first_notification" placeholder="Command">
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger" type="button" onclick="remove_education_fields(36);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-                    </div>
-                </div>
+              <div class="input-group"> <input type="text" class="form-control" id="command35" name="Commands[]" value="cancelselect" placeholder="Command" required>
+                <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(35);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div>
+              </div>
             </div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
-	<!-- /KEY -->
-	<!-- KEY -->
-    <div class="form-group removeclass37">
-        <div class="col-sm-3 nopadding">
+        <!-- /KEY -->
+        <!-- KEY -->
+        <div class="form-group removeclass36">
+          <div class="col-sm-3 nopadding">
+            <div class="form-group"> <input type="text" class="form-control" id="key36" name="Keys[]" value="j" placeholder="Key" required> </div>
+          </div>
+          <div class="col-sm-3 nopadding">
             <div class="form-group">
-                <input type="text" class="form-control" id="key37" name="Keys[]" value="k" placeholder="Key"> </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="command37" name="Commands[]" value="cl_decline_first_notification" placeholder="Command">
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger" type="button" onclick="remove_education_fields(37);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-                    </div>
-                </div>
+              <div class="input-group"> <input type="text" class="form-control" id="command36" name="Commands[]" value="cl_trigger_first_notification" placeholder="Command" required>
+                <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(36);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div>
+              </div>
             </div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
-	<!-- /KEY -->
-	<!-- KEY -->
-    <div class="form-group removeclass38">
-        <div class="col-sm-3 nopadding">
+        <!-- /KEY -->
+        <!-- KEY -->
+        <div class="form-group removeclass37">
+          <div class="col-sm-3 nopadding">
+            <div class="form-group"> <input type="text" class="form-control" id="key37" name="Keys[]" value="k" placeholder="Key" required> </div>
+          </div>
+          <div class="col-sm-3 nopadding">
             <div class="form-group">
-                <input type="text" class="form-control" id="key38" name="Keys[]" value="l" placeholder="Key"> </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="command38" name="Commands[]" value="dropitem" placeholder="Command">
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger" type="button" onclick="remove_education_fields(38);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-                    </div>
-                </div>
+              <div class="input-group"> <input type="text" class="form-control" id="command37" name="Commands[]" value="cl_decline_first_notification" placeholder="Command" required>
+                <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(37);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div>
+              </div>
             </div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
-	<!-- /KEY -->
-	<!-- KEY -->
-    <div class="form-group removeclass39">
-        <div class="col-sm-3 nopadding">
+        <!-- /KEY -->
+        <!-- KEY -->
+        <div class="form-group removeclass38">
+          <div class="col-sm-3 nopadding">
+            <div class="form-group"> <input type="text" class="form-control" id="key38" name="Keys[]" value="l" placeholder="Key" required> </div>
+          </div>
+          <div class="col-sm-3 nopadding">
             <div class="form-group">
-                <input type="text" class="form-control" id="key39" name="Keys[]" value="b" placeholder="Key"> </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="command39" name="Commands[]" value="lastdisguise" placeholder="Command">
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger" type="button" onclick="remove_education_fields(39);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-                    </div>
-                </div>
+              <div class="input-group"> <input type="text" class="form-control" id="command38" name="Commands[]" value="dropitem" placeholder="Command" required>
+                <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(38);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div>
+              </div>
             </div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
-	<!-- /KEY -->
-	<!-- KEY -->
-    <div class="form-group removeclass40">
-        <div class="col-sm-3 nopadding">
+        <!-- /KEY -->
+        <!-- KEY -->
+        <div class="form-group removeclass39">
+          <div class="col-sm-3 nopadding">
+            <div class="form-group"> <input type="text" class="form-control" id="key39" name="Keys[]" value="b" placeholder="Key" required> </div>
+          </div>
+          <div class="col-sm-3 nopadding">
             <div class="form-group">
-                <input type="text" class="form-control" id="key40" name="Keys[]" value="r" placeholder="Key"> </div>
-        </div>
-        <div class="col-sm-3 nopadding">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="command40" name="Commands[]" value="+reload" placeholder="Command">
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger" type="button" onclick="remove_education_fields(40);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-                    </div>
-                </div>
+              <div class="input-group"> <input type="text" class="form-control" id="command39" name="Commands[]" value="lastdisguise" placeholder="Command" required>
+                <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(39);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div>
+              </div>
             </div>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
-	<!-- /KEY -->
-</div>
-		<!-- UNREMOVABLE KEY -->
-<div class="col-sm-3 nopadding">
-  <div class="form-group">
-    <input type="text" class="form-control" id="key1" name="Keys[]" value="w" placeholder="Key">
-  </div>
-</div>
-
-<div class="col-sm-3 nopadding">
-  <div class="form-group">
-  <div class="input-group">
-    <input type="text" class="form-control" id="command1" name="Commands[]" value="+forward" placeholder="Command">
-
-       <div class="input-group-btn">
-        <button class="btn btn-success" type="button"  onclick="education_fields();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
+        <!-- /KEY -->
+        <!-- KEY -->
+        <div class="form-group removeclass40">
+          <div class="col-sm-3 nopadding">
+            <div class="form-group"> <input type="text" class="form-control" id="key40" name="Keys[]" value="r" placeholder="Key" required> </div>
+          </div>
+          <div class="col-sm-3 nopadding">
+            <div class="form-group">
+              <div class="input-group"> <input type="text" class="form-control" id="command40" name="Commands[]" value="+reload" placeholder="Command" required>
+                <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(40);"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div>
+              </div>
+            </div>
+          </div>
+          <div class="clear"></div>
+        </div>
+        <!-- /KEY -->
       </div>
-	    </div>
+      <!-- ADD KEY -->
+      <div class="col-sm-6 nopadding">
+        <button class="btn btn-block btn-success" type="button" onclick="education_fields();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
+      </div>
+      <div class="clear"></div>
+      <!-- /KEY -->
+    </div>
   </div>
 </div>
 
-<div class="clear"></div>
-		<!-- /KEY -->
-  
-  </div>
-</div>
-	</div>
 
   <div class="tab-pane fade" id="cfgs">
 		<!--   TWEAK CFGS  -->

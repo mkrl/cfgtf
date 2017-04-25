@@ -699,8 +699,8 @@ jQuery(function ($) {
 			if(iswhat == "bindscheck") {
 			var i = 1;
 			while (i <= room) {
-				if(typeof $("#key"+i).val() !== 'undefined' && typeof $("#key"+i).val() !== 'undefined'){
-				bindarr = bindarr + "\nbind "+$("#key"+i).val() +" "+$("#command"+i).val();
+				if(typeof $("#key"+i).val() !== 'undefined' && typeof $("#command"+i).val() !== 'undefined' && $("#key"+i).val() !== '' && $("#command"+i).val() !== ''){
+				  bindarr = bindarr + "\nbind "+$("#key"+i).val() +" "+$("#command"+i).val();
 				}
 				i++
 			}
@@ -728,7 +728,7 @@ jQuery(function ($) {
 		zip.file("cfg/settings.cfg", "//General TF2 settings, like autoheal, min viewmodels, fastswitch, etc.\n\ntf_medigun_autoheal 1\ncl_autoreload 1\nhud_fastswitch 1\ntf_use_min_viewmodels " + minmodel +"\nr_drawviewmodel " + drawviewmodel + "\nfov_desired 90\nviewmodel_fov " + v_fov + "\nbindtoggle "+vmodelbind+" r_drawviewmodel\ncl_flipviewmodels "+fliptoggle+"\n\ntf_remember_activeweapon 1\ntf_remember_lastswitched 1\nsb_dontshow_maxplayer_warning 1\ntf_spectate_pyrovision 0\nviewmodel_fov_demo 75\n\ntf_dingalingaling " + hittoggle + "\ntf_dingalingaling_repeat_delay " + hitdelay + "\ntf_dingaling_pitchmindmg " + hitmin + " \ntf_dingaling_pitchmaxdmg " + hitmax + "\ntf_dingaling_lasthit " + killtoggle + "\ntf_dingaling_lasthit_volume " + killvol + "\ntf_dingaling_lasthit_pitchmindmg " + killmin + "\ntf_dingaling_lasthit_pitchmaxdmg " + killmax + "\n\n\ntf_training_has_prompted_for_training 1\ntf_training_has_prompted_for_offline_practice 1\ntf_training_has_prompted_for_forums 1\ntf_training_has_prompted_for_options 1\ntf_training_has_prompted_for_loadout 1\ntf_mvm_tabs_discovered 3\ntf_matchmaking_ticket_help 0\ntf_coach_request_nevershowagain 1\n\nhud_combattext " + comtoggle + "\nhud_combattext_batching " + battoggle + "\nhud_combattext_batching_window " + batwindow + "\n\nds_kill_delay 15.000000\nds_enable " + ds_mode + "\nds_dir " + ds_folder + "\nds_notify "+ ds_notify + "\nds_sound " + ds_sound + "\nds_min_streak " + ds_ks + "\nds_autodelete " + ds_delete + "\nds_screens " + ds_screen); 	//settings
 		zip.file("cfg/network.cfg", "//Connection settings\n\ncl_cmdrate " + cmdrate + "\ncl_interp " + interp + "\ncl_interp_ratio " + intratio +"\ncl_lagcompensation 1\ncl_pred_optimize 2\ncl_smooth 0\ncl_smoothtime 0.01\ncl_updaterate " + uprate + "\nrate " + rate + "\n");  	//network
 		zip.file("cfg/binds.cfg", "//stock non class-specific binds\n////Made with cfg.tf - custom Team Fortress 2 config generator\n\n"+bindarr); 	//binds
-  
+
 
         // when everything has been downloaded, we can trigger the dl
         zip.generateAsync({type:"blob"}, function updateCallback(metadata) {
