@@ -153,7 +153,7 @@ jQuery(function($) {
 			var url = $this.data("url");
 			var iswhat = $this.data("name");
 			var filename = url.replace(/.*\//g, "");
-			if (iswhat == "tftrue") {
+			if (iswhat === "tftrue") {
 				zip.file("addons/TFTrue.dll", urlToPromise("../server/addons/tftrue/TFTrue.dll"), {
 					binary: true
 				});
@@ -170,7 +170,7 @@ jQuery(function($) {
 
 
 
-			if (iswhat == "etf2l") {
+			if (iswhat === "etf2l") {
 				zip.file("cfg/etf2l.cfg", urlToPromise("../server/cfg/etf2l/etf2l.cfg"), {
 					binary: true
 				});
@@ -226,7 +226,7 @@ jQuery(function($) {
 					binary: true
 				});
 			}
-			if (iswhat == "ugc") {
+			if (iswhat === "ugc") {
 				zip.file("cfg/ugc_4v_base.cfg", urlToPromise("../server/cfg/ugc/ugc_4v_base.cfg"), {
 					binary: true
 				});
@@ -303,7 +303,7 @@ jQuery(function($) {
 					binary: true
 				});
 			}
-			if (iswhat == "ozfortress") {
+			if (iswhat === "ozfortress") {
 				zip.file("cfg/ozfortress.cfg", urlToPromise("../server/cfg/oz/ozfortress.cfg"), {
 					binary: true
 				});

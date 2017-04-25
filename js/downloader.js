@@ -81,43 +81,43 @@ jQuery(function($) {
 
 		//viewmodel settings
 		if ($("#modeltoggle").is(':checked')) {
-			var drawviewmodel = "1"
+			var drawviewmodel = "1";
 		} else {
-			var drawviewmodel = "0"
+			var drawviewmodel = "0";
 		}
 		if ($("#minmodtoggle").is(':checked')) {
-			var minmodel = "1"
+			var minmodel = "1";
 		} else {
-			var minmodel = "0"
+			var minmodel = "0";
 		}
 		if ($("#fliptoggle").is(':checked')) {
-			var fliptoggle = "1"
+			var fliptoggle = "1";
 		} else {
-			var fliptoggle = "0"
+			var fliptoggle = "0";
 		}
 		var v_fov = $('#v_fov').val();
 		var vmodelbind = $('#vmodelbind').val();
 
 		//combat text settings
 		if ($("#battoggle").is(':checked')) {
-			var battoggle = "1"
+			var battoggle = "1";
 		} else {
-			var battoggle = "0"
+			var battoggle = "0";
 		}
 		if ($("#comtoggle").is(':checked')) {
-			var comtoggle = "1"
+			var comtoggle = "1";
 		} else {
-			var comtoggle = "0"
+			var comtoggle = "0";
 		}
 		if ($("#hittoggle").is(':checked')) {
-			var hittoggle = "1"
+			var hittoggle = "1";
 		} else {
-			var hittoggle = "0"
+			var hittoggle = "0";
 		}
 		if ($("#killtoggle").is(':checked')) {
-			var killtoggle = "1"
+			var killtoggle = "1";
 		} else {
-			var killtoggle = "0"
+			var killtoggle = "0";
 		}
 
 		var batwindow = $('#batwindow').val();
@@ -140,14 +140,14 @@ jQuery(function($) {
 
 		//demo support
 		if ($("#ds_delete").is(':checked')) {
-			var ds_delete = "1"
+			var ds_delete = "1";
 		} else {
-			var ds_delete = "0"
+			var ds_delete = "0";
 		}
 		if ($("#ds_screen").is(':checked')) {
-			var ds_screen = "1"
+			var ds_screen = "1";
 		} else {
-			var ds_screen = "0"
+			var ds_screen = "0";
 		}
 
 		var ds_mode = $('#ds_mode').val();
@@ -194,37 +194,37 @@ jQuery(function($) {
 			var url = $this.data("url");
 			var iswhat = $this.data("name");
 			var filename = url.replace(/.*\//g, "");
-			if (iswhat == "gfx") {
+			if (iswhat === "gfx") {
 				zip.file("cfg/gfx.cfg", urlToPromise(url), {
 					binary: true
 				});
 			}
-			if (iswhat == "scripts") {
+			if (iswhat === "scripts") {
 				zip.file("custom/runfasterpls/scripts/" + filename, urlToPromise(url), {
 					binary: true
 				});
 			}
-			if (iswhat == "hitsound") {
+			if (iswhat === "hitsound") {
 				zip.file("custom/damage/sound/ui/hitsound.wav", urlToPromise(url), {
 					binary: true
 				});
 			}
-			if (iswhat == "killsound") {
+			if (iswhat === "killsound") {
 				zip.file("custom/damage/sound/ui/killsound.wav", urlToPromise(url), {
 					binary: true
 				});
 			}
-			if (iswhat == "vpks") {
+			if (iswhat === "vpks") {
 				zip.file("custom/" + filename, urlToPromise(url), {
 					binary: true
 				});
 			}
-			if (iswhat == "configs") {
+			if (iswhat === "configs") {
 				zip.file("cfg/" + filename, urlToPromise(url), {
 					binary: true
 				});
 			}
-			if (iswhat == "crosshairswitcher") {
+			if (iswhat === "crosshairswitcher") {
 				zip.file("cfg/demoman.cfg", urlToPromise("../make/cfg/class/demoman.cfg"), {
 					binary: true
 				});
@@ -347,7 +347,7 @@ jQuery(function($) {
 				});
 
 			}
-			if (iswhat == "sourceres") {
+			if (iswhat === "sourceres") {
 				zip.file("addons/SourceRes.dll", urlToPromise("../make/addons/SourceRes/addons/SourceRes.dll"), {
 					binary: true
 				});
@@ -355,7 +355,7 @@ jQuery(function($) {
 					binary: true
 				});
 			}
-			if (iswhat == "prec") {
+			if (iswhat === "prec") {
 				zip.file("addons/PREC.cfg", urlToPromise("../make/addons/prec/addons/PREC.cfg"), {
 					binary: true
 				});
@@ -369,7 +369,7 @@ jQuery(function($) {
 					binary: true
 				});
 			}
-			if (iswhat == "casting") {
+			if (iswhat === "casting") {
 				zip.file("addons/CastingEssentials.dll", urlToPromise("../make/addons/CastingEssentials/addons/CastingEssentials.dll"), {
 					binary: true
 				});
@@ -380,23 +380,23 @@ jQuery(function($) {
 					binary: true
 				});
 			}
-			if (iswhat == "tweaks") {
+			if (iswhat === "tweaks") {
 				zip.file("cfg/tweaks/" + filename, urlToPromise(url), {
 					binary: true
 				});
 				customs = customs + "exec tweaks/" + filename.slice(0, -4) + "\n";
 			}
-			if (iswhat == "bindscheck") {
+			if (iswhat === "bindscheck") {
 				var i = 1;
 				while (i <= room) {
 					if (typeof $("#key" + i).val() !== 'undefined' && typeof $("#key" + i).val() !== 'undefined') {
 						bindarr = bindarr + "\nbind " + $("#key" + i).val() + " " + $("#command" + i).val();
 					}
-					i++
+					i++;
 				}
 			}
 
-			if (iswhat == "tweaks_fastclass") {
+			if (iswhat === "tweaks_fastclass") {
 
 
 				if ($("#crosshairswitcherid").is(':checked')) {
