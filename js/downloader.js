@@ -286,7 +286,6 @@ jQuery(function($) {
 			}
 			if (iswhat === 'bindscheck') {
 				var i = 1;
-				// what is room
 				while (i <= room) {
 					if (typeof $('#key' + i).val() !== 'undefined' && typeof $('#key' + i).val() !== 'undefined') {
 						bindarr = bindarr + '\nbind ' + $('#key' + i).val() + ' ' + $('#command' + i).val();
@@ -375,13 +374,13 @@ jQuery(function($) {
 			'tf_remember_lastswitched 1',
 			'///---',
 			surround('\n', [
-				ds_mode !== 0 ? 'ds_enable '+ds_mode : '',
-				'ds_dir '       +ds_dir,
-				'ds_notify '    +ds_notify,
-				'ds_sound '     +ds_snd,
-				'ds_min_streak '+ds_ks,
-				ds_del    ? 'ds_autodelete 1' : '',
-				ds_screen ? 'ds_screens ' : '',
+				ds_mode !== 0 ? 'ds_enable '+ds_mode+'\n' : '',
+				'ds_dir '       +ds_dir   +'\n',
+				'ds_notify '    +ds_notify+'\n',
+				'ds_sound '     +ds_snd   +'\n',
+				'ds_min_streak '+ds_ks    +'\n',
+				ds_del    ? 'ds_autodelete 1\n' : '',
+				ds_screen ? 'ds_screens 1\n' : ''
 			].join(''), '///---'),
 			'',
 			'cl_training_class_unlock_all',
