@@ -1,4 +1,4 @@
-/* global jQuery, JSZip, JSZipUtils, saveAs */
+/* global jQuery, JSZip, JSZipUtils, saveAs, room */
 
 jQuery(function($) {
 	'use strict';
@@ -141,11 +141,11 @@ jQuery(function($) {
 			for (var c = 1; c < 10; ++c) {
 				xhairs[c-1] = [];
 				for (var s = 1; s < 4; ++s) {
-					var cross = $('[name="cs_col_'+c+'_'+s+'n"]').val();
+					var cross = $('#cs_col_'+c+'_'+s).val();
 
 					var vm = 'off';
 					if ($('#cs_draw_'+c+'_'+s).is(':checked')) {
-						vm = $('#cs_fov_1_1').val() + '; tf_use_min_viewmodels ';
+						vm = $('#cs_fov_'+c+'_'+s).val() + '; tf_use_min_viewmodels ';
 						vm += $('#cs_draw_'+c+'_'+s+'_min input').is(':checked') ? '1' : '0';
 					}
 
