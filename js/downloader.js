@@ -296,14 +296,9 @@ jQuery(function($) {
 			}
 
 			if (iswhat === 'tweaks_fastclass') {
-				if ($('#crosshairswitcherid').is(':checked')) {
-					zipbin('../make/cfg/fastclass_cs.cfg', 'cfg/tweaks/fastclass.cfg');
-					customs += 'exec tweaks/fastclass.cfg\n';
-				}
-				else {
-					zipbin('../make/cfg/fastclass.cfg', 'cfg/tweaks/fastclass.cfg');
-					customs += 'exec tweaks/fastclass.cfg\n';
-				}
+				var src = '../make/cfg/fastclass_'+($('#crosshairswitcherid').is(':checked')?'cs':'')+'.cfg';
+				zipbin(src, 'cfg/tweaks/fastclass.cfg');
+				customs += 'exec tweaks/fastclass\n';
 			}
 
 			var custom = [
