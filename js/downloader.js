@@ -296,7 +296,7 @@ jQuery(function($) {
 			}
 
 			if (iswhat === 'tweaks_fastclass') {
-				var src = '../make/cfg/fastclass_'+($('#crosshairswitcherid').is(':checked')?'cs':'')+'.cfg';
+				var src = '../make/cfg/fastclass_'+(xhair?'cs':'')+'.cfg';
 				zipbin(src, 'cfg/tweaks/fastclass.cfg');
 				customs += 'exec tweaks/fastclass\n';
 			}
