@@ -1,5 +1,7 @@
+/* global jQuery, JSZip, JSZipUtils, saveAs */
+
 jQuery(function($) {
-	"use strict";
+	'use strict';
 
 	var Promise = window.Promise;
 	if (!Promise) {
@@ -9,127 +11,107 @@ jQuery(function($) {
 	/**
 	 * Reset the message.
 	 */
-	function resetMessage() {
-		$("#result")
+	var resetMessage = function() {
+		$('#result')
 			.removeClass()
-			.text("");
-	}
+			.text('');
+	};
 	/**
 	 * show a successful message.
 	 * @param {String} text the text to show.
 	 */
-	function showMessage(text) {
+	var showMessage = function(text) {
 		resetMessage();
-		$("#result")
-			.addClass("alert alert-success")
+		$('#result')
+			.addClass('alert alert-success')
 			.text(text);
-	}
+	};
 	/**
 	 * show an error message.
 	 * @param {String} text the text to show.
 	 */
-	function showError(text) {
+	var showError = function(text) {
 		resetMessage();
-		$("#result")
-			.addClass("alert alert-danger")
+		$('#result')
+			.addClass('alert alert-danger')
 			.text(text);
-	}
+	};
 	/**
 	 * Update the progress bar.
 	 * @param {Integer} percent the current percent
 	 */
-	function updatePercent(percent) {
-		$("#progress_bar").removeClass("hide")
-			.find(".progress-bar")
-			.attr("aria-valuenow", percent)
+	var updatePercent = function(percent) {
+		$('#progress_bar').removeClass('hide')
+			.find('.progress-bar')
+			.attr('aria-valuenow', percent)
 			.css({
-				width: percent + "%"
+				width: percent + '%'
 			});
-	}
+	};
 
 	/**
 	 * Fetch the content and return the associated promise.
 	 * @param {String} url the url of the content to fetch.
 	 * @return {Promise} the promise containing the data.
 	 */
-	function urlToPromise(url) {
+	var urlToPromise = function(url) {
 		return new Promise(function(resolve, reject) {
 			JSZipUtils.getBinaryContent(url, function(err, data) {
 				if (err) {
 					reject(err);
-				} else {
+				}
+				else {
 					resolve(data);
 				}
 			});
 		});
-	}
+	};
+
+	var surround = function(a, x, b) {
+		if (x !== '') return (a == null ? '' : a)+x+(b == null ? '' : b);
+		return x;
+	};
 
 	if (!JSZip.support.blob) {
-		showError("This only works with a good browser!");
+		showError('This only works with a good browser!');
 		return;
 	}
 
-	var $form = $("#download_form").on("submit", function() {
-
+	$('#download_form').on('submit', function() {
 		resetMessage();
 
 		var zip = new JSZip();
-		var customs = ""; //a var to store all the extra stuff to add to autoexec
+		var zipbin = function(src, dest) {
+			zip.file(dest, urlToPromise(src), {binary: true});
+		};
+
+		var customs = ''; //a var to store all the extra stuff to add to autoexec
 
 		//getting values form inputs
 		// !!!!IMPORTANT!!!! All the selectable html fields (non-text forms) should have data-name and data-url attributes or everything breaks
 
 		//viewmodel settings
-		if ($("#modeltoggle").is(':checked')) {
-			var drawviewmodel = "1";
-		} else {
-			var drawviewmodel = "0";
-		}
-		if ($("#minmodtoggle").is(':checked')) {
-			var minmodel = "1";
-		} else {
-			var minmodel = "0";
-		}
-		if ($("#fliptoggle").is(':checked')) {
-			var fliptoggle = "1";
-		} else {
-			var fliptoggle = "0";
-		}
+		var drawviewmodel = $('#modeltoggle').is(':checked');
+		var minmodel = $('#minmodtoggle').is(':checked');
+		var vm_flip = $('#fliptoggle').is(':checked');
 		var v_fov = $('#v_fov').val();
 		var vmodelbind = $('#vmodelbind').val();
 
 		//combat text settings
-		if ($("#battoggle").is(':checked')) {
-			var battoggle = "1";
-		} else {
-			var battoggle = "0";
-		}
-		if ($("#comtoggle").is(':checked')) {
-			var comtoggle = "1";
-		} else {
-			var comtoggle = "0";
-		}
-		if ($("#hittoggle").is(':checked')) {
-			var hittoggle = "1";
-		} else {
-			var hittoggle = "0";
-		}
-		if ($("#killtoggle").is(':checked')) {
-			var killtoggle = "1";
-		} else {
-			var killtoggle = "0";
-		}
+		var dn              = $('#comtoggle').is(':checked');
+		var dn_batching     = $('#battoggle').is(':checked');
+		var dn_batching_win = $('#batwindow').val();
 
-		var batwindow = $('#batwindow').val();
-		var hitvol = $('#hitvol').val();
-		var hitmin = $('#hitmin').val();
-		var hitmax = $('#hitmax').val();
-		var hitdelay = $('#hitdelay').val();
-		var killvol = $('#killvol').val();
-		var killmin = $('#killmin').val();
-		var killmax = $('#killmax').val();
+		var ding        = $('#hittoggle').is(':checked');
+		var ding_volume = $('#hitvol').val();
+		var ding_min    = $('#hitmin').val();
+		var ding_max    = $('#hitmax').val();
+		var ding_delay  = $('#hitdelay').val();
 
-
+		var ding_kill        = $('#killtoggle').is(':checked');
+		var ding_kill_volume = $('#killvol').val();
+		var ding_kill_min    = $('#killmin').val();
+		var ding_kill_max    = $('#killmax').val();
 
 		//network
 		var cmdrate = $('#cmdrate').val();
@@ -139,30 +121,23 @@ jQuery(function($) {
 		var rate = $('#rate').val();
 
 		//demo support
-		if ($("#ds_delete").is(':checked')) {
-			var ds_delete = "1";
-		} else {
-			var ds_delete = "0";
-		}
-		if ($("#ds_screen").is(':checked')) {
-			var ds_screen = "1";
-		} else {
-			var ds_screen = "0";
-		}
+		var ds_del    = $('#ds_delete').is(':checked');
+		var ds_screen = $('#ds_screen').is(':checked');
 
-		var ds_mode = $('#ds_mode').val();
-		var ds_folder = $('#ds_folder').val();
+		var ds_mode   = $('#ds_mode').val();
+		var ds_dir    = $('#ds_folder').val();
 		var ds_notify = $('#ds_notify').val();
-		var ds_sound = $('#ds_sound').val();
-		var ds_ks = $('#ds_ks').val();
+		var ds_snd    = $('#ds_sound').val();
+		var ds_ks     = $('#ds_ks').val();
 
 		//get large piece of custom binds
 		var bindings = $('#bindings').val();
 
 		//getting switcher values (if selected)
 
+		var xhair = $('#crosshairswitcherid').is(':checked');
 		var xhairs = [];
-		if ($("#crosshairswitcherid").is(':checked'))
+		if (xhair)
 			for (var c = 1; c < 10; ++c) {
 				xhairs[c-1] = [];
 				for (var s = 1; s < 4; ++s) {
@@ -185,94 +160,43 @@ jQuery(function($) {
 			}
 
 
-		var bindarr = "";
+		var bindarr = '';
 
 		// find every checked item
-		$(this).find(":checked").each(function() {
-
+		$(this).find(':checked').each(function() {
 			var $this = $(this);
-			var url = $this.data("url");
-			var iswhat = $this.data("name");
-			var filename = url.replace(/.*\//g, "");
-			if (iswhat === "gfx") {
-				zip.file("cfg/gfx.cfg", urlToPromise(url), {
-					binary: true
-				});
-			}
-			if (iswhat === "scripts") {
-				zip.file("custom/runfasterpls/scripts/" + filename, urlToPromise(url), {
-					binary: true
-				});
-			}
-			if (iswhat === "hitsound") {
-				zip.file("custom/damage/sound/ui/hitsound.wav", urlToPromise(url), {
-					binary: true
-				});
-			}
-			if (iswhat === "killsound") {
-				zip.file("custom/damage/sound/ui/killsound.wav", urlToPromise(url), {
-					binary: true
-				});
-			}
-			if (iswhat === "vpks") {
-				zip.file("custom/" + filename, urlToPromise(url), {
-					binary: true
-				});
-			}
-			if (iswhat === "configs") {
-				zip.file("cfg/" + filename, urlToPromise(url), {
-					binary: true
-				});
-			}
-			if (iswhat === "crosshairswitcher") {
-				zip.file("cfg/demoman.cfg", urlToPromise("../make/cfg/class/demoman.cfg"), {
-					binary: true
-				});
-				zip.file("cfg/demoplayback.cfg", urlToPromise("../make/cfg/class/demoplayback.cfg"), {
-					binary: true
-				});
-				zip.file("cfg/engineer.cfg", urlToPromise("../make/cfg/class/engineer.cfg"), {
-					binary: true
-				});
-				zip.file("cfg/heavyweapons.cfg", urlToPromise("../make/cfg/class/heavyweapons.cfg"), {
-					binary: true
-				});
-				zip.file("cfg/insourcetv.cfg", urlToPromise("../make/cfg/class/insourcetv.cfg"), {
-					binary: true
-				});
-				zip.file("cfg/CROSSHAIRSWITCHER-INSTRUCTIONS.txt", urlToPromise("../make/cfg/class/CROSSHAIRSWITCHER-INSTRUCTIONS.txt"), {
-					binary: true
-				});
-				zip.file("cfg/medic.cfg", urlToPromise("../make/cfg/class/medic.cfg"), {
-					binary: true
-				});
-				zip.file("cfg/pyro.cfg", urlToPromise("../make/cfg/class/pyro.cfg"), {
-					binary: true
-				});
-				zip.file("cfg/scout.cfg", urlToPromise("../make/cfg/class/scout.cfg"), {
-					binary: true
-				});
-				zip.file("cfg/sniper.cfg", urlToPromise("../make/cfg/class/sniper.cfg"), {
-					binary: true
-				});
-				zip.file("cfg/soldier.cfg", urlToPromise("../make/cfg/class/soldier.cfg"), {
-					binary: true
-				});
-				zip.file("cfg/spy.cfg", urlToPromise("../make/cfg/class/spy.cfg"), {
-					binary: true
-				});
-				zip.file("cfg/crosshairswitcher/binds.cfg", urlToPromise("../make/cfg/class/crosshairswitcher/binds.cfg"), {
-					binary: true
-				});
-				zip.file("cfg/crosshairswitcher/crosshairs.cfg", urlToPromise("../make/cfg/class/crosshairswitcher/crosshairs.cfg"), {
-					binary: true
-				});
-				zip.file("cfg/crosshairswitcher/defaultcrosshair.cfg", urlToPromise("../make/cfg/class/crosshairswitcher/defaultcrosshair.cfg"), {
-					binary: true
-				});
-				zip.file("cfg/crosshairswitcher/disable.cfg", urlToPromise("../make/cfg/class/crosshairswitcher/disable.cfg"), {
-					binary: true
-				});
+			var url = $this.data('url');
+			var iswhat = $this.data('name');
+			var filename = url.replace(/.*\//g, '');
+			if (iswhat === 'gfx')
+				zipbin(url, 'cfg/gfx.cfg');
+			if (iswhat === 'scripts')
+				zipbin(url, 'custom/runfasterpls/scripts/' + filename);
+			if (iswhat === 'hitsound')
+				zipbin(url, 'custom/damage/sound/ui/hitsound.wav');
+			if (iswhat === 'killsound')
+				zipbin(url, 'custom/damage/sound/ui/killsound.wav');
+			if (iswhat === 'vpks')
+				zipbin(url, 'custom/' + filename);
+			if (iswhat === 'configs')
+				zipbin(url, 'cfg/' + filename);
+			if (iswhat === 'crosshairswitcher') {
+				zipbin('../make/cfg/class/demoman.cfg', 'cfg/demoman.cfg');
+				zipbin('../make/cfg/class/demoplayback.cfg', 'cfg/demoplayback.cfg');
+				zipbin('../make/cfg/class/engineer.cfg', 'cfg/engineer.cfg');
+				zipbin('../make/cfg/class/heavyweapons.cfg', 'cfg/heavyweapons.cfg');
+				zipbin('../make/cfg/class/insourcetv.cfg', 'cfg/insourcetv.cfg');
+				zipbin('../make/cfg/class/CROSSHAIRSWITCHER-INSTRUCTIONS.txt', 'cfg/CROSSHAIRSWITCHER-INSTRUCTIONS.txt');
+				zipbin('../make/cfg/class/medic.cfg', 'cfg/medic.cfg');
+				zipbin('../make/cfg/class/pyro.cfg', 'cfg/pyro.cfg');
+				zipbin('../make/cfg/class/scout.cfg', 'cfg/scout.cfg');
+				zipbin('../make/cfg/class/sniper.cfg', 'cfg/sniper.cfg');
+				zipbin('../make/cfg/class/soldier.cfg', 'cfg/soldier.cfg');
+				zipbin('../make/cfg/class/spy.cfg', 'cfg/spy.cfg');
+				zipbin('../make/cfg/class/crosshairswitcher/binds.cfg', 'cfg/crosshairswitcher/binds.cfg');
+				zipbin('../make/cfg/class/crosshairswitcher/crosshairs.cfg', 'cfg/crosshairswitcher/crosshairs.cfg');
+				zipbin('../make/cfg/class/crosshairswitcher/defaultcrosshair.cfg', 'cfg/crosshairswitcher/defaultcrosshair.cfg');
+				zipbin('../make/cfg/class/crosshairswitcher/disable.cfg', 'cfg/crosshairswitcher/disable.cfg');
 				var xhair_settings = [
 					'//   use the aliases like this: size; color; type; viewmodel FOV or viewmodel off',
 					'//  _______________________________________________________________________________',
@@ -335,112 +259,217 @@ jQuery(function($) {
 					'alias spy_secondary       "'+xhairs[8][1].size+'; '+xhairs[8][1].color+'; '+xhairs[8][1].style+'; '+xhairs[8][1].vm+'"',
 					'alias spy_melee           "'+xhairs[8][2].size+'; '+xhairs[8][2].color+'; '+xhairs[8][2].style+'; '+xhairs[8][2].vm+'"'
 				].join('\n');
-				zip.file("cfg/crosshairswitcher/settings.cfg", xhair_settings);
-				zip.file("cfg/crosshairswitcher/shorten.cfg", urlToPromise("../make/cfg/class/crosshairswitcher/shorten.cfg"), {
-					binary: true
-				});
-				zip.file("cfg/crosshairswitcher/switcher.cfg", urlToPromise("../make/cfg/class/crosshairswitcher/switcher.cfg"), {
-					binary: true
-				});
-				zip.file("cfg/crosshairswitcher/weapons.cfg", urlToPromise("../make/cfg/class/crosshairswitcher/weapons.cfg"), {
-					binary: true
-				});
+				zip.file('cfg/crosshairswitcher/settings.cfg', xhair_settings);
+				zipbin('../make/cfg/class/crosshairswitcher/shorten.cfg', 'cfg/crosshairswitcher/shorten.cfg');
+				zipbin('../make/cfg/class/crosshairswitcher/switcher.cfg', 'cfg/crosshairswitcher/switcher.cfg');
+				zipbin('../make/cfg/class/crosshairswitcher/weapons.cfg', 'cfg/crosshairswitcher/weapons.cfg');
 
 			}
-			if (iswhat === "sourceres") {
-				zip.file("addons/SourceRes.dll", urlToPromise("../make/addons/SourceRes/addons/SourceRes.dll"), {
-					binary: true
-				});
-				zip.file("addons/SourceRes.vdf", urlToPromise("../make/addons/SourceRes/addons/SourceRes.vdf"), {
-					binary: true
-				});
+			if (iswhat === 'sourceres') {
+				zipbin('../make/addons/SourceRes/addons/SourceRes.dll', 'addons/SourceRes.dll');
+				zipbin('../make/addons/SourceRes/addons/SourceRes.vdf', 'addons/SourceRes.vdf');
 			}
-			if (iswhat === "prec") {
-				zip.file("addons/PREC.cfg", urlToPromise("../make/addons/prec/addons/PREC.cfg"), {
-					binary: true
-				});
-				zip.file("addons/PREC.dll", urlToPromise("../make/addons/prec/addons/PREC.dll"), {
-					binary: true
-				});
-				zip.file("addons/PREC.vdf", urlToPromise("../make/addons/prec/addons/PREC.vdf"), {
-					binary: true
-				});
-				zip.file("addons/readme_prec.txt", urlToPromise("../make/addons/prec/addons/readme_prec.txt"), {
-					binary: true
-				});
+			if (iswhat === 'prec') {
+				zipbin('../make/addons/prec/addons/PREC.cfg', 'addons/PREC.cfg');
+				zipbin('../make/addons/prec/addons/PREC.dll', 'addons/PREC.dll');
+				zipbin('../make/addons/prec/addons/PREC.vdf', 'addons/PREC.vdf');
+				zipbin('../make/addons/prec/addons/readme_prec.txt', 'addons/readme_prec.txt');
 			}
-			if (iswhat === "casting") {
-				zip.file("addons/CastingEssentials.dll", urlToPromise("../make/addons/CastingEssentials/addons/CastingEssentials.dll"), {
-					binary: true
-				});
-				zip.file("addons/CastingEssentials.vdf", urlToPromise("../make/addons/CastingEssentials/addons/CastingEssentials.vdf"), {
-					binary: true
-				});
-				zip.file("materials/debug/debugfbtexture1.vmt", urlToPromise("../make/addons/CastingEssentials/materials/debug/debugfbtexture1.vmt"), {
-					binary: true
-				});
+			if (iswhat === 'casting') {
+				zipbin('../make/addons/CastingEssentials/addons/CastingEssentials.dll', 'addons/CastingEssentials.dll');
+				zipbin('../make/addons/CastingEssentials/addons/CastingEssentials.vdf', 'addons/CastingEssentials.vdf');
+				zipbin('../make/addons/CastingEssentials/materials/debug/debugfbtexture1.vmt', 'materials/debug/debugfbtexture1.vmt');
 			}
-			if (iswhat === "tweaks") {
-				zip.file("cfg/tweaks/" + filename, urlToPromise(url), {
-					binary: true
-				});
-				customs = customs + "exec tweaks/" + filename.slice(0, -4) + "\n";
+			if (iswhat === 'tweaks') {
+				zipbin(url, 'cfg/tweaks/' + filename);
+				customs += 'exec tweaks/' + filename.slice(0, -4) + '\n';
 			}
-			if (iswhat === "bindscheck") {
+			if (iswhat === 'bindscheck') {
 				var i = 1;
+				// what is room
 				while (i <= room) {
-					if (typeof $("#key" + i).val() !== 'undefined' && typeof $("#key" + i).val() !== 'undefined') {
-						bindarr = bindarr + "\nbind " + $("#key" + i).val() + " " + $("#command" + i).val();
+					if (typeof $('#key' + i).val() !== 'undefined' && typeof $('#key' + i).val() !== 'undefined') {
+						bindarr = bindarr + '\nbind ' + $('#key' + i).val() + ' ' + $('#command' + i).val();
 					}
 					i++;
 				}
 			}
 
-			if (iswhat === "tweaks_fastclass") {
-
-
-				if ($("#crosshairswitcherid").is(':checked')) {
-					zip.file("cfg/tweaks/fastclass.cfg", urlToPromise("../make/cfg/fastclass_cs.cfg"), {
-						binary: true
-					});
-					customs = customs + "exec tweaks/fastclass.cfg\n";
-				} else {
-					zip.file("cfg/tweaks/fastclass.cfg", urlToPromise("../make/cfg/fastclass.cfg"), {
-						binary: true
-					});
-					customs = customs + "exec tweaks/fastclass.cfg\n";
+			if (iswhat === 'tweaks_fastclass') {
+				if ($('#crosshairswitcherid').is(':checked')) {
+					zipbin('../make/cfg/fastclass_cs.cfg', 'cfg/tweaks/fastclass.cfg');
+					customs += 'exec tweaks/fastclass.cfg\n';
 				}
-
+				else {
+					zipbin('../make/cfg/fastclass.cfg', 'cfg/tweaks/fastclass.cfg');
+					customs += 'exec tweaks/fastclass.cfg\n';
+				}
 			}
-			zip.file('cfg/custom.cfg', '//Tweaks, custom settings, all the stuff usually goes here\n\n\n' + customs + '\n\n' + bindings + '\necho "------------- Thanks for using CFG.TF -------------"\necho "------------- Create your own custom config at https://cfg.tf -------------"'); //load custom tweaks and config
+
+			var custom = [
+				'//tweaks and custom settings',
+				'//Made with cfg.tf - custom Team Fortress 2 config generator',
+				surround('\n', customs, '///---\n')+
+				surround('\n', bindings, '\n///---\n'),
+				'//shameless promotion',
+				'echo "-----             Thanks for using CFG.TF             -----"',
+				'echo "----- Create your own custom config at https://cfg.tf -----"'
+			].join('\n');
+			zip.file('cfg/custom.cfg', custom);
 
 		});
 
-
 		//building and downloading static configs
-		zip.file("cfg/autoexec.cfg", "exec gfx\nexec binds\nexec settings\nexec network\nexec custom"); //autoexec
-		zip.file("cfg/settings.cfg", "//General TF2 settings, like autoheal, min viewmodels, fastswitch, etc.\n\ntf_medigun_autoheal 1\ncl_autoreload 1\nhud_fastswitch 1\ntf_use_min_viewmodels " + minmodel + "\nr_drawviewmodel " + drawviewmodel + "\nfov_desired 90\nviewmodel_fov " + v_fov + "\nbindtoggle " + vmodelbind + " r_drawviewmodel\ncl_flipviewmodels " + fliptoggle + "\n\ntf_remember_activeweapon 1\ntf_remember_lastswitched 1\nsb_dontshow_maxplayer_warning 1\ntf_spectate_pyrovision 0\nviewmodel_fov_demo 75\n\ntf_dingalingaling " + hittoggle + "\ntf_dingalingaling_repeat_delay " + hitdelay + "\ntf_dingaling_pitchmindmg " + hitmin + " \ntf_dingaling_pitchmaxdmg " + hitmax + "\ntf_dingaling_lasthit " + killtoggle + "\ntf_dingaling_lasthit_volume " + killvol + "\ntf_dingaling_lasthit_pitchmindmg " + killmin + "\ntf_dingaling_lasthit_pitchmaxdmg " + killmax + "\n\n\ntf_training_has_prompted_for_training 1\ntf_training_has_prompted_for_offline_practice 1\ntf_training_has_prompted_for_forums 1\ntf_training_has_prompted_for_options 1\ntf_training_has_prompted_for_loadout 1\ntf_mvm_tabs_discovered 3\ntf_matchmaking_ticket_help 0\ntf_coach_request_nevershowagain 1\n\nhud_combattext " + comtoggle + "\nhud_combattext_batching " + battoggle + "\nhud_combattext_batching_window " + batwindow + "\n\nds_kill_delay 15.000000\nds_enable " + ds_mode + "\nds_dir " + ds_folder + "\nds_notify " + ds_notify + "\nds_sound " + ds_sound + "\nds_min_streak " + ds_ks + "\nds_autodelete " + ds_delete + "\nds_screens " + ds_screen); //settings
-		zip.file("cfg/network.cfg", "//Connection settings\n\ncl_cmdrate " + cmdrate + "\ncl_interp " + interp + "\ncl_interp_ratio " + intratio + "\ncl_lagcompensation 1\ncl_pred_optimize 2\ncl_smooth 0\ncl_smoothtime 0.01\ncl_updaterate " + uprate + "\nrate " + rate + "\n"); //network
-		zip.file("cfg/binds.cfg", "//stock non class-specific binds\n////Made with cfg.tf - custom Team Fortress 2 config generator\n\n" + bindarr); //binds
-
+		var autoexec = [
+			'//autoexec',
+			'//Made with cfg.tf - custom Team Fortress 2 config generator',
+			'',
+			'exec gfx',
+			'exec binds',
+			'exec settings',
+			'exec network',
+			'exec custom'
+		].join('\n');
+		var settings = [
+			'//tf2 settings',
+			'//Made with cfg.tf - custom Team Fortress 2 config generator',
+			'',
+			'//Autoheal, min viewmodels, fastswitch etc.',
+			'',
+			'con_enable 1',
+			'developer 0',
+			'///---',
+			'',
+			'fov_desired 90',
+			'viewmodel_fov '+v_fov,
+			'viewmodel_fov_demo 75',
+			surround('\n', [
+				!xhair && !drawviewmodel ? 'r_drawviewmodel 0\n'       : '',
+				!xhair &&  minmodel      ? 'tf_use_min_viewmodels 1\n' : '',
+				vm_flip ? 'cl_flipviewmodels 1\n' : ''
+			].join('')),
+			'bindtoggle '+vmodelbind+' r_drawviewmodel',
+			'///---',
+			'',
+			'hud_medicautocallers 1',
+			'// 100 - 20.5*2 (2 small first aid kits)',
+			'hud_medicautocallersthreshold 59',
+			'tf_medigun_autoheal 1',
+			'///---',
+			surround('\n', [
+				!dn                ? 'hud_combattext 0\n'                                   : '',
+				 dn && dn_batching ? 'hud_combattext_batching 1\n'                          : '',
+				 dn && dn_batching ? 'hud_combattext_batching_window '+dn_batching_win+'\n' : '',
+			].join(''), '///---'),
+			surround('',
+				surround('\n', [
+					ding ? 'tf_dingalingaling 1\n'                            : '',
+					ding ? 'tf_dingalingaling_repeat_delay '+ding_delay +'\n' : '',
+					ding ? 'tf_dingaling_volume '           +ding_volume+'\n' : '',
+					ding ? 'tf_dingaling_pitchmindmg '      +ding_min   +'\n' : '',
+					ding ? 'tf_dingaling_pitchmaxdmg '      +ding_max   +'\n' : '',
+				].join('')) +
+				surround('\n', [
+					ding_kill ? 'tf_dingalingaling_lasthit 1\n'                           : '',
+					ding_kill ? 'tf_dingaling_lasthit_volume '     +ding_kill_volume+'\n' : '',
+					ding_kill ? 'tf_dingaling_lasthit_pitchmindmg '+ding_kill_min   +'\n' : '',
+					ding_kill ? 'tf_dingaling_lasthit_pitchmaxdmg '+ding_kill_max   +'\n' : '',
+				].join('')), '///---'),
+			'',
+			'tf_remember_activeweapon 1',
+			'tf_remember_lastswitched 1',
+			'///---',
+			surround('\n', [
+				ds_mode !== 0 ? 'ds_enable '+ds_mode : '',
+				'ds_dir '       +ds_dir,
+				'ds_notify '    +ds_notify,
+				'ds_sound '     +ds_snd,
+				'ds_min_streak '+ds_ks,
+				ds_del    ? 'ds_autodelete 1' : '',
+				ds_screen ? 'ds_screens ' : '',
+			].join(''), '///---'),
+			'',
+			'cl_training_class_unlock_all',
+			'// > Bitfield representing what classes have been used to complete training.',
+			'// 111 111 111',
+			'cl_training_completed_with_classes 511',
+			'',
+			'tf_training_has_prompted_for_forums 1',
+			'tf_training_has_prompted_for_loadout 1',
+			'tf_training_has_prompted_for_offline_practice 1',
+			'tf_training_has_prompted_for_options 1',
+			'tf_training_has_prompted_for_training 1',
+			'',
+			'tf_explanations_backpackpanel 1',
+			'tf_explanations_charinfo_armory_panel 1',
+			'tf_explanations_charinfopanel 1',
+			'tf_explanations_craftingpanel 1',
+			'tf_explanations_discardpanel 1',
+			'tf_explanations_store 1',
+			'',
+			'tf_show_preset_explanation_in_class_loadout 0',
+			'tf_show_taunt_explanation_in_class_loadout 0',
+			'',
+			'tf_casual_welcome_hide_forever 1',
+			'tf_comp_welcome_hide_forever 1',
+			'tf_matchmaking_ticket_help 0',
+			'tf_show_maps_details_explanation_count 0',
+			'',
+			'cl_ask_blacklist_opt_out 1',
+			'cl_ask_favorite_opt_out 1',
+			'',
+			'sb_dontshow_maxplayer_warning 1',
+			'cl_hud_playerclass_playermodel_showed_confirm_dialog 1',
+			'tf_mvm_tabs_discovered 3',
+			'tf_coach_request_nevershowagain 1',
+			'///---',
+			'',
+			'cl_autoreload 1',
+			'm_rawinput 1',
+			'hud_fastswitch 1',
+			'tf_scoreboard_ping_as_text 1'
+		].join('\n');
+		var network = [
+			'//network settings',
+			'//Made with cfg.tf - custom Team Fortress 2 config generator',
+			'',
+			'cl_updaterate ' + uprate,
+			'cl_cmdrate ' + cmdrate,
+			'rate ' + rate,
+			'',
+			'cl_interp ' + interp,
+			'cl_interp_ratio ' + intratio,
+			'',
+			'cl_smooth 0',
+			''
+		].join('\n');
+		var binds = [
+			'//stock non class-specific binds',
+			'//Made with cfg.tf - custom Team Fortress 2 config generator',
+			'',
+			bindarr
+		].join('\n');
+		zip.file('cfg/autoexec.cfg', autoexec);
+		zip.file('cfg/settings.cfg', settings);
+		zip.file('cfg/network.cfg', network);
+		zip.file('cfg/binds.cfg', binds);
 
 		// when everything has been downloaded, we can trigger the dl
-		zip.generateAsync({
-				type: "blob"
-			}, function updateCallback(metadata) {
-				var msg = "Packing : " + metadata.percent.toFixed(2) + " %";
+		zip.generateAsync({type: 'blob'},
+			function(metadata) {
+				var msg = 'Packing : ' + metadata.percent.toFixed(2) + ' %';
 				if (metadata.currentFile) {
-					msg += ", current file = " + metadata.currentFile;
+					msg += ', current file = ' + metadata.currentFile;
 				}
 				showMessage(msg);
 				updatePercent(metadata.percent | 0);
 			})
-			.then(function callback(blob) {
+			.then(function(blob) {
 
 				// see FileSaver.js
-				saveAs(blob, "config.zip");
+				saveAs(blob, 'config.zip');
 
-				showMessage("Done! Extract this archive to your /tf folder.");
+				showMessage('Done! Extract this archive to your /tf folder.');
 			}, function(e) {
 				showError(e);
 			});
