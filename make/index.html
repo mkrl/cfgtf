@@ -165,14 +165,16 @@
           updatedxlevel();
           $("#preview" + showme + " img").trigger("unveil");
           console.log('unveil ' + showme);
-
-					//img zoom
-				  $('.carousel-inner img')
-						.wrap('<span style="display:inline-block"></span>')
-						.css('display', 'block')
-						.parent()
-						.zoom({ on: 'grab' });
       });
+
+
+			//img zoom
+		  $('.carousel-inner img')
+				.wrap('<span style="display:inline-block"></span>')
+				.css('display', 'block')
+				.parent()
+				.zoom({ on: 'grab' });
+
 			// click to zoom notifier
 			$('.cfg_source')
 				.before('<p class="text-muted pull-right"><i class="fa fa-search-plus" aria-hidden="true"></i> Click and hold on image to zoom in</p>');
