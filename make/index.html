@@ -28,9 +28,11 @@
     <script type="text/javascript" src="../js/FileSaver.js"></script>
     <script type="text/javascript" src="../js/bootstrap-select.min.js"></script>
     <script type="text/javascript" src="../js/unveil.js"></script>
+		<script type="text/javascript" src="../js/jquery.zoom.min.js"></script>
+
     <script>
       $(document).ready(function() {
-        $("img").unveil();
+        $(".carousel-inner img").unveil();
       });
     </script>
   </head>
@@ -119,8 +121,8 @@
 				<!--   GFX  -->
 			  <h3>Graphic config</h3>
 
-				<p>Determine the look and performance of your game</p>
-				<p class="text-muted">Remember - you will generally always have to sacrifice something to see a performance increase. Selecting a config will show a demonstration with the pros and cons of the config explained.</p>
+				<p class="text-muted">Determine the look and performance of your game</p>
+				<p class="alert alert-info">Remember - you will generally always have to sacrifice something to see a performance increase. Selecting a config will show a demonstration with the pros and cons of the config explained.</p>
 
         <ul class="checkbox list-unstyled">
           <li>
@@ -163,7 +165,17 @@
           updatedxlevel();
           $("#preview" + showme + " img").trigger("unveil");
           console.log('unveil ' + showme);
+
+					//img zoom
+				  $('.carousel-inner img')
+						.wrap('<span style="display:inline-block"></span>')
+						.css('display', 'block')
+						.parent()
+						.zoom({ on: 'grab' });
       });
+			// click to zoom notifier
+			$('.cfg_source')
+				.before('<p class="text-muted pull-right">Click and hold to zoom image</p>');
   	});
 	</script>
 	<div id="previewtoaster" class="desc" style="display: none;">
@@ -171,7 +183,7 @@
       <h3>Comanglia's "Toaster" config</h3>
       <p>Bare minimum, with a focus on simply running the game.</p>
       <p>This is probably the ugliest looking config you can get here. It disables a lot of things, and gives your TF2 that nice "blocky" oldschool look.</p>
-      <p><a href="http://www.teamfortress.tv/25328/comanglias-config-fps-guide" target="_blank">Source</a></p>
+      <p><a class="cfg_source" href="http://www.teamfortress.tv/25328/comanglias-config-fps-guide" target="_blank">Source</a></p>
       <div id="carousel_toaster" class="carousel slide" data-ride="carousel" data-interval="0">
         <!-- Indicators -->
         <ol class="carousel-indicators">
@@ -243,7 +255,7 @@
 	  <div class="panel-body">
       <h3>Comanglia's "Stability" config</h3>
       <p>A solid option for older PCs, with a focus on stability.</p>
-      <p><a href="http://www.teamfortress.tv/25328/comanglias-config-fps-guide" target="_blank">Source</a></p>
+      <p><a class="cfg_source" href="http://www.teamfortress.tv/25328/comanglias-config-fps-guide" target="_blank">Source</a></p>
         <div id="carousel_stability" class="carousel slide" data-ride="carousel" data-interval="0">
           <!-- Indicators -->
           <ol class="carousel-indicators">
@@ -313,7 +325,7 @@
 	  <div class="panel-body">
 		  <h3>Comanglia's "Max FPS for High Quality PCs" config</h3>
 			<p>For modern multi-core PCs, with a focus on maximum FPS while retaining modern graphics settings. Looks good, performs well.</p>
-			<p><a href="http://www.teamfortress.tv/25328/comanglias-config-fps-guide" target="_blank">Source</a></p>
+			<p><a class="cfg_source" href="http://www.teamfortress.tv/25328/comanglias-config-fps-guide" target="_blank">Source</a></p>
       <div id="carousel_hq" class="carousel slide" data-ride="carousel" data-interval="0">
         <!-- Indicators -->
         <ol class="carousel-indicators">
@@ -389,7 +401,7 @@
 	  <div class="panel-body">
 			<h3>Comanglia's "Cinema" config</h3>
 			<p>Take a look at this. This is TF2 at its maximum potential. This is what quality water and 3D skyboxes look like.</p>
-			<p><a href="http://www.teamfortress.tv/25328/comanglias-config-fps-guide" target="_blank">Source</a></p>
+			<p><a class="cfg_source" href="http://www.teamfortress.tv/25328/comanglias-config-fps-guide" target="_blank">Source</a></p>
 
       <div id="carousel_fancy" class="carousel slide" data-ride="carousel" data-interval="0">
         <!-- Indicators -->
@@ -461,7 +473,7 @@
 	  <div class="panel-body">
       <h3>Felik's config</h3>
       <p>Various optimizations for TF2, and soon to be for other Source Engine based games.</p>
-      <p><a href="https://gitlab.com/felik/TF2-Config/" target="_blank">Source</a></p>
+      <p><a class="cfg_source" href="https://gitlab.com/felik/TF2-Config/" target="_blank">Source</a></p>
 
       <div id="carousel_felik" class="carousel slide" data-ride="carousel" data-interval="0">
         <!-- Indicators -->
@@ -529,7 +541,7 @@
     <div class="panel-body">
       <h3><span class="badge badge-info">New</span> Felik's "Low End" config</h3>
       <p>Felik's config with the provided <code>low_end.cfg</code></p>
-      <p><a href="https://gitlab.com/felik/TF2-Config/" target="_blank">Source</a></p>
+      <p><a class="cfg_source" href="https://gitlab.com/felik/TF2-Config/" target="_blank">Source</a></p>
 
       <div id="carousel_felikle" class="carousel slide" data-ride="carousel" data-interval="0">
         <!-- Indicators -->
@@ -595,7 +607,7 @@
     <div class="panel-body">
       <h3><span class="badge badge-info">New</span> Felik's "Eye Candy" config</h3>
       <p>Felik's config with the graphic enhancement additions from <code>maximum_graphics.cfg</code> <code>gibs_on.cfg</code> <code>ragdolls_on.cfg</code> <code>shadows_on.cfg</code> <code>tracers_on.cfg</code> <code>textures.cfg</code></p>
-      <p><a href="https://gitlab.com/felik/TF2-Config/" target="_blank">Source</a></p>
+      <p><a class="cfg_source" href="https://gitlab.com/felik/TF2-Config/" target="_blank">Source</a></p>
 
       <div id="carousel_felikeyecandy" class="carousel slide" data-ride="carousel" data-interval="0">
         <!-- Indicators -->
@@ -660,7 +672,7 @@
     <div class="panel-body">
       <h3><span class="badge badge-info">New</span> Rhapsody</h3>
       <p>Rhapsody's config with DirectX 9.0 enabled.</p>
-      <p><a href="https://github.com/RhapsodySL/perfconfig" target="_blank">Source</a></p>
+      <p><a class="cfg_source" href="https://github.com/RhapsodySL/perfconfig" target="_blank">Source</a></p>
 
       <div id="carousel_rhapsodydx9" class="carousel slide" data-ride="carousel" data-interval="0">
         <!-- Indicators -->
@@ -725,7 +737,7 @@
     <div class="panel-body">
       <h3><span class="badge badge-info">New</span> Rhapsody</h3>
       <p>Rhapsody's config with DirectX 8.1 enabled.</p>
-      <p><a href="https://github.com/RhapsodySL/perfconfig" target="_blank">Source</a></p>
+      <p><a class="cfg_source" href="https://github.com/RhapsodySL/perfconfig" target="_blank">Source</a></p>
 
       <div id="carousel_rhapsodydx8" class="carousel slide" data-ride="carousel" data-interval="0">
         <!-- Indicators -->
