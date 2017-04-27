@@ -807,7 +807,8 @@
 	<div class="tab-pane fade" id="keys">
   <!--  KEYS  -->
   <h3>Key bindings</h3>
-  <p class="text-muted">Configure your keys. Default key bindings on this page are intended to be used with <a href="https://en.wikipedia.org/wiki/QWERTY" target="_blank">QWERTY</a> keyboards, if you use other layout you might want to change or disable them.</p>
+  <p class="text-muted">I'm pressing buttons!</p>
+	<p class="alert alert-info">Default key bindings on this page are intended to be used with <a class="alert-link" href="https://en.wikipedia.org/wiki/QWERTY" target="_blank">QWERTY</a> keyboards, if you use other layout you may want to change or disable them.</p>
   <ul class="checkbox list-unstyled">
     <li> <label>
   	      <input type="checkbox" id="bindscheck" data-name="bindscheck" data-url="" checked />
@@ -1434,7 +1435,7 @@
       </div>
       <!-- ADD KEY -->
       <div class="col-sm-6 nopadding">
-        <button class="btn btn-block btn-success" type="button" onclick="education_fields();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
+        <button class="btn btn-block btn-default" type="button" onclick="education_fields();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
       </div>
       <div class="clear"></div>
       <!-- /KEY -->
@@ -3677,45 +3678,45 @@
   <div class="tab-pane fade" id="network">
 	<!--   CONNECTION SETTINGS  -->
 	<h3>Connection settings</h3>
-	<p>Set to "good connection" by default. Don't touch if you don't understand what this is. If you are curious, here is a <a href="/read/interp/" target="_blank">small article about connection settings</a>.</p>
+	<p class="alert alert-warning">Don't alter these settings if you don't understand their effects. Incorrect settings can severely hinder your gameplay experience. If you are curious, here is a <a class="alert-link" href="../read/interp/" target="_blank">small article about connection settings</a>.</p>
 	<div class="btn-group" role="group" aria-label="Connection type">
-	<button type="button" class="btn btn-default" onclick="autoFillGood()">Good connection</button>
-	<button type="button" class="btn btn-default" onclick="autoFillBad()">Bad connection</button>
-	<button type="button" class="btn btn-default" onclick="autoFillComp()">Competitive connection</button>
+		<button type="button" class="btn btn-default" onclick="autoFillGood()"><span style="display: inline;" class="badge badge-info">Default</span> Good connection</button>
+		<button type="button" class="btn btn-default" onclick="autoFillBad()">Bad connection</button>
+		<button type="button" class="btn btn-default" onclick="autoFillComp()">Competitive connection</button>
 	</div>
-	<br>
-	<br>
-	<br>
-	<li>
-    <label>
-			cl_cmdrate
-      <input class="form-control" type="text" size="6"  id="cmdrate" onkeypress="return isNumberKey(event)" value="67" />
-    </label>
+
+	<ul class="list-unstyled page-header">
+		<li class="form-inline">
+	    <label>
+				cl_cmdrate
+	      <input class="form-control input-sm" type="text" size="6"  id="cmdrate" onkeypress="return isNumberKey(event)" value="67" />
+	    </label>
+	    </li>
+		<li class="form-inline">
+	    <label>
+				cl_interp
+	      <input class="form-control input-sm" type="text" size="6"  id="interp" onkeypress="return isNumberKey(event)" value=".0152"/>
+	    </label>
+	    </li>
+		<li class="form-inline">
+	    <label>
+				cl_interp_ratio
+	      <input class="form-control input-sm" type="text" size="6"  id="intratio" onkeypress="return isNumberKey(event)" value="1" />
+	    </label>
+	    </li>
+		<li class="form-inline">
+	    <label>
+				cl_updaterate
+	      <input class="form-control input-sm" type="text" size="6"  id="uprate" onkeypress="return isNumberKey(event)" value="67" />
+	    </label>
+	    </li>
+		<li class="form-inline">
+	    <label>
+				rate
+	      <input class="form-control input-sm" type="text" size="6"  id="rate" onkeypress="return isNumberKey(event)" value="60000" />
+	    </label>
     </li>
-	<li>
-    <label>
-			cl_interp
-      <input class="form-control" type="text" size="6"  id="interp" onkeypress="return isNumberKey(event)" value=".0152"/>
-    </label>
-    </li>
-	<li>
-    <label>
-			cl_interp_ratio
-      <input class="form-control" type="text" size="6"  id="intratio" onkeypress="return isNumberKey(event)" value="1" />
-    </label>
-    </li>
-	<li>
-    <label>
-			cl_updaterate
-      <input class="form-control" type="text" size="6"  id="uprate" onkeypress="return isNumberKey(event)" value="67" />
-    </label>
-    </li>
-	<li>
-    <label>
-			rate
-      <input class="form-control" type="text" size="6"  id="rate" onkeypress="return isNumberKey(event)" value="60000" />
-    </label>
-    </li>
+	</ul>
   <hr>
 	</div>
   <div class="tab-pane fade" id="binds">
