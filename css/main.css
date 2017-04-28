@@ -167,10 +167,13 @@ blockquote {
   font-style: italic;
 }
 
-/* multiselector has bad contrast on text */ .bootstrap-select > .dropdown-toggle.bs-placeholder { color: white !important; }
 /* separate the lists a bit more, its too squashed */ .radio label, .checkbox label { padding-top: 8px; }
-/* re-pad unstyled lists */ .list-unstyled { padding-left: 2em; }
-#partners p { margin-top: 1em; margin-bottom: 1em;}
+/* re-pad unstyled lists */ .list-unstyled { padding-left: 1em; }
+/* pad partner logos away from their links */ #partners p { margin-top: 1em; margin-bottom: 1em; }
+/* disable gradient on carousel controls until I figure out why jquery zoom makes it bleed out of the element */ .carousel-control.left, .carousel-control.right { background-image: none; }
+/* pad labels away from nestedd inputs a little */ label input, label select { margin-left: 1em; }
+/* dropdowns in launch options are touching */ #display_settings .bootstrap-select { margin-bottom: 2px; }
+/* filter on configs/index.html needs to be pulled right */ #cfgs_filter { float: right; }
 
 p.header-remote {
 	display: inline-block; margin-bottom: 10%;

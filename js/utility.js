@@ -13,21 +13,18 @@ function updateConnect() {
 
 var room = 40; //dynamic bind fields
 function education_fields() {
-
     room++;
     var objTo = document.getElementById('education_fields')
     var divtest = document.createElement("div");
     divtest.setAttribute("class", "form-group removeclass" + room);
     var rdiv = 'removeclass' + room;
-    divtest.innerHTML = '<div class="col-sm-3 nopadding"> <div class="form-group"> <input type="text" class="form-control" id="key' + room + '" name="Keys[]" value="" placeholder="Key"> </div></div><div class="col-sm-3 nopadding"> <div class="form-group"> <div class="input-group"><input type="text" class="form-control" id="command' + room + '" name="Commands[]" value="" placeholder="Command"> <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(' + room + ');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div></div></div></div><div class="clear"></div>';
-
+    divtest.innerHTML = '<div class="col-sm-3 nopadding"> <div class="form-group"> <input type="text" class="form-control" id="key' + room + '" name="Keys[]" value="" placeholder="Key" required> </div></div><div class="col-sm-3 nopadding"> <div class="form-group"> <div class="input-group"><input type="text" class="form-control" id="command' + room + '" name="Commands[]" value="" placeholder="Command" required> <div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_education_fields(' + room + ');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div></div></div></div><div class="clear"></div>';
     objTo.appendChild(divtest)
 }
 
 function remove_education_fields(rid) {
     $('.removeclass' + rid).remove();
 }
-
 
 
 function installPackage(file) {
@@ -87,7 +84,7 @@ function isNumberKey(evt) //allowing numbers and decimal points
 
     return true;
 }
-var dxlevel = "91"; //updating dxlevel below
+var dxlevel = "90"; //updating dxlevel below
 function updatedxlevel() {
     switch ($("#gfx_selector").val()) {
         case "toaster":
@@ -99,32 +96,114 @@ function updatedxlevel() {
         case "fine":
         case "felik":
         case "rhapsodydx9":
-            dxlevel = "91";
+        case "myown":
+            dxlevel = "90";
             break;
         case "fancy":
         case "felikeyecandy":
             dxlevel = "98";
-            break;
-        case "myown":
-            dxlevel = "91";
-            break;
     }
+		printcommandline();
 
-    document.getElementById('loptions').value = "-dxlevel " + dxlevel + " " + screenmod + " -w " + screen.width + " -h " + screen.height + " -console -noborder -novid";
 }
-var screenmod = "-full";
+var screenmod = "-fullscreen";
+var aspectratio;
+var resolutionsel;
+var resolutionx = screen.width;
+var resolutiony = screen.height;
+var fullres;
+var launch_novid = " -novid";
+var launch_console = " -console";
 
 function updatescreenmode() //updating screen mode
 {
+    switch ($("#display_mode").val()) {
+			case "fullscreen":
+				screenmod = "-fullscreen";
+				break;
+			case "borderless":
+				screenmod = "-windowed -noborder";
+				break;
+			case "windowed":
+				screenmod = "-windowed";
+				break;
+		}
 
-    if (document.getElementById('full').checked) {
-        screenmod = "-full";
-    } else if (document.getElementById('windowed').checked) {
-        screenmod = "-sw";
-    }
-    document.getElementById('loptions').value = "-dxlevel " + dxlevel + " " + screenmod + " -w " + screen.width + " -h " + screen.height + " -console -noborder -novid";
+		if ($('#resolution_detector_cb').is(':checked')) {
+			$('#display_settings .display_option').prop('disabled', true);
+			$('#display_settings').fadeTo('fast', '0.6');
+			$('#display_settings .display_option button').addClass("disabled");
+			resolutionx = screen.width;
+			resolutiony = screen.height;
+			printcommandline();
+		} else {
+			$('#display_settings .display_option').prop('disabled', false);
+			$('#display_settings').fadeTo('fast', '1');
+			$('#display_settings .display_option button').removeClass("disabled");
+			updateresolution();
+		}
+
+		if ($('#launch_cmd_novid').is(':checked')) {
+			launch_novid = " -novid"
+		} else {
+			launch_novid = ""
+		}
+
+		if ($('#launch_cmd_console').is(':checked')) {
+			launch_console = " -console"
+		} else {
+			launch_console = ""
+		}
+
+    printcommandline();
 }
 
-$(document).ready(function() { //tooltips
-    $('[data-toggle="tooltip"]').tooltip();
+function updateresolution() {
+		aspectratio = $("#aspectratio_selector").val();
+		resolutionsel = $('#resolution_' + aspectratio + '_selector').val();
+		switch (aspectratio) {
+				case "43":
+					$('.resolution_selector').hide();
+					$('.resolution_selector.aspect43').show();
+					break;
+				case "169":
+					$('.resolution_selector').hide();
+					$('.resolution_selector.aspect169').show();
+					break;
+				case "85":
+					$('.resolution_selector').hide();
+					$('.resolution_selector.aspect85').show();
+					break;
+				case "0":
+					$('.resolution_selector').hide();
+					$('.resolution_selector.aspect_custom').show();
+					break;
+		}
+
+		resolutionsel = $('#resolution_' + aspectratio + '_selector').val();
+		fullres = resolutionsel.split('-');
+		resolutionx = fullres[0];
+		resolutiony = fullres[1];
+		printcommandline();
+
+}
+
+function printcommandline() {
+	document.getElementById('loptions').value = "-dxlevel " + dxlevel + " " + screenmod + " -w " + resolutionx + " -h " + resolutiony + launch_console + launch_novid;
+}
+
+$(document).ready(function() {
+    $('[data-toggle="tooltip"]').tooltip(); //tooltips
+});
+
+$(window).on('load', function(){ // global smooth loader transition
+	$('#overlay').fadeOut(600);
+
+	$("nav a").not( "nav .dropdown-toggle" ).click( function(){
+		var href = $(this).attr('href');
+
+		$('#overlay').fadeIn(200);
+		setTimeout(function() {window.location = href}, 250);
+		return false;
+	});
 });

@@ -1,203 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Automatically generate Team Fortress 2 configs, including custom VPKs, tweaks, crosshair switcher and more. Get a good fps boost without stupid unnecessary stuff." />
-    <title>CFG.TF - Configs</title>
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
-    <!-- <link rel="stylesheet" href="./css/bootstrap.min.main.css"> -->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Automatically generate Team Fortress 2 configs, including custom VPKs, tweaks, crosshair switcher and more. Get a good fps boost without stupid unnecessary stuff." />
+	<title>CFG.TF - Configs</title>
 
-    <!-- Latest compiled and minified JavaScript -->
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" integrity="sha384-dNpIIXE8U05kAbPhy3G1cz+yZmTzA6CY8Vg/u2L9xRnHjJiAK76m2BIEaSEV+/aU" crossorigin="anonymous">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.15/datatables.min.js"></script>
 
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" integrity="sha384-dNpIIXE8U05kAbPhy3G1cz+yZmTzA6CY8Vg/u2L9xRnHjJiAK76m2BIEaSEV+/aU" crossorigin="anonymous">
+	<link rel="stylesheet" href="../css/pygments.css">
+	<link rel="stylesheet" href="../css/main.css">
+	<link rel="stylesheet" href="../css/pygments.css">
 
-    <link rel="stylesheet" href="../css/pygments.css">
-    <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/bootstrap-select.min.css">
-		<style>
-			#overlay {
-	      background: #ffffff;
-	      color: #666666;
-	      position: fixed;
-	      height: 100%;
-	      width: 100%;
-	      z-index: 5000;
-	      top: 0;
-	      left: 0;
-	      float: left;
-	      text-align: center;
-	      padding-top: 25%;
-	    }
-			#wrapper {
-				width: 60%;
-			}
-			#wrapper .container {
-				max-width: 100%; display: block;
-			}
-			textarea {
-		    overflow-y: scroll;
-				height: 150px;
-				resize: none;
-			}
-			.table > tbody > tr > td {
-				vertical-align: middle;
-				text-align: center;
-			}
+	<script type="text/javascript" src="../js/utility.js"></script>
+</head>
 
-      /* multiselector has bad contrast on text */ .bootstrap-select > .dropdown-toggle.bs-placeholder { color: white !important; }
-      /* remove bullet points on li */ * 
-      /* separate the lists a bit more, its too squashed */ .radio label, .checkbox label { padding-top: 8px; }
-      /* replace <hr> with bottom borders */ .tab-pane { border-bottom: rgb(236, 240, 241) solid 1px; margin-bottom: 21px; padding-bottom: 21px; }
+<body>
+	<div class="jumbotron" id="overlay">
+		<div id="loading_logo">
+			<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 464 462.9"><path fill="#18bc9c" d="M213 19.2A213 213 0 0 0 19.7 212H160a74.4 74.4 0 0 1 53-52.6V19.2zm38 0v140.4a74.4 74.4 0 0 1 52.4 52.3h140.4A213 213 0 0 0 251 19zM19.5 250A213 213 0 0 0 213 443.4V303.2a74.4 74.4 0 0 1-53.3-53.3H19.5zm284 0a74.4 74.4 0 0 1-52.5 53v140.4A213 213 0 0 0 443.8 250H303.6z"/></svg>
+		</div>
+		<p class="page-header">Hang on a minute...</p>
+		<noscript><p>Please enable javascript in your browser to continue.</p></noscript>
+	</div>
 
-		</style>
-
-    <link rel="stylesheet" href="/css/pygments.css">
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/bootstrap-select.min.css">
-    <link rel="stylesheet" href="/css/jquery.dataTables.min.css">
-
-		<script type="text/javascript" src="/js/utility.js"></script>
-    <script type="text/javascript" src="/js/jquery.dataTables.min.js"></script>
-
-  </head>
-  <body>
-
-    <nav class="navbar navbar-default" role="navigation">
+	<nav class="navbar navbar-default" role="navigation">
 		<div class="container">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="/"><i class="fa fa-cogs" aria-hidden="true"></i> CFG.TF</a>
-			</div>
+			<div class="navbar-header"> <a class="navbar-brand" href="../"><i class="fa fa-cogs" aria-hidden="true"></i> CFG.TF</a> </div>
 			<ul class="nav navbar-nav">
-				<li>
-					<a href="/make">Generate</a>
-				</li>				
-				<li>
-					<a href="/server">Server config</a>
+				<li> <a href="../make">Generate</a> </li>
+				<li> <a href="../server">Server config</a> </li>
+				<li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Articles<span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="../read/interp">Networking in Source games</a></li>
+						<li><a href="../read/health">Health care</a></li>
+						<li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=154435696" target="_blank"><i class="fa fa-external-link"></i>  Scripting guide</a></li>
+					</ul>
 				</li>
-				<li class="dropdown">
-				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Articles<span class="caret"></span></a>
-				  <ul class="dropdown-menu" role="menu">
-					<li><a href="../read/interp">Networking in Source games</a></li>
-					<li><a href="../read/health">Health care</a></li>
-					<li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=154435696" target="_blank"><i class="fa fa-external-link"></i>  Scripting guide</a></li>
-				  </ul>
-				</li>
-				<li class="active">
-					<a href="../configs">Configs</a>
-				</li>
+				<li class="active"> <a href="./">Configs</a> </li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li>
-					<a href="../faq/">FAQ</a>
-				</li>				
-				<li>
-					<a href="../about/">About</a>
-				</li>
+				<li> <a href="../faq/">FAQ</a> </li>
+				<li> <a href="../about/">About</a> </li>
 			</ul>
 		</div>
 	</nav>
-    <div class="container-fluid">
+	<div id="wrapper" class="container-fluid">
 		<div class="row content">
-		    <div class="col-sm-3 sidenav">
-				<!-- magic -->
+			<h1 class="page-header">Config database</h1>
+			<p class="page-header">We have collected various configuration files that well-known players use. We do not take any responsibility for anything that may happen to your game when you install this, all files are provided as they were shared by original authors. Some configs
+				may be outdated.</p>
+			<table id="cfgs" class="table table-striped table-bordered" cellspacing="0" width="100%">
+				<thead>
+					<tr>
+						<th><i class="fa fa-user" aria-hidden="true"></i> Name</th>
+						<th><i class="fa fa-download" aria-hidden="true"></i> Download link</th>
+						<th><i class="fa fa-youtube-play" aria-hidden="true"></i> Youtube</th>
+						<th><i class="fa fa-television" aria-hidden="true"></i> Stream</th>
+					</tr>
+				</thead>
+			</table>
+			<p class="text-center page-header">Feel like you can contribute to this list? Contact us <a href="https://discord.gg/79cbsTu" target="_blank">on Discord</a>.</p>
+		</div>
+	</div>
+	<script>
+		$(document).ready(function() {
+			$('#cfgs').DataTable({
+				"ajax": './data.txt'
+			});
+		});
+	</script>
+	<footer class="footer">
+		<div class="container-fluid row">
+			<div class="col-md-4 text-center">
+				<ul class="list-unstyled">
+					<li><a href="//discord.gg/79cbsTu" target="_blank">Join our Discord</a></li>
+					<li><a href="//www.teamfortress.tv/40869/cfg-tf" target="_blank">Discuss on TFTV</a></li>
+					<li><a href="//github.com/mkrl/cfgtf/issues" target="_blank">Report an issue</a></li>
+					<li><a href="//github.com/mkrl/cfgtf" target="_blank">View the source code</a></li>
+				</ul>
 			</div>
+			<div class="col-md-4 text-center">
+				<p>CFG.TF</p>
+				<p><small>a custom TF2 config generator by <a href="https://steamcommunity.com/id/2x100/" target="_blank">200</a></small></p>
+				<script>
+					(function(i, s, o, g, r, a, m) {
+						i['GoogleAnalyticsObject'] = r;
+						i[r] = i[r] || function() {
+							(i[r].q = i[r].q || []).push(arguments)
+						}, i[r].l = 1 * new Date();
+						a = s.createElement(o),
+							m = s.getElementsByTagName(o)[0];
+						a.async = 1;
+						a.src = g;
+						m.parentNode.insertBefore(a, m)
+					})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+					ga('create', 'UA-97817107-1', 'auto');
+					ga('send', 'pageview');
+				</script>
+			</div>
+			<div class="col-md-4">
+				<p class="text-center">~
+					<script language="JavaScript">
+						var fhsh = document.createElement('script');
+						var fhs_id_h = "3234623";
+						fhsh.src = "//s1.freehostedscripts.net/ocount.php?site=" + fhs_id_h + "&name=configs&a=1";
+						document.head.appendChild(fhsh);
+						document.write("<span id='h_" + fhs_id_h + "'></span>");
+					</script> generated so far. </p>
+			</div>
+		</div>
+	</footer>
+</body>
 
-		<div class="col-sm-9">
-		<div id="wrapper">
-<br>
-<p>
-</p><h1>Config database</h1><p>
-<br>
-<p>We have collected various configuration files that well-known players use. We do not take any responsibility for anything that may happen to your game when you install this, all files are provided as they were shared by original authors. Some configs may be outdated.</p>
-<br>
-<br>
-<br>
-<table id="cfgs" class="table table-striped table-bordered" cellspacing="0" width="100%">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Download link</th>
-                <th>Youtube</th>
-                <th>Stream</th>
-            </tr>
-        </thead>
-</table>			
-<br>
-<br>
-<br>
-<br>
-<p>Feel like you can contribute to this list? Contat us <a href="https://discord.gg/79cbsTu" target="_blank">on Discord</a>.</p>
-
-
- </div>
-</div>
-
-
-
-  </div>
- </div>
-
- <script>
- $(document).ready(function() {
-    $('#cfgs').DataTable( {
-        "ajax": '../configs/data.txt'
-    } );
-} );
- </script>
- 
-  <footer class="footer">
-    <div class="container-fluid row">
-
-      <div class="col-md-4 text-center">
-        <ul class="list-unstyled">
-            <li><a href="//discord.gg/79cbsTu" target="_blank">Join our Discord</a></li>
-            <li><a href="//www.teamfortress.tv/40869/cfg-tf" target="_blank">Discuss on TFTV</a></li>
-            <li><a href="//github.com/mkrl/cfgtf/issues" target="_blank">Report an issue</a></li>
-            <li><a href="//github.com/mkrl/cfgtf" target="_blank">View the source code</a></li>
-        </ul>
-      </div>
-
-      <div class="col-md-4 text-center">
-        <p>CFG.TF</p>
-        <p><small>a custom TF2 config generator by <a href="https://steamcommunity.com/id/2x100/" target="_blank">200</a></small></p>
-        <script>
-          (function(i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function() {
-              (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-              m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-          })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-          ga('create', 'UA-97817107-1', 'auto');
-          ga('send', 'pageview');
-        </script>
-      </div>
-
-      <div class="col-md-4">
-        <p class="text-center">~
-          <script language="JavaScript">
-            var fhsh = document.createElement('script');
-            var fhs_id_h = "3234623";
-            fhsh.src = "//s1.freehostedscripts.net/ocount.php?site=" + fhs_id_h + "&name=configs&a=1";
-            document.head.appendChild(fhsh);
-            document.write("<span id='h_" + fhs_id_h + "'></span>");
-          </script> generated so far.
-        </p>
-      </div>
-
-    </div>
-  </footer>
-
-  </body>
 </html>

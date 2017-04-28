@@ -471,5 +471,4 @@ jQuery(function($) {
 		return false;
 	});
 
-
 });
