@@ -106,20 +106,93 @@ function updatedxlevel() {
             dxlevel = "91";
             break;
     }
+		printcommandline();
 
-    document.getElementById('loptions').value = "-dxlevel " + dxlevel + " " + screenmod + " -w " + screen.width + " -h " + screen.height + " -console -noborder -novid";
 }
-var screenmod = "-full";
+var screenmod = "-fullscreen";
+var aspectratio;
+var resolutionsel;
+var resolutionx = screen.width;
+var resolutiony = screen.height;
+var fullres;
+var launch_novid = " -novid";
+var launch_console = " -console";
 
 function updatescreenmode() //updating screen mode
 {
+    switch ($("#display_mode").val()) {
+			case "fullscreen":
+				screenmod = "-fullscreen";
+				break;
+			case "borderless":
+				screenmod = "-windowed -noborder";
+				break;
+			case "windowed":
+				screenmod = "-windowed";
+				break;
+		}
 
-    if (document.getElementById('full').checked) {
-        screenmod = "-full";
-    } else if (document.getElementById('windowed').checked) {
-        screenmod = "-sw";
-    }
-    document.getElementById('loptions').value = "-dxlevel " + dxlevel + " " + screenmod + " -w " + screen.width + " -h " + screen.height + " -console -noborder -novid";
+		if ($('#resolution_detector_cb').is(':checked')) {
+			$('#display_settings .display_option').prop('disabled', true);
+			$('#display_settings').fadeTo('fast', '0.6');
+			$('#display_settings .display_option button').addClass("disabled");
+			resolutionx = screen.width;
+			resolutiony = screen.height;
+			printcommandline();
+		} else {
+			$('#display_settings .display_option').prop('disabled', false);
+			$('#display_settings').fadeTo('fast', '1');
+			$('#display_settings .display_option button').removeClass("disabled");
+			updateresolution();
+		}
+
+		if ($('#launch_cmd_novid').is(':checked')) {
+			launch_novid = " -novid"
+		} else {
+			launch_novid = ""
+		}
+
+		if ($('#launch_cmd_console').is(':checked')) {
+			launch_console = " -console"
+		} else {
+			launch_console = ""
+		}
+
+    printcommandline();
+}
+
+function updateresolution() {
+		aspectratio = $("#aspectratio_selector").val();
+		resolutionsel = $('#resolution_' + aspectratio + '_selector').val();
+		switch (aspectratio) {
+				case "43":
+					$('.resolution_selector').hide();
+					$('.resolution_selector.aspect43').show();
+					break;
+				case "169":
+					$('.resolution_selector').hide();
+					$('.resolution_selector.aspect169').show();
+					break;
+				case "85":
+					$('.resolution_selector').hide();
+					$('.resolution_selector.aspect85').show();
+					break;
+				case "0":
+					$('.resolution_selector').hide();
+					$('.resolution_selector.aspect_custom').show();
+					break;
+		}
+
+		resolutionsel = $('#resolution_' + aspectratio + '_selector').val();
+		fullres = resolutionsel.split('-');
+		resolutionx = fullres[0];
+		resolutiony = fullres[1];
+		printcommandline();
+
+}
+
+function printcommandline() {
+	document.getElementById('loptions').value = "-dxlevel " + dxlevel + " " + screenmod + " -w " + resolutionx + " -h " + resolutiony + launch_console + launch_novid;
 }
 
 $(document).ready(function() { //tooltips

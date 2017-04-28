@@ -3721,7 +3721,7 @@
 	</div>
   <div class="tab-pane fade" id="binds">
 	<!--   CUSTOM INPUT  -->
-	<h3>Custom bindings:</h3>
+	<h3>Custom commands</h3>
 	<p>You may enter anything here, not just binds. Same formatting rules as for the TF2 console. This will be executed at the end of your config and overwrite existing binds.</p>
 	<textarea id="bindings" placeholder="bind kp_minus &quot;say !add spire&quot;" class="form-control"></textarea>
   <hr>
@@ -3763,44 +3763,101 @@
       $("#clipboard_copy_info").addClass('text-danger');
     }
     });
+
+		// only display 1 res selector at a time. doesn't trigger on page load for some reason, so I put it in a small timeout
+		setTimeout(updateresolution, 400);
+
+		// disable display options on startup.
+		$('#display_settings .display_option').prop('disabled', true);
+		$('#display_settings').fadeTo('fast', '0.6');
+		$('#resolution_detector_cb').change(updatescreenmode);
+		$('#launch_cmd_novid').change(updatescreenmode);
+		$('#launch_cmd_console').change(updatescreenmode);
+		$("#display_mode").change(updatescreenmode);
+		$(".resolution_selector").change(updateresolution);
+		$("#aspectratio_selector").change(updateresolution);
+
   });
   </script>
-
 		<div class="panel panel-primary">
 		  <div class="panel-heading">
 			<h3 class="panel-title">Launch options <a href="#" data-toggle="tooltip" title="Right click on TF2 in your Steam Library, press 'Properties' and then 'Launch Options'. Copy and paste given text there." ><i class="fa fa-question-circle-o" aria-hidden="true"></i></a></h3>
 		  </div>
 		  <div class="panel-body">
+
 				<div class="well well-lg">
 					<input type="text" class="form-control" id="loptions" onclick="this.setSelectionRange(0, this.value.length)" value="" readonly/>
-          <br><p class="text-center" id="clipboard_copy_info"><i class="fa fa-clipboard" aria-hidden="true"></i> <span id="clipboard_copy_info_text">Click to copy launch options to clipboard</span></p>
+          <p class="text-center h5" id="clipboard_copy_info"><i class="fa fa-clipboard" aria-hidden="true"></i> <span id="clipboard_copy_info_text">Click to copy launch options to clipboard</span></p>
 				</div>
-				<ul style="list-style-type: none;">
-					<li>
-            <label>
-  						<input type="radio" name="launch" id="full" onclick="updatescreenmode();" checked />
-  						Fullscreen
-            </label>
-					</li>
-					<li>
-						<label>
-  						<input type="radio" name="launch" id="windowed" onclick="updatescreenmode();" />
-  						Windowed
-            </label>
-					</li>
-				</ul>
-		  </div>
-		</div>
 
-	<script>
-																																							//launch options default value
-	document.getElementById('loptions').value = screenmod +" -w " + screen.width + " -h " + screen.height + " -console -noborder -novid";
-	</script>
-	<script>
-	$(document).ready(function(){																															//tooltips
-		$('[data-toggle="tooltip"]').tooltip();
-	});
-	</script>
+				<div class="container-fluid row" id="extra_command_line">
+
+					<div class="col-md-4 checkbox">
+						<select class="form-control selectpicker" id="display_mode">
+							<option value="fullscreen" data-name="resolution" selected>Fullscreen</option>
+							<option value="windowed" data-name="resolution">Windowed</option>
+							<option value="borderless" data-name="resolution">Windowed (borderless)</option>
+						</select>
+						<label><input type="checkbox" id="resolution_detector_cb" checked> Detect native resolution</label>
+
+
+					</div>
+
+
+					<div class="col-md-4">
+						<div id="display_settings" class="container-fluid row">
+
+							<select id="aspectratio_selector" class="form-control selectpicker display_option" >
+								<option value="43" data-name="aspectratio">Normal (4:3)</option>
+								<option value="169" data-name="aspectratio" selected>Widescreen (16:9)</option>
+								<option value="85" data-name="aspectratio">Widescreen (16:10)</option>
+								<option value="0" data-name="aspectratio">Custom resolution</option>
+							</select>
+
+							<select id="resolution_43_selector" class="form-control selectpicker display_option resolution_selector aspect43">
+								<option value="2048-1536" data-name="resolution">2048 × 1536</option>
+								<option value="1920-1440" data-name="resolution">1920 × 1440</option>
+								<option value="1856-1392" data-name="resolution">1856 × 1392</option>
+								<option value="1600-1200" data-name="resolution">1600 × 1200</option>
+								<option value="1440-1080" data-name="resolution">1440 × 1080</option>
+								<option value="1400-1050" data-name="resolution">1400 × 1050</option>
+								<option value="1280-960" data-name="resolution" selected="selected">1280 x 960</option>
+								<option value="1152-864" data-name="resolution">1152 x 864</option>
+								<option value="1024-768" data-name="resolution">1024 x 768</option>
+								<option value="800-600" data-name="resolution">800 x 600</option>
+								<option value="640-480" data-name="resolution">640 x 480</option>
+							</select>
+
+							<select id="resolution_169_selector" class="form-control selectpicker display_option resolution_selector aspect169">
+								<option value="3840-2160" data-name="resolution">3840 x 2160</option>
+								<option value="2560-1440" data-name="resolution">2560 x 1440</option>
+								<option value="1920-1080" data-name="resolution" selected="selected">1920 x 1080</option>
+								<option value="1600-900" data-name="resolution">1600 x 900</option>
+								<option value="1366-768" data-name="resolution">1366 x 768</option>
+								<option value="1280-720" data-name="resolution">1280 x 720</option>
+							</select>
+
+							<select id="resolution_85_selector" class="form-control selectpicker display_option resolution_selector aspect85">
+								<option value="1920-1200" data-name="resolution">2560 x 1600</option>
+								<option value="1920-1200" data-name="resolution" selected="selected">1920 x 1200</option>
+								<option value="1680-1050" data-name="resolution">1680 x 1050</option>
+								<option value="1440-960" data-name="resolution">1440 x 960</option>
+								<option value="1280-800" data-name="resolution">1280 x 800</option>
+								<option value="720-480" data-name="resolution">720 x 480</option>
+							</select>
+
+						</div>
+					</div>
+
+					<div class="col-md-4 checkbox">
+						<label><input id="launch_cmd_novid" type="checkbox" checked> Disable intro video</label>
+						<label><input id="launch_cmd_console" type="checkbox" checked> Enable console on startup</label>
+					</div>
+
+
+				</div>
+	  	</div>
+		</div>
 </div>
 
   <script type="text/javascript" src="../js/downloader.js"></script>
