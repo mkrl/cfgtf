@@ -204,7 +204,7 @@ $(window).on('load', function(){ // global smooth loader transition
 		var href = $(this).attr('href');
 
 		$('#overlay').fadeIn(200);
-		setTimeout(function() {window.location = href}, 1000);// Delay setting the location for one second
+		setTimeout(function() {window.location = href}, 250);
 		return false;
 	});
 });
