@@ -29,7 +29,7 @@
 		<script type="text/javascript" src="../js/jquery.zoom.min.js"></script>
 		<script>
 			$(document).ready(function() {
-					$(".carousel-inner img").unveil(); // jquery zoom init
+					$(".carousel-inner img").unveil(); // jquery lazy load init
 			});
 		</script>
   </head>
@@ -159,15 +159,15 @@
           updatedxlevel();
           $("#preview" + showme + " img").trigger("unveil");
           console.log('unveil ' + showme);
+
+					//img zoom
+				  $('#preview' + showme + ' .carousel-inner  img')
+						.wrap('<span style="display:inline-block"></span>')
+						.css('display', 'block')
+						.parent()
+						.zoom({ on: 'grab' });
       });
 
-
-			//img zoom
-		  $('.carousel-inner img')
-				.wrap('<span style="display:inline-block"></span>')
-				.css('display', 'block')
-				.parent()
-				.zoom({ on: 'grab' });
 
 			// click to zoom notifier
 			$('.cfg_source')
