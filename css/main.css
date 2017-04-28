@@ -173,6 +173,7 @@ blockquote {
 /* disable gradient on carousel controls until I figure out why jquery zoom makes it bleed out of the element */ .carousel-control.left, .carousel-control.right { background-image: none; }
 /* pad labels away from nestedd inputs a little */ label input, label select { margin-left: 1em; }
 /* dropdowns in launch options are touching */ #display_settings .bootstrap-select { margin-bottom: 2px; }
+/* filter on configs/index.html needs to be pulled right */ #cfgs_filter { float: right; }
 
 p.header-remote {
 	display: inline-block; margin-bottom: 10%;

@@ -194,7 +194,6 @@ function printcommandline() {
 
 $(document).ready(function() {
     $('[data-toggle="tooltip"]').tooltip(); //tooltips
-		$(".carousel-inner img").unveil(); // jquery zoom init
 });
 
 $(window).on('load', function(){ // global smooth loader transition
