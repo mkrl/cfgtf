@@ -3761,21 +3761,24 @@
     }
     });
 
-		// only display 1 res selector at a time. doesn't trigger on page load for some reason, so I put it in a small timeout
-		setTimeout(updateresolution, 400);
-
 		// disable display options on startup.
 		$('#display_settings .display_option').prop('disabled', true);
 		$('#display_settings').fadeTo('fast', '0.6');
+
+		// trigger an update on input changes
 		$('#resolution_detector_cb').change(updatescreenmode);
 		$('#launch_cmd_novid').change(updatescreenmode);
 		$('#launch_cmd_console').change(updatescreenmode);
 		$("#display_mode").change(updatescreenmode);
+
 		$(".resolution_selector").change(updateresolution);
 		$("#aspectratio_selector").change(updateresolution);
 
   });
+	$(window).on('load', updateresolution); // trigger update on 1st load
+
   </script>
+
 		<div class="panel panel-primary">
 		  <div class="panel-heading">
 			<h3 class="panel-title">Launch options <a href="#" data-toggle="tooltip" title="Right click on TF2 in your Steam Library, press 'Properties' and then 'Launch Options'. Copy and paste given text there." ><i class="fa fa-question-circle-o" aria-hidden="true"></i></a></h3>
@@ -3796,8 +3799,6 @@
 							<option value="borderless" data-name="resolution">Windowed (borderless)</option>
 						</select>
 						<label><input type="checkbox" id="resolution_detector_cb" checked> Detect native resolution</label>
-
-
 					</div>
 
 
@@ -3808,7 +3809,6 @@
 								<option value="43" data-name="aspectratio">Normal (4:3)</option>
 								<option value="169" data-name="aspectratio" selected>Widescreen (16:9)</option>
 								<option value="85" data-name="aspectratio">Widescreen (16:10)</option>
-								<option value="0" data-name="aspectratio">Custom resolution</option>
 							</select>
 
 							<select id="resolution_43_selector" class="form-control selectpicker display_option resolution_selector aspect43">
