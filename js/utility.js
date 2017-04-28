@@ -84,7 +84,7 @@ function isNumberKey(evt) //allowing numbers and decimal points
 
     return true;
 }
-var dxlevel = "91"; //updating dxlevel below
+var dxlevel = "90"; //updating dxlevel below
 function updatedxlevel() {
     switch ($("#gfx_selector").val()) {
         case "toaster":
@@ -96,15 +96,12 @@ function updatedxlevel() {
         case "fine":
         case "felik":
         case "rhapsodydx9":
-            dxlevel = "91";
+        case "myown":
+            dxlevel = "90";
             break;
         case "fancy":
         case "felikeyecandy":
             dxlevel = "98";
-            break;
-        case "myown":
-            dxlevel = "91";
-            break;
     }
 		printcommandline();
 
