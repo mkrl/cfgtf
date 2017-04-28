@@ -16,6 +16,7 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" integrity="sha384-dNpIIXE8U05kAbPhy3G1cz+yZmTzA6CY8Vg/u2L9xRnHjJiAK76m2BIEaSEV+/aU" crossorigin="anonymous">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+
 		<!-- Local css -->
     <link rel="stylesheet" href="../css/pygments.css">
     <link rel="stylesheet" href="../css/main.css">
@@ -27,13 +28,9 @@
     <script type="text/javascript" src="../js/unveil.js"></script>
 		<script type="text/javascript" src="../js/jquery.zoom.min.js"></script>
 
-    <script>
-      $(document).ready(function() {
-        $(".carousel-inner img").unveil();
-      });
-    </script>
   </head>
   <body>
+
 		<div class="jumbotron" id="overlay">
 			<div id="loading_logo">
 				<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 464 462.9">
@@ -43,11 +40,7 @@
 			<p class="page-header">Hang on a minute...</p>
 		  <noscript><p>Please enable javascript in your browser to continue.</p></noscript>
 		</div>
-		 <script>
-			jQuery(window).on('load', function(){
-			  jQuery('#overlay').fadeOut();
-			});
-		</script>
+
     <nav class="navbar navbar-default" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
@@ -61,7 +54,7 @@
 					<a href="../server">Server config</a>
 				</li>
 				<li class="dropdown">
-				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Articles<span class="caret"></span></a>
+				  <a href="#" class="dropdown-toggle loader_ignore" data-toggle="dropdown" role="button" aria-expanded="false">Articles<span class="caret"></span></a>
 				  <ul class="dropdown-menu" role="menu">
 					<li><a href="../read/interp">Networking in Source games</a></li>
 					<li><a href="../read/health">Health care</a></li>
@@ -110,7 +103,7 @@
 				  <li><a href="#viewmod" data-toggle="tab">Viewmodels</a></li>
 				  <li><a href="#damage" data-toggle="tab">Damage indicators</a></li>
 				  <li><a href="#network" data-toggle="tab">Network</a></li>
-				  <li><a href="#binds" data-toggle="tab">Custom binds</a></li>
+				  <li><a href="#binds" data-toggle="tab">Custom commands</a></li>
 
 				</ul>
 			<div id="myTabContent" class="tab-content">

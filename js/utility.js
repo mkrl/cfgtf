@@ -192,6 +192,19 @@ function printcommandline() {
 	document.getElementById('loptions').value = "-dxlevel " + dxlevel + " " + screenmod + " -w " + resolutionx + " -h " + resolutiony + launch_console + launch_novid;
 }
 
-$(document).ready(function() { //tooltips
-    $('[data-toggle="tooltip"]').tooltip();
+$(document).ready(function() {
+    $('[data-toggle="tooltip"]').tooltip(); //tooltips
+		$(".carousel-inner img").unveil(); // jquery zoom init
+});
+
+$(window).on('load', function(){ // global smooth loader transition
+	$('#overlay').fadeOut(600);
+
+	$("nav a").not( "nav .dropdown-toggle" ).click( function(){
+		var href = $(this).attr('href');
+
+		$('#overlay').fadeIn(200);
+		setTimeout(function() {window.location = href}, 1000);// Delay setting the location for one second
+		return false;
+	});
 });
