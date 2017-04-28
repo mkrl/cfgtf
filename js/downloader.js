@@ -130,9 +130,17 @@ jQuery(function($) {
 		var ds_snd    = $('#ds_sound').val();
 		var ds_ks     = $('#ds_ks').val();
 
-		//get large piece of custom binds
+		//get custom binds
 		var bindings = $('#bindings').val();
-
+		var bindings_scout = $('#bindings_scout').val();
+		var bindings_soldier = $('#bindings_soldier').val();
+		var bindings_pyro = $('#bindings_pyro').val();
+		var bindings_demo = $('#bindings_demo').val();
+		var bindings_heavy = $('#bindings_heavy').val();
+		var bindings_engineer = $('#bindings_engineer').val();
+		var bindings_medic = $('#bindings_medic').val();
+		var bindings_sniper = $('#bindings_sniper').val();
+		var bindings_spy = $('#bindings_spy').val();
 		//getting switcher values (if selected)
 
 		var xhair = $('#crosshairswitcherid').is(':checked');
@@ -161,6 +169,15 @@ jQuery(function($) {
 
 
 		var bindarr = '';
+		var scout_switcher = '';
+		var soldier_switcher = '';
+		var pyro_switcher = '';
+		var demo_switcher = '';
+		var heavy_switcher = '';
+		var engineer_switcher = '';
+		var medic_switcher = '';
+		var sniper_switcher = '';
+		var spy_switcher = '';
 
 		// find every checked item
 		$(this).find(':checked').each(function() {
@@ -181,22 +198,22 @@ jQuery(function($) {
 			if (iswhat === 'configs')
 				zipbin(url, 'cfg/' + filename);
 			if (iswhat === 'crosshairswitcher') {
-				zipbin('../make/cfg/class/demoman.cfg', 'cfg/demoman.cfg');
 				zipbin('../make/cfg/class/demoplayback.cfg', 'cfg/demoplayback.cfg');
-				zipbin('../make/cfg/class/engineer.cfg', 'cfg/engineer.cfg');
-				zipbin('../make/cfg/class/heavyweapons.cfg', 'cfg/heavyweapons.cfg');
 				zipbin('../make/cfg/class/insourcetv.cfg', 'cfg/insourcetv.cfg');
 				zipbin('../make/cfg/class/CROSSHAIRSWITCHER-INSTRUCTIONS.txt', 'cfg/CROSSHAIRSWITCHER-INSTRUCTIONS.txt');
-				zipbin('../make/cfg/class/medic.cfg', 'cfg/medic.cfg');
-				zipbin('../make/cfg/class/pyro.cfg', 'cfg/pyro.cfg');
-				zipbin('../make/cfg/class/scout.cfg', 'cfg/scout.cfg');
-				zipbin('../make/cfg/class/sniper.cfg', 'cfg/sniper.cfg');
-				zipbin('../make/cfg/class/soldier.cfg', 'cfg/soldier.cfg');
-				zipbin('../make/cfg/class/spy.cfg', 'cfg/spy.cfg');
 				zipbin('../make/cfg/class/crosshairswitcher/binds.cfg', 'cfg/crosshairswitcher/binds.cfg');
 				zipbin('../make/cfg/class/crosshairswitcher/crosshairs.cfg', 'cfg/crosshairswitcher/crosshairs.cfg');
 				zipbin('../make/cfg/class/crosshairswitcher/defaultcrosshair.cfg', 'cfg/crosshairswitcher/defaultcrosshair.cfg');
 				zipbin('../make/cfg/class/crosshairswitcher/disable.cfg', 'cfg/crosshairswitcher/disable.cfg');
+				scout_switcher = '//crosshair switcher\nexec crosshairswitcher/switcher; scout';
+				soldier_switcher = '//crosshair switcher\nexec crosshairswitcher/switcher; soldier';
+				pyro_switcher = '//crosshair switcher\nexec crosshairswitcher/switcher; pyro';
+				demo_switcher = '//crosshair switcher\nexec crosshairswitcher/switcher; demoman';
+				heavy_switcher = '//crosshair switcher\nexec crosshairswitcher/switcher; heavy';
+				engineer_switcher = '//crosshair switcher\nexec crosshairswitcher/switcher; engineer';
+				medic_switcher = '//crosshair switcher\nexec crosshairswitcher/switcher; medic';
+				sniper_switcher = '//crosshair switcher\nexec crosshairswitcher/switcher; sniper';
+				spy_switcher = '//crosshair switcher\nexec crosshairswitcher/switcher; spy';				
 				var xhair_settings = [
 					'//   use the aliases like this: size; color; type; viewmodel FOV or viewmodel off',
 					'//  _______________________________________________________________________________',
@@ -437,16 +454,119 @@ jQuery(function($) {
 			'cl_smooth 0',
 			''
 		].join('\n');
+		//general custom binds
 		var binds = [
 			'//stock non class-specific binds',
 			'//Made with cfg.tf - custom Team Fortress 2 config generator',
 			'',
 			bindarr
 		].join('\n');
+		//class binds
+		var binds_scout = [
+					'//scout settings',
+					'//Made with cfg.tf - custom Team Fortress 2 config generator',
+					'',
+					'',
+					bindings_scout,
+					'',
+					'',
+					scout_switcher
+				].join('\n');
+		var binds_soldier = [
+					'//soldier settings',
+					'//Made with cfg.tf - custom Team Fortress 2 config generator',
+					'',
+					'',
+					bindings_soldier,
+					'',
+					'',
+					soldier_switcher
+				].join('\n');
+		var binds_pyro = [
+					'//pyro settings',
+					'//Made with cfg.tf - custom Team Fortress 2 config generator',
+					'',
+					'',
+					bindings_pyro,
+					'',
+					'',
+					pyro_switcher
+				].join('\n');
+		var binds_demo = [
+					'//demoman settings',
+					'//Made with cfg.tf - custom Team Fortress 2 config generator',
+					'',
+					'',
+					bindings_demo,
+					'',
+					'',
+					demo_switcher
+				].join('\n');
+		var binds_heavy = [
+					'//heavy settings',
+					'//Made with cfg.tf - custom Team Fortress 2 config generator',
+					'',
+					'',
+					bindings_heavy,
+					'',
+					'',
+					heavy_switcher
+				].join('\n');
+		var binds_engineer = [
+					'//engineer settings',
+					'//Made with cfg.tf - custom Team Fortress 2 config generator',
+					'',
+					'',
+					bindings_engineer,
+					'',
+					'',
+					engineer_switcher
+				].join('\n');
+		var binds_medic = [
+					'//medic settings',
+					'//Made with cfg.tf - custom Team Fortress 2 config generator',
+					'',
+					'',
+					bindings_medic,
+					'',
+					'',
+					medic_switcher
+				].join('\n');
+		var binds_sniper = [
+					'//sniper settings',
+					'//Made with cfg.tf - custom Team Fortress 2 config generator',
+					'',
+					'',
+					bindings_sniper,
+					'',
+					'',
+					sniper_switcher
+				].join('\n');
+		var binds_spy = [
+					'//spy settings',
+					'//Made with cfg.tf - custom Team Fortress 2 config generator',
+					'',
+					'',
+					bindings_spy,
+					'',
+					'',
+					spy_switcher
+				].join('\n');
+				
 		zip.file('cfg/autoexec.cfg', autoexec);
 		zip.file('cfg/settings.cfg', settings);
 		zip.file('cfg/network.cfg', network);
 		zip.file('cfg/binds.cfg', binds);
+		
+		zip.file('cfg/scout.cfg', binds_scout);
+		zip.file('cfg/soldier.cfg', binds_soldier);
+		zip.file('cfg/pyro.cfg', binds_pyro);
+		zip.file('cfg/demoman.cfg', binds_demo);
+		zip.file('cfg/heavyweapons.cfg', binds_heavy);
+		zip.file('cfg/engineer.cfg', binds_engineer);
+		zip.file('cfg/medic.cfg', binds_medic);
+		zip.file('cfg/sniper.cfg', binds_sniper);
+		zip.file('cfg/spy.cfg', binds_spy);
 
 		// when everything has been downloaded, we can trigger the dl
 		zip.generateAsync({type: 'blob'},

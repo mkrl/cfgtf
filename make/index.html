@@ -1670,7 +1670,7 @@
   	<li class="form-inline">
       <label>
   			Viewmodel toggle key (leave blank for none)
-        <input class="form-control input-sm" type="text" size="6"  id="vmodelbind" value="-" />
+        <input class="form-control input-sm" type="text" size="6"  id="vmodelbind" value="kp_minus" />
       </label>
     </li>
 	</ul>
@@ -3717,8 +3717,95 @@
 	<!--   CUSTOM INPUT  -->
 	<h3>Custom commands</h3>
 	<p>You may enter anything here, not just binds. Same formatting rules as for the TF2 console. This will be executed at the end of your config and overwrite existing binds.</p>
-	<textarea id="bindings" placeholder="bind kp_minus &quot;say !add spire&quot;" class="form-control"></textarea>
+	<textarea id="bindings" placeholder="bind kp_minus &quot;say !add spire&quot;"  class="form-control"></textarea>
   <hr>
+  <h3>Class specific custom commands</h3>
+  <p>The following settings will be put into class config files and will only work on specific classes.</p>
+  <div class="row">
+
+        <div class="col-md-4">
+		
+			  <div class="panel panel-default">
+		  <div class="panel-heading">Scout</div>
+		  <div class="panel-body">
+			<textarea id="bindings_scout" class="form-control"></textarea>
+		  </div>
+		</div>
+		</div>
+        <div class="col-md-4">
+		
+			  <div class="panel panel-default">
+		  <div class="panel-heading">Soldier</div>
+		  <div class="panel-body">
+			<textarea id="bindings_soldier" class="form-control"></textarea>
+		  </div>
+		</div>
+		</div>
+        <div class="col-md-4">
+		
+			  <div class="panel panel-default">
+		  <div class="panel-heading">Pyro</div>
+		  <div class="panel-body">
+			<textarea id="bindings_pyro" class="form-control"></textarea>
+		  </div>
+		</div>
+		</div>
+        <div class="col-md-4">
+		
+			  <div class="panel panel-default">
+		  <div class="panel-heading">Demoman</div>
+		  <div class="panel-body">
+			<textarea id="bindings_demo" class="form-control"></textarea>
+		  </div>
+		</div>
+		</div>
+        <div class="col-md-4">
+		
+			  <div class="panel panel-default">
+		  <div class="panel-heading">Heavy</div>
+		  <div class="panel-body">
+			<textarea id="bindings_heavy" class="form-control"></textarea>
+		  </div>
+		</div>
+		</div>
+        <div class="col-md-4">
+		
+			  <div class="panel panel-default">
+		  <div class="panel-heading">Engineer</div>
+		  <div class="panel-body">
+			<textarea id="bindings_engineer" class="form-control"></textarea>
+		  </div>
+		</div>
+		</div>
+        <div class="col-md-4">
+		
+			  <div class="panel panel-default">
+		  <div class="panel-heading">Medic</div>
+		  <div class="panel-body">
+			<textarea id="bindings_medic" class="form-control"></textarea>
+		  </div>
+		</div>
+		</div>
+        <div class="col-md-4">
+		
+			  <div class="panel panel-default">
+		  <div class="panel-heading">Sniper</div>
+		  <div class="panel-body">
+			<textarea id="bindings_sniper" class="form-control"></textarea>
+		  </div>
+		</div>
+		</div>
+        <div class="col-md-4">
+		
+			  <div class="panel panel-default">
+		  <div class="panel-heading">Spy</div>
+		  <div class="panel-body">
+			<textarea id="bindings_spy" class="form-control"></textarea>
+		  </div>
+		</div>
+		</div>		
+      </div>
+	  <hr>
 	</div>
 </div>
 </div>
