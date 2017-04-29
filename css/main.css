@@ -34,13 +34,7 @@ body{
   text-align: center;
   padding-top: 25%;
 }
-#wrapper {
-  width: 60%;
-}
-#wrapper .container {
-  max-width: 100%;
-  display: block;
-}
+
 .colored-block {
   width: 100%;
   padding: 60px 0px;
