@@ -160,7 +160,7 @@ jQuery(function($) {
 				zip.file("addons/TFTrue.so", urlToPromise("../server/addons/tftrue/TFTrue.so"), {
 					binary: true
 				});
-				zip.file("addons/TFTrue.vdf", urlToPromise("../server/addons/tftrue/TFTrue.dll"), {
+				zip.file("addons/TFTrue.vdf", urlToPromise("../server/addons/tftrue/TFTrue.vdf"), {
 					binary: true
 				});
 				zip.file("addons/tftrue_readme.txt", urlToPromise("../server/addons/tftrue/tftrue_readme.txt"), {
