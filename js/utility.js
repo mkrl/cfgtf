@@ -194,10 +194,16 @@ function printcommandline() {
 
 $(document).ready(function() {
     $('[data-toggle="tooltip"]').tooltip(); //tooltips
+		$( "#version" ).load( "./version.txt" );
 });
 
 $(window).on('load', function(){ // global smooth loader transition
+	$('#overlay #loading_logo').addClass('fast'); // speed up spin when we've finished loading
 	$('#overlay').fadeOut(600);
+	setTimeout( function() {
+		$('#overlay #loading_logo').removeClass('fast');// after its hidden, replace fast spin with really slow spin. this slow spin is what fades back in before we change nav pages
+		$('#overlay #loading_logo').addClass('idle');  // the next page's regular spin makes it seem like the previous slow spinner speeds up when it starts loading, masking the jitteryness of page navigation a bit
+	}, 1000);
 
 	$("nav a").not( "nav .dropdown-toggle" ).click( function(){
 		var href = $(this).attr('href');

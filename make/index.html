@@ -36,13 +36,20 @@
   <body>
 
 		<div class="jumbotron" id="overlay">
-			<div id="loading_logo">
-				<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 464 462.9">
-					<path fill="#f39c12" d="M213 19.2A213 213 0 0 0 19.7 212H160a74.4 74.4 0 0 1 53-52.6V19.2zm38 0v140.4a74.4 74.4 0 0 1 52.4 52.3h140.4A213 213 0 0 0 251 19zM19.5 250A213 213 0 0 0 213 443.4V303.2a74.4 74.4 0 0 1-53.3-53.3H19.5zm284 0a74.4 74.4 0 0 1-52.5 53v140.4A213 213 0 0 0 443.8 250H303.6z"/>
-				</svg>
-	  	</div>
-			<p class="page-header">Hang on a minute...</p>
-		  <noscript><p>Please enable javascript in your browser to continue.</p></noscript>
+			<div id="overlay_middle">
+				<div id="overlay_inner">
+					<div id="loading_logo">
+						<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 464 462.9">
+							<path fill="#f39c12" d="M213 19.2A213 213 0 0 0 19.7 212H160a74.4 74.4 0 0 1 53-52.6V19.2zm38 0v140.4a74.4 74.4 0 0 1 52.4 52.3h140.4A213 213 0 0 0 251 19zM19.5 250A213 213 0 0 0 213 443.4V303.2a74.4 74.4 0 0 1-53.3-53.3H19.5zm284 0a74.4 74.4 0 0 1-52.5 53v140.4A213 213 0 0 0 443.8 250H303.6z"/>
+						</svg>
+			  	</div>
+				  <noscript>
+						<p>Please enable javascript in your browser to continue.</p>
+						<style>#loading_logo svg {-webkit-animation-duration: 0ms;-moz-animation-duration: 0ms;-ms-animation-duration: 0ms;} #loading_logo svg path {fill: red;}</style>
+						<a href="../">Site Home</a>
+					</noscript>
+				</div>
+			</div>
 		</div>
 
     <nav class="navbar navbar-default" role="navigation">
@@ -81,18 +88,8 @@
 	</nav>
   <div id="wrapper" class="container">
 		<div class="row content">
-			<h1>TF2 custom config generator <small><span id="version"></span></small></h1>
-      <script type="text/javascript">
-        // Gets version number from text file and injects it above into #version
-        $(document).ready(function(){
-          var read = new XMLHttpRequest();
-          read.open('GET', './version.txt', false);
-          read.send();
+			<h1>TF2 custom config generator <small><span id="version"><!-- ./version.txt --></span></small></h1>
 
-          var siteVersion = read.responseText;
-          $('#version').html(siteVersion);
-        });
-      </script>
       <div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><i class="fa fa-exclamation-circle" aria-hidden="true"></i> This tool will overwrite all of your binds. It is recommended to be installed on a blank <abbr title="Team Fortress 2" class="initialism">TF2</abbr>, without any prior configs installed. Please make a backup of your <abbr title="Config" class="initialism">CFG</abbr> and custom folders before using this if you want to save your old binds. You can wipe your configs by clearing your custom and cfg folders and launching <abbr title="Team Fortress 2" class="initialism">TF2</abbr> with -autoconfig launch option. </div>
 
 

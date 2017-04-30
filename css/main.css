@@ -2,12 +2,6 @@
   margin-bottom: 10px;
 }
 
-/* hiding horizontal scrollbar */
-body{
-  overflow-x: hidden;
-  overflow-y: scroll;
-}
-
 #downloader_application ul {
   list-style-type: none;
 }
@@ -23,17 +17,10 @@ body{
 .support_op {border-bottom-color: #C42122 !important;}
 .support_nd {border-bottom-color: #8CC84B !important;}
 
-#overlay {
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  z-index: 5000;
-  top: 0;
-  left: 0;
-  float: left;
-  text-align: center;
-  padding-top: 25%;
-}
+/* absolute center the loaderv */
+#overlay { position: fixed; z-index: 5000; text-align: center; display: table; height: 100%; width: 100% }
+#overlay #overlay_middle  {display: table-cell; vertical-align: middle}
+#overlay #overlay_inner {margin-left: auto; margin-right: auto;}
 
 .colored-block {
   width: 100%;
@@ -130,13 +117,14 @@ box-shadow: 0px 0px 34px 13px rgba(0,0,0,0.14);
   to {transform:rotate(360deg);}
 }
 #loading_logo {
-  width: 80px;
-  height: 80px;
+  width: 10em;
+  height: 10em;
   background-repeat: no-repeat;
   background-size: contain;
   margin: 0 auto;
   background-position: center center;
-
+}
+#loading_logo svg {
   -webkit-animation-name: spin;
   -webkit-animation-duration: 2000ms;
   -webkit-animation-iteration-count: infinite;
@@ -151,6 +139,18 @@ box-shadow: 0px 0px 34px 13px rgba(0,0,0,0.14);
   -ms-animation-timing-function: linear;
   -o-transition: rotate(3600deg);
 }
+#loading_logo.fast svg {
+  -webkit-animation-duration: 600ms;
+  -moz-animation-duration: 600ms;
+  -ms-animation-duration: 600ms;
+}
+
+#loading_logo.idle svg {
+  -webkit-animation-duration: 10000ms;
+  -moz-animation-duration: 10000ms;
+  -ms-animation-duration: 10000ms;
+}
+
 .text-code {
   font-family:monospace;
   white-space: pre-wrap;
@@ -161,6 +161,7 @@ blockquote {
   font-style: italic;
 }
 
+/* hide horizontal scrollbar on body */ body { overflow-x: hidden; overflow-y: scroll; }
 /* separate the lists a bit more, its too squashed */ .radio label, .checkbox label { padding-top: 8px; }
 /* re-pad unstyled lists */ .list-unstyled { padding-left: 1em; }
 /* pad partner logos away from their links */ #partners p { margin-top: 1em; margin-bottom: 1em; }
@@ -171,5 +172,6 @@ blockquote {
 
 p.header-remote {
 	display: inline-block; margin-bottom: 10%;
+}
 
 }
