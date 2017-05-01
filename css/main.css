@@ -25,7 +25,7 @@
 
 
 /* gen chooser stuff*/
-.work-text-content {
+#generator_chooser .work-text-content {
 	color: white;
   position: absolute;
   left: 0;
@@ -34,10 +34,6 @@
   bottom: 0;
   text-align: center;
   opacity: 0;
-	-webkit-transition: opacity 0.5s ease-out;
-	-moz-transition: opacity 0.5s ease-out;
-	-o-transition: opacity 0.5s ease-out;
-	transition: opacity 0.5s ease-out;
 }
 #generator_chooser {
 	background: #222;
@@ -57,18 +53,19 @@
 #generator_chooser .work-text-content:hover {
   background-color: rgba(0,0,0,0.5);
   opacity: 1;
-	-webkit-transition: opacity 0.5s ease-out;
-	-moz-transition: opacity 0.5s ease-out;
-	-o-transition: opacity 0.5s ease-out;
-	transition: opacity 0.5s ease-out;
 }
 #generator_chooser .work-text-content-inner {
 	position: relative;
   top: 35%;
 }
+#generator_chooser .work-text-content, .work-text-content:hover {
+	-webkit-transition: opacity 0.5s, background-color 0.5s ease-out;
+	-moz-transition: opacity 0.5s, background-color 0.5s ease-out;
+	-o-transition: opacity 0.5s, background-color 0.5s ease-out;
+	transition: opacity 0.5s, background-color 0.5s ease-out;
+}
 
 /* overlay stuff */
-
 /* absolute center the loader */
 #overlay { position: fixed; z-index: 5000; text-align: center; display: table; height: 100%; width: 100% }
 #overlay #overlay_middle  {display: table-cell; vertical-align: middle}
@@ -138,4 +135,11 @@ p.header-remote {
 	display: inline-block; margin-bottom: 10%;
 }
 
+.crosshair {
+	width: 4em;
+	height: 4em;
+	display: inline-block;
+	background-position: center;
+	background-repeat: no-repeat;
+  vertical-align : middle;
 }

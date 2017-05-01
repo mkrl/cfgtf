@@ -1717,6 +1717,55 @@
         }
     });
 
+		// create crosshairs based on the default selections, gets inserted before the dropdown, in the same cell. sucks, but I dont feel like redoing the table yet
+		$('#switcherdiv .selectpicker').each( function() {
+			var selectedID = this.id;
+			var selectedValue = $(this).val();
+			var crosshairName = selectedValue[0];
+			var crosshairSize;
+			switch (selectedValue[1]) {
+				case "tiny": crosshairSize = "0.2"; break;
+				case "smallest": crosshairSize = "0.4"; break;
+				case "small": crosshairSize = "0.6"; break;
+				case "medium": crosshairSize = "0.8"; break;
+				case "big": crosshairSize = "1"; break;
+				case "biggest": crosshairSize = "1.2"; break;
+				case "huge": crosshairSize = "1.4"; break; // 1.4 scale makes some crosshairs so big they leave the element, but I left it because it seemed fitting. if you don't want this set it to 1.2 and maybe decrease 'biggest' a bit to compensate
+				case "invisible": crosshairSize = "0"; break;
+			};
+			var crosshairColor = selectedValue[2];
+
+			$('<span id="crosshair_' + selectedID + '" class="crosshair" style="padding-right:1em;"></span>').insertBefore( $('#' + selectedID) );
+			$('#crosshair_' + selectedID).load('../img/crosshairs/svg/' + crosshairName + '.svg'); //load svg
+			$('#crosshair_' + selectedID).css({ fill: crosshairColor });
+			// $('#crosshair_' + selectedID).css({ stroke: crosshairColor });
+			$('#crosshair_' + selectedID).css({ transform: 'scale(' + crosshairSize + ')' });
+		});
+
+		// update the crosshair when selector changes
+		$('#switcherdiv .selectpicker').change(function () {
+			selectedID = this.id;
+			selectedValue = $(this).val(); // should be [ "crosshair", "size", "color" ]
+			if ( $(selectedValue).length < 3 ) { return false	}  // if it's less than 3, something was deselected which messes the crosshairs up
+			crosshairName = selectedValue[0];
+			switch (selectedValue[1]) {
+				case "tiny": crosshairSize = "0.2"; break;
+				case "smallest": crosshairSize = "0.4"; break;
+				case "small": crosshairSize = "0.6"; break;
+				case "medium": crosshairSize = "0.8"; break;
+				case "big": crosshairSize = "1"; break;
+				case "biggest": crosshairSize = "1.2"; break;
+				case "huge": crosshairSize = "1.4"; break;
+				case "invisible": crosshairSize = "0"; break;
+			};
+			crosshairColor = selectedValue[2];
+			$('#crosshair_' + selectedID + ' svg').remove();//remove old svg
+			$('#crosshair_' + selectedID).load('../img/crosshairs/svg/' + crosshairName + '.svg');//load new svg
+			$('#crosshair_' + selectedID).css({ fill: crosshairColor });
+			// $('#crosshair_' + selectedID).css({ stroke: crosshairColor });
+			$('#crosshair_' + selectedID).css({ transform: 'scale(' + crosshairSize + ')' });
+			});
+
 
 	});
 	</script>
@@ -1753,8 +1802,8 @@
 
 						<select class="selectpicker" id="cs_col_1_1" name="cs_col_1_1n" multiple>
 							<optgroup label="Style" data-max-options="1">
-								<option value="cross_with_dot" data-name="nothing" data-url="" selected>Cross &mp; dot</option>
-								<option value="half_cross_with_dot" data-name="nothing" data-url="">Half cross &mp; dot</option>
+								<option value="cross_with_dot" data-name="nothing" data-url="" selected>Cross &amp; dot</option>
+								<option value="half_cross_with_dot" data-name="nothing" data-url="">Half cross &amp; dot</option>
 								<option value="ring" data-name="nothing" data-url="">Ring</option>
 								<option value="open_cross" data-name="nothing" data-url="">Cross, no dot</option>
 								<option value="ex" data-name="nothing" data-url="">X</option>
@@ -1810,8 +1859,8 @@
 
 							<select class="selectpicker" id="cs_col_1_2" name="cs_col_1_2n" multiple>
 							<optgroup label="Style" data-max-options="1">
-								<option value="cross_with_dot" data-name="nothing" data-url="">Cross &mp; dot</option>
-								<option value="half_cross_with_dot" data-name="nothing" data-url="" selected>Half cross &mp; dot</option>
+								<option value="cross_with_dot" data-name="nothing" data-url="">Cross &amp; dot</option>
+								<option value="half_cross_with_dot" data-name="nothing" data-url="" selected>Half cross &amp; dot</option>
 								<option value="ring" data-name="nothing" data-url="">Ring</option>
 								<option value="open_cross" data-name="nothing" data-url="">Cross, no dot</option>
 								<option value="ex" data-name="nothing" data-url="">X</option>
@@ -1866,8 +1915,8 @@
 
 							<select class="selectpicker" id="cs_col_1_3" name="cs_col_1_3n" multiple>
 							<optgroup label="Style" data-max-options="1">
-								<option value="cross_with_dot" data-name="nothing" data-url="">Cross &mp; dot</option>
-								<option value="half_cross_with_dot" data-name="nothing" data-url="">Half cross &mp; dot</option>
+								<option value="cross_with_dot" data-name="nothing" data-url="">Cross &amp; dot</option>
+								<option value="half_cross_with_dot" data-name="nothing" data-url="">Half cross &amp; dot</option>
 								<option value="ring" data-name="nothing" data-url="" selected>Ring</option>
 								<option value="open_cross" data-name="nothing" data-url="">Cross, no dot</option>
 								<option value="ex" data-name="nothing" data-url="">X</option>
@@ -1935,8 +1984,8 @@
 
 						<select class="selectpicker" id="cs_col_2_1" name="cs_col_2_1n" multiple>
 							<optgroup label="Style" data-max-options="1">
-								<option value="cross_with_dot" data-name="nothing" data-url="" selected>Cross &mp; dot</option>
-								<option value="half_cross_with_dot" data-name="nothing" data-url="">Half cross &mp; dot</option>
+								<option value="cross_with_dot" data-name="nothing" data-url="" selected>Cross &amp; dot</option>
+								<option value="half_cross_with_dot" data-name="nothing" data-url="">Half cross &amp; dot</option>
 								<option value="ring" data-name="nothing" data-url="">Ring</option>
 								<option value="open_cross" data-name="nothing" data-url="">Cross, no dot</option>
 								<option value="ex" data-name="nothing" data-url="">X</option>
@@ -1992,8 +2041,8 @@
 
 							<select class="selectpicker" id="cs_col_2_2" name="cs_col_2_2n" multiple>
 							<optgroup label="Style" data-max-options="1">
-								<option value="cross_with_dot" data-name="nothing" data-url="">Cross &mp; dot</option>
-								<option value="half_cross_with_dot" data-name="nothing" data-url="" selected>Half cross &mp; dot</option>
+								<option value="cross_with_dot" data-name="nothing" data-url="">Cross &amp; dot</option>
+								<option value="half_cross_with_dot" data-name="nothing" data-url="" selected>Half cross &amp; dot</option>
 								<option value="ring" data-name="nothing" data-url="">Ring</option>
 								<option value="open_cross" data-name="nothing" data-url="">Cross, no dot</option>
 								<option value="ex" data-name="nothing" data-url="">X</option>
@@ -2048,8 +2097,8 @@
 
 							<select class="selectpicker" id="cs_col_2_3" name="cs_col_2_3n" multiple>
 							<optgroup label="Style" data-max-options="1">
-								<option value="cross_with_dot" data-name="nothing" data-url="">Cross &mp; dot</option>
-								<option value="half_cross_with_dot" data-name="nothing" data-url="">Half cross &mp; dot</option>
+								<option value="cross_with_dot" data-name="nothing" data-url="">Cross &amp; dot</option>
+								<option value="half_cross_with_dot" data-name="nothing" data-url="">Half cross &amp; dot</option>
 								<option value="ring" data-name="nothing" data-url="" selected>Ring</option>
 								<option value="open_cross" data-name="nothing" data-url="">Cross, no dot</option>
 								<option value="ex" data-name="nothing" data-url="">X</option>
@@ -2116,8 +2165,8 @@
 
 						<select class="selectpicker" id="cs_col_3_1" name="cs_col_3_1n" multiple>
 							<optgroup label="Style" data-max-options="1">
-								<option value="cross_with_dot" data-name="nothing" data-url="" selected>Cross &mp; dot</option>
-								<option value="half_cross_with_dot" data-name="nothing" data-url="">Half cross &mp; dot</option>
+								<option value="cross_with_dot" data-name="nothing" data-url="" selected>Cross &amp; dot</option>
+								<option value="half_cross_with_dot" data-name="nothing" data-url="">Half cross &amp; dot</option>
 								<option value="ring" data-name="nothing" data-url="">Ring</option>
 								<option value="open_cross" data-name="nothing" data-url="">Cross, no dot</option>
 								<option value="ex" data-name="nothing" data-url="">X</option>
@@ -2173,8 +2222,8 @@
 
 							<select class="selectpicker" id="cs_col_3_2" name="cs_col_3_2n" multiple>
 							<optgroup label="Style" data-max-options="1">
-								<option value="cross_with_dot" data-name="nothing" data-url="">Cross &mp; dot</option>
-								<option value="half_cross_with_dot" data-name="nothing" data-url="" selected>Half cross &mp; dot</option>
+								<option value="cross_with_dot" data-name="nothing" data-url="">Cross &amp; dot</option>
+								<option value="half_cross_with_dot" data-name="nothing" data-url="" selected>Half cross &amp; dot</option>
 								<option value="ring" data-name="nothing" data-url="">Ring</option>
 								<option value="open_cross" data-name="nothing" data-url="">Cross, no dot</option>
 								<option value="ex" data-name="nothing" data-url="">X</option>
@@ -2229,8 +2278,8 @@
 
 							<select class="selectpicker" id="cs_col_3_3" name="cs_col_3_3n" multiple>
 							<optgroup label="Style" data-max-options="1">
-								<option value="cross_with_dot" data-name="nothing" data-url="">Cross &mp; dot</option>
-								<option value="half_cross_with_dot" data-name="nothing" data-url="">Half cross &mp; dot</option>
+								<option value="cross_with_dot" data-name="nothing" data-url="">Cross &amp; dot</option>
+								<option value="half_cross_with_dot" data-name="nothing" data-url="">Half cross &amp; dot</option>
 								<option value="ring" data-name="nothing" data-url="" selected>Ring</option>
 								<option value="open_cross" data-name="nothing" data-url="">Cross, no dot</option>
 								<option value="ex" data-name="nothing" data-url="">X</option>
@@ -2299,8 +2348,8 @@
 
 						<select class="selectpicker" id="cs_col_4_1" name="cs_col_4_1n" multiple>
 							<optgroup label="Style" data-max-options="1">
-								<option value="cross_with_dot" data-name="nothing" data-url="" selected>Cross &mp; dot</option>
-								<option value="half_cross_with_dot" data-name="nothing" data-url="">Half cross &mp; dot</option>
+								<option value="cross_with_dot" data-name="nothing" data-url="" selected>Cross &amp; dot</option>
+								<option value="half_cross_with_dot" data-name="nothing" data-url="">Half cross &amp; dot</option>
 								<option value="ring" data-name="nothing" data-url="">Ring</option>
 								<option value="open_cross" data-name="nothing" data-url="">Cross, no dot</option>
 								<option value="ex" data-name="nothing" data-url="">X</option>
@@ -2356,8 +2405,8 @@
 
 							<select class="selectpicker" id="cs_col_4_2" name="cs_col_4_2n" multiple>
 							<optgroup label="Style" data-max-options="1">
-								<option value="cross_with_dot" data-name="nothing" data-url="">Cross &mp; dot</option>
-								<option value="half_cross_with_dot" data-name="nothing" data-url="" selected>Half cross &mp; dot</option>
+								<option value="cross_with_dot" data-name="nothing" data-url="">Cross &amp; dot</option>
+								<option value="half_cross_with_dot" data-name="nothing" data-url="" selected>Half cross &amp; dot</option>
 								<option value="ring" data-name="nothing" data-url="">Ring</option>
 								<option value="open_cross" data-name="nothing" data-url="">Cross, no dot</option>
 								<option value="ex" data-name="nothing" data-url="">X</option>
@@ -2412,8 +2461,8 @@
 
 							<select class="selectpicker" id="cs_col_4_3" name="cs_col_4_3n" multiple>
 							<optgroup label="Style" data-max-options="1">
-								<option value="cross_with_dot" data-name="nothing" data-url="">Cross &mp; dot</option>
-								<option value="half_cross_with_dot" data-name="nothing" data-url="">Half cross &mp; dot</option>
+								<option value="cross_with_dot" data-name="nothing" data-url="">Cross &amp; dot</option>
+								<option value="half_cross_with_dot" data-name="nothing" data-url="">Half cross &amp; dot</option>
 								<option value="ring" data-name="nothing" data-url="" selected>Ring</option>
 								<option value="open_cross" data-name="nothing" data-url="">Cross, no dot</option>
 								<option value="ex" data-name="nothing" data-url="">X</option>
@@ -2481,8 +2530,8 @@
 
 						<select class="selectpicker" id="cs_col_5_1" name="cs_col_5_1n" multiple>
 							<optgroup label="Style" data-max-options="1">
-								<option value="cross_with_dot" data-name="nothing" data-url="" selected>Cross &mp; dot</option>
-								<option value="half_cross_with_dot" data-name="nothing" data-url="">Half cross &mp; dot</option>
+								<option value="cross_with_dot" data-name="nothing" data-url="" selected>Cross &amp; dot</option>
+								<option value="half_cross_with_dot" data-name="nothing" data-url="">Half cross &amp; dot</option>
 								<option value="ring" data-name="nothing" data-url="">Ring</option>
 								<option value="open_cross" data-name="nothing" data-url="">Cross, no dot</option>
 								<option value="ex" data-name="nothing" data-url="">X</option>
@@ -2538,8 +2587,8 @@
 
 							<select class="selectpicker" id="cs_col_5_2" name="cs_col_5_2n" multiple>
 							<optgroup label="Style" data-max-options="1">
-								<option value="cross_with_dot" data-name="nothing" data-url="">Cross &mp; dot</option>
-								<option value="half_cross_with_dot" data-name="nothing" data-url="" selected>Half cross &mp; dot</option>
+								<option value="cross_with_dot" data-name="nothing" data-url="">Cross &amp; dot</option>
+								<option value="half_cross_with_dot" data-name="nothing" data-url="" selected>Half cross &amp; dot</option>
 								<option value="ring" data-name="nothing" data-url="">Ring</option>
 								<option value="open_cross" data-name="nothing" data-url="">Cross, no dot</option>
 								<option value="ex" data-name="nothing" data-url="">X</option>
@@ -2594,8 +2643,8 @@
 
 							<select class="selectpicker" id="cs_col_5_3" name="cs_col_5_3n" multiple>
 							<optgroup label="Style" data-max-options="1">
-								<option value="cross_with_dot" data-name="nothing" data-url="">Cross &mp; dot</option>
-								<option value="half_cross_with_dot" data-name="nothing" data-url="">Half cross &mp; dot</option>
+								<option value="cross_with_dot" data-name="nothing" data-url="">Cross &amp; dot</option>
+								<option value="half_cross_with_dot" data-name="nothing" data-url="">Half cross &amp; dot</option>
 								<option value="ring" data-name="nothing" data-url="" selected>Ring</option>
 								<option value="open_cross" data-name="nothing" data-url="">Cross, no dot</option>
 								<option value="ex" data-name="nothing" data-url="">X</option>
@@ -2663,8 +2712,8 @@
 
 						<select class="selectpicker" id="cs_col_6_1" name="cs_col_6_1n" multiple>
 							<optgroup label="Style" data-max-options="1">
-								<option value="cross_with_dot" data-name="nothing" data-url="" selected>Cross &mp; dot</option>
-								<option value="half_cross_with_dot" data-name="nothing" data-url="">Half cross &mp; dot</option>
+								<option value="cross_with_dot" data-name="nothing" data-url="" selected>Cross &amp; dot</option>
+								<option value="half_cross_with_dot" data-name="nothing" data-url="">Half cross &amp; dot</option>
 								<option value="ring" data-name="nothing" data-url="">Ring</option>
 								<option value="open_cross" data-name="nothing" data-url="">Cross, no dot</option>
 								<option value="ex" data-name="nothing" data-url="">X</option>
@@ -2720,8 +2769,8 @@
 
 							<select class="selectpicker" id="cs_col_6_2" name="cs_col_6_2n" multiple>
 							<optgroup label="Style" data-max-options="1">
-								<option value="cross_with_dot" data-name="nothing" data-url="">Cross &mp; dot</option>
-								<option value="half_cross_with_dot" data-name="nothing" data-url="" selected>Half cross &mp; dot</option>
+								<option value="cross_with_dot" data-name="nothing" data-url="">Cross &amp; dot</option>
+								<option value="half_cross_with_dot" data-name="nothing" data-url="" selected>Half cross &amp; dot</option>
 								<option value="ring" data-name="nothing" data-url="">Ring</option>
 								<option value="open_cross" data-name="nothing" data-url="">Cross, no dot</option>
 								<option value="ex" data-name="nothing" data-url="">X</option>
@@ -2776,8 +2825,8 @@
 
 							<select class="selectpicker" id="cs_col_6_3" name="cs_col_6_3n" multiple>
 							<optgroup label="Style" data-max-options="1">
-								<option value="cross_with_dot" data-name="nothing" data-url="">Cross &mp; dot</option>
-								<option value="half_cross_with_dot" data-name="nothing" data-url="">Half cross &mp; dot</option>
+								<option value="cross_with_dot" data-name="nothing" data-url="">Cross &amp; dot</option>
+								<option value="half_cross_with_dot" data-name="nothing" data-url="">Half cross &amp; dot</option>
 								<option value="ring" data-name="nothing" data-url="" selected>Ring</option>
 								<option value="open_cross" data-name="nothing" data-url="">Cross, no dot</option>
 								<option value="ex" data-name="nothing" data-url="">X</option>
@@ -2845,8 +2894,8 @@
 
 						<select class="selectpicker" id="cs_col_7_1" name="cs_col_7_1n" multiple>
 							<optgroup label="Style" data-max-options="1">
-								<option value="cross_with_dot" data-name="nothing" data-url="" selected>Cross &mp; dot</option>
-								<option value="half_cross_with_dot" data-name="nothing" data-url="">Half cross &mp; dot</option>
+								<option value="cross_with_dot" data-name="nothing" data-url="" selected>Cross &amp; dot</option>
+								<option value="half_cross_with_dot" data-name="nothing" data-url="">Half cross &amp; dot</option>
 								<option value="ring" data-name="nothing" data-url="">Ring</option>
 								<option value="open_cross" data-name="nothing" data-url="">Cross, no dot</option>
 								<option value="ex" data-name="nothing" data-url="">X</option>
@@ -2902,8 +2951,8 @@
 
 							<select class="selectpicker" id="cs_col_7_2" name="cs_col_7_2n" multiple>
 							<optgroup label="Style" data-max-options="1">
-								<option value="cross_with_dot" data-name="nothing" data-url="">Cross &mp; dot</option>
-								<option value="half_cross_with_dot" data-name="nothing" data-url="" selected>Half cross &mp; dot</option>
+								<option value="cross_with_dot" data-name="nothing" data-url="">Cross &amp; dot</option>
+								<option value="half_cross_with_dot" data-name="nothing" data-url="" selected>Half cross &amp; dot</option>
 								<option value="ring" data-name="nothing" data-url="">Ring</option>
 								<option value="open_cross" data-name="nothing" data-url="">Cross, no dot</option>
 								<option value="ex" data-name="nothing" data-url="">X</option>
@@ -2958,8 +3007,8 @@
 
 							<select class="selectpicker" id="cs_col_7_3" name="cs_col_7_3n" multiple>
 							<optgroup label="Style" data-max-options="1">
-								<option value="cross_with_dot" data-name="nothing" data-url="">Cross &mp; dot</option>
-								<option value="half_cross_with_dot" data-name="nothing" data-url="">Half cross &mp; dot</option>
+								<option value="cross_with_dot" data-name="nothing" data-url="">Cross &amp; dot</option>
+								<option value="half_cross_with_dot" data-name="nothing" data-url="">Half cross &amp; dot</option>
 								<option value="ring" data-name="nothing" data-url="" selected>Ring</option>
 								<option value="open_cross" data-name="nothing" data-url="">Cross, no dot</option>
 								<option value="ex" data-name="nothing" data-url="">X</option>
@@ -3027,8 +3076,8 @@
 
 						<select class="selectpicker" id="cs_col_8_1" name="cs_col_8_1n" multiple>
 							<optgroup label="Style" data-max-options="1">
-								<option value="cross_with_dot" data-name="nothing" data-url="" selected>Cross &mp; dot</option>
-								<option value="half_cross_with_dot" data-name="nothing" data-url="">Half cross &mp; dot</option>
+								<option value="cross_with_dot" data-name="nothing" data-url="" selected>Cross &amp; dot</option>
+								<option value="half_cross_with_dot" data-name="nothing" data-url="">Half cross &amp; dot</option>
 								<option value="ring" data-name="nothing" data-url="">Ring</option>
 								<option value="open_cross" data-name="nothing" data-url="">Cross, no dot</option>
 								<option value="ex" data-name="nothing" data-url="">X</option>
@@ -3084,8 +3133,8 @@
 
 							<select class="selectpicker" id="cs_col_8_2" name="cs_col_8_2n" multiple>
 							<optgroup label="Style" data-max-options="1">
-								<option value="cross_with_dot" data-name="nothing" data-url="">Cross &mp; dot</option>
-								<option value="half_cross_with_dot" data-name="nothing" data-url="" selected>Half cross &mp; dot</option>
+								<option value="cross_with_dot" data-name="nothing" data-url="">Cross &amp; dot</option>
+								<option value="half_cross_with_dot" data-name="nothing" data-url="" selected>Half cross &amp; dot</option>
 								<option value="ring" data-name="nothing" data-url="">Ring</option>
 								<option value="open_cross" data-name="nothing" data-url="">Cross, no dot</option>
 								<option value="ex" data-name="nothing" data-url="">X</option>
@@ -3140,8 +3189,8 @@
 
 							<select class="selectpicker" id="cs_col_8_3" name="cs_col_8_3n" multiple>
 							<optgroup label="Style" data-max-options="1">
-								<option value="cross_with_dot" data-name="nothing" data-url="">Cross &mp; dot</option>
-								<option value="half_cross_with_dot" data-name="nothing" data-url="">Half cross &mp; dot</option>
+								<option value="cross_with_dot" data-name="nothing" data-url="">Cross &amp; dot</option>
+								<option value="half_cross_with_dot" data-name="nothing" data-url="">Half cross &amp; dot</option>
 								<option value="ring" data-name="nothing" data-url="" selected>Ring</option>
 								<option value="open_cross" data-name="nothing" data-url="">Cross, no dot</option>
 								<option value="ex" data-name="nothing" data-url="">X</option>
@@ -3209,8 +3258,8 @@
 
 						<select class="selectpicker" id="cs_col_9_1" name="cs_col_9_1n" multiple>
 							<optgroup label="Style" data-max-options="1">
-								<option value="cross_with_dot" data-name="nothing" data-url="" selected>Cross &mp; dot</option>
-								<option value="half_cross_with_dot" data-name="nothing" data-url="">Half cross &mp; dot</option>
+								<option value="cross_with_dot" data-name="nothing" data-url="" selected>Cross &amp; dot</option>
+								<option value="half_cross_with_dot" data-name="nothing" data-url="">Half cross &amp; dot</option>
 								<option value="ring" data-name="nothing" data-url="">Ring</option>
 								<option value="open_cross" data-name="nothing" data-url="">Cross, no dot</option>
 								<option value="ex" data-name="nothing" data-url="">X</option>
@@ -3266,8 +3315,8 @@
 
 							<select class="selectpicker" id="cs_col_9_2" name="cs_col_9_2n" multiple>
 							<optgroup label="Style" data-max-options="1">
-								<option value="cross_with_dot" data-name="nothing" data-url="">Cross &mp; dot</option>
-								<option value="half_cross_with_dot" data-name="nothing" data-url="" selected>Half cross &mp; dot</option>
+								<option value="cross_with_dot" data-name="nothing" data-url="">Cross &amp; dot</option>
+								<option value="half_cross_with_dot" data-name="nothing" data-url="" selected>Half cross &amp; dot</option>
 								<option value="ring" data-name="nothing" data-url="">Ring</option>
 								<option value="open_cross" data-name="nothing" data-url="">Cross, no dot</option>
 								<option value="ex" data-name="nothing" data-url="">X</option>
@@ -3322,8 +3371,8 @@
 
 							<select class="selectpicker" id="cs_col_9_3" name="cs_col_9_3n" multiple>
 							<optgroup label="Style" data-max-options="1">
-								<option value="cross_with_dot" data-name="nothing" data-url="">Cross &mp; dot</option>
-								<option value="half_cross_with_dot" data-name="nothing" data-url="">Half cross &mp; dot</option>
+								<option value="cross_with_dot" data-name="nothing" data-url="">Cross &amp; dot</option>
+								<option value="half_cross_with_dot" data-name="nothing" data-url="">Half cross &amp; dot</option>
 								<option value="ring" data-name="nothing" data-url="" selected>Ring</option>
 								<option value="open_cross" data-name="nothing" data-url="">Cross, no dot</option>
 								<option value="ex" data-name="nothing" data-url="">X</option>
@@ -3890,8 +3939,6 @@
           </script> generated so far.
         </p>
       </div>
-
-    </div>
   </footer>
   </body>
 </html>
