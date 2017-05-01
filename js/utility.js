@@ -114,6 +114,7 @@ var resolutiony = screen.height;
 var fullres;
 var launch_novid = " -novid";
 var launch_console = " -console";
+var launch_high = "";
 
 function updatescreenmode() //updating screen mode
 {
@@ -155,6 +156,12 @@ function updatescreenmode() //updating screen mode
 			launch_console = ""
 		}
 
+		if ($('#launch_cmd_high').is(':checked')) {
+			launch_high = " -high"
+		} else {
+			launch_high = ""
+		}
+
     printcommandline();
 }
 
@@ -174,10 +181,6 @@ function updateresolution() {
 					$('.resolution_selector').hide();
 					$('.resolution_selector.aspect85').show();
 					break;
-				case "0":
-					$('.resolution_selector').hide();
-					$('.resolution_selector.aspect_custom').show();
-					break;
 		}
 
 		resolutionsel = $('#resolution_' + aspectratio + '_selector').val();
@@ -189,7 +192,7 @@ function updateresolution() {
 }
 
 function printcommandline() {
-	document.getElementById('loptions').value = "-dxlevel " + dxlevel + " " + screenmod + " -w " + resolutionx + " -h " + resolutiony + launch_console + launch_novid;
+	document.getElementById('loptions').value = "-dxlevel " + dxlevel + " " + screenmod + " -w " + resolutionx + " -h " + resolutiony + launch_console + launch_novid + launch_high;
 }
 
 $(document).ready(function() {

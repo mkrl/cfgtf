@@ -3756,13 +3756,9 @@
 		$('#display_settings').fadeTo('fast', '0.6');
 
 		// trigger an update on input changes
-		$('#resolution_detector_cb').change(updatescreenmode);
-		$('#launch_cmd_novid').change(updatescreenmode);
-		$('#launch_cmd_console').change(updatescreenmode);
-		$("#display_mode").change(updatescreenmode);
+		$('#resolution_detector_cb, #launch_cmd_novid, #launch_cmd_console, #display_mode, #launch_cmd_high').change(updatescreenmode);
 
-		$(".resolution_selector").change(updateresolution);
-		$("#aspectratio_selector").change(updateresolution);
+		$(".resolution_selector, #aspectratio_selector").change(updateresolution);
 
   });
 	$(window).on('load', updateresolution); // trigger update on 1st load
@@ -3780,7 +3776,7 @@
           <p class="text-center h5" id="clipboard_copy_info"><i class="fa fa-clipboard" aria-hidden="true"></i> <span id="clipboard_copy_info_text">Click to copy launch options to clipboard</span></p>
 				</div>
 
-				<div class="container-fluid row" id="extra_command_line">
+				<div id="extra_command_line">
 
 					<div class="col-md-4 checkbox">
 						<select class="form-control selectpicker" id="display_mode">
@@ -3838,11 +3834,12 @@
 					</div>
 
 					<div class="col-md-4 checkbox">
-						<label><input id="launch_cmd_novid" type="checkbox" checked> Disable intro video</label>
-						<label><input id="launch_cmd_console" type="checkbox" checked> Enable console on startup</label>
+						<ul class="list-unstyled">
+							<li><label><input id="launch_cmd_novid" type="checkbox" checked> Disable intro video</label></li>
+							<li><label><input id="launch_cmd_console" type="checkbox" checked> Enable console on startup</label></li>
+							<li><label><input id="launch_cmd_high" type="checkbox"> Set the game to high priority</label> <a href="#" data-toggle="tooltip" title="Can cause input latency if the game begins to compete with device drivers. If you get better performance using this option, then you should really work on fixing the cause rather than upping TF2’s priority. Usually if this increases performance it means that you have either a lot of programs running in the background taking up resources, or you have some program eating all of your cycles (your antivirus would be the main culprit)." ><i class="fa fa-question-circle-o" aria-hidden="true"></i></a></li>
+						</ul>
 					</div>
-
-
 				</div>
 	  	</div>
 		</div>
