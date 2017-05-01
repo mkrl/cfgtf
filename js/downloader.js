@@ -130,6 +130,15 @@ jQuery(function($) {
 		var ds_snd    = $('#ds_sound').val();
 		var ds_ks     = $('#ds_ks').val();
 
+		// forced gfx settings
+		var gfx_force_mode = $('#gfx_force_settings_cb').is(':checked');
+		var gfx_force_eyes = $('#gfx_force_eyes').is(':checked');
+		var gfx_force_ragdolls = $('#gfx_force_ragdolls').is(':checked');
+		var gfx_force_gib = $('#gfx_force_gib').is(':checked');
+		var gfx_force_shadows = $('#gfx_force_shadows').is(':checked');
+		var gfx_force_glow = $('#gfx_force_glow').is(':checked');
+
+
 		//get large piece of custom binds
 		var bindings = $('#bindings').val();
 
@@ -381,6 +390,14 @@ jQuery(function($) {
 				'ds_min_streak '+ds_ks    +'\n',
 				ds_del    ? 'ds_autodelete 1\n' : '',
 				ds_screen ? 'ds_screens 1\n' : ''
+			].join(''), '///---'),
+			surround('\n', [
+				gfx_force_mode ? '///--- forced graphics settings enabled\n' : '',
+				gfx_force_eyes ? '///--- facial features\nr_eyes 1\nr_flex 1\nr_lod 1\nr_rootlod 1\nr_teeth 1\n' : '',
+				gfx_force_ragdolls ? '///--- ragdolls\ncl_ragdoll_fade_time 15\ncl_ragdoll_forcefade 0\ncl_ragdoll_physics_enable 1\ng_ragdoll_fadespeed 600\ng_ragdoll_lvfadespeed 100\nragdoll_sleepaftertime "5.0f"\n' : '',
+				gfx_force_gib ? '///--- gibs\ncl_phys_props_enable 1\ncl_phys_props_max 128\nprops_break_max_pieces -1\nr_propsmaxdist 1000\nviolence_agibs 1\nviolence_hgibs 1\n' : '',
+				gfx_force_shadows ? '///---shadows \nmat_shadowstate 1\nr_shadowmaxrendered 11\nr_shadowrendertotexture 1\nr_shadows 1\nnb_shadow_dist 400\n' : '',
+				gfx_force_glow ? '///--- glow outline\nglow_outline_effect_enable 1\n' : '',
 			].join(''), '///---'),
 			'',
 			'cl_training_class_unlock_all',

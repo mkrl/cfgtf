@@ -135,32 +135,73 @@
               </select>
             </label>
           </li>
-          <li id="gfx_force_settings" style="display:none;">
+          <li id="gfx_force_settings">
             <label>
-              <input type="checkbox" id="gfx_force_settings_cb" data-name="gfx_force_settings" data-url="" /> Force custom settings <a href="#" data-toggle="tooltip" title="Force certain options to be enabled or disabled, overriding the settings in the selected config."  ><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+              <input type="checkbox" id="gfx_force_settings_cb" data-name="gfx_forced" data-url="" /> Force custom settings <a href="#" data-toggle="tooltip" title="Force certain options to be enabled or disabled, overriding the settings in the selected config."  ><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
             </label>
           </li>
+					<div id="gfx_force_panel" style="display:none;">
+						<ul>
+							<li>
+								<label>
+									<input type="checkbox" id="gfx_force_eyes" data-name="gfx_force_settings" data-url="" /> Enable facial features
+								</label>
+							</li>
+							<li>
+								<label>
+									<input type="checkbox" id="gfx_force_ragdolls" data-name="gfx_force_settings" data-url="" /> Enable ragdolls
+								</label>
+							</li>
+							<li>
+								<label>
+									<input type="checkbox" id="gfx_force_gib" data-name="gfx_force_settings" data-url="" /> Enable gibs
+								</label>
+							</li>
+							<li>
+								<label>
+									<input type="checkbox" id="gfx_force_shadows" data-name="gfx_force_settings" data-url="" /> Enable shadows
+								</label>
+							</li>
+							<li>
+								<label>
+									<input type="checkbox" id="gfx_force_glow" data-name="gfx_force_settings" data-url="" /> Enable glow outline <a href="#" data-toggle="tooltip" title="Requires dxlevel 90 or higher on Windows"  ><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+								</label>
+							</li>
+						</ul>
+					</div>
         </ul>
 
 	<!-- CONFIG PREVIEWS -->
   <script>
     $(document).ready(function() {
+
+			//gfx config swapper
       $("#gfx_selector").change(function() {
           var showme = this.value;
-          $("div.desc").hide();
+          $("div.desc").fadeOut(250);
           $("#preview" + showme).fadeIn(400);
           updatedxlevel();
           $("#preview" + showme + " img").trigger("unveil");
+					$("#preview" + showme + " img").unveil();
+
           console.log('unveil ' + showme);
 
 					//img zoom
 				  $('#preview' + showme + ' .carousel-inner  img')
-						.wrap('<span style="display:inline-block"></span>')
+						.wrap('<span class="img-rounded" style="display:inline-block"></span>')
 						.css('display', 'block')
 						.parent()
 						.zoom({ on: 'grab' });
       });
 
+			//gfx force checkbox
+      $('#gfx_force_settings_cb').change(function() {
+        if (this.checked) {
+          $('#gfx_force_panel').fadeIn(400);
+        } else {
+          $('#gfx_force_panel').fadeOut(400);
+        }
+      });
 
 			// click to zoom notifier
 			$('.cfg_source')
