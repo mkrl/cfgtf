@@ -3788,12 +3788,13 @@
 							<option value="windowed" data-name="resolution">Windowed</option>
 							<option value="borderless" data-name="resolution">Windowed (borderless)</option>
 						</select>
-						<label><input type="checkbox" id="resolution_detector_cb" checked> Detect native resolution</label>
+						<ul class="list-unstyled">
+							<li><label><input type="checkbox" id="resolution_detector_cb" checked> Detect native resolution</label></li>
+						</ul>
 					</div>
 
-
 					<div class="col-md-4">
-						<div id="display_settings" class="container-fluid row">
+						<div id="display_settings">
 
 							<select id="aspectratio_selector" class="form-control selectpicker display_option" >
 								<option value="43" data-name="aspectratio">Normal (4:3)</option>
@@ -3850,8 +3851,7 @@
   <script type="text/javascript" src="../js/downloader.js"></script>
 </div>
 
-  <footer class="footer">
-    <div class="container-fluid row">
+  <footer class="footer container-fluid">
 
       <div class="col-md-4 text-center">
         <ul class="list-unstyled">
