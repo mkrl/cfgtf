@@ -27,6 +27,7 @@
     <script type="text/javascript" src="../js/FileSaver.js"></script>
     <script type="text/javascript" src="../js/unveil.js"></script>
 		<script type="text/javascript" src="../js/jquery.zoom.min.js"></script>
+		<script type="text/javascript" src="../js/sisyphus.min.js"></script>
 		<script>
 			$(document).ready(function() {
 					$(".carousel-inner img").unveil(); // jquery lazy load init
@@ -95,8 +96,49 @@
       </script>
       <div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><i class="fa fa-exclamation-circle" aria-hidden="true"></i> This tool will overwrite all of your binds. It is recommended to be installed on a blank <abbr title="Team Fortress 2" class="initialism">TF2</abbr>, without any prior configs installed. Please make a backup of your <abbr title="Config" class="initialism">CFG</abbr> and custom folders before using this if you want to save your old binds. You can wipe your configs by clearing your custom and cfg folders and launching <abbr title="Team Fortress 2" class="initialism">TF2</abbr> with -autoconfig launch option. </div>
 
-
 			<form action="#" id="download_form">
+			<script>				//todo: move this (and all hide/show on toggle functions) to a separate function in utility.js 
+									//saving all user input and reopening all hidden divs if any
+				$( function() {
+				$( "#download_form" ).sisyphus( {
+				locationBased: false,
+				autoRelease: true,
+				onRestore: function() {
+				  var showme = document.getElementById("gfx_selector").value;
+				  $("div.desc").hide();
+				  $("#preview" + showme).fadeIn(400);
+				  updatedxlevel();
+				  $("#preview" + showme + " img").trigger("unveil");
+				  console.log('unveil ' + showme);
+				  $('#preview' + showme + ' .carousel-inner  img')
+						.wrap('<span style="display:inline-block"></span>')
+						.css('display', 'block')
+						.parent()
+						.zoom({ on: 'grab' });	
+				if(document.getElementById('crosshairswitcherid').checked) {
+				  $('#switcherdiv').fadeIn(400);
+				  // disable viewmodel settings when switcher enabled
+				  $('#global_viewmodel_settings input').prop('disabled', true);
+				  $('#global_viewmodel_settings').fadeTo('fast', '0.6');
+				}
+				else {
+				  $('#switcherdiv').fadeOut(400);
+				  $('#global_viewmodel_settings input').prop('disabled', false);
+				  $('#global_viewmodel_settings').fadeTo('fast', '1');
+				}
+				if (document.getElementById('bindscheck').checked) {
+				  $('#bindpan').fadeIn(400);
+				  $('#bindpan input').prop('required',true);
+				} else {
+				  $('#bindpan').fadeOut(400);
+				  $('#bindpan input').prop('required',false);
+				}
+						
+				}
+				} );
+				} );
+			</script>
+
 				<!-- The form submit will not work without ul, so I added another class to remove padding? todo: fix this shit -->
 			<div class="tabbable">
 				<ul class="nav nav-tabs">
@@ -1608,6 +1650,35 @@
   		      Disable background sounds <a href="http://etf2l.org/forum/customise/topic-27511/" data-toggle="tooltip" title="This VPK file removes all the soundscapes (backgound sounds/ambient noises) from the game. It does not work on some maps that use other methods of producing sounds, but works on most maps." target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
   		    </label>
   		  </li>
+			</ul>
+			<hr>
+			<h3>HUD</h3>
+			<ul class="checkbox list-unstyled">
+			<p class="text-muted">Currently in a beta state, more HUDs coming up very soon! Click on a HUD name for more information.</p>
+			<li>
+  		    <label class="radio-inline">
+  					<input type="radio" name="huds" data-name="nothing" data-url="" checked/>
+  			    No HUD
+  		    </label>
+			</li>
+  			<li>
+  		    <label class="radio-inline">
+  					<input type="radio" name="huds" data-name="hud" data-url="./huds/budhud.zip"/>
+  			    <a href="http://huds.tf/forum/showthread.php?tid=207" target="_blank">budhud</a>
+  		    </label>
+			</li>
+  			<li>
+  		    <label class="radio-inline">
+  					<input type="radio" name="huds" data-name="hud" data-url="./huds/broeselhud_blue.zip"/>
+  			    <a href="http://huds.tf/forum/showthread.php?tid=217" target="_blank">broeselhud_blue</a>
+  		    </label>
+			</li>
+  			<li>
+  		    <label class="radio-inline">
+  					<input type="radio" name="huds" data-name="hud" data-url="./huds/idhud.zip"/>
+  			    <a href="http://huds.tf/forum/showthread.php?tid=276" target="_blank">Improved default HUD</a>
+  		    </label>
+			</li>
 			</ul>
 			<hr>
 			<h3>Addons</h3>
@@ -3811,6 +3882,7 @@
 </div>
 
   <button data-toggle="tooltip" title="Be sure to go through all the tabs before generating." type="submit" class="btn btn-primary">Generate config <i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
+  <button class="btn" name="resetter" type="reset" onclick="return confirm('Are you sure you want to reset all the data? This cannot be undone.')">Reset</button>
 	<hr>
 </form>
 

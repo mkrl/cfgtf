@@ -77,56 +77,9 @@ jQuery(function($) {
 		return;
 	}
 
-			/* 	NEW STUFF, can work slow with large files, due to how this works downloaded files take 2x of their size in RAM
-				Downloading multiple zips and including contents into config.zip */
-	
-				// function to read in a list of source zip files and return a merged archive
-				function mergeZips(sources,zip) {
-					return readSources(sources, zip)
-						.then(function() {
-							return zip;
-						});
-				}
-
-				// generate an array of promises for each zip we're reading in and combine them
-				// into a single promise with Promise.all()
-				function readSources(files, zip) {
-					return Promise.all(
-						files.map(function(file){
-							return readSource(file, zip);
-						})
-					);
-				}
-
-				// promise-ified wrapper function to read & load a zip
-				function readSource(file, zip) {
-					return new Promise(function(resolve, reject) {
-						JSZipUtils.getBinaryContent(file, function (err, data) {
-							if (err) {
-								reject(err);
-							}
-							// resolving the promise with another promise will pass the promise
-							// down the chain:
-							resolve(zip.loadAsync(data, {createFolders: true})); 
-						});
-					});
-				}
-				
-
-				
-			/* 	/NEW STUFF
-				 */
-
-
-
-
-	
 	$('#download_form').on('submit', function() {
 		resetMessage();
-		
-		//An array of files that should be inclided. 
-		var zippies = []; 
-		
+
 		var zip = new JSZip();
 		var zipbin = function(src, dest) {
 			zip.file(dest, urlToPromise(src), {binary: true});
@@ -332,9 +285,6 @@ jQuery(function($) {
 			if (iswhat === 'sourceres') {
 				zipbin('../make/addons/SourceRes/addons/SourceRes.dll', 'addons/SourceRes.dll');
 				zipbin('../make/addons/SourceRes/addons/SourceRes.vdf', 'addons/SourceRes.vdf');
-			}			
-			if (iswhat === 'hud') {
-				zippies.push(url); //new stuff
 			}
 			if (iswhat === 'prec') {
 				zipbin('../make/addons/prec/addons/PREC.cfg', 'addons/PREC.cfg');
@@ -619,26 +569,7 @@ jQuery(function($) {
 		zip.file('cfg/spy.cfg', binds_spy);
 
 		// when everything has been downloaded, we can trigger the dl
-		mergeZips(zippies,zip).then(function(zip) { //new thing, nested promisies
-			zip.generateAsync({type: 'blob'}, 
-			function(metadata) {
-				var msg = 'Packing : ' + metadata.percent.toFixed(2) + ' %';
-				if (metadata.currentFile) {
-					msg += ', current file = ' + metadata.currentFile;
-				}
-				showMessage(msg);
-				updatePercent(metadata.percent | 0);
-			})
-				.then(function(blob){
-					saveAs(blob, 'result.zip')
-					showMessage('Done! Extract this archive to your /tf folder.');
-				}, function(e) {
-				showError(e);
-				})
-		});
-		
-		
-/* 		zip.generateAsync({type: 'blob'},
+		zip.generateAsync({type: 'blob'},
 			function(metadata) {
 				var msg = 'Packing : ' + metadata.percent.toFixed(2) + ' %';
 				if (metadata.currentFile) {
@@ -649,11 +580,13 @@ jQuery(function($) {
 			})
 			.then(function(blob) {
 
+				// see FileSaver.js
 				saveAs(blob, 'config.zip');
+
 				showMessage('Done! Extract this archive to your /tf folder.');
 			}, function(e) {
 				showError(e);
-			}); */
+			});
 
 		return false;
 	});
