@@ -168,7 +168,9 @@ blockquote {
 /* disable gradient on carousel controls until I figure out why jquery zoom makes it bleed out of the element */ .carousel-control.left, .carousel-control.right { background-image: none; }
 /* pad labels away from nestedd inputs a little */ label input, label select { margin-left: 1em; }
 /* dropdowns in launch options are touching */ #display_settings .bootstrap-select { margin-bottom: 2px; }
-/* filter on configs/index.html needs to be pulled right */ #cfgs_filter { float: right; }
+/* filter on configs/index.html needs to be pulled right */ #cfgs_filter, #cfgs_paginate { float: right; }
+/* the heading needs to have more space between partner_logos */ #partner_logos { margin-top: 4em; }
+/* stop partner logos getting super large */ #partner_logos .img-thumbnail { max-width: 10em}
 
 p.header-remote {
 	display: inline-block; margin-bottom: 10%;
