@@ -211,8 +211,9 @@ $(window).on('load', function(){ // global smooth loader transition
 	$("nav a").not( "nav .dropdown-toggle" ).click( function(){
 		var href = $(this).attr('href');
 
-		$('#overlay').fadeIn(200);
-		setTimeout(function() {window.location = href}, 250);
-		return false;
+		$('#overlay').fadeIn(200); // quick fade back in
+		setTimeout(function() {window.location = href}, 250); // change location after a tiny delay so the fadein plays out
+		setTimeout(function() {$('#overlay').fadeOut()}, 5000); // this is so the overlay isnt visible and blocking the screen when the user clicks back in their browser.
+		return false; // unfortunately the overlay will fade back in if the user takes over 5 seconds to get a response from the next page but they probably have bigger problems than janky loading animations
 	});
 });
