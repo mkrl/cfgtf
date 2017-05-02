@@ -64,6 +64,46 @@ jQuery(function($) {
 		});
 	}
 
+			/* 	NEW STUFF, can work slow with large files, due to how this works downloaded files take 2x of their size in RAM
+				Downloading multiple zips and including contents into config.zip */
+	
+				// function to read in a list of source zip files and return a merged archive
+				function mergeZips(sources,zip) {
+					return readSources(sources, zip)
+						.then(function() {
+							return zip;
+						});
+				}
+
+				// generate an array of promises for each zip we're reading in and combine them
+				// into a single promise with Promise.all()
+				function readSources(files, zip) {
+					return Promise.all(
+						files.map(function(file){
+							return readSource(file, zip);
+						})
+					);
+				}
+
+				// promise-ified wrapper function to read & load a zip
+				function readSource(file, zip) {
+					return new Promise(function(resolve, reject) {
+						JSZipUtils.getBinaryContent(file, function (err, data) {
+							if (err) {
+								reject(err);
+							}
+							// resolving the promise with another promise will pass the promise
+							// down the chain:
+							resolve(zip.loadAsync(data, {createFolders: true})); 
+						});
+					});
+				}
+				
+
+				
+			/* 	/NEW STUFF
+				 */	
+	
 	if (!JSZip.support.blob) {
 		showError("This only works with a good browser!");
 		return;
@@ -72,7 +112,10 @@ jQuery(function($) {
 	var $form = $("#download_form").on("submit", function() {
 
 		resetMessage();
-
+		
+		//An array of zip files that should be inclided. 
+		var zippies = []; 
+		
 		var zip = new JSZip();
 		var customs = ""; //a var to store all the extra stuff to add to autoexec
 
@@ -364,28 +407,26 @@ jQuery(function($) {
 		zip.file('cfg/server.cfg', '//Server settings\nhostname "' + hostname + '"\nsv_password "' + sv_password + '"\nsv_lan ' + sv_lan + '\n\nrcon_password "' + rcon_password + '"\nsv_rcon_banpenalty ' + sv_rcon_banpenalty + '\nsv_rcon_minfailures ' + sv_rcon_minfailures + '\nsv_rcon_maxfailures ' + sv_rcon_maxfailures + '\nlog ' + log + '\nsv_logfile ' + sv_logfile + '\nsv_logecho ' + sv_logecho + '\nsv_logbans ' + sv_logbans + '\n\n\nsv_pure ' + sv_pure + '\nsv_pure_kick_clients ' + sv_pure_kick_clients + '\nsv_alltalk ' + sv_alltalk + '\nmp_allowspectators ' + mp_allowspectators + '\nmp_autoteambalance ' + mp_autoteambalance + '\nmp_teams_unbalance_limit ' + mp_teams_unbalance_limit + '\nmp_forcecamera ' + mp_forcecamera + '\nsv_allow_wait_command ' + sv_allow_wait_command + '\nsv_cheats ' + sv_cheats + '\nsv_pausable ' + sv_pausable + '\nmp_stalemate_enable ' + mp_stalemate_enable + '\nmp_stalemate_timelimit ' + mp_stalemate_timelimit + '\nmp_winlimit ' + mp_winlimit + '\nmp_timelimit ' + mp_timelimit + '\ntf_weapon_criticals ' + tf_weapon_criticals + '\ntf_use_fixed_weaponspreads ' + tf_use_fixed_weaponspreads + '\n\nsv_maxrate ' + sv_maxrate + '\nsv_minrate ' + sv_minrate + '\nsv_maxupdaterate ' + sv_maxupdaterate + '\nsv_minupdaterate ' + sv_minupdaterate + '\nsv_maxcmdrate ' + sv_maxcmdrate + '\nsv_mincmdrate ' + sv_mincmdrate + '\n\n\n' + tftrueset + '\n\n\n\n//Custom settings\n\n' + bindings + '\n\necho -----------------------------------------------------------\necho ----------------- Thanks for using CFG.TF -----------------\necho ---------Build your own custom config at cfg.tf------------\necho -----------------------------------------------------------'); //server
 
 
-		// when everything has been downloaded, we can trigger the dl
-		zip.generateAsync({
-				type: "blob"
-			}, function updateCallback(metadata) {
-				var msg = "Packing : " + metadata.percent.toFixed(2) + " %";
-				if (metadata.currentFile) {
-					msg += ", current file = " + metadata.currentFile;
-				}
-				showMessage(msg);
-				updatePercent(metadata.percent | 0);
-			})
-			.then(function callback(blob) {
-
-				// see FileSaver.js
-				saveAs(blob, "server_config.zip");
-
-				showMessage("Done! Extract this archive to your server /tf folder.");
-			}, function(e) {
-				showError(e);
+			// when everything has been downloaded, we can trigger the dl
+			mergeZips(zippies,zip).then(function(zip) { //new thing, nested promisies
+				zip.generateAsync({type: 'blob'}, 
+				function(metadata) {
+					var msg = 'Packing : ' + metadata.percent.toFixed(2) + ' %';
+					if (metadata.currentFile) {
+						msg += ', current file = ' + metadata.currentFile;
+					}
+					showMessage(msg);
+					updatePercent(metadata.percent | 0);
+				})
+					.then(function(blob){
+						saveAs(blob, 'config.zip')
+						showMessage('Done! Extract this archive to your /tf folder.');
+					}, function(e) {
+					showError(e);
+					})
 			});
 
-		return false;
+			return false;
 	});
 
 

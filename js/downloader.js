@@ -124,7 +124,7 @@ jQuery(function($) {
 	$('#download_form').on('submit', function() {
 		resetMessage();
 		
-		//An array of files that should be inclided. 
+		//An array of zip files that should be inclided. 
 		var zippies = []; 
 		
 		var zip = new JSZip();
@@ -188,6 +188,11 @@ jQuery(function($) {
 		var bindings_medic = $('#bindings_medic').val();
 		var bindings_sniper = $('#bindings_sniper').val();
 		var bindings_spy = $('#bindings_spy').val();
+		
+		//medigun check bind key
+		var medicheckbind = $('#medicheckbind').val();
+		
+		
 		//getting switcher values (if selected)
 
 		var xhair = $('#crosshairswitcherid').is(':checked');
@@ -252,15 +257,15 @@ jQuery(function($) {
 				zipbin('../make/cfg/class/crosshairswitcher/crosshairs.cfg', 'cfg/crosshairswitcher/crosshairs.cfg');
 				zipbin('../make/cfg/class/crosshairswitcher/defaultcrosshair.cfg', 'cfg/crosshairswitcher/defaultcrosshair.cfg');
 				zipbin('../make/cfg/class/crosshairswitcher/disable.cfg', 'cfg/crosshairswitcher/disable.cfg');
-				scout_switcher = '//crosshair switcher\nexec crosshairswitcher/switcher; scout';
-				soldier_switcher = '//crosshair switcher\nexec crosshairswitcher/switcher; soldier';
-				pyro_switcher = '//crosshair switcher\nexec crosshairswitcher/switcher; pyro';
-				demo_switcher = '//crosshair switcher\nexec crosshairswitcher/switcher; demoman';
-				heavy_switcher = '//crosshair switcher\nexec crosshairswitcher/switcher; heavy';
-				engineer_switcher = '//crosshair switcher\nexec crosshairswitcher/switcher; engineer';
-				medic_switcher = '//crosshair switcher\nexec crosshairswitcher/switcher; medic';
-				sniper_switcher = '//crosshair switcher\nexec crosshairswitcher/switcher; sniper';
-				spy_switcher = '//crosshair switcher\nexec crosshairswitcher/switcher; spy';				
+				scout_switcher += '//crosshair switcher\nexec crosshairswitcher/switcher; scout';
+				soldier_switcher += '//crosshair switcher\nexec crosshairswitcher/switcher; soldier';
+				pyro_switcher += '//crosshair switcher\nexec crosshairswitcher/switcher; pyro';
+				demo_switcher += '//crosshair switcher\nexec crosshairswitcher/switcher; demoman';
+				heavy_switcher += '//crosshair switcher\nexec crosshairswitcher/switcher; heavy';
+				engineer_switcher += '//crosshair switcher\nexec crosshairswitcher/switcher; engineer';
+				medic_switcher += '//crosshair switcher\nexec crosshairswitcher/switcher; medic';
+				sniper_switcher += '//crosshair switcher\nexec crosshairswitcher/switcher; sniper';
+				spy_switcher += '//crosshair switcher\nexec crosshairswitcher/switcher; spy';				
 				var xhair_settings = [
 					'//   use the aliases like this: size; color; type; viewmodel FOV or viewmodel off',
 					'//  _______________________________________________________________________________',
@@ -350,6 +355,40 @@ jQuery(function($) {
 			if (iswhat === 'tweaks') {
 				zipbin(url, 'cfg/tweaks/' + filename);
 				customs += 'exec tweaks/' + filename.slice(0, -4) + '\n';
+			}			
+			if (iswhat === 'medicheck') {
+				var medichecksettings = [
+					'//Medigun check script',
+					'//Made with cfg.tf - custom Team Fortress 2 config generator',
+					'',
+					'alias medcheck medcheck1',
+					'alias medcheck1 "join_class spy; alias medcheck medcheck2"',
+					'alias medcheck2 "disguise 5 -1; slot2; alias medcheck medcheck3"',
+					'alias medcheck3 "lastdisguise; alias medcheck medcheck4"',
+					'alias medcheck4 "originalclass"',
+					'',
+					'bind '+medicheckbind+' medcheck',
+					'',
+					'alias orig_scout "alias originalclass "join_class scout""',
+					'alias orig_soldier "alias originalclass "join_class soldier""',
+					'alias orig_pyro "alias originalclass "join_class pyro""',
+					'alias orig_demoman "alias originalclass "join_class demoman""',
+					'alias orig_heavyweapons "alias originalclass "join_class heavyweapons""',
+					'alias orig_engineer "alias originalclass "join_class engineer""',
+					'alias orig_medic "alias originalclass "join_class medic""',
+					'alias orig_sniper "alias originalclass "join_class sniper""'
+				].join('\n');
+				zip.file('cfg/medicheck.cfg', medichecksettings);
+				scout_switcher += '\n\n//medigun checker script\nexec medcheck; orig_scout\n\n';				
+				soldier_switcher += '\n\n//medigun checker script\nexec medcheck; orig_soldier\n\n';           
+				pyro_switcher += '\n\n//medigun checker script\nexec medcheck; orig_pyro\n\n';                 
+				demo_switcher += '\n\n//medigun checker script\nexec medcheck; orig_demoman\n\n';              
+				heavy_switcher += '\n\n//medigun checker script\nexec medcheck; orig_heavyweapons\n\n';        
+				engineer_switcher += '\n\n//medigun checker script\nexec medcheck; orig_engineer\n\n';        
+				medic_switcher += '\n\n//medigun checker script\nexec medcheck; orig_medic\n\n';
+				sniper_switcher += '\n\n//medigun checker script\nexec medcheck; orig_sniper\n\n';
+				
+				
 			}
 			if (iswhat === 'bindscheck') {
 				var i = 1;
@@ -362,7 +401,7 @@ jQuery(function($) {
 			}
 
 			if (iswhat === 'tweaks_fastclass') {
-				var src = '../make/cfg/fastclass_'+(xhair?'cs':'')+'.cfg';
+				var src = '../make/cfg/fastclass'+(xhair?'_cs':'')+'.cfg';
 				zipbin(src, 'cfg/tweaks/fastclass.cfg');
 				customs += 'exec tweaks/fastclass\n';
 			}
@@ -630,30 +669,13 @@ jQuery(function($) {
 				updatePercent(metadata.percent | 0);
 			})
 				.then(function(blob){
-					saveAs(blob, 'result.zip')
+					saveAs(blob, 'config.zip')
 					showMessage('Done! Extract this archive to your /tf folder.');
 				}, function(e) {
 				showError(e);
 				})
 		});
-		
-		
-/* 		zip.generateAsync({type: 'blob'},
-			function(metadata) {
-				var msg = 'Packing : ' + metadata.percent.toFixed(2) + ' %';
-				if (metadata.currentFile) {
-					msg += ', current file = ' + metadata.currentFile;
-				}
-				showMessage(msg);
-				updatePercent(metadata.percent | 0);
-			})
-			.then(function(blob) {
 
-				saveAs(blob, 'config.zip');
-				showMessage('Done! Extract this archive to your /tf folder.');
-			}, function(e) {
-				showError(e);
-			}); */
 
 		return false;
 	});

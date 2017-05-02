@@ -133,7 +133,14 @@
 				  $('#bindpan').fadeOut(400);
 				  $('#bindpan input').prop('required',false);
 				}
-						
+				if (document.getElementById('medicheck').checked) {
+				  $('#medicheckbind').prop('disabled', false);
+				  $('#medicheckbind').fadeTo('fast', '1');
+				}
+				else {
+				  $('#medicheckbind').prop('disabled', true);
+				  $('#medicheckbind').fadeTo('fast', '0.6');				  
+				}		
 				}
 				} );
 				} );
@@ -1504,15 +1511,43 @@
   		      Show net_graph 4 on Tab press, toggle on '-'
   		    </label>
   		  </li>
-  			<li>
+			<li>
   		    <label>
   		      <input type="checkbox" name="tweaks" data-name="tweaks_fastclass" data-url="../make/cfg/fastclass.cfg" />
   		      Change class on Shift + [1-9]
   		    </label>
   		  </li>
+			<li>
+  		    <label>
+  		      <input type="checkbox" id="medicheck" data-name="medicheck" data-url="" />
+  		      Medigun check script <a href="http://www.teamfortress.tv/8825/medigun-checker-script" target="_blank" data-toggle="tooltip" title="This script changes your class to Spy, disguises as medic, and checks their secondary weapon. It can be useful during pre-round freezetime or simply when changing spawns. This script requires you to press the bound key 4 times. Click here for details."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+  		    </label>
+  		  </li>
+		  <div id="medibindarea">
+		  	<li class="form-inline">
+  		    <label>
+				Medigun check button  
+  		      <input class="form-control input-sm" type="text" size="6"  id="medicheckbind" value="KP_INS" disabled="true"/>     
+  		    </label>
+  		  </li>
+		  </div>
       </ul>
 		</div>
-
+		<script>
+			$(document).ready(function(){
+			$('#medicheck').change(function(){
+				if(this.checked) {
+				  $('#medicheckbind').prop('disabled', false);
+				  $('#medicheckbind').fadeTo('fast', '1');
+				}
+				else {
+				  $('#medicheckbind').prop('disabled', true);
+				  $('#medicheckbind').fadeTo('fast', '0.6');				  
+				}
+			});
+			});
+		</script>
+		
 		<hr>
 		<!--   CUSTOM CFGS  -->
 		<div id="custom_cfgs">
@@ -1653,8 +1688,9 @@
 			</ul>
 			<hr>
 			<h3>HUD</h3>
-			<ul class="checkbox list-unstyled">
+			<p><abbr title="Head-Up Display" class="initialism">HUD</abbr> determines how user interface looks.</p>
 			<p class="text-muted">Currently in a beta state, more HUDs coming up very soon! Click on a HUD name for more information.</p>
+			<ul class="checkbox list-unstyled">			
 			<li>
   		    <label class="radio-inline">
   					<input type="radio" name="huds" data-name="nothing" data-url="" checked/>
@@ -1677,6 +1713,42 @@
   		    <label class="radio-inline">
   					<input type="radio" name="huds" data-name="hud" data-url="./huds/idhud.zip"/>
   			    <a href="http://huds.tf/forum/showthread.php?tid=276" target="_blank">Improved default HUD</a>
+  		    </label>
+			</li>
+  			<li>
+  		    <label class="radio-inline">
+  					<input type="radio" name="huds" data-name="hud" data-url="./huds/rayshud.zip"/>
+  			    <a href="http://huds.tf/forum/showthread.php?tid=377" target="_blank">rayshud</a>
+  		    </label>
+			</li>
+  			<li>
+  		    <label class="radio-inline">
+  					<input type="radio" name="huds" data-name="hud" data-url="./huds/toonhud.zip"/>
+  			    <a href="http://huds.tf/forum/showthread.php?tid=234" target="_blank">ToonHUD</a>
+  		    </label>
+			</li>
+  			<li>
+  		    <label class="radio-inline">
+  					<input type="radio" name="huds" data-name="hud" data-url="./huds/m0rehud.zip"/>
+  			    <a href="http://huds.tf/forum/showthread.php?tid=248" target="_blank">m0re HUD</a>
+  		    </label>
+			</li>
+  			<li>
+  		    <label class="radio-inline">
+  					<input type="radio" name="huds" data-name="hud" data-url="./huds/ahud.zip"/>
+  			    <a href="http://huds.tf/forum/showthread.php?tid=191" target="_blank">ahud</a>
+  		    </label>
+			</li>
+  			<li>
+  		    <label class="radio-inline">
+  					<input type="radio" name="huds" data-name="hud" data-url="./huds/medHUD.zip"/>
+  			    <a href="http://huds.tf/forum/showthread.php?tid=223" target="_blank">medHUD</a>
+  		    </label>
+			</li>
+  			<li>
+  		    <label class="radio-inline">
+  					<input type="radio" name="huds" data-name="hud" data-url="./huds/noto.zip"/>
+  			    <a href="http://huds.tf/forum/showthread.php?tid=183" target="_blank">noto HUD</a>
   		    </label>
 			</li>
 			</ul>
