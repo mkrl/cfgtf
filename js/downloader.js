@@ -136,7 +136,10 @@ jQuery(function($) {
 
 		//getting values form inputs
 		// !!!!IMPORTANT!!!! All the selectable html fields (non-text forms) should have data-name and data-url attributes or everything breaks
-
+		
+		//tweaking
+		var disablesprays = $('#disablesprays').is(':checked');
+		
 		//viewmodel settings
 		var drawviewmodel = $('#modeltoggle').is(':checked');
 		var minmodel = $('#minmodtoggle').is(':checked');
@@ -360,13 +363,12 @@ jQuery(function($) {
 					i++;
 				}
 			}
-
 			if (iswhat === 'tweaks_fastclass') {
 				var src = '../make/cfg/fastclass_'+(xhair?'cs':'')+'.cfg';
 				zipbin(src, 'cfg/tweaks/fastclass.cfg');
 				customs += 'exec tweaks/fastclass\n';
 			}
-
+			
 			var custom = [
 				'//tweaks and custom settings',
 				'//Made with cfg.tf - custom Team Fortress 2 config generator',
@@ -395,7 +397,7 @@ jQuery(function($) {
 			'//tf2 settings',
 			'//Made with cfg.tf - custom Team Fortress 2 config generator',
 			'',
-			'//Autoheal, min viewmodels, fastswitch etc.',
+			'//Autoheal, min viewmodels, fastswitch, sprays etc.',
 			'',
 			'con_enable 1',
 			'developer 0',
@@ -410,6 +412,10 @@ jQuery(function($) {
 				vm_flip ? 'cl_flipviewmodels 1\n' : ''
 			].join('')),
 			'bindtoggle '+vmodelbind+' r_drawviewmodel',
+			surround('\n', [
+				disablesprays ? 'cl_playerspraydisable 1\nr_spray_lifetime 0'       : 'cl_playerspraydisable 0\nr_spray_lifetime 2',
+			].join('')),
+			
 			'///---',
 			'',
 			'hud_medicautocallers 1',
