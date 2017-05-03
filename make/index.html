@@ -1710,19 +1710,14 @@
   	<li class="form-inline">
       <label>
   			Viewmodel toggle key (leave blank for none)
-        <input class="form-control input-sm" type="text" size="6"  id="vmodelbind" value="-" />
+        <input class="form-control input-sm" type="text" size="24"  id="vmodelbind" value="-" />
       </label>
     </li>
-	</ul>
-	<hr>
-	<h3>Class specific weapon viewmodels and crosshairs</h3>
-  <p class="text-muted">Selecting this will disable some viewmodel settings above</p>
-
-	<ul class="checkbox list-unstyled">
 		<li>
 	    <label>
 	      <input type="checkbox" id="crosshairswitcherid" name="crosshairswitcher" data-name="crosshairswitcher" data-url="" />
 	      Enable broesel's Crosshair Switcher <a href="http://etf2l.org/forum/customise/topic-11110/" data-toggle="tooltip" title="A very nice thing to have. broesel's script lets you adjust your viewmodels and crosshairs for each class and slot individually. If installed, see CROSSHAIRSWITCHER-INSTRUCTIONS.txt in your /tf/cfg folder for instructions on how to change settings manually." target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+				<p class="text-muted">Selecting this will disable some viewmodel settings above</p>
 	    </label>
 	  </li>
 	</ul>
@@ -1748,9 +1743,9 @@
       var viewmodelch = $(this);
       var weaponid = $(viewmodelch).attr("id");
       if(viewmodelch.is(':checked')) {
-        $('#' + weaponid + '_min.viewmodel_minimal_checkbox').fadeIn(400);
+        $('#' + weaponid + '_min.viewmodel_minimal_checkbox').fadeIn();
       } else {
-        $('#' + weaponid + '_min.viewmodel_minimal_checkbox').fadeOut(400);
+        $('#' + weaponid + '_min.viewmodel_minimal_checkbox').fadeOut();
       };
     });
 
@@ -1758,13 +1753,13 @@
     $("#switcherdiv .viewmodel_options .viewmodel_checkbox").change(function() {
         var weaponid = $(this).attr("id");
         if($(this).is(':checked')) {
-          $('#' + weaponid + '_min.viewmodel_minimal_checkbox').fadeIn(400);
+          $('#' + weaponid + '_min.viewmodel_minimal_checkbox').fadeIn(100);
         } else {
-          $('#' + weaponid + '_min.viewmodel_minimal_checkbox').fadeOut(400);
+          $('#' + weaponid + '_min.viewmodel_minimal_checkbox').fadeOut(100);
         }
     });
 
-		// create crosshairs based on the default selections, gets inserted before the dropdown, in the same cell. sucks, but I dont feel like redoing the table yet
+		// create crosshairs based on the default selections, gets inserted before the dropdown, in the same cell
 		$('#switcherdiv .selectpicker').each( function() {
 			var selectedID = this.id;
 			var selectedValue = $(this).val();
@@ -1772,12 +1767,12 @@
 			var crosshairSize;
 			switch (selectedValue[1]) {
 				case "tiny": crosshairSize = "0.2"; break;
-				case "smallest": crosshairSize = "0.4"; break;
-				case "small": crosshairSize = "0.6"; break;
-				case "medium": crosshairSize = "0.8"; break;
-				case "big": crosshairSize = "1"; break;
-				case "biggest": crosshairSize = "1.2"; break;
-				case "huge": crosshairSize = "1.4"; break; // 1.4 scale makes some crosshairs so big they leave the element, but I left it because it seemed fitting. if you don't want this set it to 1.2 and maybe decrease 'biggest' a bit to compensate
+				case "smallest": crosshairSize = "0.3"; break;
+				case "small": crosshairSize = "0.5"; break;
+				case "medium": crosshairSize = "0.7"; break;
+				case "big": crosshairSize = "0.8"; break;
+				case "biggest": crosshairSize = "1.0"; break;
+				case "huge": crosshairSize = "1.2"; break;
 				case "invisible": crosshairSize = "0"; break;
 			};
 			var crosshairColor = selectedValue[2];
@@ -1797,12 +1792,12 @@
 			crosshairName = selectedValue[0];
 			switch (selectedValue[1]) {
 				case "tiny": crosshairSize = "0.2"; break;
-				case "smallest": crosshairSize = "0.4"; break;
-				case "small": crosshairSize = "0.6"; break;
-				case "medium": crosshairSize = "0.8"; break;
-				case "big": crosshairSize = "1"; break;
-				case "biggest": crosshairSize = "1.2"; break;
-				case "huge": crosshairSize = "1.4"; break;
+				case "smallest": crosshairSize = "0.3"; break;
+				case "small": crosshairSize = "0.5"; break;
+				case "medium": crosshairSize = "0.7"; break;
+				case "big": crosshairSize = "0.8"; break;
+				case "biggest": crosshairSize = "1.0"; break;
+				case "huge": crosshairSize = "1.2"; break;
 				case "invisible": crosshairSize = "0"; break;
 			};
 			crosshairColor = selectedValue[2];
@@ -3499,8 +3494,8 @@
   	</li>
     <li class="form-inline">
       <label>
-  	    Combat text window <a href="https://www.youtube.com/watch?v=xqovD6HbTeY" data-toggle="tooltip" title="Set to any value between 0 and 2. You can set a period of time when the game sums up an amount of damage dealt (see previous parameter). 0.7 is nearly recommended for hitscan weapons like shotgun, scattergun, etc. Click here for a detailed demo."  target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
-        <input class="form-control input-sm" type="text" size="3"  id="batwindow" onkeypress="return isNumberKey(event)" value="0.7" />
+  	    Combat text window (seconds) <a href="https://www.youtube.com/watch?v=xqovD6HbTeY" data-toggle="tooltip" title="Set to any value between 0 and 2. You can set a period of time when the game sums up an amount of damage dealt (see previous parameter). 0.7 is nearly recommended for hitscan weapons like shotgun, scattergun, etc. Click here for a detailed demo."  target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+        <input class="form-control input-sm" type="number" max="2" size="3"  id="batwindow" onkeypress="return isNumberKey(event)" value="0.7" />
       </label>
   	</li>
   </ul>
@@ -3531,14 +3526,18 @@
     	<div>
       	<li>
           <label>
-            <p>Hitsound pitch <a href="#" data-toggle="tooltip" title="This values represent an amount of damage to get the minimum and maximum pitch of the hitsound. Set both to 100 if you want to disable the pitch."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a></p>
-            <label class="form-inline">
-              Minimum <input class="form-control input-sm" type="text" size="3"  id="hitmin" onkeypress="return isNumberKey(event)" value="75" />
-            </label>
-            <label class="form-inline">
-              Maximum <input class="form-control input-sm" type="text" size="3"  id="hitmax" onkeypress="return isNumberKey(event)" value="195" />
-            </label>
-          </label>
+            Hitsound pitch <a href="#" data-toggle="tooltip" title="This values represent an amount of damage to get the minimum and maximum pitch of the hitsound. Set both to 100 if you want to disable the pitch."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+ 						</label>
+  					<li class="list-unstyled">
+							<label class="form-inline">
+	              Minimum <input class="form-control input-sm" type="text" size="3"  id="hitmin" onkeypress="return isNumberKey(event)" value="75" />
+	            </label>
+
+	            <label class="form-inline">
+	              Maximum <input class="form-control input-sm" type="text" size="3"  id="hitmax" onkeypress="return isNumberKey(event)" value="195" />
+	            </label>
+
+					</li>
         </li>
     	</div>
     </ul>
