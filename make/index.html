@@ -1928,7 +1928,7 @@
 			if (typeof crosshairSize === 'undefined' ) { crosshairSize = '1.0' }
 			if (typeof crosshairColor === 'undefined' ) { crosshairColor = 'black' }
 
-			$('<span id="crosshair_' + selectedID + '" class="crosshair" style="padding-right:1em;"></span>').prependTo( $('#' + selectedID).parent() );
+			$('<span id="crosshair_' + selectedID + '" class="crosshair" style="padding-right:1em;"></span>').prependTo( $('#' + selectedID).closest('td') );
 			$('thead').each( function () {
 				$('<th></th>').insertAfter($(this));
 			})
