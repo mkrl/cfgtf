@@ -22,6 +22,7 @@
 		<!-- jquery zoom --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-zoom/1.7.20/jquery.zoom.min.js" integrity="sha256-+kAcWA0klKCshjLIEEFOV51LntaiEdbldotJbI99Bh0=" crossorigin="anonymous"></script>
 		<!-- jquery unveil (lazy loader) --><script src="https://cdnjs.cloudflare.com/ajax/libs/unveil/1.3.0/jquery.unveil.min.js" integrity="sha256-L0QYOaMEAFNqeSmYEHbvOoH68wL9/vU5ItrVY8E+ivg=" crossorigin="anonymous"></script>
 		<!-- jquery SaveAs  --><script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.3/FileSaver.min.js" integrity="sha256-FPJJt8nA+xL4RU6/gsriA8p8xAeLGatoyTjldvQKGdE=" crossorigin="anonymous"></script>
+		<!-- bootstrap confirm --><script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-confirmation/1.0.5/bootstrap-confirmation.min.js" integrity="sha256-0lDCetJx/wJYWmLR1yr17IiofI6mcH+ohE5nLOYP7ZY=" crossorigin="anonymous"></script>
 
 		<!-- Local css -->
     <link rel="stylesheet" href="../css/pygments.css">
@@ -178,11 +179,11 @@
 			//gfx config swapper
       $("#gfx_selector").change(function() {
           var showme = this.value;
-          $("div.desc").fadeOut(250);
+          $("div.desc").fadeOut(200);
           $("#preview" + showme).fadeIn(400);
           updatedxlevel();
-          $("#preview" + showme + " img").trigger("unveil");
 					$("#preview" + showme + " img").unveil();
+          $("#preview" + showme + " img").trigger("unveil");
 
           console.log('unveil ' + showme);
 
@@ -838,10 +839,12 @@
   <p class="text-muted">I'm pressing buttons!</p>
 	<p class="alert alert-info">Default key bindings on this page are intended to be used with <a class="alert-link" href="https://en.wikipedia.org/wiki/QWERTY" target="_blank">QWERTY</a> keyboards, if you use other layout you may want to change or disable them.</p>
   <ul class="checkbox list-unstyled">
-    <li> <label>
-  	      <input type="checkbox" id="bindscheck" data-name="bindscheck" data-url="" checked />
-  	      Enable key mappings <a href="#" data-toggle="tooltip" title="When this is selected, all the key mappings (key settings) below will be written into your binds.cfg file. If not, a blank file will be generated."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
-  	    </label> </li>
+  	<li>
+			<label>
+	      <input type="checkbox" id="bindscheck" data-name="bindscheck" data-url="" checked />
+	      Enable key mappings <a href="#" data-toggle="tooltip" title="When this is selected, all the key mappings (key settings) below will be written into your binds.cfg file. If not, a blank file will be generated."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+	    </label>
+		</li>
   </ul> <br>
   <script>
     $(document).ready(function() {
@@ -854,14 +857,17 @@
           $('#bindpan input').prop('required',false);
         }
       });
+			$('#bind_unbindall [data-toggle="confirmation"]').confirmation({
+				onConfirm: function(){remove_education_fields('all')}
+			});
     });
   </script>
   <div class="panel panel-default" id="bindpan">
-    <div class="panel-heading">Key mappings</div>
+    <div class="panel-heading">Key mappings <span id="bind_unbindall"><button class="btn btn-danger btn-delete-item" type="button" data-toggle="confirmation" data-popout="true"> unbindall</button></span></div>
     <div class="panel-body">
       <div id="education_fields">
         <!-- KEY -->
-        <div class="form-group removeclass2">
+        <div class="form-group removeclass1">
           <div class="col-sm-3 nopadding">
             <div class="form-group"> <input type="text" class="form-control" id="key1" name="Keys[]" value="w" placeholder="Key" required> </div>
           </div>
@@ -1695,7 +1701,7 @@
   	</ul>
   </div>
 	<ul class="checkbox list-unstyled">
-  		<li>
+		<li>
 	    <label>
 	      <input type="checkbox" id="fliptoggle" data-name="fliptoggle" data-url="" />
 	      Left-handed viewmodels
