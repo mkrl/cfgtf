@@ -1929,9 +1929,6 @@
 			if (typeof crosshairColor === 'undefined' ) { crosshairColor = 'black' }
 
 			$('<span id="crosshair_' + selectedID + '" class="crosshair" style="padding-right:1em;"></span>').prependTo( $('#' + selectedID).closest('td') );
-			$('thead').each( function () {
-				$('<th></th>').insertAfter($(this));
-			})
 			$('#crosshair_' + selectedID).load('../img/crosshairs/svg/' + crosshairName + '.svg'); //load svg
 			$('#crosshair_' + selectedID).css({ fill: crosshairColor });
 			// $('#crosshair_' + selectedID).css({ stroke: crosshairColor });
@@ -3743,6 +3740,7 @@
 		<h3>Custom hitsounds and killsounds:</h3>
 		<p>There are already a few hitsounds that you can select from in the "Advanced Options" in-game menu. Optionally, you can select a custom hit/killsound (or choose none here and use your own one).</p>
     <p>Click <i class="fa fa-volume-up" aria-hidden="true"></i> to hear an audio preview.</p>
+		<p class="alert alert-warning"><i class="fa fa-firefox" aria-hidden="true"></i> Mozilla Firefox users currently can not select custom hit/kill sounds, this will prevent config from being generated. Sorry, we're working on it right now.</p>
 
 		<ul class="checkbox list-unstyled">
 			<li>
