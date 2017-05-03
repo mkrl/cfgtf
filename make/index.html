@@ -1726,14 +1726,14 @@
   		  </li>
 			</ul>
 			<hr>
-			<h3>HUD</h3>
-			<p><abbr title="Head-Up Display" class="initialism">HUD</abbr> determines how user interface looks.</p>
-			<p class="text-muted">Currently in a beta state, more HUDs coming up very soon! Click on a HUD name for more information.</p>
+			<h3><abbr title="Head-Up Display" class="initialism">HUD</abbr> <span class="label label-default">Beta</span></h3>
+			<p class="text-muted">Determines how your interface looks</p>
+			<p class="alert alert-info">More HUDs coming up very soon! Click on a HUD name for more information.</p>
 			<ul class="checkbox list-unstyled">
 			<li>
   		    <label class="radio-inline">
   					<input type="radio" name="huds" data-name="nothing" data-url="" checked/>
-  			    No HUD
+  			    Default HUD
   		    </label>
 			</li>
   			<li>
@@ -1904,11 +1904,16 @@
 
 		// create crosshairs based on the default selections, gets inserted before the dropdown, in the same cell
 		$('#switcherdiv .selectpicker').each( function() {
+			//some defaults, incase something went wrong
+			var	crosshairName = 'default'
+			var	crosshairSize = '1.0'
+			var	crosshairColor = 'black'
+
 			var selectedID = this.id;
-			var selectedValue = $(this).val();
-			var crosshairName = selectedValue[0];
-			var crosshairSize;
-			switch (selectedValue[1]) {
+			crosshairName = $('#' + selectedID + ' optgroup[label*="Style"]').find(':selected').val();
+			crosshairSize = $('#' + selectedID + ' optgroup[label*="Size"]').find(':selected').val();
+			crosshairColor =  $('#' + selectedID + ' optgroup[label*="Color"]').find(':selected').val();
+			switch (crosshairSize) {
 				case "tiny": crosshairSize = "0.2"; break;
 				case "smallest": crosshairSize = "0.3"; break;
 				case "small": crosshairSize = "0.5"; break;
@@ -1918,9 +1923,15 @@
 				case "huge": crosshairSize = "1.2"; break;
 				case "invisible": crosshairSize = "0"; break;
 			};
-			var crosshairColor = selectedValue[2];
 
-			$('<span id="crosshair_' + selectedID + '" class="crosshair" style="padding-right:1em;"></span>').insertBefore( $('#' + selectedID) );
+			if (typeof crosshairName === 'undefined' ) { crosshairName = 'default' }
+			if (typeof crosshairSize === 'undefined' ) { crosshairSize = '1.0' }
+			if (typeof crosshairColor === 'undefined' ) { crosshairColor = 'black' }
+
+			$('<span id="crosshair_' + selectedID + '" class="crosshair" style="padding-right:1em;"></span>').prependTo( $('#' + selectedID).parent() );
+			$('thead').each( function () {
+				$('<th></th>').insertAfter($(this));
+			})
 			$('#crosshair_' + selectedID).load('../img/crosshairs/svg/' + crosshairName + '.svg'); //load svg
 			$('#crosshair_' + selectedID).css({ fill: crosshairColor });
 			// $('#crosshair_' + selectedID).css({ stroke: crosshairColor });
@@ -1930,10 +1941,10 @@
 		// update the crosshair when selector changes
 		$('#switcherdiv .selectpicker').change(function () {
 			selectedID = this.id;
-			selectedValue = $(this).val(); // should be [ "crosshair", "size", "color" ]
-			if ( $(selectedValue).length < 3 ) { return false	}  // if it's less than 3, something was deselected which messes the crosshairs up
-			crosshairName = selectedValue[0];
-			switch (selectedValue[1]) {
+			crosshairName = $('#' + selectedID + ' optgroup[label*="Style"]').find(':selected').val();
+			crosshairSize = $('#' + selectedID + ' optgroup[label*="Size"]').find(':selected').val();
+			crosshairColor =  $('#' + selectedID + ' optgroup[label*="Color"]').find(':selected').val();
+			switch (crosshairSize) {
 				case "tiny": crosshairSize = "0.2"; break;
 				case "smallest": crosshairSize = "0.3"; break;
 				case "small": crosshairSize = "0.5"; break;
@@ -1943,7 +1954,10 @@
 				case "huge": crosshairSize = "1.2"; break;
 				case "invisible": crosshairSize = "0"; break;
 			};
-			crosshairColor = selectedValue[2];
+
+			if (typeof crosshairName === 'undefined' ) { crosshairName = 'default' }
+			if (typeof crosshairSize === 'undefined' ) { crosshairSize = '1.0' }
+			if (typeof crosshairColor === 'undefined' ) { crosshairColor = 'black' }
 			$('#crosshair_' + selectedID + ' svg').remove();//remove old svg
 			$('#crosshair_' + selectedID).load('../img/crosshairs/svg/' + crosshairName + '.svg');//load new svg
 			$('#crosshair_' + selectedID).css({ fill: crosshairColor });
