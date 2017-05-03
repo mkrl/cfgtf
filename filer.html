@@ -1,0 +1,55 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>   
+   <script type="text/javascript" src="./js/jszip.js"></script>
+    <script type="text/javascript" src="./js/jszip-utils.js"></script>
+    <script type="text/javascript" src="./js/FileSaver.js"></script>
+
+Downloading archive with contents from another archive
+
+
+<script>
+var zip = new JSZip();
+var zippies = ['./faq.zip','./favicon.zip']; //array of zip archives that are going to be included
+zip.file("example.txt","example of regular file");
+// function to read in a list of source zip files and return a merged archive
+function mergeZips(sources,zip) {
+    return readSources(sources, zip)
+        .then(function() {
+            return zip;
+        });
+}
+
+// generate an array of promises for each zip we're reading in and combine them
+// into a single promise with Promise.all()
+function readSources(files, zip) {
+    return Promise.all(
+        files.map(function(file){
+            return readSource(file, zip);
+        })
+    );
+}
+
+// promise-ified wrapper function to read & load a zip
+function readSource(file, zip) {
+    return new Promise(function(resolve, reject) {
+        JSZipUtils.getBinaryContent(file, function (err, data) {
+            if (err) {
+                reject(err);
+            }
+            // resolving the promise with another promise will pass the promise
+            // down the chain:
+            resolve(zip.loadAsync(data, {createFolders: true})); 
+        });
+    });
+}
+
+// example usage:
+mergeZips(zippies,zip).then(function(zip) {
+    zip.generateAsync({type: 'blob'})
+        .then(function(blob){
+            saveAs(blob, 'result.zip')
+        })
+});
+
+
+</script>
+

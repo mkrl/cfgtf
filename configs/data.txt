@@ -50,13 +50,13 @@
     ],
     [
       "Thalash",
-      "<a href=./tlr.zip>Download</a>",
+      "<a href=./thalash.zip>Download</a>",
       "<a href=https://www.youtube.com/ThalashTF2>YouTube</a>",
       "<a href=https://www.twitch.tv/thalasheee>Twitch</a>"
     ],
     [
       "TLR",
-      "<a href=./thalash.zip>Download</a>",
+      "<a href=./tlr.zip>Download</a>",
       "<a href=http://www.youtube.com/TLR6843>YouTube</a>",
       "<a href=https://www.twitch.tv/tlr6843>Twitch</a>"
     ],
@@ -107,12 +107,6 @@
       "<a href=./Yui.zip>Download</a>",
       "<a href=https://www.youtube.com/user/YuiTF2>YouTube</a>",
       "-"
-    ],
-    [
-      "Paulsen",
-      "<a href=./paulsen.zip>Download</a>",
-      "<a href=https://www.youtube.com/user/ThePaulsen1992>YouTube</a>",
-       "<a href=https://www.twitch.tv/paulsen__>Twitch</a>"
     ],
     [
       "Paulsen",

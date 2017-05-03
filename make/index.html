@@ -89,8 +89,56 @@
 
       <div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><i class="fa fa-exclamation-circle" aria-hidden="true"></i> This tool will overwrite all of your binds. It is recommended to be installed on a blank <abbr title="Team Fortress 2" class="initialism">TF2</abbr>, without any prior configs installed. Please make a backup of your <abbr title="Config" class="initialism">CFG</abbr> and custom folders before using this if you want to save your old binds. You can wipe your configs by clearing your custom and cfg folders and launching <abbr title="Team Fortress 2" class="initialism">TF2</abbr> with -autoconfig launch option. </div>
 
-
 			<form action="#" id="download_form">
+			<script>				//todo: move this (and all hide/show on toggle functions) to a separate function in utility.js
+									//saving all user input and reopening all hidden divs if any
+				$( function() {
+				$( "#download_form" ).sisyphus( {
+				locationBased: false,
+				autoRelease: true,
+				onRestore: function() {
+				  var showme = document.getElementById("gfx_selector").value;
+				  $("div.desc").hide();
+				  $("#preview" + showme).fadeIn(400);
+				  updatedxlevel();
+				  $("#preview" + showme + " img").trigger("unveil");
+				  console.log('unveil ' + showme);
+				  $('#preview' + showme + ' .carousel-inner  img')
+						.wrap('<span style="display:inline-block"></span>')
+						.css('display', 'block')
+						.parent()
+						.zoom({ on: 'grab' });
+				if(document.getElementById('crosshairswitcherid').checked) {
+				  $('#switcherdiv').fadeIn(400);
+				  // disable viewmodel settings when switcher enabled
+				  $('#global_viewmodel_settings input').prop('disabled', true);
+				  $('#global_viewmodel_settings').fadeTo('fast', '0.6');
+				}
+				else {
+				  $('#switcherdiv').fadeOut(400);
+				  $('#global_viewmodel_settings input').prop('disabled', false);
+				  $('#global_viewmodel_settings').fadeTo('fast', '1');
+				}
+				if (document.getElementById('bindscheck').checked) {
+				  $('#bindpan').fadeIn(400);
+				  $('#bindpan input').prop('required',true);
+				} else {
+				  $('#bindpan').fadeOut(400);
+				  $('#bindpan input').prop('required',false);
+				}
+				if (document.getElementById('medicheck').checked) {
+				  $('#medicheckbind').prop('disabled', false);
+				  $('#medicheckbind').fadeTo('fast', '1');
+				}
+				else {
+				  $('#medicheckbind').prop('disabled', true);
+				  $('#medicheckbind').fadeTo('fast', '0.6');
+				}
+				}
+				} );
+				} );
+			</script>
+
 				<!-- The form submit will not work without ul, so I added another class to remove padding? todo: fix this shit -->
 			<div class="tabbable">
 				<ul class="nav nav-tabs">
@@ -1502,14 +1550,42 @@
   		      Show net_graph 4 on Tab press, toggle on '-'
   		    </label>
   		  </li>
-  			<li>
+			<li>
   		    <label>
   		      <input type="checkbox" name="tweaks" data-name="tweaks_fastclass" data-url="../make/cfg/fastclass.cfg" />
   		      Change class on Shift + [1-9]
   		    </label>
   		  </li>
+			<li>
+  		    <label>
+  		      <input type="checkbox" id="medicheck" data-name="medicheck" data-url="" />
+  		      Medigun check script <a href="http://www.teamfortress.tv/8825/medigun-checker-script" target="_blank" data-toggle="tooltip" title="This script changes your class to Spy, disguises as medic, and checks their secondary weapon. It can be useful during pre-round freezetime or simply when changing spawns. This script requires you to press the bound key 4 times. Click here for details."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+  		    </label>
+  		  </li>
+		  <div id="medibindarea">
+		  	<li class="form-inline">
+  		    <label>
+				Medigun check button
+  		      <input class="form-control input-sm" type="text" size="6"  id="medicheckbind" value="KP_INS" disabled="true"/>
+  		    </label>
+  		  </li>
+		  </div>
       </ul>
 		</div>
+		<script>
+			$(document).ready(function(){
+			$('#medicheck').change(function(){
+				if(this.checked) {
+				  $('#medicheckbind').prop('disabled', false);
+				  $('#medicheckbind').fadeTo('fast', '1');
+				}
+				else {
+				  $('#medicheckbind').prop('disabled', true);
+				  $('#medicheckbind').fadeTo('fast', '0.6');
+				}
+			});
+			});
+		</script>
 
 		<hr>
 		<!--   CUSTOM CFGS  -->
@@ -1650,6 +1726,72 @@
   		  </li>
 			</ul>
 			<hr>
+			<h3>HUD</h3>
+			<p><abbr title="Head-Up Display" class="initialism">HUD</abbr> determines how user interface looks.</p>
+			<p class="text-muted">Currently in a beta state, more HUDs coming up very soon! Click on a HUD name for more information.</p>
+			<ul class="checkbox list-unstyled">
+			<li>
+  		    <label class="radio-inline">
+  					<input type="radio" name="huds" data-name="nothing" data-url="" checked/>
+  			    No HUD
+  		    </label>
+			</li>
+  			<li>
+  		    <label class="radio-inline">
+  					<input type="radio" name="huds" data-name="hud" data-url="./huds/budhud.zip"/>
+  			    <a href="http://huds.tf/forum/showthread.php?tid=207" target="_blank">budhud</a>
+  		    </label>
+			</li>
+  			<li>
+  		    <label class="radio-inline">
+  					<input type="radio" name="huds" data-name="hud" data-url="./huds/broeselhud_blue.zip"/>
+  			    <a href="http://huds.tf/forum/showthread.php?tid=217" target="_blank">broeselhud_blue</a>
+  		    </label>
+			</li>
+  			<li>
+  		    <label class="radio-inline">
+  					<input type="radio" name="huds" data-name="hud" data-url="./huds/idhud.zip"/>
+  			    <a href="http://huds.tf/forum/showthread.php?tid=276" target="_blank">Improved default HUD</a>
+  		    </label>
+			</li>
+  			<li>
+  		    <label class="radio-inline">
+  					<input type="radio" name="huds" data-name="hud" data-url="./huds/rayshud.zip"/>
+  			    <a href="http://huds.tf/forum/showthread.php?tid=377" target="_blank">rayshud</a>
+  		    </label>
+			</li>
+  			<li>
+  		    <label class="radio-inline">
+  					<input type="radio" name="huds" data-name="hud" data-url="./huds/toonhud.zip"/>
+  			    <a href="http://huds.tf/forum/showthread.php?tid=234" target="_blank">ToonHUD</a>
+  		    </label>
+			</li>
+  			<li>
+  		    <label class="radio-inline">
+  					<input type="radio" name="huds" data-name="hud" data-url="./huds/m0rehud.zip"/>
+  			    <a href="http://huds.tf/forum/showthread.php?tid=248" target="_blank">m0re HUD</a>
+  		    </label>
+			</li>
+  			<li>
+  		    <label class="radio-inline">
+  					<input type="radio" name="huds" data-name="hud" data-url="./huds/ahud.zip"/>
+  			    <a href="http://huds.tf/forum/showthread.php?tid=191" target="_blank">ahud</a>
+  		    </label>
+			</li>
+  			<li>
+  		    <label class="radio-inline">
+  					<input type="radio" name="huds" data-name="hud" data-url="./huds/medHUD.zip"/>
+  			    <a href="http://huds.tf/forum/showthread.php?tid=223" target="_blank">medHUD</a>
+  		    </label>
+			</li>
+  			<li>
+  		    <label class="radio-inline">
+  					<input type="radio" name="huds" data-name="hud" data-url="./huds/noto.zip"/>
+  			    <a href="http://huds.tf/forum/showthread.php?tid=183" target="_blank">noto HUD</a>
+  		    </label>
+			</li>
+			</ul>
+			<hr>
 			<h3>Addons</h3>
 			<ul class="checkbox list-unstyled">
 				<li>
@@ -1710,7 +1852,8 @@
   	<li class="form-inline">
       <label>
   			Viewmodel toggle key (leave blank for none)
-        <input class="form-control input-sm" type="text" size="24"  id="vmodelbind" value="-" />
+        <input class="form-control input-sm" type="text" size="18"  id="vmodelbind" value="kp_minus" />
+
       </label>
     </li>
 		<li>
@@ -3817,13 +3960,101 @@
 	<!--   CUSTOM INPUT  -->
 	<h3>Custom commands</h3>
 	<p>You may enter anything here, not just binds. Same formatting rules as for the TF2 console. This will be executed at the end of your config and overwrite existing binds.</p>
-	<textarea id="bindings" placeholder="bind kp_minus &quot;say !add spire&quot;" class="form-control"></textarea>
+	<textarea id="bindings" placeholder="bind kp_minus &quot;say !add spire&quot;"  class="form-control"></textarea>
   <hr>
+  <h3>Class specific custom commands</h3>
+  <p>The following settings will be put into class config files and will only work on specific classes.</p>
+  <div class="row">
+
+        <div class="col-md-4">
+
+			  <div class="panel panel-default">
+		  <div class="panel-heading">Scout</div>
+		  <div class="panel-body">
+			<textarea id="bindings_scout" class="form-control"></textarea>
+		  </div>
+		</div>
+		</div>
+        <div class="col-md-4">
+
+			  <div class="panel panel-default">
+		  <div class="panel-heading">Soldier</div>
+		  <div class="panel-body">
+			<textarea id="bindings_soldier" class="form-control"></textarea>
+		  </div>
+		</div>
+		</div>
+        <div class="col-md-4">
+
+			  <div class="panel panel-default">
+		  <div class="panel-heading">Pyro</div>
+		  <div class="panel-body">
+			<textarea id="bindings_pyro" class="form-control"></textarea>
+		  </div>
+		</div>
+		</div>
+        <div class="col-md-4">
+
+			  <div class="panel panel-default">
+		  <div class="panel-heading">Demoman</div>
+		  <div class="panel-body">
+			<textarea id="bindings_demo" class="form-control"></textarea>
+		  </div>
+		</div>
+		</div>
+        <div class="col-md-4">
+
+			  <div class="panel panel-default">
+		  <div class="panel-heading">Heavy</div>
+		  <div class="panel-body">
+			<textarea id="bindings_heavy" class="form-control"></textarea>
+		  </div>
+		</div>
+		</div>
+        <div class="col-md-4">
+
+			  <div class="panel panel-default">
+		  <div class="panel-heading">Engineer</div>
+		  <div class="panel-body">
+			<textarea id="bindings_engineer" class="form-control"></textarea>
+		  </div>
+		</div>
+		</div>
+        <div class="col-md-4">
+
+			  <div class="panel panel-default">
+		  <div class="panel-heading">Medic</div>
+		  <div class="panel-body">
+			<textarea id="bindings_medic" class="form-control"></textarea>
+		  </div>
+		</div>
+		</div>
+        <div class="col-md-4">
+
+			  <div class="panel panel-default">
+		  <div class="panel-heading">Sniper</div>
+		  <div class="panel-body">
+			<textarea id="bindings_sniper" class="form-control"></textarea>
+		  </div>
+		</div>
+		</div>
+        <div class="col-md-4">
+
+			  <div class="panel panel-default">
+		  <div class="panel-heading">Spy</div>
+		  <div class="panel-body">
+			<textarea id="bindings_spy" class="form-control"></textarea>
+		  </div>
+		</div>
+		</div>
+      </div>
+	  <hr>
 	</div>
 </div>
 </div>
 
   <button data-toggle="tooltip" title="Be sure to go through all the tabs before generating." type="submit" class="btn btn-primary">Generate config <i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
+  <button class="btn" name="resetter" type="reset" onclick="return confirm('Are you sure you want to reset all the data? This cannot be undone.')">Reset</button>
 	<hr>
 </form>
 
