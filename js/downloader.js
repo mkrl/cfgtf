@@ -184,6 +184,7 @@ jQuery(function($) {
 		var gfx_force_gib = $('#gfx_force_gib').is(':checked');
 		var gfx_force_shadows = $('#gfx_force_shadows').is(':checked');
 		var gfx_force_glow = $('#gfx_force_glow').is(':checked');
+		var gfx_force_sprays = $('#gfx_force_sprays').is(':checked');
 
 		//get custom binds
 		var bindings = $('#bindings').val();
@@ -503,6 +504,7 @@ jQuery(function($) {
 				gfx_force_mode && gfx_force_gib ? '///--- gibs\ncl_phys_props_enable 1\ncl_phys_props_max 128\nprops_break_max_pieces -1\nr_propsmaxdist 1000\nviolence_agibs 1\nviolence_hgibs 1\n' : '',
 				gfx_force_mode && gfx_force_shadows ? '///---shadows \nmat_shadowstate 1\nr_shadowmaxrendered 11\nr_shadowrendertotexture 1\nr_shadows 1\nnb_shadow_dist 400\n' : '',
 				gfx_force_mode && gfx_force_glow ? '///--- glow outline\nglow_outline_effect_enable 1\n' : '',
+				gfx_force_mode && gfx_force_sprays ? '///--- sprays\ncl_playerspraydisable 0\nr_spray_lifetime 2\n' : '',
 			].join(''), '///---'),
 			'',
 			'cl_training_class_unlock_all',
