@@ -90,55 +90,6 @@
       <div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><i class="fa fa-exclamation-circle" aria-hidden="true"></i> This tool will overwrite all of your binds. It is recommended to be installed on a blank <abbr title="Team Fortress 2" class="initialism">TF2</abbr>, without any prior configs installed. Please make a backup of your <abbr title="Config" class="initialism">CFG</abbr> and custom folders before using this if you want to save your old binds. You can wipe your configs by clearing your custom and cfg folders and launching <abbr title="Team Fortress 2" class="initialism">TF2</abbr> with -autoconfig launch option. </div>
 
 			<form action="#" id="download_form">
-			<script>				//todo: move this (and all hide/show on toggle functions) to a separate function in utility.js
-									//saving all user input and reopening all hidden divs if any
-				$( function() {
-				$( "#download_form" ).sisyphus( {
-				locationBased: false,
-				autoRelease: true,
-				onRestore: function() {
-				  var showme = document.getElementById("gfx_selector").value;
-				  $("div.desc").hide();
-				  $("#preview" + showme).fadeIn(400);
-				  updatedxlevel();
-				  $("#preview" + showme + " img").trigger("unveil");
-				  console.log('unveil ' + showme);
-				  $('#preview' + showme + ' .carousel-inner  img')
-						.wrap('<span style="display:inline-block"></span>')
-						.css('display', 'block')
-						.parent()
-						.zoom({ on: 'grab' });
-				if(document.getElementById('crosshairswitcherid').checked) {
-				  $('#switcherdiv').fadeIn(400);
-				  // disable viewmodel settings when switcher enabled
-				  $('#global_viewmodel_settings input').prop('disabled', true);
-				  $('#global_viewmodel_settings').fadeTo('fast', '0.6');
-				}
-				else {
-				  $('#switcherdiv').fadeOut(400);
-				  $('#global_viewmodel_settings input').prop('disabled', false);
-				  $('#global_viewmodel_settings').fadeTo('fast', '1');
-				}
-				if (document.getElementById('bindscheck').checked) {
-				  $('#bindpan').fadeIn(400);
-				  $('#bindpan input').prop('required',true);
-				} else {
-				  $('#bindpan').fadeOut(400);
-				  $('#bindpan input').prop('required',false);
-				}
-				if (document.getElementById('medicheck').checked) {
-				  $('#medicheckbind').prop('disabled', false);
-				  $('#medicheckbind').fadeTo('fast', '1');
-				}
-				else {
-				  $('#medicheckbind').prop('disabled', true);
-				  $('#medicheckbind').fadeTo('fast', '0.6');
-				}
-				}
-				} );
-				} );
-			</script>
-
 				<!-- The form submit will not work without ul, so I added another class to remove padding? todo: fix this shit -->
 			<div class="tabbable">
 				<ul class="nav nav-tabs">
@@ -1728,69 +1679,55 @@
 			<hr>
 			<h3><abbr title="Head-Up Display" class="initialism">HUD</abbr> <span class="label label-default">Beta</span></h3>
 			<p class="text-muted">Determines how your interface looks</p>
-			<p class="alert alert-info">More HUDs coming up very soon! Click on a HUD name for more information.</p>
-			<ul class="checkbox list-unstyled">
-			<li>
-  		    <label class="radio-inline">
-  					<input type="radio" name="huds" data-name="nothing" data-url="" checked/>
-  			    Default HUD
-  		    </label>
-			</li>
-  			<li>
-  		    <label class="radio-inline">
-  					<input type="radio" name="huds" data-name="hud" data-url="./huds/budhud.zip"/>
-  			    <a href="http://huds.tf/forum/showthread.php?tid=207" target="_blank">budhud</a>
-  		    </label>
-			</li>
-  			<li>
-  		    <label class="radio-inline">
-  					<input type="radio" name="huds" data-name="hud" data-url="./huds/broeselhud_blue.zip"/>
-  			    <a href="http://huds.tf/forum/showthread.php?tid=217" target="_blank">broeselhud_blue</a>
-  		    </label>
-			</li>
-  			<li>
-  		    <label class="radio-inline">
-  					<input type="radio" name="huds" data-name="hud" data-url="./huds/idhud.zip"/>
-  			    <a href="http://huds.tf/forum/showthread.php?tid=276" target="_blank">Improved default HUD</a>
-  		    </label>
-			</li>
-  			<li>
-  		    <label class="radio-inline">
-  					<input type="radio" name="huds" data-name="hud" data-url="./huds/rayshud.zip"/>
-  			    <a href="http://huds.tf/forum/showthread.php?tid=377" target="_blank">rayshud</a>
-  		    </label>
-			</li>
-  			<li>
-  		    <label class="radio-inline">
-  					<input type="radio" name="huds" data-name="hud" data-url="./huds/toonhud.zip"/>
-  			    <a href="http://huds.tf/forum/showthread.php?tid=234" target="_blank">ToonHUD</a>
-  		    </label>
-			</li>
-  			<li>
-  		    <label class="radio-inline">
-  					<input type="radio" name="huds" data-name="hud" data-url="./huds/m0rehud.zip"/>
-  			    <a href="http://huds.tf/forum/showthread.php?tid=248" target="_blank">m0re HUD</a>
-  		    </label>
-			</li>
-  			<li>
-  		    <label class="radio-inline">
-  					<input type="radio" name="huds" data-name="hud" data-url="./huds/ahud.zip"/>
-  			    <a href="http://huds.tf/forum/showthread.php?tid=191" target="_blank">ahud</a>
-  		    </label>
-			</li>
-  			<li>
-  		    <label class="radio-inline">
-  					<input type="radio" name="huds" data-name="hud" data-url="./huds/medHUD.zip"/>
-  			    <a href="http://huds.tf/forum/showthread.php?tid=223" target="_blank">medHUD</a>
-  		    </label>
-			</li>
-  			<li>
-  		    <label class="radio-inline">
-  					<input type="radio" name="huds" data-name="hud" data-url="./huds/noto.zip"/>
-  			    <a href="http://huds.tf/forum/showthread.php?tid=183" target="_blank">noto HUD</a>
-  		    </label>
-			</li>
-			</ul>
+			<p class="alert alert-info">More HUDs coming up very soon! Click on a "HUD preview" for detailed HUD information.</p>
+			<select class="selectpicker" data-live-search="true" id="hudselector" data-header='Hover your mouse over "HUD preview" button to see a preview.'>
+			  <option name="huds" data-name="nothing" 	data-link="#" data-url="" selected>Default HUD</option>
+			  <option data-subtext="03-31-2017" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=207" data-name="hud" data-url="./huds/budhud.zip">budhud</option>
+			  <option data-subtext="02-02-2017" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=217" data-name="hud" data-url="./huds/broeselhud_blue.zip">broeselhud_blue</option>
+			  <option data-subtext="01-31-2017" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=276" data-name="hud" data-url="./huds/idhud.zip">Improved default HUD</option>
+			  <option data-subtext="02-18-2017" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=377" data-name="hud" data-url="./huds/rayshud.zip">rayshud</option>
+			  <option data-subtext="03-15-2017" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=234" data-name="hud" data-url="./huds/toonhud.zip">ToonHUD</option>
+			  <option data-subtext="02-14-2017" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=248" data-name="hud" data-url="./huds/m0rehud.zip">m0re HUD</option>
+			  <option data-subtext="12-21-2016" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=191" data-name="hud" data-url="./huds/ahud.zip">ahud</option>
+			  <option data-subtext="08-12-2016" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=223" data-name="hud" data-url="./huds/medHUD.zip">medHUD</option>
+			  <option data-subtext="07-16-2016" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=183" data-name="hud" data-url="./huds/noto.zip">noto HUD</option>			  
+			  <option data-subtext="12-31-2016" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=233" data-name="hud" data-url="./huds/omphud-redux.zip">omphud-redux</option>			  
+			  <option data-subtext="02-16-2017" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=270" data-name="hud" data-url="./huds/AntsHUD.zip">AntsHUD</option>			  
+			  <option data-subtext="02-21-2017" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=211" data-name="hud" data-url="./huds/IsaacHUD.zip">Isaac Hud</option>			  
+			  <option data-subtext="12-22-2016" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=198" data-name="hud" data-url="./huds/flathud.zip">flathud (blue)</option>			  
+			  <option data-subtext="06-23-2016" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=250" data-name="hud" data-url="./huds/mHUD.zip">mHUD</option>			  
+			  <option data-subtext="12-19-2016" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=219" data-name="hud" data-url="./huds/Mannterface.zip">The Mannterface</option>			  
+			</select>
+			<a href="#" id="hudprev" class="btn btn-default disabled" target="_blank">HUD preview</a>
+			<div class="ibox"><div class="ibox-bg"><p class="text-muted"> Hud previews provided by huds.tf</p></div><iframe id="frameid" src="#" width = "500px" height = "450px" scrolling="no" seamless="seamless"></iframe></div>
+			
+			<script>
+			var iframes = $('iframe');		//lazy iframe loading. can cause loading errors but thats okay. todo: hide iframe when defauld HUD selected
+			var hudaddress = "";
+			 $("#hudselector").change(function () {
+				if ($(this).find(':selected').data('name') !== 'nothing' ){
+					hudaddress = $(this).find(':selected').data('link');
+					$('#hudprev').attr("class", "btn btn-default");
+					$('#hudprev').attr("href", hudaddress);
+					
+				} else {
+					$('#hudprev').attr("class", "btn btn-default disabled");
+					$('#hudprev').attr("href", "#");				
+				}
+			});
+			
+			$('#hudprev').hover(function() {
+				iframes.attr('src', function() {
+					$('#frameid').attr("src", hudaddress);
+					return $(this).data('src');
+				});
+			});
+
+			iframes.each(function() {
+				var src = $(this).attr('src');
+				$(this).data('src', src).attr('src', '');
+			});
+			</script>
 			<hr>
 			<h3>Addons</h3>
 			<ul class="checkbox list-unstyled">
@@ -1859,7 +1796,7 @@
 		<li>
 	    <label>
 	      <input type="checkbox" id="crosshairswitcherid" name="crosshairswitcher" data-name="crosshairswitcher" data-url="" />
-	      Enable broesel's Crosshair Switcher <a href="http://etf2l.org/forum/customise/topic-11110/" data-toggle="tooltip" title="A very nice thing to have. broesel's script lets you adjust your viewmodels and crosshairs for each class and slot individually. If installed, see CROSSHAIRSWITCHER-INSTRUCTIONS.txt in your /tf/cfg folder for instructions on how to change settings manually." target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+	      Adjust class-specific viewmodels and crosshairs <a href="http://etf2l.org/forum/customise/topic-11110/" data-toggle="tooltip" title="Also known as broesel's Crosshair Switcher. This script lets you adjust your viewmodels and crosshairs for each class and slot individually. If installed, see CROSSHAIRSWITCHER-INSTRUCTIONS.txt in your /tf/cfg folder for instructions on how to change settings manually." target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
 				<p class="text-muted">Selecting this will disable some viewmodel settings above</p>
 	    </label>
 	  </li>
@@ -3649,7 +3586,7 @@
     <li class="form-inline">
       <label>
   	    Combat text window (seconds) <a href="https://www.youtube.com/watch?v=xqovD6HbTeY" data-toggle="tooltip" title="Set to any value between 0 and 2. You can set a period of time when the game sums up an amount of damage dealt (see previous parameter). 0.7 is nearly recommended for hitscan weapons like shotgun, scattergun, etc. Click here for a detailed demo."  target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
-        <input class="form-control input-sm" type="number" max="2" size="3"  id="batwindow" onkeypress="return isNumberKey(event)" value="0.7" />
+        <input class="form-control input-sm" type="number" max="2" min="-2" step="0.1" size="3"  id="batwindow" onkeypress="return isNumberKey(event)" value="0.7"/>
       </label>
   	</li>
   </ul>

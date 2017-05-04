@@ -144,3 +144,32 @@ p.header-remote {
 	background-repeat: no-repeat;
   vertical-align : middle;
 }
+
+/* disable iframes overflow for HUD previews, show on hover */
+
+iframe{
+    overflow:hidden;
+}
+.ibox{
+    display: block;
+    width: 100%;
+	border-radius: 10px;
+	width: 500px; 
+	overflow: hidden;
+	margin: 15px 0;
+	position: relative;
+}
+.ibox-bg{		/* HUD preview placeholder, must be centered (it isn't now, fix this) */
+   position: absolute;
+    display:table-cell;
+    vertical-align:middle;
+    text-align:center;
+   z-index: -1;
+   overflow: hidden;
+}
+
+a:hover + .ibox,.ibox:hover{
+    display: block;
+    position: relative;
+    z-index: 100;
+}
