@@ -8,14 +8,13 @@
     <title>CFG.TF - About</title>
 
 		<!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
-    <!-- Latest compiled and minified JavaScript -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" integrity="sha384-dNpIIXE8U05kAbPhy3G1cz+yZmTzA6CY8Vg/u2L9xRnHjJiAK76m2BIEaSEV+/aU" crossorigin="anonymous">
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+		<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"> -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" integrity="sha256-r1WijW/SNMgOwk5LDk7QRHr6oVYYbYWMw/1kOXfYJfg=" crossorigin="anonymous" />
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+		<!-- Extras -->
+		<!-- fontawesome --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
 
     <link rel="stylesheet" href="../../css/pygments.css">
     <link rel="stylesheet" href="../../css/main.css">
@@ -24,13 +23,16 @@
   <body>
 
 		<div class="jumbotron" id="overlay">
-			<div id="loading_logo">
-				<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 464 462.9">
-					<path fill="#000" d="M213 19.2A213 213 0 0 0 19.7 212H160a74.4 74.4 0 0 1 53-52.6V19.2zm38 0v140.4a74.4 74.4 0 0 1 52.4 52.3h140.4A213 213 0 0 0 251 19zM19.5 250A213 213 0 0 0 213 443.4V303.2a74.4 74.4 0 0 1-53.3-53.3H19.5zm284 0a74.4 74.4 0 0 1-52.5 53v140.4A213 213 0 0 0 443.8 250H303.6z"/>
-				</svg>
-	  	</div>
-			<p class="page-header">Hang on a minute...</p>
-		  <noscript><p>Please enable javascript in your browser to continue.</p></noscript>
+			<div id="overlay_middle">
+				<div id="overlay_inner">
+					<div id="loading_logo">
+						<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 464 462.9">
+							<path fill="#000" d="M213 19.2A213 213 0 0 0 19.7 212H160a74.4 74.4 0 0 1 53-52.6V19.2zm38 0v140.4a74.4 74.4 0 0 1 52.4 52.3h140.4A213 213 0 0 0 251 19zM19.5 250A213 213 0 0 0 213 443.4V303.2a74.4 74.4 0 0 1-53.3-53.3H19.5zm284 0a74.4 74.4 0 0 1-52.5 53v140.4A213 213 0 0 0 443.8 250H303.6z"/>
+						</svg>
+			  	</div>
+					<noscript><style>#overlay {display: none;}</style></noscript>
+				</div>
+			</div>
 		</div>
 
     <nav class="navbar navbar-default" role="navigation">
@@ -68,7 +70,7 @@
 			</ul>
 		</div>
 	</nav>
-  <div id="wrapper" class="container-fluid">
+  <div id="wrapper" class="container">
     <div class="row content">
       <div class="alert alert-info page-header"><i class="fa fa-info-circle" aria-hidden="true"></i> The original article by <strong>/u/hydra877</strong> was found on <a class="alert-link" href="https://www.reddit.com/r/tf2/comments/1fdi64/a_small_guide_on_cl_interp_and_how_it_influences/" target="_blank"><i class="fa fa-reddit-alien" aria-hidden="true"></i> /r/tf2</a> <a class="alert-link" href="#" data-toggle="tooltip" title="Dropbox link dead."><i class="fa fa-warning" aria-hidden="true"></i></a></div>
       <h1 class="page-header">How do I decide what interp to use?</h1>
@@ -151,8 +153,7 @@ cl_smoothtime 0.01   // Reset these to defaults if you don't like how the game a
     </div>
   </div>
 
-  <footer class="footer">
-    <div class="container-fluid row">
+  <footer class="footer container-fluid">
 
       <div class="col-md-4 text-center">
         <ul class="list-unstyled">
@@ -195,7 +196,6 @@ cl_smoothtime 0.01   // Reset these to defaults if you don't like how the game a
         </p>
       </div>
 
-    </div>
   </footer>
 
   </body>

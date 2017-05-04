@@ -8,36 +8,34 @@
     <title>CFG.TF - TF2 config generator</title>
 
 		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
+		<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"> -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" integrity="sha256-r1WijW/SNMgOwk5LDk7QRHr6oVYYbYWMw/1kOXfYJfg=" crossorigin="anonymous" />
 		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" integrity="sha384-dNpIIXE8U05kAbPhy3G1cz+yZmTzA6CY8Vg/u2L9xRnHjJiAK76m2BIEaSEV+/aU" crossorigin="anonymous">
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+		<!-- Extras -->
+		<!-- fontawesome --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+		<!-- jquery unveil (lazy loader) --><script src="https://cdnjs.cloudflare.com/ajax/libs/unveil/1.3.0/jquery.unveil.min.js" integrity="sha256-L0QYOaMEAFNqeSmYEHbvOoH68wL9/vU5ItrVY8E+ivg=" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="./css/pygments.css">
     <link rel="stylesheet" href="./css/main.css">
-    <link rel="stylesheet" href="./css/bootstrap-select.min.css">
 
-    <script type="text/javascript" src="./js/jszip.js"></script>
-    <script type="text/javascript" src="./js/jszip-utils.js"></script>
 		<script type="text/javascript" src="./js/utility.js"></script>
-    <script type="text/javascript" src="./js/FileSaver.js"></script>
-    <script type="text/javascript" src="./js/unveil.js"></script>
 
   </head>
   <body>
 
-		<div class="jumbotron" id="overlay" style="display:none;">
-			<div id="loading_logo">
-				<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 464 462.9">
-					<path fill="#f39c12" d="M213 19.2A213 213 0 0 0 19.7 212H160a74.4 74.4 0 0 1 53-52.6V19.2zm38 0v140.4a74.4 74.4 0 0 1 52.4 52.3h140.4A213 213 0 0 0 251 19zM19.5 250A213 213 0 0 0 213 443.4V303.2a74.4 74.4 0 0 1-53.3-53.3H19.5zm284 0a74.4 74.4 0 0 1-52.5 53v140.4A213 213 0 0 0 443.8 250H303.6z"/>
-				</svg>
-	  	</div>
-			<p class="page-header">Hang on a minute...</p>
-		  <noscript><p>Please enable javascript in your browser to continue.</p></noscript>
+		<div class="jumbotron" id="overlay">
+			<div id="overlay_middle">
+				<div id="overlay_inner">
+					<div id="loading_logo">
+						<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 464 462.9">
+							<path fill="#f39c12" d="M213 19.2A213 213 0 0 0 19.7 212H160a74.4 74.4 0 0 1 53-52.6V19.2zm38 0v140.4a74.4 74.4 0 0 1 52.4 52.3h140.4A213 213 0 0 0 251 19zM19.5 250A213 213 0 0 0 213 443.4V303.2a74.4 74.4 0 0 1-53.3-53.3H19.5zm284 0a74.4 74.4 0 0 1-52.5 53v140.4A213 213 0 0 0 443.8 250H303.6z"/>
+						</svg>
+			  	</div>
+					<noscript><style>#overlay {display: none;}</style></noscript>
+				</div>
+			</div>
 		</div>
 
   <nav class="navbar navbar-default" role="navigation">
@@ -85,7 +83,7 @@
       <div class="col-md-6">
         <noscript>
           <div class="alert alert-warning">
-            <strong>Javascript is required to use config generator.</strong>
+            <strong>Javascript is required to use this website's features.</strong>
           </div>
         </noscript>
 
@@ -125,33 +123,36 @@
     </div>
   </section>
 
-<section id="generator_chooser" class="container-fluid shadowed_out">
+<section id="generator_chooser" class="container-fluid">
 
-  <a href="./make">
-    <div class="vividworknav">
-      <img src="./img/cl_ref.jpg" />
-      <h2 class="text-center text-muted">Client</h2>
-      <div class="work-text-content">
-        <h2>Generate a client config</h2>
-        <p>I'm a regular TF2 player wanting to optimize my game.</p>
-      </div>
+    <div class="col-md-12 col-lg-6">
+			<a href="./make">
+			<div style="background-image: url('./img/client_gen.svg');" class="image"></div>
+			<div class="work-text-content">
+				<div class="work-text-content-inner">
+					<h2>Generate a client config</h2>
+					<h3>Optimize a user's game.</h3>
+				</div>
+			</div>
+			<h2 class="text-center text-muted">Client</h2>
+		</a>
     </div>
-  </a>
 
-  <a href="./server">
-    <div class="vividworknav">
-      <img src="./img/srv_ref.jpg" />
-      <h2 class="text-center text-muted">Server</h2>
-      <div class="work-text-content">
-        <h2>Generate a server config</h2>
-        <p>I'm a server owner wanting to create a set of configuration <br>files to easily set up my server settings &amp; plugins.</p>
-      </div>
-    </div>
-  </a>
+		<div class="col-md-12 col-lg-6 generator_chooser_link">
+			<div style="background-image: url('./img/server_gen.svg');" class="image"></div>
+			<a href="./server">
+				<div class="work-text-content">
+					<div class="work-text-content-inner">
+						<h2>Generate a server config</h2>
+						<h3>Create a set of configuration files to easily set up a server's settings &amp; plugins.</h3>
+					</div>
+				</div>
+				<h2 class="text-center text-muted">Server</h2> </a>
+		</div>
 
 </section>
 
-  <section class="container" style="margin-top: 8%; margin-bottom: 10%;">
+  <section class="container page-header">
     <div class="row">
       <div class="jumbotron">
         <h1>Introducing CFG.TF</h1>
@@ -163,66 +164,81 @@
 
   <section id="partners" class="container" align="center">
     <div class="row text-center">
-      <p><h1 class="h1">Check out other cool sites</h1></p>
-	  <br> <!-- temporary brs, the heading needs to have more space between partner links -->
-	  <br>
-	  <br>
-      <div class="col-md-2 ">
-        <a href="http://www.teamfortress.tv/" target="_blank"><img src="./img/partner/tftv.jpg" class="img-circle img-thumbnail">
-          <p>TF.GG</p>
-        </a>
-      </div>
-      <div class="col-md-2">
-        <a href="http://comp.tf/" target="_blank"><img src="./img/partner/comptf.jpg" class="img-circle img-thumbnail">
-          <p>comp.tf</p>
-        </a>
-      </div>
-      <div class="col-md-2">
-        <a href="http://hit.tf" target="_blank"><img src="./img/partner/hittf.jpg" class="img-circle img-thumbnail">
-          <p>hit.tf</p>
-        </a>
-      </div>
-      <div class="col-md-2">
-        <a href="https://pan.tf" target="_blank"><img src="./img/partner/rsp.jpg" class="img-circle img-thumbnail">
-          <p>Ready Steady Pan</p>
-        </a>
-      </div>
-      <div class="col-md-2">
-        <a href="https://www.kritzkast.com/" target="_blank"><img src="./img/partner/kritz.jpg" class="img-circle img-thumbnail">
-          <p>KritzKast</p>
-        </a>
-      </div>
-      <div class="col-md-2">
-        <a href="http://whitelist.tf/" target="_blank"><img src="./img/partner/whitelist.jpg" class="img-circle img-thumbnail">
-          <p>whitelist.tf</p>
-        </a>
-      </div>
-      <div class="col-md-2 col-md-offset-2">
-        <a href="https://hugs.tf/" target="_blank"><img src="./img/partner/hugstf.jpg" class="img-circle img-thumbnail">
-          <p>hugs.tf</p>
-        </a>
-      </div>
-      <div class="col-md-2">
-        <a href="https://teamwork.tf/" target="_blank"><img src="./img/partner/teamwork.jpg" class="img-circle img-thumbnail">
-          <p>teamwork.tf</p>
-        </a>
-      </div>
-      <div class="col-md-2">
-        <a href="http://huds.tf/" target="_blank"><img src="./img/partner/hudstf.jpg" class="img-circle img-thumbnail">
-          <p>huds.tf</p>
-        </a>
-      </div>
-      <div class="col-md-2">
-        <a href="https://essentials.tf/" target="_blank"><img src="./img/partner/essentials.jpg" class="img-circle img-thumbnail">
-          <p>essentials.tf</p>
-        </a>
-      </div>
+      <p><h1 class="h1 page-header">Check out other cool sites</h1></p>
+
+	  <div id="partner_logos">
+			<div class="row">
+
+		      <div class="col-md-2 col-sm-4 col-xs-6">
+		        <a href="http://www.teamfortress.tv/" target="_blank"><img src="./img/partner/tftv.jpg" class="img-circle img-thumbnail">
+		          <h5>teamfortress.tv</h5>
+							<h6 class="text-muted">The home of competitive TF2</h6>
+		        </a>
+		      </div>
+		      <div class="col-md-2 col-sm-4 col-xs-6">
+		        <a href="http://comp.tf/" target="_blank"><img src="./img/partner/comptf.jpg" class="img-circle img-thumbnail">
+							<h5>comp.tf</h5>
+							<h6 class="text-muted">A hub for all things competitive TF2</h6>
+		        </a>
+		      </div>
+		      <div class="col-md-2 col-sm-4 col-xs-6">
+		        <a href="http://hit.tf" target="_blank"><img src="./img/partner/hittf.jpg" class="img-circle img-thumbnail">
+							<h5>hit.tf</h5>
+							<h6 class="text-muted">TF2 hitsounds and killsounds</h6>
+		        </a>
+		      </div>
+		      <div class="col-md-2 col-sm-4 col-xs-6">
+		        <a href="https://pan.tf" target="_blank"><img src="./img/partner/rsp.jpg" class="img-circle img-thumbnail">
+							<h5>Ready Steady Pan</h5>
+							<h6 class="text-muted">Competitive TF2 format revolving around the use of food items and the frying pan</h6>
+		        </a>
+		      </div>
+		      <div class="col-md-2 col-sm-4 col-xs-6">
+		        <a href="https://www.kritzkast.com/" target="_blank"><img src="./img/partner/kritz.jpg" class="img-circle img-thumbnail">
+		          <h5>KritzKast</h5>
+							<h6 class="text-muted">The weekly TF2 podcast</h6>
+		        </a>
+		      </div>
+		      <div class="col-md-2 col-sm-4 col-xs-6">
+		        <a href="http://whitelist.tf/" target="_blank"><img src="./img/partner/whitelist.jpg" class="img-circle img-thumbnail">
+		          <h5>whitelist.tf</h5>
+							<h6 class="text-muted">Custom whitelist generator for TF2</h6>
+		        </a>
+		      </div>
+				</div>
+				<div class="row">
+		      <div class="col-md-2 col-md-offset-2 col-sm-4 col-xs-6">
+		        <a href="https://hugs.tf/" target="_blank"><img src="./img/partner/hugstf.jpg" class="img-circle img-thumbnail">
+		          <h5>hugs.tf</h5>
+							<h6 class="text-muted">Charity Loving Hat Enthusiasts</h6>
+		        </a>
+		      </div>
+		      <div class="col-md-2 col-sm-4 col-xs-6">
+		        <a href="https://teamwork.tf/" target="_blank"><img src="./img/partner/teamwork.jpg" class="img-circle img-thumbnail">
+		          <h5>teamwork.tf</h5>
+							<h6 class="text-muted">TF2 news aggregated from various sources</h6>
+		        </a>
+		      </div>
+		      <div class="col-md-2 col-sm-4 col-xs-6">
+		        <a href="http://huds.tf/" target="_blank"><img src="./img/partner/hudstf.jpg" class="img-circle img-thumbnail">
+		          <h5>huds.tf</h5>
+							<h6 class="text-muted">Online database for Team Fortress 2 HUDs</h6>
+		        </a>
+		      </div>
+		      <div class="col-md-2 col-sm-4 col-xs-6" >
+		        <a href="https://essentials.tf/" target="_blank"><img src="./img/partner/essentials.jpg" class="img-circle img-thumbnail">
+		          <h5>essentials.tf</h5>
+							<h6 class="text-muted">Your source for everything TF2</h6>
+		        </a>
+		      </div>
+
+				</div>
+			</div>
     </div>
   </section>
 
 
-  <footer class="footer">
-    <div class="container-fluid row">
+  <footer class="footer container-fluid">
 
       <div class="col-md-4 text-center">
         <ul class="list-unstyled">
@@ -265,7 +281,6 @@
         </p>
       </div>
 
-    </div>
   </footer>
 
   </body>

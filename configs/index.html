@@ -9,30 +9,46 @@
 	<title>CFG.TF - Configs</title>
 
 	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
+	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"> -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" integrity="sha256-r1WijW/SNMgOwk5LDk7QRHr6oVYYbYWMw/1kOXfYJfg=" crossorigin="anonymous" />
 	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" integrity="sha384-dNpIIXE8U05kAbPhy3G1cz+yZmTzA6CY8Vg/u2L9xRnHjJiAK76m2BIEaSEV+/aU" crossorigin="anonymous">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
-	<script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.15/datatables.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+	<!-- Extras -->
+	<!-- fontawesome --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+	<!-- bootstrap select --><script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js" integrity="sha256-JD3g+rB9BjW6/cGEuwCue1sGtitb2aQVNs/pl4114XQ=" crossorigin="anonymous"></script>
+	<!--                  --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css" integrity="sha256-an4uqLnVJ2flr7w0U74xiF4PJjO2N5Df91R2CUmCLCA=" crossorigin="anonymous" />
+	<!-- jszip --><script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js" integrity="sha256-RbP/rbx4XeYJH6eYUniR63Jk5NEV48Gjestg49cNSWY=" crossorigin="anonymous"></script>
+	<!-- jszip-utils --><script src="https://cdnjs.cloudflare.com/ajax/libs/jszip-utils/0.0.2/jszip-utils.min.js" integrity="sha256-AIk6chbus7IS5RVpqSNV1X7Qihbi1YC0lOLuUXQZ+mw=" crossorigin="anonymous"></script>
+	<!-- jquery zoom --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-zoom/1.7.20/jquery.zoom.min.js" integrity="sha256-+kAcWA0klKCshjLIEEFOV51LntaiEdbldotJbI99Bh0=" crossorigin="anonymous"></script>
+	<!-- jquery unveil (lazy loader) --><script src="https://cdnjs.cloudflare.com/ajax/libs/unveil/1.3.0/jquery.unveil.min.js" integrity="sha256-L0QYOaMEAFNqeSmYEHbvOoH68wL9/vU5ItrVY8E+ivg=" crossorigin="anonymous"></script>
+	<!-- jquery SaveAs  --><script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.3/FileSaver.min.js" integrity="sha256-FPJJt8nA+xL4RU6/gsriA8p8xAeLGatoyTjldvQKGdE=" crossorigin="anonymous"></script>
+	<!-- datatables --><script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.15/js/jquery.dataTables.min.js" integrity="sha256-j007R7R6ijEWPa1df7FeJ6AFbQeww0xgif2SJWZOhHw=" crossorigin="anonymous"></script>
+	<!-- datatables bootstrap integration --><script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.15/js/dataTables.bootstrap.min.js" integrity="sha256-X/58s5WblGMAw9SpDtqnV8dLRNCawsyGwNqnZD0Je/s=" crossorigin="anonymous"></script>
 
 	<link rel="stylesheet" href="../css/pygments.css">
 	<link rel="stylesheet" href="../css/main.css">
-	<link rel="stylesheet" href="../css/pygments.css">
 
 	<script type="text/javascript" src="../js/utility.js"></script>
 </head>
 
 <body>
+
 	<div class="jumbotron" id="overlay">
-		<div id="loading_logo">
-			<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 464 462.9"><path fill="#18bc9c" d="M213 19.2A213 213 0 0 0 19.7 212H160a74.4 74.4 0 0 1 53-52.6V19.2zm38 0v140.4a74.4 74.4 0 0 1 52.4 52.3h140.4A213 213 0 0 0 251 19zM19.5 250A213 213 0 0 0 213 443.4V303.2a74.4 74.4 0 0 1-53.3-53.3H19.5zm284 0a74.4 74.4 0 0 1-52.5 53v140.4A213 213 0 0 0 443.8 250H303.6z"/></svg>
+		<div id="overlay_middle">
+			<div id="overlay_inner">
+				<div id="loading_logo">
+					<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 464 462.9">
+						<path fill="#18bc9c" d="M213 19.2A213 213 0 0 0 19.7 212H160a74.4 74.4 0 0 1 53-52.6V19.2zm38 0v140.4a74.4 74.4 0 0 1 52.4 52.3h140.4A213 213 0 0 0 251 19zM19.5 250A213 213 0 0 0 213 443.4V303.2a74.4 74.4 0 0 1-53.3-53.3H19.5zm284 0a74.4 74.4 0 0 1-52.5 53v140.4A213 213 0 0 0 443.8 250H303.6z"/>
+					</svg>
+				</div>
+				<noscript>
+					<p>Please enable javascript in your browser to continue.</p>
+					<style>#loading_logo svg {-webkit-animation-duration: 0ms;-moz-animation-duration: 0ms;-ms-animation-duration: 0ms;} #loading_logo svg path {fill: red;}</style>
+					<a href="../">Site Home</a>
+				</noscript>
+			</div>
 		</div>
-		<p class="page-header">Hang on a minute...</p>
-		<noscript><p>Please enable javascript in your browser to continue.</p></noscript>
 	</div>
 
 	<nav class="navbar navbar-default" role="navigation">
@@ -56,7 +72,7 @@
 			</ul>
 		</div>
 	</nav>
-	<div id="wrapper" class="container-fluid">
+	<div id="wrapper" class="container">
 		<div class="row content">
 			<h1 class="page-header">Config database</h1>
 			<p class="page-header">We have collected various configuration files that well-known players use. We do not take any responsibility for anything that may happen to your game when you install this, all files are provided as they were shared by original authors. Some configs
@@ -81,8 +97,8 @@
 			});
 		});
 	</script>
-	<footer class="footer">
-		<div class="container-fluid row">
+	<footer class="footer container-fluid">
+
 			<div class="col-md-4 text-center">
 				<ul class="list-unstyled">
 					<li><a href="//discord.gg/79cbsTu" target="_blank">Join our Discord</a></li>
@@ -120,7 +136,7 @@
 						document.write("<span id='h_" + fhs_id_h + "'></span>");
 					</script> generated so far. </p>
 			</div>
-		</div>
+
 	</footer>
 </body>
 

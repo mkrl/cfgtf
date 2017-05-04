@@ -23,7 +23,13 @@ function education_fields() {
 }
 
 function remove_education_fields(rid) {
-    $('.removeclass' + rid).remove();
+		if (rid == "all") {
+			$('#education_fields .form-group').remove();
+			console.log('all binds removed')
+		} else {
+			$('#education_fields .removeclass' + rid).remove();
+			console.log('bind ' + rid + ' removed')
+		}
 }
 
 
@@ -114,6 +120,7 @@ var resolutiony = screen.height;
 var fullres;
 var launch_novid = " -novid";
 var launch_console = " -console";
+var launch_high = "";
 
 function updatescreenmode() //updating screen mode
 {
@@ -155,6 +162,12 @@ function updatescreenmode() //updating screen mode
 			launch_console = ""
 		}
 
+		if ($('#launch_cmd_high').is(':checked')) {
+			launch_high = " -high"
+		} else {
+			launch_high = ""
+		}
+
     printcommandline();
 }
 
@@ -174,10 +187,6 @@ function updateresolution() {
 					$('.resolution_selector').hide();
 					$('.resolution_selector.aspect85').show();
 					break;
-				case "0":
-					$('.resolution_selector').hide();
-					$('.resolution_selector.aspect_custom').show();
-					break;
 		}
 
 		resolutionsel = $('#resolution_' + aspectratio + '_selector').val();
@@ -189,21 +198,28 @@ function updateresolution() {
 }
 
 function printcommandline() {
-	document.getElementById('loptions').value = "-dxlevel " + dxlevel + " " + screenmod + " -w " + resolutionx + " -h " + resolutiony + launch_console + launch_novid;
+	document.getElementById('loptions').value = "-dxlevel " + dxlevel + " " + screenmod + " -w " + resolutionx + " -h " + resolutiony + launch_console + launch_novid + launch_high;
 }
 
 $(document).ready(function() {
     $('[data-toggle="tooltip"]').tooltip(); //tooltips
+		$( "#version" ).load( "./version.txt" );
 });
 
 $(window).on('load', function(){ // global smooth loader transition
+	$('#overlay #loading_logo').addClass('fast'); // speed up spin when we've finished loading
 	$('#overlay').fadeOut(600);
+	setTimeout( function() {
+		$('#overlay #loading_logo').removeClass('fast');// after its hidden, replace fast spin with really slow spin. this slow spin is what fades back in before we change nav pages
+		$('#overlay #loading_logo').addClass('idle');  // the next page's regular spin makes it seem like the previous slow spinner speeds up when it starts loading, masking the jitteryness of page navigation a bit
+	}, 1000);
 
 	$("nav a").not( "nav .dropdown-toggle" ).click( function(){
 		var href = $(this).attr('href');
 
-		$('#overlay').fadeIn(200);
-		setTimeout(function() {window.location = href}, 250);
-		return false;
+		$('#overlay').fadeIn(200); // quick fade back in
+		setTimeout(function() {window.location = href}, 250); // change location after a tiny delay so the fadein plays out
+		setTimeout(function() {$('#overlay').fadeOut()}, 2500); // this is so the overlay isnt visible and blocking the screen when the user clicks back in their browser.
+		return false; // unfortunately the overlay can fade back in if the user takes too long to get a response from the next page but they probably have bigger problems than janky loading animations
 	});
 });

@@ -79,7 +79,7 @@ jQuery(function($) {
 
 			/* 	NEW STUFF, can work slow with large files, due to how this works downloaded files take 2x of their size in RAM
 				Downloading multiple zips and including contents into config.zip */
-	
+
 				// function to read in a list of source zip files and return a merged archive
 				function mergeZips(sources,zip) {
 					return readSources(sources, zip)
@@ -107,26 +107,26 @@ jQuery(function($) {
 							}
 							// resolving the promise with another promise will pass the promise
 							// down the chain:
-							resolve(zip.loadAsync(data, {createFolders: true})); 
+							resolve(zip.loadAsync(data, {createFolders: true}));
 						});
 					});
 				}
-				
 
-				
+
+
 			/* 	/NEW STUFF
 				 */
 
 
 
 
-	
+
 	$('#download_form').on('submit', function() {
 		resetMessage();
-		
-		//An array of zip files that should be inclided. 
-		var zippies = []; 
-		
+
+		//An array of zip files that should be inclided.
+		var zippies = [];
+
 		var zip = new JSZip();
 		var zipbin = function(src, dest) {
 			zip.file(dest, urlToPromise(src), {binary: true});
@@ -177,6 +177,14 @@ jQuery(function($) {
 		var ds_snd    = $('#ds_sound').val();
 		var ds_ks     = $('#ds_ks').val();
 
+		// forced gfx settings
+		var gfx_force_mode = $('#gfx_force_settings_cb').is(':checked');
+		var gfx_force_eyes = $('#gfx_force_eyes').is(':checked');
+		var gfx_force_ragdolls = $('#gfx_force_ragdolls').is(':checked');
+		var gfx_force_gib = $('#gfx_force_gib').is(':checked');
+		var gfx_force_shadows = $('#gfx_force_shadows').is(':checked');
+		var gfx_force_glow = $('#gfx_force_glow').is(':checked');
+
 		//get custom binds
 		var bindings = $('#bindings').val();
 		var bindings_scout = $('#bindings_scout').val();
@@ -188,11 +196,11 @@ jQuery(function($) {
 		var bindings_medic = $('#bindings_medic').val();
 		var bindings_sniper = $('#bindings_sniper').val();
 		var bindings_spy = $('#bindings_spy').val();
-		
+
 		//medigun check bind key
 		var medicheckbind = $('#medicheckbind').val();
-		
-		
+
+
 		//getting switcher values (if selected)
 
 		var xhair = $('#crosshairswitcherid').is(':checked');
@@ -265,7 +273,7 @@ jQuery(function($) {
 				engineer_switcher += '//crosshair switcher\nexec crosshairswitcher/switcher; engineer';
 				medic_switcher += '//crosshair switcher\nexec crosshairswitcher/switcher; medic';
 				sniper_switcher += '//crosshair switcher\nexec crosshairswitcher/switcher; sniper';
-				spy_switcher += '//crosshair switcher\nexec crosshairswitcher/switcher; spy';				
+				spy_switcher += '//crosshair switcher\nexec crosshairswitcher/switcher; spy';
 				var xhair_settings = [
 					'//   use the aliases like this: size; color; type; viewmodel FOV or viewmodel off',
 					'//  _______________________________________________________________________________',
@@ -337,7 +345,7 @@ jQuery(function($) {
 			if (iswhat === 'sourceres') {
 				zipbin('../make/addons/SourceRes/addons/SourceRes.dll', 'addons/SourceRes.dll');
 				zipbin('../make/addons/SourceRes/addons/SourceRes.vdf', 'addons/SourceRes.vdf');
-			}			
+			}
 			if (iswhat === 'hud') {
 				zippies.push(url); //new stuff
 			}
@@ -355,7 +363,7 @@ jQuery(function($) {
 			if (iswhat === 'tweaks') {
 				zipbin(url, 'cfg/tweaks/' + filename);
 				customs += 'exec tweaks/' + filename.slice(0, -4) + '\n';
-			}			
+			}
 			if (iswhat === 'medicheck') {
 				var medichecksettings = [
 					'//Medigun check script',
@@ -379,16 +387,16 @@ jQuery(function($) {
 					'alias orig_sniper "alias originalclass "join_class sniper""'
 				].join('\n');
 				zip.file('cfg/medicheck.cfg', medichecksettings);
-				scout_switcher += '\n\n//medigun checker script\nexec medcheck; orig_scout\n\n';				
-				soldier_switcher += '\n\n//medigun checker script\nexec medcheck; orig_soldier\n\n';           
-				pyro_switcher += '\n\n//medigun checker script\nexec medcheck; orig_pyro\n\n';                 
-				demo_switcher += '\n\n//medigun checker script\nexec medcheck; orig_demoman\n\n';              
-				heavy_switcher += '\n\n//medigun checker script\nexec medcheck; orig_heavyweapons\n\n';        
-				engineer_switcher += '\n\n//medigun checker script\nexec medcheck; orig_engineer\n\n';        
+				scout_switcher += '\n\n//medigun checker script\nexec medcheck; orig_scout\n\n';
+				soldier_switcher += '\n\n//medigun checker script\nexec medcheck; orig_soldier\n\n';
+				pyro_switcher += '\n\n//medigun checker script\nexec medcheck; orig_pyro\n\n';
+				demo_switcher += '\n\n//medigun checker script\nexec medcheck; orig_demoman\n\n';
+				heavy_switcher += '\n\n//medigun checker script\nexec medcheck; orig_heavyweapons\n\n';
+				engineer_switcher += '\n\n//medigun checker script\nexec medcheck; orig_engineer\n\n';
 				medic_switcher += '\n\n//medigun checker script\nexec medcheck; orig_medic\n\n';
 				sniper_switcher += '\n\n//medigun checker script\nexec medcheck; orig_sniper\n\n';
-				
-				
+
+
 			}
 			if (iswhat === 'bindscheck') {
 				var i = 1;
@@ -487,6 +495,14 @@ jQuery(function($) {
 				'ds_min_streak '+ds_ks    +'\n',
 				ds_del    ? 'ds_autodelete 1\n' : '',
 				ds_screen ? 'ds_screens 1\n' : ''
+			].join(''), '///---'),
+			surround('\n', [
+				gfx_force_mode ? '///--- forced graphics settings enabled\n' : '',
+				gfx_force_mode && gfx_force_eyes ? '///--- facial features\nr_eyes 1\nr_flex 1\nr_lod 1\nr_rootlod 1\nr_teeth 1\n' : '',
+				gfx_force_mode && gfx_force_ragdolls ? '///--- ragdolls\ncl_ragdoll_fade_time 15\ncl_ragdoll_forcefade 0\ncl_ragdoll_physics_enable 1\ng_ragdoll_fadespeed 600\ng_ragdoll_lvfadespeed 100\nragdoll_sleepaftertime "5.0f"\n' : '',
+				gfx_force_mode && gfx_force_gib ? '///--- gibs\ncl_phys_props_enable 1\ncl_phys_props_max 128\nprops_break_max_pieces -1\nr_propsmaxdist 1000\nviolence_agibs 1\nviolence_hgibs 1\n' : '',
+				gfx_force_mode && gfx_force_shadows ? '///---shadows \nmat_shadowstate 1\nr_shadowmaxrendered 11\nr_shadowrendertotexture 1\nr_shadows 1\nnb_shadow_dist 400\n' : '',
+				gfx_force_mode && gfx_force_glow ? '///--- glow outline\nglow_outline_effect_enable 1\n' : '',
 			].join(''), '///---'),
 			'',
 			'cl_training_class_unlock_all',
@@ -641,12 +657,12 @@ jQuery(function($) {
 					'',
 					spy_switcher
 				].join('\n');
-				
+
 		zip.file('cfg/autoexec.cfg', autoexec);
 		zip.file('cfg/settings.cfg', settings);
 		zip.file('cfg/network.cfg', network);
 		zip.file('cfg/binds.cfg', binds);
-		
+
 		zip.file('cfg/scout.cfg', binds_scout);
 		zip.file('cfg/soldier.cfg', binds_soldier);
 		zip.file('cfg/pyro.cfg', binds_pyro);
@@ -659,7 +675,7 @@ jQuery(function($) {
 
 		// when everything has been downloaded, we can trigger the dl
 		mergeZips(zippies,zip).then(function(zip) { //new thing, nested promisies
-			zip.generateAsync({type: 'blob'}, 
+			zip.generateAsync({type: 'blob'},
 			function(metadata) {
 				var msg = 'Packing : ' + metadata.percent.toFixed(2) + ' %';
 				if (metadata.currentFile) {

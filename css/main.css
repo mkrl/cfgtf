@@ -1,17 +1,3 @@
-#downloader_application form {
-  margin-bottom: 10px;
-}
-
-/* hiding horizontal scrollbar */
-body{
-  overflow-x: hidden;
-  overflow-y: scroll;
-}
-
-#downloader_application ul {
-  list-style-type: none;
-}
-
 .browser_support th {
   border-bottom-width: 3px !important;
 }
@@ -23,46 +9,6 @@ body{
 .support_op {border-bottom-color: #C42122 !important;}
 .support_nd {border-bottom-color: #8CC84B !important;}
 
-#overlay {
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  z-index: 5000;
-  top: 0;
-  left: 0;
-  float: left;
-  text-align: center;
-  padding-top: 25%;
-}
-#wrapper {
-  width: 60%;
-}
-#wrapper .container {
-  max-width: 100%;
-  display: block;
-}
-.colored-block {
-  width: 100%;
-  padding: 60px 0px;
-  color: #f7f7f7;
-}
-.dark {
-  background: #222;
-  color: #666;
-  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.9);
-}
-.lessdark {
-  background: #474747;
-  color: #666
-}
-.shadowed {
-  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.9)
-}
-.shadowed_out {
--webkit-box-shadow: 0px 0px 34px 13px rgba(0,0,0,0.14);
--moz-box-shadow: 0px 0px 34px 13px rgba(0,0,0,0.14);
-box-shadow: 0px 0px 34px 13px rgba(0,0,0,0.14);
-}
 .footer {
   margin-top: 10%;
   color: rgb(102, 102, 102);
@@ -71,58 +17,60 @@ box-shadow: 0px 0px 34px 13px rgba(0,0,0,0.14);
   border-top: 1px solid rgb(0, 0, 0);
 }
 
-.vividworknav {
-  background-color: #222;
-	margin-top: -50px;
-  width: 50%;
-  height: auto;
-  float: left;
-  padding-bottom: 1%;
-  position: relative;
+.text-code {
+  font-family:monospace;
+  white-space: pre-wrap;
+  padding-left: 2em;
 }
-.vividworknav:hover img {
-  opacity: 0.3;
-}
-.vividworknav:hover .work-text-content {
-  opacity: 1;
-}
-.vividworknav img {
-  padding: 0;
-  width: 100%;
-  display: block;
-  opacity: 1;
-}
-.vividworknav img,
-.work-text-content {
-  -webkit-transition: opacity 0.5s ease-out;
-  -moz-transition: opacity 0.5s ease-out;
-  -o-transition: opacity 0.5s ease-out;
-  transition: opacity 0.5s ease-out;
-}
-.work-text-content {
+
+
+/* gen chooser stuff*/
+#generator_chooser .work-text-content {
+	color: white;
   position: absolute;
-  color: white;
   left: 0;
-  top: 25%;
+  top: 0;
   right: 0;
   bottom: 0;
-  font-size: 24px;
   text-align: center;
   opacity: 0;
 }
-
 #generator_chooser {
-  padding-left: 0;
-  padding-right: 0;
+	background: #222;
+	color: #666;
+	-webkit-box-shadow: 0px 0px 34px 13px rgba(0,0,0,0.14);
+	-moz-box-shadow: 0px 0px 34px 13px rgba(0,0,0,0.14);
+	box-shadow: 0px 0px 34px 13px rgba(0,0,0,0.14);
+}
+#generator_chooser .image {
+	width: 100%;
+	height: 36em;
+	display: inline-block;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+#generator_chooser .work-text-content:hover {
+  background-color: rgba(0,0,0,0.5);
+  opacity: 1;
+}
+#generator_chooser .work-text-content-inner {
+	position: relative;
+  top: 35%;
+}
+#generator_chooser .work-text-content, .work-text-content:hover {
+	-webkit-transition: opacity 0.5s, background-color 0.5s ease-out;
+	-moz-transition: opacity 0.5s, background-color 0.5s ease-out;
+	-o-transition: opacity 0.5s, background-color 0.5s ease-out;
+	transition: opacity 0.5s, background-color 0.5s ease-out;
 }
 
-.navbar {
-  margin-bottom: 0;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
-}
-
+/* overlay stuff */
+/* absolute center the loader */
+#overlay { position: fixed; z-index: 5000; text-align: center; display: table; height: 100%; width: 100% }
+#overlay #overlay_middle  {display: table-cell; vertical-align: middle}
+#overlay #overlay_inner {margin-left: auto; margin-right: auto;}
+/* spinner animation */
 @-moz-keyframes spin {
   from { -moz-transform: rotate(0deg); }
   to { -moz-transform: rotate(360deg); }
@@ -136,13 +84,14 @@ box-shadow: 0px 0px 34px 13px rgba(0,0,0,0.14);
   to {transform:rotate(360deg);}
 }
 #loading_logo {
-  width: 80px;
-  height: 80px;
+  width: 10em;
+  height: 10em;
   background-repeat: no-repeat;
   background-size: contain;
   margin: 0 auto;
   background-position: center center;
-
+}
+#loading_logo svg {
   -webkit-animation-name: spin;
   -webkit-animation-duration: 2000ms;
   -webkit-animation-iteration-count: infinite;
@@ -157,25 +106,41 @@ box-shadow: 0px 0px 34px 13px rgba(0,0,0,0.14);
   -ms-animation-timing-function: linear;
   -o-transition: rotate(3600deg);
 }
-.text-code {
-  font-family:monospace;
-  white-space: pre-wrap;
-  padding-left: 2em;
+#loading_logo.fast svg {
+  -webkit-animation-duration: 600ms;
+  -moz-animation-duration: 600ms;
+  -ms-animation-duration: 600ms;
+}
+#loading_logo.idle svg {
+  -webkit-animation-duration: 10000ms;
+  -moz-animation-duration: 10000ms;
+  -ms-animation-duration: 10000ms;
 }
 
-blockquote {
-  font-style: italic;
-}
-
+/* hide horizontal scrollbar on body */ body { overflow-x: hidden; overflow-y: scroll; }
 /* separate the lists a bit more, its too squashed */ .radio label, .checkbox label { padding-top: 8px; }
 /* re-pad unstyled lists */ .list-unstyled { padding-left: 1em; }
 /* pad partner logos away from their links */ #partners p { margin-top: 1em; margin-bottom: 1em; }
 /* disable gradient on carousel controls until I figure out why jquery zoom makes it bleed out of the element */ .carousel-control.left, .carousel-control.right { background-image: none; }
 /* pad labels away from nestedd inputs a little */ label input, label select { margin-left: 1em; }
 /* dropdowns in launch options are touching */ #display_settings .bootstrap-select { margin-bottom: 2px; }
-/* filter on configs/index.html needs to be pulled right */ #cfgs_filter { float: right; }
+/* filter on configs/index.html needs to be pulled right */ #cfgs_filter, #cfgs_paginate { float: right; }
+/* the heading needs to have more space between partner_logos */ #partner_logos { margin-top: 4em; }
+/* stop partner logos getting super large */ #partner_logos .img-thumbnail { max-width: 10em; }
+/* un-round the navbar corners */ .navbar { margin-bottom: 0; -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0; }
+/* unpad the giant generator chooser on the front page so it hits the edges */ #generator_chooser  { padding-left: 0; padding-right: 0; }
+/* opinion quote looks much nicer italicized */ blockquote { font-style: italic; }
+/* move audio preview away */ #killsound_player, #hitsound_player { margin-left: 1em; cursor: pointer; } 
 
 p.header-remote {
 	display: inline-block; margin-bottom: 10%;
+}
 
+.crosshair {
+	width: 4em;
+	height: 4em;
+	display: inline-block;
+	background-position: center;
+	background-repeat: no-repeat;
+  vertical-align : middle;
 }
