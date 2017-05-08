@@ -130,7 +130,8 @@
 /* un-round the navbar corners */ .navbar { margin-bottom: 0; -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0; }
 /* unpad the giant generator chooser on the front page so it hits the edges */ #generator_chooser  { padding-left: 0; padding-right: 0; }
 /* opinion quote looks much nicer italicized */ blockquote { font-style: italic; }
-/* move audio preview away */ #killsound_player, #hitsound_player { margin-left: 1em; cursor: pointer; } 
+/* move audio preview away */ #killsound_player, #hitsound_player { margin-left: 1em; cursor: pointer; }
+/* unpad nohatsmod columns */ #nohats_container_inner { padding: 0; }
 
 p.header-remote {
 	display: inline-block; margin-bottom: 10%;
