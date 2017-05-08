@@ -11,6 +11,11 @@ function updateConnect() {
 
 }
 
+function pad (str, max) { // http://stackoverflow.com/a/6466243
+	str = str.toString();
+	return str.length < max ? pad("0" + str, max) : str;
+}
+
 var room = 40; //dynamic bind fields
 function education_fields() {
     room++;
@@ -93,20 +98,20 @@ function isNumberKey(evt) //allowing numbers and decimal points
 var dxlevel = "90"; //updating dxlevel below
 function updatedxlevel() {
     switch ($("#gfx_selector").val()) {
-        case "toaster":
-        case "stable":
-        case "feliklowend":
-        case "rhapsodydx8":
+        case "comanglia_toaster":
+        case "comanglia_stability":
+        case "felik_lowend":
+        case "rhapsody_dx8":
             dxlevel = "81";
             break;
-        case "fine":
-        case "felik":
-        case "rhapsodydx9":
+        case "comanglia_hq":
+        case "felik_base":
+        case "rhapsody_dx9":
         case "myown":
             dxlevel = "90";
             break;
-        case "fancy":
-        case "felikeyecandy":
+        case "comanglia_cinema":
+        case "felik_eyecandy":
             dxlevel = "98";
     }
 		printcommandline();
