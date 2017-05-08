@@ -3818,7 +3818,6 @@
 		<script>
 			$(document).ready(function() { // toggles autoplay of sounds
 				killsoundmuter = true
-				console.log(killsoundmuter)
 				$('#killsound_muter').click(function() {
 					killsoundmuter = !killsoundmuter
 					$('#killsound_muter_warn').fadeToggle();
@@ -3999,7 +3998,7 @@
 											source2.src = sourceUrl;
 											audio2.load();
 											if (killsoundmuter == false) {
-												audio.play();
+												audio2.play();
 											}
 										}
 									}
