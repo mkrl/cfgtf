@@ -2054,11 +2054,7 @@
 			if (typeof crosshairSize === 'undefined' ) { crosshairSize = '1.0' }
 			if (typeof crosshairColor === 'undefined' ) { crosshairColor = 'black' }
 
-			$('<span id="crosshair_' + selectedID + '" class="crosshair" style="padding-right:1em;"></span>').prependTo( $('#' + selectedID).closest('td') );
-			$('#crosshair_' + selectedID).load('../img/crosshairs/svg/' + crosshairName + '.svg'); //load svg
-			$('#crosshair_' + selectedID).css({ fill: crosshairColor });
-			// $('#crosshair_' + selectedID).css({ stroke: crosshairColor });
-			$('#crosshair_' + selectedID).css({ transform: 'scale(' + crosshairSize + ')' });
+			$('<span class="crosshair"><span id="xhair_' + selectedID + '" class="xhair-' + crosshairName + '" style="color: ' + crosshairColor + '; font-size: ' + crosshairSize + 'em;"></span></span>').prependTo( $('#' + selectedID).closest('td') );
 		});
 
 		// update the crosshair when selector changes
@@ -2081,11 +2077,15 @@
 			if (typeof crosshairName === 'undefined' ) { crosshairName = 'default' }
 			if (typeof crosshairSize === 'undefined' ) { crosshairSize = '1.0' }
 			if (typeof crosshairColor === 'undefined' ) { crosshairColor = 'black' }
-			$('#crosshair_' + selectedID + ' svg').remove();//remove old svg
-			$('#crosshair_' + selectedID).load('../img/crosshairs/svg/' + crosshairName + '.svg');//load new svg
-			$('#crosshair_' + selectedID).css({ fill: crosshairColor });
-			// $('#crosshair_' + selectedID).css({ stroke: crosshairColor });
-			$('#crosshair_' + selectedID).css({ transform: 'scale(' + crosshairSize + ')' });
+
+			$('#xhair_' + selectedID).removeClass(function (index, className) {
+			    return (className.match (/(^|\s)xhair-\S+/g) || []).join(' ');
+			});
+			$('#xhair_' + selectedID).addClass('xhair-' + crosshairName)
+			$('#xhair_' + selectedID).css({ 'color': crosshairColor });
+			$('#xhair_' + selectedID).css({ 'font-size': crosshairSize + 'em' });
+			//$('#xhair_' + selectedID).parent().css({ 'line-height': crosshairSize + 'em' });
+
 			});
 
 

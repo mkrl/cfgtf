@@ -135,12 +135,3 @@
 p.header-remote {
 	display: inline-block; margin-bottom: 10%;
 }
-
-.crosshair {
-	width: 4em;
-	height: 4em;
-	display: inline-block;
-	background-position: center;
-	background-repeat: no-repeat;
-  vertical-align : middle;
-}
