@@ -27,6 +27,7 @@
 		<!-- Local css -->
     <link rel="stylesheet" href="../css/pygments.css">
     <link rel="stylesheet" href="../css/main.css">
+		<link rel="stylesheet" href="../css/tf2-xhair.css">
 		<!-- Local js -->
 		<script type="text/javascript" src="../js/utility.js"></script>
   </head>
@@ -1825,7 +1826,7 @@
 			<h3><abbr title="Head-Up Display" class="initialism">HUD</abbr> <span class="label label-default">Beta</span></h3>
 			<p class="text-muted">Determines how your interface looks</p>
 			<p class="alert alert-info">More HUDs coming up very soon! Click on a "HUD preview" for detailed HUD information.</p>
-			<select class="selectpicker" data-live-search="true" id="hudselector" data-header='Hover your mouse over "HUD preview" button to see a preview.'>
+			<select class="selectpicker" data-live-search="true" id="hudselector" data-header="Hover your mouse over &quot;HUD&quot; preview button to see a preview.">
 			  <option name="huds" data-name="nothing" 	data-link="#" data-url="" selected>Default HUD</option>
 			  <option data-subtext="03-31-2017" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=207" data-name="hud" data-url="./huds/budhud.zip">budhud</option>
 			  <option data-subtext="02-02-2017" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=217" data-name="hud" data-url="./huds/broeselhud_blue.zip">broeselhud_blue</option>
@@ -3926,7 +3927,7 @@
 							<source id="wav_src" src="" type="audio/ogg" />Your browser does not support audio previews.
 						</audio>
 	      </label>
-				<a id="hitsound_player" style="display:none;"><i class="fa fa-volume-up" aria-hidden="true"></i> </a>
+				<a id="hitsound_player" style="display:none;"><i class="fa fa-play" aria-hidden="true"></i> </a>
 			</li>
 
 			<li>
@@ -3936,35 +3937,35 @@
    					<select class="selectpicker" id="selectionkill">
 							<option value="none" data-name="nokillsound" data-url=" ">None</option>
 							<optgroup label="Game Hitsounds">
-								<option value="../make/snd/ogg/Q3.ogg" data-name="hitsound" data-url="../make/snd/Q3.wav">Quake 3</option>
-								<option value="../make/snd/ogg/UT.ogg" data-name="hitsound" data-url="../make/snd/UT.wav">Unreal Tournament</option>
-								<option value="../make/snd/ogg/QL.ogg" data-name="hitsound" data-url="../make/snd/QL.wav">Quake Live</option>
-								<option value="../make/snd/ogg/cod.ogg" data-name="hitsound" data-url="../make/snd/cod.wav">Call of Duty</option>
-								<option value="../make/snd/ogg/owhit.ogg" data-name="hitsound" data-url="../make/snd/owhit.wav">Overwatch</option>
-								<option value="../make/snd/ogg/fortressforever.ogg" data-name="hitsound" data-url="../make/snd/fortressforever.wav">Fortress Forever</option>
+								<option value="../make/snd/ogg/Q3.ogg" data-name="killsound" data-url="../make/snd/Q3.wav">Quake 3</option>
+								<option value="../make/snd/ogg/UT.ogg" data-name="killsound" data-url="../make/snd/UT.wav">Unreal Tournament</option>
+								<option value="../make/snd/ogg/QL.ogg" data-name="killsound" data-url="../make/snd/QL.wav">Quake Live</option>
+								<option value="../make/snd/ogg/cod.ogg" data-name="killsound" data-url="../make/snd/cod.wav">Call of Duty</option>
+								<option value="../make/snd/ogg/owhit.ogg" data-name="killsound" data-url="../make/snd/owhit.wav">Overwatch</option>
+								<option value="../make/snd/ogg/fortressforever.ogg" data-name="killsound" data-url="../make/snd/fortressforever.wav">Fortress Forever</option>
 							</optgroup>
 							<optgroup label="Generic">
-								<option value="../make/snd/ogg/sonicring.ogg" data-name="hitsound" data-url="../make/snd/sonicring.wav">Sonic Ring</option>
-								<option value="../make/snd/ogg/quack.ogg" data-name="hitsound" data-url="../make/snd/quack.wav">Quack</option>
-								<option value="../make/snd/ogg/mariocoin.ogg" data-name="hitsound" data-url="../make/snd/mariocoin.wav">Mario Coin</option>
-								<option value="../make/snd/ogg/TINGG.ogg" data-name="hitsound" data-url="../make/snd/TINGG.wav">Ting</option>
-								<option value="../make/snd/ogg/funky.ogg" data-name="hitsound" data-url="../make/snd/funky.wav">Funky</option>
-								<option value="../make/snd/ogg/combine.ogg" data-name="hitsound" data-url="../make/snd/combine.wav">HL2 Combine</option>
-								<option value="../make/snd/ogg/mgs.ogg" data-name="hitsound" data-url="../make/snd/mgs.wav">MGS Alert</option>
-								<option value="../make/snd/ogg/jbird.ogg" data-name="hitsound" data-url="../make/snd/jbird.wav">Jbird's hitsound</option>
-								<option value="../make/snd/ogg/winxp_error.ogg" data-name="hitsound" data-url="../make/snd/winxp_error.wav">Windows XP error sound</option>
-								<option value="../make/snd/ogg/mlg.ogg" data-name="hitsound" data-url="../make/snd/mlg.wav">Airhorn</option>
-								<option value="../make/snd/ogg/prec.ogg" data-name="hitsound" data-url="../make/snd/prec.wav">P-Rec</option>
-								<option value="../make/snd/ogg/sonicspring.ogg" data-name="hitsound" data-url="../make/snd/sonicspring.wav">Sonic Spring</option>
-								<option value="../make/snd/ogg/doot.ogg" data-name="hitsound" data-url="../make/snd/doot.wav">Skull Trumpet</option>
-								<option value="../make/snd/ogg/acc.ogg" data-name="hitsound" data-url="../make/snd/acc.wav">Acc-e-min</option>
-								<option value="../make/snd/ogg/owkill.ogg" data-name="hitsound" data-url="../make/snd/owkill.wav">Overwatch Killsound</option>
-								<option value="../make/snd/ogg/nintswitch.ogg" data-name="hitsound" data-url="../make/snd/nintswitch.wav">Nintendo Switch</option>
-								<option value="../make/snd/ogg/zoop.ogg" data-name="hitsound" data-url="../make/snd/zoop.wav">Zoop</option>
-								<option value="../make/snd/ogg/doof.ogg" data-name="hitsound" data-url="../make/snd/doof.wav">Doof</option>
-								<option value="../make/snd/ogg/pop.ogg" data-name="hitsound" data-url="../make/snd/pop.wav">Pop</option>
-								<option value="../make/snd/ogg/crunchy_8-bit.ogg" data-name="hitsound" data-url="../make/snd/crunchy_8-bit.wav">Crunchy 8-bit</option>
-								<option value="../make/snd/ogg/8-bit.ogg" data-name="hitsound" data-url="../make/snd/8-bit.wav">8-bit</option>
+								<option value="../make/snd/ogg/sonicring.ogg" data-name="killsound" data-url="../make/snd/sonicring.wav">Sonic Ring</option>
+								<option value="../make/snd/ogg/quack.ogg" data-name="killsound" data-url="../make/snd/quack.wav">Quack</option>
+								<option value="../make/snd/ogg/mariocoin.ogg" data-name="killsound" data-url="../make/snd/mariocoin.wav">Mario Coin</option>
+								<option value="../make/snd/ogg/TINGG.ogg" data-name="killsound" data-url="../make/snd/TINGG.wav">Ting</option>
+								<option value="../make/snd/ogg/funky.ogg" data-name="killsound" data-url="../make/snd/funky.wav">Funky</option>
+								<option value="../make/snd/ogg/combine.ogg" data-name="killsound" data-url="../make/snd/combine.wav">HL2 Combine</option>
+								<option value="../make/snd/ogg/mgs.ogg" data-name="killsound" data-url="../make/snd/mgs.wav">MGS Alert</option>
+								<option value="../make/snd/ogg/jbird.ogg" data-name="killsound" data-url="../make/snd/jbird.wav">Jbird's hitsound</option>
+								<option value="../make/snd/ogg/winxp_error.ogg" data-name="killsound" data-url="../make/snd/winxp_error.wav">Windows XP error sound</option>
+								<option value="../make/snd/ogg/mlg.ogg" data-name="killsound" data-url="../make/snd/mlg.wav">Airhorn</option>
+								<option value="../make/snd/ogg/prec.ogg" data-name="killsound" data-url="../make/snd/prec.wav">P-Rec</option>
+								<option value="../make/snd/ogg/sonicspring.ogg" data-name="killsound" data-url="../make/snd/sonicspring.wav">Sonic Spring</option>
+								<option value="../make/snd/ogg/doot.ogg" data-name="killsound" data-url="../make/snd/doot.wav">Skull Trumpet</option>
+								<option value="../make/snd/ogg/acc.ogg" data-name="killsound" data-url="../make/snd/acc.wav">Acc-e-min</option>
+								<option value="../make/snd/ogg/owkill.ogg" data-name="killsound" data-url="../make/snd/owkill.wav">Overwatch Killsound</option>
+								<option value="../make/snd/ogg/nintswitch.ogg" data-name="killsound" data-url="../make/snd/nintswitch.wav">Nintendo Switch</option>
+								<option value="../make/snd/ogg/zoop.ogg" data-name="killsound" data-url="../make/snd/zoop.wav">Zoop</option>
+								<option value="../make/snd/ogg/doof.ogg" data-name="killsound" data-url="../make/snd/doof.wav">Doof</option>
+								<option value="../make/snd/ogg/pop.ogg" data-name="killsound" data-url="../make/snd/pop.wav">Pop</option>
+								<option value="../make/snd/ogg/crunchy_8-bit.ogg" data-name="killsound" data-url="../make/snd/crunchy_8-bit.wav">Crunchy 8-bit</option>
+								<option value="../make/snd/ogg/8-bit.ogg" data-name="killsound" data-url="../make/snd/8-bit.wav">8-bit</option>
 							</optgroup>
 						  <optgroup label="Voicelines">
 								<option value="../make/snd/ogg/impressive_q3.ogg" data-name="killsound" data-url="../make/snd/impressive_q3.wav">Quake - Impressive</option>
@@ -4020,10 +4021,10 @@
 							<source id="wav_src2" src="" type="audio/ogg" />Your browser does not support audio previews.
 						</audio>
 	      </label>
-				<a id="killsound_player" style="display:none;"><i class="fa fa-volume-up" aria-hidden="true"></i> </a>
+				<a id="killsound_player" style="display:none;"><i class="fa fa-play" aria-hidden="true"></i> </a>
 			</li>
 		</ul>
-		<p class="text-info">Click the <i class="fa fa-volume-up" aria-hidden="true"></i> icon to hear audio preview.</p>
+		<p class="text-info">Click the <i class="fa fa-play" aria-hidden="true"></i> icon to hear audio preview.</p>
 
     <hr>
 	</div>
