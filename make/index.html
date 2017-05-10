@@ -1996,6 +1996,7 @@
 			crosshairName = $('#' + selectedID + ' optgroup[label*="Style"]').find(':selected').val();
 			crosshairSize = $('#' + selectedID + ' optgroup[label*="Size"]').find(':selected').val();
 			crosshairColor =  $('#' + selectedID + ' optgroup[label*="Color"]').find(':selected').val();
+
 			switch (crosshairSize) {
 				case "tiny": crosshairSize = "0.2"; break;
 				case "smallest": crosshairSize = "0.3"; break;
@@ -2007,9 +2008,26 @@
 				case "invisible": crosshairSize = "0"; break;
 			};
 
+
 			if (typeof crosshairName === 'undefined' ) { crosshairName = 'default' }
-			if (typeof crosshairSize === 'undefined' ) { crosshairSize = '1.0' }
+			if (typeof crosshairSize === 'undefined' ) { crosshairSize = '0.8' }
 			if (typeof crosshairColor === 'undefined' ) { crosshairColor = 'black' }
+			switch (crosshairColor) {
+				case "red": crosshairColor = '#FF0000'; break;
+				case "green": crosshairColor = '#00FF00'; break;
+				case "blue": crosshairColor = '#0000FF'; break;
+				case "yellow": crosshairColor = '#FFFF00'; break;
+				case "cyan": crosshairColor = '#00FFFF'; break;
+				case "pink": crosshairColor = '#FF00FF'; break;
+				case "orange": crosshairColor = 'rgb(255,128,0)'; break;
+				case "purple": crosshairColor = 'rgb(128,0,255)'; break;
+				case "mint": crosshairColor = 'rgb(0,255,128)'; break;
+				case "lime": crosshairColor = 'rgb(178,255,0)'; break;
+				case "skyblue": crosshairColor = 'rgb(60,158,255)'; break;
+				case "black": crosshairColor = '#000'; break;
+				case "grey": crosshairColor = 'rgb(128,128,128)'; break;
+				case "white": crosshairColor = '#FFF'; break;
+			};
 
 			$('<span class="crosshair"><span id="xhair_' + selectedID + '" class="xhair-' + crosshairName + '" style="color: ' + crosshairColor + '; font-size: ' + crosshairSize + 'em;"></span></span>').prependTo( $('#' + selectedID).closest('td') );
 		});
@@ -2032,8 +2050,24 @@
 			};
 
 			if (typeof crosshairName === 'undefined' ) { crosshairName = 'default' }
-			if (typeof crosshairSize === 'undefined' ) { crosshairSize = '1.0' }
+			if (typeof crosshairSize === 'undefined' ) { crosshairSize = '0.8' }
 			if (typeof crosshairColor === 'undefined' ) { crosshairColor = 'black' }
+			switch (crosshairColor) {
+				case "red": crosshairColor = '#FF0000'; break;
+				case "green": crosshairColor = '#00FF00'; break;
+				case "blue": crosshairColor = '#0000FF'; break;
+				case "yellow": crosshairColor = '#FFFF00'; break;
+				case "cyan": crosshairColor = '#00FFFF'; break;
+				case "pink": crosshairColor = '#FF00FF'; break;
+				case "orange": crosshairColor = 'rgb(255,128,0)'; break;
+				case "purple": crosshairColor = 'rgb(128,0,255)'; break;
+				case "mint": crosshairColor = 'rgb(0,255,128)'; break;
+				case "lime": crosshairColor = 'rgb(178,255,0)'; break;
+				case "skyblue": crosshairColor = 'rgb(60,158,255)'; break;
+				case "black": crosshairColor = '#000'; break;
+				case "grey": crosshairColor = 'rgb(128,128,128)'; break;
+				case "white": crosshairColor = '#FFF'; break;
+			};
 
 			$('#xhair_' + selectedID).removeClass(function (index, className) {
 			    return (className.match (/(^|\s)xhair-\S+/g) || []).join(' ');
