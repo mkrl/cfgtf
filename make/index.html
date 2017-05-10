@@ -233,11 +233,9 @@
 
 			});
 			//nohats preview
-			$('#nohats_preview_toggle').click(function() {
-				$('#nohats_preview').fadeToggle();
+			$('#nohats_checkbox').click(function() {
+				$('#nohats_container ').fadeToggle();
 			});
-
-
 			$('input[name=nohats]').change(function() {
 				var nohat = $('input[name=nohats]:checked').val();
 				$('#nohats_preview img').attr('src', '../img/nohatsmod/' + nohat + '.jpg');
@@ -1787,8 +1785,14 @@
   		      Disable background sounds <a href="http://etf2l.org/forum/customise/topic-27511/" data-toggle="tooltip" title="This VPK file removes all the soundscapes (backgound sounds/ambient noises) from the game. It does not work on some maps that use other methods of producing sounds, but works on most maps." target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
   		    </label>
   		  </li>
-				<div id="nohats_container" class="row panel-body">
-					<h4>No hats mod <a id="nohats_preview_toggle" href="javascript:;" data-toggle="tooltip" title="Click to see a demonstration man demonstrating what his cosmetics look like."><i class="fa fa-eye" aria-hidden="true"></i></a> <a href="javascript:;" data-toggle="tooltip" title="Doesn't replace models with the defaults. Simply replaces the models with blank versions."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a></h4>
+				<li>
+  		    <label>
+  		      <input id="nohats_checkbox" type="checkbox" name="vpks" data-name="vpks" data-url="" />
+  		      Disable hats/cosmetics
+						<a href="javascript:;" data-toggle="tooltip" title="Replaces cosmetic models with blank versions. Also disables unusual effects (mostly). As this mod doesn't replace models with their defaults, but instead with blank versions, any cosmetics that replace body parts will result in invisible limbs."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+  		    </label>
+  		  </li>
+				<div id="nohats_container" class="row panel-body" style="display:none;">
 	  			<div id="nohats_container_inner" class="col-md-4">
 						<li>
 		  		    <label>
@@ -1796,23 +1800,23 @@
 		  			    Do not remove any cosmetics
 		  		    </label>
 						</li>
-						<li>
 
+						<li>
 	  		    <label>
 	  					<input type="radio" name="nohats" data-name="vpks" data-url="../make/vpks/headsfeet23.02.vpk" value="headsfeet"/>
-	  		      Remove hats <a href="http://www.teamfortress.tv/16179/no-hats-mod" data-toggle="tooltip" title="Disables cosmetics, except ones that replace body parts. Grants a small FPS boost." target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+	  		      Remove hats and some cosmetics <a href="http://www.teamfortress.tv/16179/no-hats-mod" data-toggle="tooltip" title="Disables cosmetics, except ones that replace body parts. Grants a small FPS boost." target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
 	  		    </label>
 						</li>
-						<li>
 
+						<li>
 		  		    <label>
-		  					<input type="radio" name="nohats" data-name="vpks" data-url="../make/vpks/no.hats.mod.2017.02.02.vpk" value="on" />
+		  					<input type="radio" name="nohats" data-name="vpks" data-url="../make/vpks/no.hats.mod.2017.04.21.vpk" value="on" />
 		  		      Remove all cosmetics <a href="http://www.teamfortress.tv/16179/no-hats-mod" data-toggle="tooltip" title="Disables all cosmetics. Grants a small FPS boost." target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
 		  		    </label>
 						</li>
 
 	  		  </div>
-					<div class="col-md-8" id="nohats_preview" style="display:none;">
+					<div class="col-md-8" id="nohats_preview">
 						<img class="img-rounded" src="../img/nohatsmod/off.jpg" style="width: 80%;">
 					</div>
 				</div>
