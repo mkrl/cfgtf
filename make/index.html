@@ -233,14 +233,6 @@
 				}, 300);
 
 			});
-			//nohats preview
-			$('#nohats_checkbox').click(function() {
-				$('#nohats_container ').fadeToggle();
-			});
-			$('input[name=nohats]').change(function() {
-				var nohat = $('input[name=nohats]:checked').val();
-				$('#nohats_preview img').attr('src', '../img/nohatsmod/' + nohat + '.jpg');
-			})
 
   	});
 	</script>
@@ -1748,6 +1740,38 @@
     <hr>
 	</div>
 
+	<script>
+	$(document).ready(function(){
+		//nohats preview
+		$('#nohats_checkbox').change(function() {
+			if(this.checked) {
+				$('#nohats_container ').fadeIn();
+			}
+			else {
+				$('#nohats_container ').fadeOut();
+			}
+		});
+		$('input[name=nohats]').change(function() {
+			var nohat = $('input[name=nohats]:checked').val();
+			$('#nohats_preview img').attr('src', '../img/nohatsmod/' + nohat + '.jpg');
+		});
+
+		//explosions preview
+		$('#explosion_smoke_checkbox').change(function() {
+			if(this.checked) {
+				$('#explosion_smoke_container ').fadeIn();
+			}
+			else {
+				$('#explosion_smoke_container ').fadeOut();
+			}
+		});
+		$('input[name=nosmoke]').change(function() {
+			var explosion_script = $('input[name=nosmoke]:checked').val();
+			$('#explosion_smoke_preview img').attr('src', '../img/explosion_script/' + explosion_script + '.jpg');
+		});
+	});
+	</script>
+
   <div class="tab-pane fade" id="files">
   <!--   SCRIPTS  -->
 		<div id="scripts">
@@ -1767,10 +1791,51 @@
 			<ul class="checkbox list-unstyled">
 				<li>
 			    <label>
-			      <input type="checkbox" name="vpks" data-name="vpks" data-url="../make/vpks/explosions_muzzle_flash.vpk" />
-			      Remove explosion smoke <a href="http://www.teamfortress.tv/25647/no-explosion-smoke-script" data-toggle="tooltip" title="This will make explosions less visually apparent by replacing the explosive particle effects with 'muzzle_minigun_starflash01'." target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+			      <input id="explosion_smoke_checkbox" type="checkbox" name="vpks" data-name="vpks" data-url="" />
+			      Reduce explosion effect <a href="http://www.teamfortress.tv/25647/no-explosion-smoke-script" data-toggle="tooltip" title="This will make explosions less visually apparent by replacing the explosive particle effect." target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
 			    </label>
 			  </li>
+				<div id="explosion_smoke_container" class="row panel-body" style="display:none;">
+	  			<div id="explosion_smoke_container_inner" class="col-md-4">
+						<li>
+							<label>
+								<input type="radio" name="nosmoke" data-name="vpks" data-url="" value="default"/>
+								Default
+							</label>
+						</li>
+						<li>
+		  		    <label>
+		  					<input type="radio" name="nosmoke" data-name="vpks" data-url="../make/vpks/explosion_script/explosions_original.vpk" value="explosions_original"/>
+		  		      Spy Sapper
+		  		    </label>
+						</li>
+
+						<li>
+		  		    <label>
+		  					<input type="radio" name="nosmoke" data-name="vpks" data-url="../make/vpks/explosion_script/explosions_muzzle_flash.vpk" value="explosions_muzzle_flash" />
+		  		      Muzzle Flash
+		  		    </label>
+						</li>
+						<li>
+							<label>
+								<input type="radio" name="nosmoke" data-name="vpks" data-url="../make/vpks/explosion_script/explosions_2colours.vpk" value="explosions_2colours" />
+								Electric Shock
+								<p class="text-muted">Colored red on splash damage and blue on a direct hit</p>
+							</label>
+						</li>
+
+						<li>
+							<label>
+								<input type="radio" name="nosmoke" data-name="vpks" data-url="../make/vpks/explosion_script/explosions_pyro_pool.vpk" value="explosions_pyro_pool" />
+								Pyro Pool
+							</label>
+						</li>
+
+	  		  </div>
+					<div class="col-md-8" id="explosion_smoke_preview">
+						<img class="img-rounded" src="../img/explosion_script/default.jpg" style="width: 80%;">
+					</div>
+				</div>
   			<li>
   		    <label>
   		      <input type="checkbox" name="vpks" data-name="vpks" data-url="../make/vpks/nosoundscapes.vpk" />
