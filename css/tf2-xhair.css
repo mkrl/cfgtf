@@ -1,0 +1,67 @@
+@font-face {
+  font-family: 'tf2-xhair';
+  src:  url('../fonts/tf2-xhair.eot?jcq4lg');
+  src:  url('../fonts/tf2-xhair.eot?jcq4lg#iefix') format('embedded-opentype'),
+    url('../fonts/tf2-xhair.ttf?jcq4lg') format('truetype'),
+    url('../fonts/tf2-xhair.woff?jcq4lg') format('woff'),
+    url('../fonts/tf2-xhair.svg?jcq4lg#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="xhair-"], [class*=" xhair-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'tf2-xhair' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.xhair-cross:before {
+  content: "\e900";
+}
+.xhair-cross_with_dot:before {
+  content: "\e901";
+}
+.xhair-default:before {
+  content: "\e902";
+}
+.xhair-default:after {
+  content: "\e903";
+  margin-left: -1em;
+}
+.xhair-dot:before {
+  content: "\e904";
+}
+.xhair-ex:before {
+  content: "\e905";
+}
+.xhair-half_cross_with_dot:before {
+  content: "\e906";
+}
+.xhair-open_cross:before {
+  content: "\e907";
+}
+.xhair-ring:before {
+  content: "\e908";
+}
+
+.crosshair {
+	font-size: 3em;
+	display: inline-block;
+	vertical-align : middle;
+	padding-right:1em;
+	/*text-shadow: black 1px 1px 1px, black 1px -1px 1px, black -1px 1px 1px, black -1px -1px 1px, black 2px 0 1px, black -2px 0 1px, black 0 2px 1px, black 0 -2px 1px;*/
+	line-height: 0;
+	max-width: 1em;
+	max-height: 1em;
+	min-width: 1em;
+	min-height: 1em;
+}

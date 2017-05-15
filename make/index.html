@@ -27,6 +27,7 @@
 		<!-- Local css -->
     <link rel="stylesheet" href="../css/pygments.css">
     <link rel="stylesheet" href="../css/main.css">
+		<link rel="stylesheet" href="../css/tf2-xhair.css">
 		<!-- Local js -->
 		<script type="text/javascript" src="../js/utility.js"></script>
   </head>
@@ -121,19 +122,19 @@
               <select class="form-control selectpicker" id="gfx_selector">
                 <option value="myown" data-name="gfx" onclick="updatedxlevel();" id="myown" data-url="../make/cfg/nogfx.txt" selected="selected">None</option>
 						    <optgroup label="Comanglia">
-                  <option value="toaster" data-name="gfx" onclick="updatedxlevel();" id="toaster" data-url="../make/cfg/c_toaster.txt">Comanglia: Toaster</option>
-                  <option value="stable" data-name="gfx" onclick="updatedxlevel();" id="stable" data-url="../make/cfg/c_stability.txt">Comanglia: Stability</option>
-                  <option value="fine" data-name="gfx" onclick="updatedxlevel();" id="fine" data-url="../make/cfg/c_maxfps_hq.txt">Comanglia: Max FPS for High Quality PCs</option>
-                  <option value="fancy" data-name="gfx" onclick="updatedxlevel();" id="fancy" data-url="../make/cfg/c_cinema.txt">Comanglia: Cinema</option>
+                  <option value="comanglia_toaster" data-name="gfx" onclick="updatedxlevel();" id="toaster" data-url="../make/cfg/c_toaster.txt">Comanglia: Toaster</option>
+                  <option value="comanglia_stability" data-name="gfx" onclick="updatedxlevel();" id="stablity" data-url="../make/cfg/c_stability.txt">Comanglia: Stability</option>
+                  <option value="comanglia_hq" data-name="gfx" onclick="updatedxlevel();" id="fine" data-url="../make/cfg/c_maxfps_hq.txt">Comanglia: Max FPS for High Quality PCs</option>
+                  <option value="comanglia_cinema" data-name="gfx" onclick="updatedxlevel();" id="fancy" data-url="../make/cfg/c_cinema.txt">Comanglia: Cinema</option>
   							</optgroup>
                 <optgroup label="Felik">
-                  <option value="felik" data-name="gfx" onclick="updatedxlevel();" id="felik" data-url="../make/cfg/f_base.txt">Felik</option>
-                  <option value="feliklowend" data-name="gfx" onclick="updatedxlevel();" id="feliklowend" data-url="../make/cfg/f_lowend.txt">Felik: Low End</option>
-                  <option value="felikeyecandy" data-name="gfx" onclick="updatedxlevel();" id="felikeyecandy" data-url="../make/cfg/f_eyecandy.txt">Felik: Eye Candy</option>
+                  <option value="felik_base" data-name="gfx" onclick="updatedxlevel();" id="felik" data-url="../make/cfg/f_base.txt">Felik</option>
+                  <option value="felik_lowend" data-name="gfx" onclick="updatedxlevel();" id="feliklowend" data-url="../make/cfg/f_lowend.txt">Felik: Low End</option>
+                  <option value="felik_eyecandy" data-name="gfx" onclick="updatedxlevel();" id="felikeyecandy" data-url="../make/cfg/f_eyecandy.txt">Felik: Eye Candy</option>
                 </optgroup>
                 <optgroup label="Rhapsody">
-                  <option value="rhapsodydx9" data-name="gfx" onclick="updatedxlevel();" id="rhapsodydx9" data-url="../make/cfg/r_base.txt">Rhapsody: DX9</option>
-                  <option value="rhapsodydx8" data-name="gfx" onclick="updatedxlevel();" id="rhapsodydx8" data-url="../make/cfg/r_base.txt">Rhapsody: DX8</option>
+                  <option value="rhapsody_dx9" data-name="gfx" onclick="updatedxlevel();" id="rhapsodydx9" data-url="../make/cfg/r_base.txt">Rhapsody: DX9</option>
+                  <option value="rhapsody_dx8" data-name="gfx" onclick="updatedxlevel();" id="rhapsodydx8" data-url="../make/cfg/r_base.txt">Rhapsody: DX8</option>
                 </optgroup>
               </select>
             </label>
@@ -187,15 +188,15 @@
       $("#gfx_selector").change(function() {
           var showme = this.value;
           $("div.desc").fadeOut(200);
-          $("#preview" + showme).fadeIn(400);
+          $("#cfg_" + showme).fadeIn(400);
           updatedxlevel();
-					$("#preview" + showme + " img").unveil();
-          $("#preview" + showme + " img").trigger("unveil");
+					$("#cfg_" + showme + " img").unveil();
+          $("#cfg_" + showme + " img").trigger("unveil");
 
           console.log('unveil ' + showme);
 
 					//img zoom
-				  $('#preview' + showme + ' .carousel-inner  img')
+				  $('#cfg_' + showme + ' .carousel-inner  img')
 						.wrap('<span class="img-rounded" style="display:inline-block"></span>')
 						.css('display', 'block')
 						.parent()
@@ -214,53 +215,80 @@
 			// click to zoom notifier
 			$('.cfg_source')
 				.before('<p class="text-muted pull-right"><i class="fa fa-search-plus" aria-hidden="true"></i> Click and hold on image to zoom in</p>');
+
+			// swap out preview images
+			$(".gfx_preview_selection").change(function() {
+				var gfx_preview = $(this).attr('id').replace('_preview',''); //  ID of the dropdown should be [config-folder]_preview
+				var newmap = $(this).val();
+				$('#carousel_' + gfx_preview).fadeOut(200);
+				setTimeout(function() { // timeout to give the fade out some time
+					$('#carousel_' + gfx_preview + ' .carousel-inner .item').each(function(i) { // get each .item, alter multiple child imgs with .find() because jquery zoom duplicates the img to make the zoomed version
+						$(this).find('img').attr('src', ''); //remove old image src so the old image disappears while new ones visibly load in. without this we get no feedback of images loading
+						$(this).find('img').attr('src', '../img/cfg/' + gfx_preview + '/' + newmap + '/' + newmap + pad((1+(i)), 2)  + '.jpg'); // input path into src
+						$(this).find('img').attr('data-src', '../img/cfg/' + gfx_preview + '/' + newmap + '/' + newmap + pad((1+(i)), 2)  + '.jpg'); // input path into data-src so that the defaults arent lazy loaded back in when switching configs
+
+						console.log(gfx_preview + ' ' + newmap + ' image ' + (1+(i)) + ' loaded');
+						$('#carousel_' + gfx_preview).fadeIn(300);
+					});
+				}, 300);
+
+			});
+
   	});
 	</script>
-	<div id="previewtoaster" class="desc" style="display: none;">
+	<div id="cfg_comanglia_toaster" class="desc" style="display: none;">
 		<div class="panel-body">
       <h3>Comanglia's "Toaster" config</h3>
       <p>Bare minimum, with a focus on simply running the game.</p>
       <p>This is probably the ugliest looking config you can get here. It disables a lot of things, and gives your TF2 that nice "blocky" oldschool look.</p>
+			<label>Preview
+				<select class="form-control selectpicker gfx_preview_selection" id="comanglia_toaster_preview">
+					<option value="pl_badwater" data-name="gfx_preview" data-url="" selected="selected">Badwater</option>
+					<option value="cp_sunshine" data-name="gfx_preview" data-url="">Sunshine</option>
+					<option value="cp_badlands" data-name="gfx_preview" data-url="">Badlands</option>
+					<option value="itemtest" data-name="gfx_preview" data-url="">Items</option>
+				</select>
+			</label>
       <p><a class="cfg_source" href="http://www.teamfortress.tv/25328/comanglias-config-fps-guide" target="_blank">Source</a></p>
-      <div id="carousel_toaster" class="carousel slide" data-ride="carousel" data-interval="0">
+      <div id="carousel_comanglia_toaster" class="carousel slide" data-ride="carousel" data-interval="0">
         <!-- Indicators -->
         <ol class="carousel-indicators">
-          <li data-target="#carousel_toaster" data-slide-to="0" class="active"></li>
-          <li data-target="#carousel_toaster" data-slide-to="1"></li>
-          <li data-target="#carousel_toaster" data-slide-to="2"></li>
-          <li data-target="#carousel_toaster" data-slide-to="3"></li>
-          <li data-target="#carousel_toaster" data-slide-to="4"></li>
+          <li data-target="#carousel_comanglia_toaster" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel_comanglia_toaster" data-slide-to="1"></li>
+          <li data-target="#carousel_comanglia_toaster" data-slide-to="2"></li>
+          <li data-target="#carousel_comanglia_toaster" data-slide-to="3"></li>
+          <li data-target="#carousel_comanglia_toaster" data-slide-to="4"></li>
         </ol>
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
 
           <div class="item active">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_toaster/badwater/pl_badwater0001.jpg" alt="Comanglia's HQ Config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_toaster/pl_badwater/pl_badwater01.jpg" alt="Comanglia's toaster Config">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_toaster/badwater/pl_badwater0002.jpg" alt="Comanglia's HQ Config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_toaster/pl_badwater/pl_badwater02.jpg" alt="Comanglia's toaster Config">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_toaster/badwater/pl_badwater0003.jpg" alt="Comanglia's HQ Config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_toaster/pl_badwater/pl_badwater03.jpg" alt="Comanglia's toaster Config">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_toaster/badwater/pl_badwater0004.jpg" alt="Comanglia's HQ Config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_toaster/pl_badwater/pl_badwater04.jpg" alt="Comanglia's toaster Config">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_toaster/badwater/pl_badwater0005.jpg" alt="Comanglia's HQ Config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_toaster/pl_badwater/pl_badwater05.jpg" alt="Comanglia's toaster Config">
           </div>
         </div>
 
           <!-- Left and right controls -->
-          <a class="left carousel-control" href="#carousel_toaster" role="button" data-slide="prev">
+          <a class="left carousel-control" href="#carousel_comanglia_toaster" role="button" data-slide="prev">
             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
           </a>
-          <a class="right carousel-control" href="#carousel_toaster" role="button" data-slide="next">
+          <a class="right carousel-control" href="#carousel_comanglia_toaster" role="button" data-slide="next">
             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
           </a>
@@ -289,12 +317,20 @@
 		</div>
 	</div>
 
-	<div id="previewstable" class="desc" style="display: none;">
+	<div id="cfg_comanglia_stability" class="desc" style="display: none;">
 	  <div class="panel-body">
       <h3>Comanglia's "Stability" config</h3>
       <p>A solid option for older PCs, with a focus on stability.</p>
+			<label>Preview
+				<select class="form-control selectpicker gfx_preview_selection" id="comanglia_stability_preview">
+					<option value="pl_badwater" data-name="gfx_preview" data-url="" selected="selected">Badwater</option>
+					<option value="cp_sunshine" data-name="gfx_preview" data-url="">Sunshine</option>
+					<option value="cp_badlands" data-name="gfx_preview" data-url="">Badlands</option>
+					<option value="itemtest" data-name="gfx_preview" data-url="">Items</option>
+				</select>
+			</label>
       <p><a class="cfg_source" href="http://www.teamfortress.tv/25328/comanglias-config-fps-guide" target="_blank">Source</a></p>
-        <div id="carousel_stability" class="carousel slide" data-ride="carousel" data-interval="0">
+        <div id="carousel_comanglia_stability" class="carousel slide" data-ride="carousel" data-interval="0">
           <!-- Indicators -->
           <ol class="carousel-indicators">
             <li data-target="#carousel_stability" data-slide-to="0" class="active"></li>
@@ -307,32 +343,32 @@
           <div class="carousel-inner" role="listbox">
 
             <div class="item active">
-              <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_stability/badwater/pl_badwater0001.jpg" alt="Comanglia's HQ Config">
+              <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_stability/pl_badwater/pl_badwater01.jpg" alt="Comanglia's stability Config">
             </div>
 
             <div class="item">
-              <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_stability/badwater/pl_badwater0002.jpg" alt="Comanglia's HQ Config">
+              <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_stability/pl_badwater/pl_badwater02.jpg" alt="Comanglia's stability Config">
             </div>
 
             <div class="item">
-              <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_stability/badwater/pl_badwater0003.jpg" alt="Comanglia's HQ Config">
+              <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_stability/pl_badwater/pl_badwater03.jpg" alt="Comanglia's stability Config">
             </div>
 
             <div class="item">
-              <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_stability/badwater/pl_badwater0004.jpg" alt="Comanglia's HQ Config">
+              <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_stability/pl_badwater/pl_badwater04.jpg" alt="Comanglia's stability Config">
             </div>
 
             <div class="item">
-              <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_stability/badwater/pl_badwater0005.jpg" alt="Comanglia's HQ Config">
+              <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_stability/pl_badwater/pl_badwater05.jpg" alt="Comanglia's stability Config">
             </div>
           </div>
 
             <!-- Left and right controls -->
-            <a class="left carousel-control" href="#carousel_stability" role="button" data-slide="prev">
+            <a class="left carousel-control" href="#carousel_comanglia_stability" role="button" data-slide="prev">
               <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
               <span class="sr-only">Previous</span>
             </a>
-            <a class="right carousel-control" href="#carousel_stability" role="button" data-slide="next">
+            <a class="right carousel-control" href="#carousel_comanglia_stability" role="button" data-slide="next">
               <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
               <span class="sr-only">Next</span>
             </a>
@@ -359,50 +395,58 @@
 	  </div>
 	</div>
 
-	<div id="previewfine" class="desc" style="display: none;">
+	<div id="cfg_comanglia_hq" class="desc" style="display: none;">
 	  <div class="panel-body">
 		  <h3>Comanglia's "Max FPS for High Quality PCs" config</h3>
 			<p>For modern multi-core PCs, with a focus on maximum FPS while retaining modern graphics settings. Looks good, performs well.</p>
+			<label>Preview
+				<select class="form-control selectpicker gfx_preview_selection" id="comanglia_hq_preview">
+					<option value="pl_badwater" data-name="gfx_preview" data-url="" selected="selected">Badwater</option>
+					<option value="cp_sunshine" data-name="gfx_preview" data-url="">Sunshine</option>
+					<option value="cp_badlands" data-name="gfx_preview" data-url="">Badlands</option>
+					<option value="itemtest" data-name="gfx_preview" data-url="">Items</option>
+				</select>
+			</label>
 			<p><a class="cfg_source" href="http://www.teamfortress.tv/25328/comanglias-config-fps-guide" target="_blank">Source</a></p>
-      <div id="carousel_hq" class="carousel slide" data-ride="carousel" data-interval="0">
+			<div id="carousel_comanglia_hq" class="carousel slide" data-ride="carousel" data-interval="0">
         <!-- Indicators -->
         <ol class="carousel-indicators">
-          <li data-target="#carousel_hq" data-slide-to="0" class="active"></li>
-          <li data-target="#carousel_hq" data-slide-to="1"></li>
-          <li data-target="#carousel_hq" data-slide-to="2"></li>
-          <li data-target="#carousel_hq" data-slide-to="3"></li>
-          <li data-target="#carousel_hq" data-slide-to="4"></li>
+          <li data-target="#carousel_comanglia_hq" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel_comanglia_hq" data-slide-to="1"></li>
+          <li data-target="#carousel_comanglia_hq" data-slide-to="2"></li>
+          <li data-target="#carousel_comanglia_hq" data-slide-to="3"></li>
+          <li data-target="#carousel_comanglia_hq" data-slide-to="4"></li>
         </ol>
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
 
           <div class="item active">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_hq/badwater/pl_badwater0001.jpg" alt="Comanglia's HQ Config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_hq/pl_badwater/pl_badwater01.jpg" alt="Comanglia's HQ Config">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_hq/badwater/pl_badwater0002.jpg" alt="Comanglia's HQ Config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_hq/pl_badwater/pl_badwater02.jpg" alt="Comanglia's HQ Config">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_hq/badwater/pl_badwater0003.jpg" alt="Comanglia's HQ Config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_hq/pl_badwater/pl_badwater03.jpg" alt="Comanglia's HQ Config">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_hq/badwater/pl_badwater0004.jpg" alt="Comanglia's HQ Config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_hq/pl_badwater/pl_badwater04.jpg" alt="Comanglia's HQ Config">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_hq/badwater/pl_badwater0005.jpg" alt="Comanglia's HQ Config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_hq/pl_badwater/pl_badwater05.jpg" alt="Comanglia's HQ Config">
           </div>
         </div>
 
         <!-- Left and right controls -->
-        <a class="left carousel-control" href="#carousel_hq" role="button" data-slide="prev">
+        <a class="left carousel-control" href="#carousel_comanglia_hq" role="button" data-slide="prev">
           <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
         </a>
-        <a class="right carousel-control" href="#carousel_hq" role="button" data-slide="next">
+        <a class="right carousel-control" href="#carousel_comanglia_hq" role="button" data-slide="next">
           <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
@@ -434,52 +478,59 @@
 
 	  </div>
   </div>
-
-	<div id="previewfancy" class="desc" style="display: none;">
+	<div id="cfg_comanglia_cinema" class="desc" style="display: none;">
 	  <div class="panel-body">
 			<h3>Comanglia's "Cinema" config</h3>
 			<p>Take a look at this. This is TF2 at its maximum potential. This is what quality water and 3D skyboxes look like.</p>
+			<label>Preview
+				<select class="form-control selectpicker gfx_preview_selection" id="comanglia_cinema_preview">
+					<option value="pl_badwater" data-name="gfx_preview" data-url="" selected="selected">Badwater</option>
+					<option value="cp_sunshine" data-name="gfx_preview" data-url="">Sunshine</option>
+					<option value="cp_badlands" data-name="gfx_preview" data-url="">Badlands</option>
+					<option value="itemtest" data-name="gfx_preview" data-url="">Items</option>
+				</select>
+			</label>
 			<p><a class="cfg_source" href="http://www.teamfortress.tv/25328/comanglias-config-fps-guide" target="_blank">Source</a></p>
 
-      <div id="carousel_fancy" class="carousel slide" data-ride="carousel" data-interval="0">
+      <div id="carousel_comanglia_cinema" class="carousel slide" data-ride="carousel" data-interval="0">
         <!-- Indicators -->
         <ol class="carousel-indicators">
-          <li data-target="#carousel_fancy" data-slide-to="0" class="active"></li>
-          <li data-target="#carousel_fancy" data-slide-to="1"></li>
-          <li data-target="#carousel_fancy" data-slide-to="2"></li>
-          <li data-target="#carousel_fancy" data-slide-to="3"></li>
-          <li data-target="#carousel_fancy" data-slide-to="4"></li>
+          <li data-target="#carousel_comanglia_cinema" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel_comanglia_cinema" data-slide-to="1"></li>
+          <li data-target="#carousel_comanglia_cinema" data-slide-to="2"></li>
+          <li data-target="#carousel_comanglia_cinema" data-slide-to="3"></li>
+          <li data-target="#carousel_comanglia_cinema" data-slide-to="4"></li>
         </ol>
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
 
           <div class="item active">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_cinema/badwater/pl_badwater0001.jpg" alt="Comanglia's Cinema Config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_cinema/pl_badwater/pl_badwater01.jpg" alt="Comanglia's Cinema Config">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_cinema/badwater/pl_badwater0002.jpg" alt="Comanglia's Cinema Config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_cinema/pl_badwater/pl_badwater02.jpg" alt="Comanglia's Cinema Config">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_cinema/badwater/pl_badwater0003.jpg" alt="Comanglia's Cinema Config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_cinema/pl_badwater/pl_badwater03.jpg" alt="Comanglia's Cinema Config">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_cinema/badwater/pl_badwater0004.jpg" alt="Comanglia's Cinema Config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_cinema/pl_badwater/pl_badwater04.jpg" alt="Comanglia's Cinema Config">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_cinema/badwater/pl_badwater0005.jpg" alt="Comanglia's Cinema Config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/comanglia_cinema/pl_badwater/pl_badwater05.jpg" alt="Comanglia's Cinema Config">
           </div>
         </div>
 
         <!-- Left and right controls -->
-        <a class="left carousel-control" href="#carousel_fancy" role="button" data-slide="prev">
+        <a class="left carousel-control" href="#carousel_comanglia_cinema" role="button" data-slide="prev">
           <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
         </a>
-        <a class="right carousel-control" href="#carousel_fancy" role="button" data-slide="next">
+        <a class="right carousel-control" href="#carousel_comanglia_cinema" role="button" data-slide="next">
           <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
@@ -507,51 +558,59 @@
 		</div>
   </div>
 
-	<div id="previewfelik" class="desc" style="display: none;">
+	<div id="cfg_felik_base" class="desc" style="display: none;">
 	  <div class="panel-body">
       <h3>Felik's config</h3>
       <p>Various optimizations for TF2, and soon to be for other Source Engine based games.</p>
+			<label>Preview
+				<select class="form-control selectpicker gfx_preview_selection" id="felik_base_preview">
+					<option value="pl_badwater" data-name="gfx_preview" data-url="" selected="selected">Badwater</option>
+					<option value="cp_sunshine" data-name="gfx_preview" data-url="">Sunshine</option>
+					<option value="cp_badlands" data-name="gfx_preview" data-url="">Badlands</option>
+					<option value="itemtest" data-name="gfx_preview" data-url="">Items</option>
+				</select>
+			</label>
       <p><a class="cfg_source" href="https://gitlab.com/felik/TF2-Config/" target="_blank">Source</a></p>
 
-      <div id="carousel_felik" class="carousel slide" data-ride="carousel" data-interval="0">
+      <div id="carousel_felik_base" class="carousel slide" data-ride="carousel" data-interval="0">
         <!-- Indicators -->
         <ol class="carousel-indicators">
-          <li data-target="#carousel_felik" data-slide-to="0" class="active"></li>
-          <li data-target="#carousel_felik" data-slide-to="1"></li>
-          <li data-target="#carousel_felik" data-slide-to="2"></li>
-          <li data-target="#carousel_felik" data-slide-to="3"></li>
-          <li data-target="#carousel_felik" data-slide-to="4"></li>
+          <li data-target="#carousel_felik_base" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel_felik_base" data-slide-to="1"></li>
+          <li data-target="#carousel_felik_base" data-slide-to="2"></li>
+          <li data-target="#carousel_felik_base" data-slide-to="3"></li>
+          <li data-target="#carousel_felik_base" data-slide-to="4"></li>
         </ol>
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
 
           <div class="item active">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/felik/badwater/pl_badwater0001.jpg" alt="Comanglia's Cinema Config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_base/pl_badwater/pl_badwater01.jpg" alt="Felik's base Config">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/felik/badwater/pl_badwater0002.jpg" alt="Comanglia's Cinema Config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_base/pl_badwater/pl_badwater02.jpg" alt="Felik's base Config">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/felik/badwater/pl_badwater0003.jpg" alt="Comanglia's Cinema Config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_base/pl_badwater/pl_badwater03.jpg" alt="Felik's base Config">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/felik/badwater/pl_badwater0004.jpg" alt="Comanglia's Cinema Config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_base/pl_badwater/pl_badwater04.jpg" alt="Felik's base Config">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/felik/badwater/pl_badwater0005.jpg" alt="Comanglia's Cinema Config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_base/pl_badwater/pl_badwater05.jpg" alt="Felik's base Config">
           </div>
         </div>
 
         <!-- Left and right controls -->
-        <a class="left carousel-control" href="#carousel_felik" role="button" data-slide="prev">
+        <a class="left carousel-control" href="#carousel_felik_base" role="button" data-slide="prev">
           <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
         </a>
-        <a class="right carousel-control" href="#carousel_felik" role="button" data-slide="next">
+        <a class="right carousel-control" href="#carousel_felik_base" role="button" data-slide="next">
           <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
@@ -575,55 +634,66 @@
 		</div>
   </div>
 
-  <div id="previewfeliklowend" class="desc" style="display: none;">
+  <div id="cfg_felik_lowend" class="desc" style="display: none;">
     <div class="panel-body">
-      <h3><span class="badge badge-info">New</span> Felik's "Low End" config</h3>
+      <h3>Felik's "Low End" config</h3>
       <p>Felik's config with the provided <code>low_end.cfg</code></p>
+			<p class="alert alert-warning"><i class="fa fa-info-circle" aria-hidden="true"></i> This config literally means low end. It enforces DirectX 8.0, which has many glaring graphical issues. If you just want more frames, use the base config.</p>
+			<label>Preview
+				<select class="form-control selectpicker gfx_preview_selection" id="felik_lowend_preview">
+					<option value="pl_badwater" data-name="gfx_preview" data-url="" selected="selected">Badwater</option>
+					<option value="cp_sunshine" data-name="gfx_preview" data-url="">Sunshine</option>
+					<option value="cp_badlands" data-name="gfx_preview" data-url="">Badlands</option>
+					<option value="itemtest" data-name="gfx_preview" data-url="">Items</option>
+				</select>
+			</label>
       <p><a class="cfg_source" href="https://gitlab.com/felik/TF2-Config/" target="_blank">Source</a></p>
 
-      <div id="carousel_felikle" class="carousel slide" data-ride="carousel" data-interval="0">
+
+      <div id="carousel_felik_lowend" class="carousel slide" data-ride="carousel" data-interval="0">
         <!-- Indicators -->
         <ol class="carousel-indicators">
-          <li data-target="#carousel_felikle" data-slide-to="0" class="active"></li>
-          <li data-target="#carousel_felikle" data-slide-to="1"></li>
-          <li data-target="#carousel_felikle" data-slide-to="2"></li>
-          <li data-target="#carousel_felikle" data-slide-to="3"></li>
-          <li data-target="#carousel_felikle" data-slide-to="4"></li>
+          <li data-target="#carousel_felik_lowend" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel_felik_lowend" data-slide-to="1"></li>
+          <li data-target="#carousel_felik_lowend" data-slide-to="2"></li>
+          <li data-target="#carousel_felik_lowend" data-slide-to="3"></li>
+          <li data-target="#carousel_felik_lowend" data-slide-to="4"></li>
         </ol>
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
 
           <div class="item active">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_lowend/badwater/pl_badwater0001.jpg" alt="Felik's Low End Config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_lowend/pl_badwater/pl_badwater01.jpg" alt="Felik's Low End Config">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_lowend/badwater/pl_badwater0002.jpg" alt="Felik's Low End Config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_lowend/pl_badwater/pl_badwater02.jpg" alt="Felik's Low End Config">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_lowend/badwater/pl_badwater0003.jpg" alt="Felik's Low End Config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_lowend/pl_badwater/pl_badwater03.jpg" alt="Felik's Low End Config">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_lowend/badwater/pl_badwater0004.jpg" alt="Felik's Low End Config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_lowend/pl_badwater/pl_badwater04.jpg" alt="Felik's Low End Config">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_lowend/badwater/pl_badwater0005.jpg" alt="Felik's Low End Config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_lowend/pl_badwater/pl_badwater05.jpg" alt="Felik's Low End Config">
           </div>
         </div>
 
         <!-- Left and right controls -->
-        <a class="left carousel-control" href="#carousel_felikle" role="button" data-slide="prev">
+        <a class="left carousel-control" href="#carousel_felik_lowend" role="button" data-slide="prev">
           <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
         </a>
-        <a class="right carousel-control" href="#carousel_felikle" role="button" data-slide="next">
+        <a class="right carousel-control" href="#carousel_felik_lowend" role="button" data-slide="next">
           <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
       </div>
+
       <div class="col-md-6">
         <h3 class="text-success">Pros</h3>
         <ul class="list-group">
@@ -641,51 +711,58 @@
     </div>
   </div>
 
-  <div id="previewfelikeyecandy" class="desc" style="display: none;">
+  <div id="cfg_felik_eyecandy" class="desc" style="display: none;">
     <div class="panel-body">
-      <h3><span class="badge badge-info">New</span> Felik's "Eye Candy" config</h3>
+      <h3>Felik's "Eye Candy" config</h3>
       <p>Felik's config with the graphic enhancement additions from <code>maximum_graphics.cfg</code> <code>gibs_on.cfg</code> <code>ragdolls_on.cfg</code> <code>shadows_on.cfg</code> <code>tracers_on.cfg</code> <code>textures.cfg</code></p>
-      <p><a class="cfg_source" href="https://gitlab.com/felik/TF2-Config/" target="_blank">Source</a></p>
-
-      <div id="carousel_felikeyecandy" class="carousel slide" data-ride="carousel" data-interval="0">
+			<label>Preview
+				<select class="form-control selectpicker gfx_preview_selection" id="felik_eyecandy_preview">
+					<option value="pl_badwater" data-name="gfx_preview" data-url="" selected="selected">Badwater</option>
+					<option value="cp_sunshine" data-name="gfx_preview" data-url="">Sunshine</option>
+					<option value="cp_badlands" data-name="gfx_preview" data-url="">Badlands</option>
+					<option value="itemtest" data-name="gfx_preview" data-url="">Items</option>
+				</select>
+			</label>
+			<p><a class="cfg_source" href="https://gitlab.com/felik/TF2-Config/" target="_blank">Source</a></p>
+      <div id="carousel_felik_eyecandy" class="carousel slide" data-ride="carousel" data-interval="0">
         <!-- Indicators -->
         <ol class="carousel-indicators">
-          <li data-target="#carousel_felikeyecandy" data-slide-to="0" class="active"></li>
-          <li data-target="#carousel_felikeyecandy" data-slide-to="1"></li>
-          <li data-target="#carousel_felikeyecandy" data-slide-to="2"></li>
-          <li data-target="#carousel_felikeyecandy" data-slide-to="3"></li>
-          <li data-target="#carousel_felikeyecandy" data-slide-to="4"></li>
+          <li data-target="#carousel_felik_eyecandy" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel_felik_eyecandy" data-slide-to="1"></li>
+          <li data-target="#carousel_felik_eyecandy" data-slide-to="2"></li>
+          <li data-target="#carousel_felik_eyecandy" data-slide-to="3"></li>
+          <li data-target="#carousel_felik_eyecandy" data-slide-to="4"></li>
         </ol>
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
 
           <div class="item active">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_eyecandy/badwater/pl_badwater0001.jpg" alt="Felik's Eye Candy config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_eyecandy/pl_badwater/pl_badwater01.jpg" alt="Felik's Eye Candy config">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_eyecandy/badwater/pl_badwater0002.jpg" alt="Felik's Eye Candy config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_eyecandy/pl_badwater/pl_badwater02.jpg" alt="Felik's Eye Candy config">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_eyecandy/badwater/pl_badwater0003.jpg" alt="Felik's Eye Candy config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_eyecandy/pl_badwater/pl_badwater03.jpg" alt="Felik's Eye Candy config">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_eyecandy/badwater/pl_badwater0004.jpg" alt="Felik's Eye Candy config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_eyecandy/pl_badwater/pl_badwater04.jpg" alt="Felik's Eye Candy config">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_eyecandy/badwater/pl_badwater0005.jpg" alt="Felik's Eye Candy config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_eyecandy/pl_badwater/pl_badwater05.jpg" alt="Felik's Eye Candy config">
           </div>
         </div>
 
         <!-- Left and right controls -->
-        <a class="left carousel-control" href="#carousel_felikeyecandy" role="button" data-slide="prev">
+        <a class="left carousel-control" href="#carousel_felik_eyecandy" role="button" data-slide="prev">
           <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
         </a>
-        <a class="right carousel-control" href="#carousel_felikeyecandy" role="button" data-slide="next">
+        <a class="right carousel-control" href="#carousel_felik_eyecandy" role="button" data-slide="next">
           <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
@@ -706,51 +783,59 @@
     </div>
   </div>
 
-  <div id="previewrhapsodydx9" class="desc" style="display: none;">
+  <div id="cfg_rhapsody_dx9" class="desc" style="display: none;">
     <div class="panel-body">
-      <h3><span class="badge badge-info">New</span> Rhapsody</h3>
+      <h3>Rhapsody</h3>
       <p>Rhapsody's config with DirectX 9.0 enabled.</p>
+			<label>Preview
+				<select class="form-control selectpicker gfx_preview_selection" id="rhapsody_dx9_preview">
+					<option value="pl_badwater" data-name="gfx_preview" data-url="" selected="selected">Badwater</option>
+					<option value="cp_sunshine" data-name="gfx_preview" data-url="">Sunshine</option>
+					<option value="cp_badlands" data-name="gfx_preview" data-url="">Badlands</option>
+					<option value="itemtest" data-name="gfx_preview" data-url="">Items</option>
+				</select>
+			</label>
       <p><a class="cfg_source" href="https://github.com/RhapsodySL/perfconfig" target="_blank">Source</a></p>
 
-      <div id="carousel_rhapsodydx9" class="carousel slide" data-ride="carousel" data-interval="0">
+      <div id="carousel_rhapsody_dx9" class="carousel slide" data-ride="carousel" data-interval="0">
         <!-- Indicators -->
         <ol class="carousel-indicators">
-          <li data-target="#carousel_rhapsodydx9" data-slide-to="0" class="active"></li>
-          <li data-target="#carousel_rhapsodydx9" data-slide-to="1"></li>
-          <li data-target="#carousel_rhapsodydx9" data-slide-to="2"></li>
-          <li data-target="#carousel_rhapsodydx9" data-slide-to="3"></li>
-          <li data-target="#carousel_rhapsodydx9" data-slide-to="4"></li>
+          <li data-target="#carousel_rhapsody_dx9" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel_rhapsody_dx9" data-slide-to="1"></li>
+          <li data-target="#carousel_rhapsody_dx9" data-slide-to="2"></li>
+          <li data-target="#carousel_rhapsody_dx9" data-slide-to="3"></li>
+          <li data-target="#carousel_rhapsody_dx9" data-slide-to="4"></li>
         </ol>
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
 
           <div class="item active">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/rhapsody_dx9/badwater/pl_badwater0001.jpg" alt="Felik's Eye Candy config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/rhapsody_dx9/pl_badwater/pl_badwater01.jpg" alt="Rhapsody's config dx9">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/rhapsody_dx9/badwater/pl_badwater0002.jpg" alt="Felik's Eye Candy config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/rhapsody_dx9/pl_badwater/pl_badwater02.jpg" alt="Rhapsody's config dx9">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/rhapsody_dx9/badwater/pl_badwater0003.jpg" alt="Felik's Eye Candy config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/rhapsody_dx9/pl_badwater/pl_badwater03.jpg" alt="Rhapsody's config dx9">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/rhapsody_dx9/badwater/pl_badwater0004.jpg" alt="Felik's Eye Candy config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/rhapsody_dx9/pl_badwater/pl_badwater04.jpg" alt="Rhapsody's config dx9">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/rhapsody_dx9/badwater/pl_badwater0005.jpg" alt="Felik's Eye Candy config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/rhapsody_dx9/pl_badwater/pl_badwater05.jpg" alt="Rhapsody's config dx9">
           </div>
         </div>
 
         <!-- Left and right controls -->
-        <a class="left carousel-control" href="#carousel_rhapsodydx9" role="button" data-slide="prev">
+        <a class="left carousel-control" href="#carousel_rhapsody_dx9" role="button" data-slide="prev">
           <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
         </a>
-        <a class="right carousel-control" href="#carousel_rhapsodydx9" role="button" data-slide="next">
+        <a class="right carousel-control" href="#carousel_rhapsody_dx9" role="button" data-slide="next">
           <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
@@ -771,51 +856,59 @@
     </div>
   </div>
 
-  <div id="previewrhapsodydx8" class="desc" style="display: none;">
+  <div id="cfg_rhapsody_dx8" class="desc" style="display: none;">
     <div class="panel-body">
-      <h3><span class="badge badge-info">New</span> Rhapsody</h3>
+      <h3>Rhapsody</h3>
       <p>Rhapsody's config with DirectX 8.1 enabled.</p>
+			<label>Preview
+				<select class="form-control selectpicker gfx_preview_selection" id="rhapsody_dx8_preview">
+					<option value="pl_badwater" data-name="gfx_preview" data-url="" selected="selected">Badwater</option>
+					<option value="cp_sunshine" data-name="gfx_preview" data-url="">Sunshine</option>
+					<option value="cp_badlands" data-name="gfx_preview" data-url="">Badlands</option>
+					<option value="itemtest" data-name="gfx_preview" data-url="">Items</option>
+				</select>
+			</label>
       <p><a class="cfg_source" href="https://github.com/RhapsodySL/perfconfig" target="_blank">Source</a></p>
 
-      <div id="carousel_rhapsodydx8" class="carousel slide" data-ride="carousel" data-interval="0">
+      <div id="carousel_rhapsody_dx8" class="carousel slide" data-ride="carousel" data-interval="0">
         <!-- Indicators -->
         <ol class="carousel-indicators">
-          <li data-target="#carousel_rhapsodydx8" data-slide-to="0" class="active"></li>
-          <li data-target="#carousel_rhapsodydx8" data-slide-to="1"></li>
-          <li data-target="#carousel_rhapsodydx8" data-slide-to="2"></li>
-          <li data-target="#carousel_rhapsodydx8" data-slide-to="3"></li>
-          <li data-target="#carousel_rhapsodydx8" data-slide-to="4"></li>
+          <li data-target="#carousel_rhapsody_dx8" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel_rhapsody_dx8" data-slide-to="1"></li>
+          <li data-target="#carousel_rhapsody_dx8" data-slide-to="2"></li>
+          <li data-target="#carousel_rhapsody_dx8" data-slide-to="3"></li>
+          <li data-target="#carousel_rhapsody_dx8" data-slide-to="4"></li>
         </ol>
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
 
           <div class="item active">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/rhapsody_dx8/badwater/pl_badwater0001.jpg" alt="Felik's Eye Candy config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/rhapsody_dx8/pl_badwater/pl_badwater01.jpg" alt="Rhapsody's config dx8">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/rhapsody_dx8/badwater/pl_badwater0002.jpg" alt="Felik's Eye Candy config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/rhapsody_dx8/pl_badwater/pl_badwater02.jpg" alt="Rhapsody's config dx8">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/rhapsody_dx8/badwater/pl_badwater0003.jpg" alt="Felik's Eye Candy config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/rhapsody_dx8/pl_badwater/pl_badwater03.jpg" alt="Rhapsody's config dx8">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/rhapsody_dx8/badwater/pl_badwater0004.jpg" alt="Felik's Eye Candy config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/rhapsody_dx8/pl_badwater/pl_badwater04.jpg" alt="Rhapsody's config dx8">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/rhapsody_dx8/badwater/pl_badwater0005.jpg" alt="Felik's Eye Candy config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/rhapsody_dx8/pl_badwater/pl_badwater05.jpg" alt="Rhapsody's config dx8">
           </div>
         </div>
 
         <!-- Left and right controls -->
-        <a class="left carousel-control" href="#carousel_rhapsodydx8" role="button" data-slide="prev">
+        <a class="left carousel-control" href="#carousel_rhapsody_dx8" role="button" data-slide="prev">
           <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
         </a>
-        <a class="right carousel-control" href="#carousel_rhapsodydx8" role="button" data-slide="next">
+        <a class="right carousel-control" href="#carousel_rhapsody_dx8" role="button" data-slide="next">
           <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
@@ -867,6 +960,13 @@
 			$('#bind_unbindall [data-toggle="confirmation"]').confirmation({
 				onConfirm: function(){remove_education_fields('all')}
 			});
+			$('#data_resetter [data-toggle="confirmation"]').confirmation({//TODO: a way to restore the binds to default
+				onConfirm: function(){
+					$('#download_form')[0].reset();
+					$('select, input').not('.gfx_preview_selection').change(); //updates anything that relies on values to display (xhair, cfg previews, nohatsmod, etc). exclude the specific preview selector because it will trigger lazy load on every single config
+				}
+			});
+
     });
   </script>
   <div class="panel panel-default" id="bindpan">
@@ -1640,6 +1740,38 @@
     <hr>
 	</div>
 
+	<script>
+	$(document).ready(function(){
+		//nohats preview
+		$('#nohats_checkbox').change(function() {
+			if(this.checked) {
+				$('#nohats_container ').fadeIn();
+			}
+			else {
+				$('#nohats_container ').fadeOut();
+			}
+		});
+		$('input[name=nohats]').change(function() {
+			var nohat = $('input[name=nohats]:checked').val();
+			$('#nohats_preview img').attr('src', '../img/nohatsmod/' + nohat + '.jpg');
+		});
+
+		//explosions preview
+		$('#explosion_smoke_checkbox').change(function() {
+			if(this.checked) {
+				$('#explosion_smoke_container ').fadeIn();
+			}
+			else {
+				$('#explosion_smoke_container ').fadeOut();
+			}
+		});
+		$('input[name=nosmoke]').change(function() {
+			var explosion_script = $('input[name=nosmoke]:checked').val();
+			$('#explosion_smoke_preview img').attr('src', '../img/explosion_script/' + explosion_script + '.jpg');
+		});
+	});
+	</script>
+
   <div class="tab-pane fade" id="files">
   <!--   SCRIPTS  -->
 		<div id="scripts">
@@ -1648,7 +1780,7 @@
 				<li>
 			    <label>
 			      <input type="checkbox" name="scripts" data-name="scripts" data-url="../make/scripts/surfaceproperties.txt" />
-			      Remove bullet hole dust <a href="#" data-toggle="tooltip" title="This removes the dust particles that appear when you shoot walls or other surfaces."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+			      Remove bullet hole dust <a href="#" data-toggle="tooltip" title="Removes the dust particles that appear when you shoot walls or other surfaces."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
 			    </label>
 			  </li>
 			</ul>
@@ -1659,36 +1791,98 @@
 			<ul class="checkbox list-unstyled">
 				<li>
 			    <label>
-			      <input type="checkbox" name="vpks" data-name="vpks" data-url="../make/vpks/explosions_muzzle_flash.vpk" />
-			      Remove explosion smoke <a href="http://www.teamfortress.tv/25647/no-explosion-smoke-script" data-toggle="tooltip" title="This will make explosions less visually apparent by replacing the explosive particle effects with 'muzzle_minigun_starflash01'." target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+			      <input id="explosion_smoke_checkbox" type="checkbox" name="vpks" data-name="vpks" data-url="" />
+			      Reduce explosion effect <a href="http://www.teamfortress.tv/25647/no-explosion-smoke-script" data-toggle="tooltip" title="Makes explosions less visually apparent by replacing their particle effects." target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
 			    </label>
 			  </li>
-  			<li>
-  		    <label class="radio-inline">
-  					<input type="radio" name="nohats" data-name="nothing" data-url="" checked/>
-  			    Do not remove hats
-  		    </label>
-  		    <label class="radio-inline">
-  					<input type="radio" name="nohats" data-name="vpks" data-url="../make/vpks/headsfeet23.02.vpk"/>
-  		      Remove cosmetics ("Headsfeet" version) <a href="http://www.teamfortress.tv/16179/no-hats-mod" data-toggle="tooltip" title="Disables cosmetics, except ones that replace body parts. Grants a small FPS boost." target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
-  		    </label>
-  		    <label class="radio-inline">
-  					<input type="radio" name="nohats" data-name="vpks" data-url="../make/vpks/no.hats.mod.2017.04.21.vpk" />
-  		      Remove cosmetics <a href="http://www.teamfortress.tv/16179/no-hats-mod" data-toggle="tooltip" title="Disables all cosmetics. Grants a small FPS boost." target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
-  		    </label>
-  		  </li>
+				<div id="explosion_smoke_container" class="row panel-body" style="display:none;">
+	  			<div id="explosion_smoke_container_inner" class="col-md-4">
+						<li>
+							<label>
+								<input type="radio" name="nosmoke" data-name="vpks" data-url="" value="default" checked/>
+								Default
+							</label>
+						</li>
+						<li>
+		  		    <label>
+		  					<input type="radio" name="nosmoke" data-name="vpks" data-url="../make/vpks/explosion_script/explosions_original.vpk" value="explosions_original"/>
+		  		      Spy Sapper
+		  		    </label>
+						</li>
+
+						<li>
+		  		    <label>
+		  					<input type="radio" name="nosmoke" data-name="vpks" data-url="../make/vpks/explosion_script/explosions_muzzle_flash.vpk" value="explosions_muzzle_flash" />
+		  		      Muzzle Flash
+		  		    </label>
+						</li>
+						<li>
+							<label>
+								<input type="radio" name="nosmoke" data-name="vpks" data-url="../make/vpks/explosion_script/explosions_2colours.vpk" value="explosions_2colours" />
+								Electric Shock
+								<p class="text-muted">Colored red on splash damage and blue on a direct hit</p>
+							</label>
+						</li>
+
+						<li>
+							<label>
+								<input type="radio" name="nosmoke" data-name="vpks" data-url="../make/vpks/explosion_script/explosions_pyro_pool.vpk" value="explosions_pyro_pool" />
+								Pyro Pool
+							</label>
+						</li>
+
+	  		  </div>
+					<div class="col-md-8" id="explosion_smoke_preview">
+						<img class="img-rounded" src="../img/explosion_script/default.jpg" style="width: 80%;">
+					</div>
+				</div>
   			<li>
   		    <label>
   		      <input type="checkbox" name="vpks" data-name="vpks" data-url="../make/vpks/nosoundscapes.vpk" />
-  		      Disable background sounds <a href="http://etf2l.org/forum/customise/topic-27511/" data-toggle="tooltip" title="This VPK file removes all the soundscapes (backgound sounds/ambient noises) from the game. It does not work on some maps that use other methods of producing sounds, but works on most maps." target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+  		      Disable background sounds <a href="http://etf2l.org/forum/customise/topic-27511/" data-toggle="tooltip" title="Removes all the soundscapes (backgound sounds/ambient noises) from the game. It does not work on some maps that use other methods of producing sounds, but works on most maps." target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
   		    </label>
   		  </li>
+				<li>
+  		    <label>
+  		      <input id="nohats_checkbox" type="checkbox" name="vpks" data-name="vpks" data-url="" />
+  		      Disable hats/cosmetics
+						<a href="javascript:;" data-toggle="tooltip" title="Replaces cosmetic models with blank versions. Also disables unusual effects (mostly). As this mod doesn't replace models with their defaults, but instead with blank versions, any cosmetics that replace body parts will result in invisible limbs."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+  		    </label>
+  		  </li>
+				<div id="nohats_container" class="row panel-body" style="display:none;">
+	  			<div id="nohats_container_inner" class="col-md-4">
+						<li>
+		  		    <label>
+		  					<input type="radio" name="nohats" data-name="nothing" data-url="" value="off" checked/>
+		  			    Do not remove any cosmetics
+		  		    </label>
+						</li>
+
+						<li>
+	  		    <label>
+	  					<input type="radio" name="nohats" data-name="vpks" data-url="../make/vpks/headsfeet23.02.vpk" value="headsfeet"/>
+	  		      Remove hats and some cosmetics <a href="http://www.teamfortress.tv/16179/no-hats-mod" data-toggle="tooltip" title="Disables cosmetics, except ones that replace body parts. Grants a small FPS boost." target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+	  		    </label>
+						</li>
+
+						<li>
+		  		    <label>
+		  					<input type="radio" name="nohats" data-name="vpks" data-url="../make/vpks/no.hats.mod.2017.04.21.vpk" value="on" />
+		  		      Remove all cosmetics <a href="http://www.teamfortress.tv/16179/no-hats-mod" data-toggle="tooltip" title="Disables all cosmetics. Grants a small FPS boost." target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+		  		    </label>
+						</li>
+
+	  		  </div>
+					<div class="col-md-8" id="nohats_preview">
+						<img class="img-rounded" src="../img/nohatsmod/off.jpg" style="width: 80%;">
+					</div>
+				</div>
 			</ul>
 			<hr>
 			<h3><abbr title="Head-Up Display" class="initialism">HUD</abbr> <span class="label label-default">Beta</span></h3>
 			<p class="text-muted">Determines how your interface looks</p>
 			<p class="alert alert-info">More HUDs coming up very soon! Click on a "HUD preview" for detailed HUD information.</p>
-			<select class="selectpicker" data-live-search="true" id="hudselector" data-header='Hover your mouse over "HUD preview" button to see a preview.'>
+			<select class="selectpicker" data-live-search="true" id="hudselector" data-header="Hover your mouse over &quot;HUD&quot; preview button to see a preview.">
 			  <option name="huds" data-name="nothing" 	data-link="#" data-url="" selected>Default HUD</option>
 			  <option data-subtext="03-31-2017" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=207" data-name="hud" data-url="./huds/budhud.zip">budhud</option>
 			  <option data-subtext="02-02-2017" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=217" data-name="hud" data-url="./huds/broeselhud_blue.zip">broeselhud_blue</option>
@@ -1698,13 +1892,13 @@
 			  <option data-subtext="02-14-2017" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=248" data-name="hud" data-url="./huds/m0rehud.zip">m0re HUD</option>
 			  <option data-subtext="12-21-2016" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=191" data-name="hud" data-url="./huds/ahud.zip">ahud</option>
 			  <option data-subtext="08-12-2016" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=223" data-name="hud" data-url="./huds/medHUD.zip">medHUD</option>
-			  <option data-subtext="07-16-2016" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=183" data-name="hud" data-url="./huds/noto.zip">noto HUD</option>			  
-			  <option data-subtext="12-31-2016" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=233" data-name="hud" data-url="./huds/omphud-redux.zip">omphud-redux</option>			  
-			  <option data-subtext="02-16-2017" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=270" data-name="hud" data-url="./huds/AntsHUD.zip">AntsHUD</option>			  
-			  <option data-subtext="02-21-2017" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=211" data-name="hud" data-url="./huds/IsaacHUD.zip">Isaac Hud</option>			  
-			  <option data-subtext="12-22-2016" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=198" data-name="hud" data-url="./huds/flathud.zip">flathud (blue)</option>			  
-			  <option data-subtext="06-23-2016" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=250" data-name="hud" data-url="./huds/mHUD.zip">mHUD</option>			  
-			  <option data-subtext="12-19-2016" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=219" data-name="hud" data-url="./huds/Mannterface.zip">The Mannterface</option>			  
+			  <option data-subtext="07-16-2016" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=183" data-name="hud" data-url="./huds/noto.zip">noto HUD</option>
+			  <option data-subtext="12-31-2016" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=233" data-name="hud" data-url="./huds/omphud-redux.zip">omphud-redux</option>
+			  <option data-subtext="02-16-2017" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=270" data-name="hud" data-url="./huds/AntsHUD.zip">AntsHUD</option>
+			  <option data-subtext="02-21-2017" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=211" data-name="hud" data-url="./huds/IsaacHUD.zip">Isaac Hud</option>
+			  <option data-subtext="12-22-2016" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=198" data-name="hud" data-url="./huds/flathud.zip">flathud (blue)</option>
+			  <option data-subtext="06-23-2016" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=250" data-name="hud" data-url="./huds/mHUD.zip">mHUD</option>
+			  <option data-subtext="12-19-2016" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=219" data-name="hud" data-url="./huds/Mannterface.zip">The Mannterface</option>
 			</select>
 			<a href="#" id="hudprev" class="btn btn-default disabled" target="_blank">HUD preview</a>
 			<div class="ibox"><div class="ibox-bg"><p class="text-muted"> Hud previews provided by huds.tf</p></div><iframe id="frameid" src="#" width = "500px" height = "450px" scrolling="no" seamless="seamless"></iframe></div>
@@ -1717,13 +1911,13 @@
 					hudaddress = $(this).find(':selected').data('link');
 					$('#hudprev').attr("class", "btn btn-default");
 					$('#hudprev').attr("href", hudaddress);
-					
+
 				} else {
 					$('#hudprev').attr("class", "btn btn-default disabled");
-					$('#hudprev').attr("href", "#");				
+					$('#hudprev').attr("href", "#");
 				}
 			});
-			
+
 			$('#hudprev').hover(function() {
 				iframes.attr('src', function() {
 					$('#frameid').attr("src", hudaddress);
@@ -1858,6 +2052,7 @@
 			crosshairName = $('#' + selectedID + ' optgroup[label*="Style"]').find(':selected').val();
 			crosshairSize = $('#' + selectedID + ' optgroup[label*="Size"]').find(':selected').val();
 			crosshairColor =  $('#' + selectedID + ' optgroup[label*="Color"]').find(':selected').val();
+
 			switch (crosshairSize) {
 				case "tiny": crosshairSize = "0.2"; break;
 				case "smallest": crosshairSize = "0.3"; break;
@@ -1869,15 +2064,28 @@
 				case "invisible": crosshairSize = "0"; break;
 			};
 
-			if (typeof crosshairName === 'undefined' ) { crosshairName = 'default' }
-			if (typeof crosshairSize === 'undefined' ) { crosshairSize = '1.0' }
-			if (typeof crosshairColor === 'undefined' ) { crosshairColor = 'black' }
 
-			$('<span id="crosshair_' + selectedID + '" class="crosshair" style="padding-right:1em;"></span>').prependTo( $('#' + selectedID).closest('td') );
-			$('#crosshair_' + selectedID).load('../img/crosshairs/svg/' + crosshairName + '.svg'); //load svg
-			$('#crosshair_' + selectedID).css({ fill: crosshairColor });
-			// $('#crosshair_' + selectedID).css({ stroke: crosshairColor });
-			$('#crosshair_' + selectedID).css({ transform: 'scale(' + crosshairSize + ')' });
+			if (typeof crosshairName === 'undefined' ) { crosshairName = 'default' }
+			if (typeof crosshairSize === 'undefined' ) { crosshairSize = '0.8' }
+			if (typeof crosshairColor === 'undefined' ) { crosshairColor = 'black' }
+			switch (crosshairColor) {
+				case "red": crosshairColor = '#FF0000'; break;
+				case "green": crosshairColor = '#00FF00'; break;
+				case "blue": crosshairColor = '#0000FF'; break;
+				case "yellow": crosshairColor = '#FFFF00'; break;
+				case "cyan": crosshairColor = '#00FFFF'; break;
+				case "pink": crosshairColor = '#FF00FF'; break;
+				case "orange": crosshairColor = 'rgb(255,128,0)'; break;
+				case "purple": crosshairColor = 'rgb(128,0,255)'; break;
+				case "mint": crosshairColor = 'rgb(0,255,128)'; break;
+				case "lime": crosshairColor = 'rgb(178,255,0)'; break;
+				case "skyblue": crosshairColor = 'rgb(60,158,255)'; break;
+				case "black": crosshairColor = '#000'; break;
+				case "grey": crosshairColor = 'rgb(128,128,128)'; break;
+				case "white": crosshairColor = '#FFF'; break;
+			};
+
+			$('<span class="crosshair"><span id="xhair_' + selectedID + '" class="xhair-' + crosshairName + '" style="color: ' + crosshairColor + '; font-size: ' + crosshairSize + 'em;"></span></span>').prependTo( $('#' + selectedID).closest('td') );
 		});
 
 		// update the crosshair when selector changes
@@ -1898,13 +2106,33 @@
 			};
 
 			if (typeof crosshairName === 'undefined' ) { crosshairName = 'default' }
-			if (typeof crosshairSize === 'undefined' ) { crosshairSize = '1.0' }
+			if (typeof crosshairSize === 'undefined' ) { crosshairSize = '0.8' }
 			if (typeof crosshairColor === 'undefined' ) { crosshairColor = 'black' }
-			$('#crosshair_' + selectedID + ' svg').remove();//remove old svg
-			$('#crosshair_' + selectedID).load('../img/crosshairs/svg/' + crosshairName + '.svg');//load new svg
-			$('#crosshair_' + selectedID).css({ fill: crosshairColor });
-			// $('#crosshair_' + selectedID).css({ stroke: crosshairColor });
-			$('#crosshair_' + selectedID).css({ transform: 'scale(' + crosshairSize + ')' });
+			switch (crosshairColor) {
+				case "red": crosshairColor = '#FF0000'; break;
+				case "green": crosshairColor = '#00FF00'; break;
+				case "blue": crosshairColor = '#0000FF'; break;
+				case "yellow": crosshairColor = '#FFFF00'; break;
+				case "cyan": crosshairColor = '#00FFFF'; break;
+				case "pink": crosshairColor = '#FF00FF'; break;
+				case "orange": crosshairColor = 'rgb(255,128,0)'; break;
+				case "purple": crosshairColor = 'rgb(128,0,255)'; break;
+				case "mint": crosshairColor = 'rgb(0,255,128)'; break;
+				case "lime": crosshairColor = 'rgb(178,255,0)'; break;
+				case "skyblue": crosshairColor = 'rgb(60,158,255)'; break;
+				case "black": crosshairColor = '#000'; break;
+				case "grey": crosshairColor = 'rgb(128,128,128)'; break;
+				case "white": crosshairColor = '#FFF'; break;
+			};
+
+			$('#xhair_' + selectedID).removeClass(function (index, className) {
+			    return (className.match (/(^|\s)xhair-\S+/g) || []).join(' ');
+			});
+			$('#xhair_' + selectedID).addClass('xhair-' + crosshairName)
+			$('#xhair_' + selectedID).css({ 'color': crosshairColor });
+			$('#xhair_' + selectedID).css({ 'font-size': crosshairSize + 'em' });
+			//$('#xhair_' + selectedID).parent().css({ 'line-height': crosshairSize + 'em' });
+
 			});
 
 
@@ -3682,66 +3910,77 @@
       </li>
   	</ul>
 		<hr>
-		<h3>Custom hitsounds and killsounds:</h3>
+		<script>
+			$(document).ready(function() { // toggles autoplay of sounds
+				killsoundmuter = true
+				$('#killsound_muter').click(function() {
+					killsoundmuter = !killsoundmuter
+					$('#killsound_muter_warn').fadeToggle();
+					$('#killsound_muter i').toggleClass('fa-volume-off').toggleClass('fa-volume-up');
+				})
+			});
+		</script>
+		<h3>Custom hitsounds and killsounds <a data-toggle="tooltip" title="Toggle sound autoplaying on selection" href="javascript:;" id="killsound_muter" class="sound_muted"><i class="fa fa-volume-off" aria-hidden="true"></i></a></h3>
 		<p>There are already a few hitsounds that you can select from in the "Advanced Options" in-game menu. Optionally, you can select a custom hit/killsound (or choose none here and use your own one).</p>
-    <p>Click <i class="fa fa-volume-up" aria-hidden="true"></i> to hear an audio preview.</p>
 		<p class="alert alert-warning"><i class="fa fa-firefox" aria-hidden="true"></i> Mozilla Firefox users currently can not select custom hit/kill sounds, this will prevent config from being generated. Sorry, we're working on it right now.</p>
-
+		<p class="alert alert-warning" id="killsound_muter_warn" style="display:none;"><i class="fa fa-volume-up" aria-hidden="true"></i> Sound will automatically play on selection.</p>
 		<ul class="checkbox list-unstyled">
 			<li>
 	      <label class="form-inline">
 				  <!-- HITSOUND SELECTOR -->
 					Hitsound
-						<select class="selectpicker" id="selectionhit" >
+						<select class="selectpicker" id="selectionhit">
 							<option value="none" data-name="nohitsound" data-url="">None</option>
+							<optgroup label="Game Hitsounds">
+								<option value="../make/snd/ogg/Q3.ogg" data-name="hitsound" data-url="../make/snd/Q3.wav">Quake 3</option>
+								<option value="../make/snd/ogg/UT.ogg" data-name="hitsound" data-url="../make/snd/UT.wav">Unreal Tournament</option>
+								<option value="../make/snd/ogg/QL.ogg" data-name="hitsound" data-url="../make/snd/QL.wav">Quake Live</option>
+								<option value="../make/snd/ogg/cod.ogg" data-name="hitsound" data-url="../make/snd/cod.wav">Call of Duty</option>
+								<option value="../make/snd/ogg/owhit.ogg" data-name="hitsound" data-url="../make/snd/owhit.wav">Overwatch</option>
+								<option value="../make/snd/ogg/fortressforever.ogg" data-name="hitsound" data-url="../make/snd/fortressforever.wav">Fortress Forever</option>
+							</optgroup>
 						  <optgroup label="Generic">
-								<option value="../make/snd/Q3.wav" data-name="hitsound" data-url="../make/snd/Q3.wav">Quake 3</option>
-								<option value="../make/snd/sonicring.wav" data-name="hitsound" data-url="../make/snd/sonicring.wav" >Sonic Ring</option>
-								<option value="../make/snd/quack.wav" data-name="hitsound" data-url="../make/snd/quack.wav" >Quack</option>
-								<option value="../make/snd/mariocoin.wav" data-name="hitsound" data-url="../make/snd/mariocoin.wav">Mario Coin</option>
-								<option value="../make/snd/UT.wav" data-name="hitsound" data-url="../make/snd/UT.wav" >Unreal Tournament</option>
-								<option value="../make/snd/TINGG.wav" data-name="hitsound" data-url="../make/snd/TINGG.wav" >Ting</option>
-								<option value="../make/snd/funky.wav" data-name="hitsound" data-url="../make/snd/funky.wav">Funky</option>
-								<option value="../make/snd/combine.wav" data-name="hitsound" data-url="../make/snd/combine.wav">HL2 Combine</option>
-								<option value="../make/snd/mgs.wav" data-name="hitsound" data-url="../make/snd/mgs.wav">MGS Alert</option>
-								<option value="../make/snd/jbird.wav" data-name="hitsound" data-url="../make/snd/jbird.wav">Jbird's hitsound</option>
-								<option value="../make/snd/cod.wav" data-name="hitsound" data-url="../make/snd/cod.wav">CoD Hitmaker</option>
-								<option value="../make/snd/QL.wav" data-name="hitsound" data-url="../make/snd/QL.wav">Quake Live</option>
-								<option value="../make/snd/winxp_error.wav" data-name="hitsound" data-url="../make/snd/winxp_error.wav">Windows XP error sound</option>
-								<option value="../make/snd/mlg.wav" data-name="hitsound" data-url="../make/snd/mlg.wav">Airhorn</option>
-								<option value="../make/snd/prec.wav" data-name="hitsound" data-url="../make/snd/prec.wav">P-Rec</option>
-								<option value="../make/snd/sonicspring.wav" data-name="hitsound" data-url="../make/snd/sonicspring.wav">Sonic Spring</option>
-								<option value="../make/snd/doot.wav" data-name="hitsound" data-url="../make/snd/doot.wav">Skull Trumpet</option>
-								<option value="../make/snd/acc.wav" data-name="hitsound" data-url="../make/snd/acc.wav">Acc-e-min</option>
-								<option value="../make/snd/owhit.wav" data-name="hitsound" data-url="../make/snd/owhit.wav">Overwatch Hitsound</option>
-								<option value="../make/snd/owkill.wav" data-name="hitsound" data-url="../make/snd/owkill.wav">Overwatch Killsound</option>
-								<option value="../make/snd/nintswitch.wav" data-name="hitsound" data-url="../make/snd/nintswitch.wav">Nintendo Switch</option>
-								<option value="../make/snd/zoop.wav" data-name="hitsound" data-url="../make/snd/zoop.wav">Zoop</option>
-								<option value="../make/snd/doof.wav" data-name="hitsound" data-url="../make/snd/doof.wav">Doof</option>
-								<option value="../make/snd/pop.wav" data-name="hitsound" data-url="../make/snd/pop.wav">Pop</option>
-								<option value="../make/snd/fortressforever.wav" data-name="hitsound" data-url="../make/snd/fortressforever.wav">Fortress Forever hitsound</option>
-								<option value="../make/snd/crunchy_8-bit.wav" data-name="hitsound" data-url="../make/snd/crunchy_8-bit.wav">Crunchy 8-bit</option>
-								<option value="../make/snd/8-bit.wav" data-name="hitsound" data-url="../make/snd/8-bit.wav">8-bit</option>
+								<option value="../make/snd/ogg/sonicring.ogg" data-name="hitsound" data-url="../make/snd/sonicring.wav">Sonic Ring</option>
+								<option value="../make/snd/ogg/quack.ogg" data-name="hitsound" data-url="../make/snd/quack.wav">Quack</option>
+								<option value="../make/snd/ogg/mariocoin.ogg" data-name="hitsound" data-url="../make/snd/mariocoin.wav">Mario Coin</option>
+								<option value="../make/snd/ogg/TINGG.ogg" data-name="hitsound" data-url="../make/snd/TINGG.wav">Ting</option>
+								<option value="../make/snd/ogg/funky.ogg" data-name="hitsound" data-url="../make/snd/funky.wav">Funky</option>
+								<option value="../make/snd/ogg/combine.ogg" data-name="hitsound" data-url="../make/snd/combine.wav">HL2 Combine</option>
+								<option value="../make/snd/ogg/mgs.ogg" data-name="hitsound" data-url="../make/snd/mgs.wav">MGS Alert</option>
+								<option value="../make/snd/ogg/jbird.ogg" data-name="hitsound" data-url="../make/snd/jbird.wav">Jbird's hitsound</option>
+								<option value="../make/snd/ogg/winxp_error.ogg" data-name="hitsound" data-url="../make/snd/winxp_error.wav">Windows XP error sound</option>
+								<option value="../make/snd/ogg/mlg.ogg" data-name="hitsound" data-url="../make/snd/mlg.wav">Airhorn</option>
+								<option value="../make/snd/ogg/prec.ogg" data-name="hitsound" data-url="../make/snd/prec.wav">P-Rec</option>
+								<option value="../make/snd/ogg/sonicspring.ogg" data-name="hitsound" data-url="../make/snd/sonicspring.wav">Sonic Spring</option>
+								<option value="../make/snd/ogg/doot.ogg" data-name="hitsound" data-url="../make/snd/doot.wav">Skull Trumpet</option>
+								<option value="../make/snd/ogg/acc.ogg" data-name="hitsound" data-url="../make/snd/acc.wav">Acc-e-min</option>
+								<option value="../make/snd/ogg/owkill.ogg" data-name="hitsound" data-url="../make/snd/owkill.wav">Overwatch Killsound</option>
+								<option value="../make/snd/ogg/nintswitch.ogg" data-name="hitsound" data-url="../make/snd/nintswitch.wav">Nintendo Switch</option>
+								<option value="../make/snd/ogg/zoop.ogg" data-name="hitsound" data-url="../make/snd/zoop.wav">Zoop</option>
+								<option value="../make/snd/ogg/doof.ogg" data-name="hitsound" data-url="../make/snd/doof.wav">Doof</option>
+								<option value="../make/snd/ogg/pop.ogg" data-name="hitsound" data-url="../make/snd/pop.wav">Pop</option>
+								<option value="../make/snd/ogg/crunchy_8-bit.ogg" data-name="hitsound" data-url="../make/snd/crunchy_8-bit.wav">Crunchy 8-bit</option>
+								<option value="../make/snd/ogg/8-bit.ogg" data-name="hitsound" data-url="../make/snd/8-bit.wav">8-bit</option>
 						  </optgroup>
 						  <optgroup label="Voicelines">
-								<option value="../make/snd/impressive_q3.wav" data-name="hitsound" data-url="../make/snd/impressive_q3.wav">Quake - Impressive</option>
-								<option value="../make/snd/q3_excellent.wav" data-name="hitsound" data-url="../make/snd/q3_excellent.wav">Quake - Excellent</option>
-								<option value="../make/snd/ded.wav" data-name="hitsound" data-url="../make/snd/ded.wav">DED</option>
-								<option value="../make/snd/nope.wav" data-name="hitsound" data-url="../make/snd/nope.wav">Nope.wav</option>
-								<option value="../make/snd/see.wav" data-name="hitsound" data-url="../make/snd/see.wav">SEE?</option>
-								<option value="../make/snd/huh.wav" data-name="hitsound" data-url="../make/snd/huh.wav">Pyro honk</option>
-								<option value="../make/snd/mk_toasty.wav" data-name="hitsound" data-url="../make/snd/mk_toasty.wav">Mortal Kombat - toasty</option>
+								<option value="../make/snd/ogg/impressive_q3.ogg" data-name="hitsound" data-url="../make/snd/impressive_q3.wav">Quake - Impressive</option>
+								<option value="../make/snd/ogg/q3_excellent.ogg" data-name="hitsound" data-url="../make/snd/q3_excellent.wav">Quake - Excellent</option>
+								<option value="../make/snd/ogg/ded.ogg" data-name="hitsound" data-url="../make/snd/ded.wav">DED</option>
+								<option value="../make/snd/ogg/nope.ogg" data-name="hitsound" data-url="../make/snd/nope.wav">Nope.wav</option>
+								<option value="../make/snd/ogg/see.ogg" data-name="hitsound" data-url="../make/snd/see.wav">SEE?</option>
+								<option value="../make/snd/ogg/huh.ogg" data-name="hitsound" data-url="../make/snd/huh.wav">Pyro honk</option>
+								<option value="../make/snd/ogg/mk_toasty.ogg" data-name="hitsound" data-url="../make/snd/mk_toasty.wav">Mortal Kombat - toasty</option>
 						  </optgroup>
 						  <optgroup label="meme">
-								<option value="../make/snd/sideshow.wav" data-name="hitsound" data-url="../make/snd/sideshow.wav">Sideshow dribble</option>
-								<option value="../make/snd/hehehe.wav" data-name="hitsound" data-url="../make/snd/hehehe.wav">b4nny giggle</option>
-								<option value="../make/snd/unusual.wav" data-name="hitsound" data-url="../make/snd/unusual.wav">b4nny unusual (ear warning)</option>
-								<option value="../make/snd/wtf_tagg.wav" data-name="hitsound" data-url="../make/snd/wtf_tagg.wav">tagg wtf (ear warning)</option>
-								<option value="../make/snd/steeve.wav" data-name="hitsound" data-url="../make/snd/steeve.wav">b4nny steeve</option>
-								<option value="../make/snd/yight_ohyeaa.wav" data-name="hitsound" data-url="../make/snd/yight_ohyeaa.wav">yight ohyeaa (ear warning)</option>
-								<option value="../make/snd/toasted_tagg.wav" data-name="hitsound" data-url="../make/snd/toasted_tagg.wav">tagg get toasted</option>
-								<option value="../make/snd/funke_ding.wav" data-name="hitsound" data-url="../make/snd/funke_ding.wav">FUNKe ding</option>
-								<option value="../make/snd/shade_aaa.wav" data-name="hitsound" data-url="../make/snd/shade_aaa.wav">drunk shade screaming</option>
+								<option value="../make/snd/ogg/sideshow.ogg" data-name="hitsound" data-url="../make/snd/sideshow.wav">Sideshow dribble</option>
+								<option value="../make/snd/ogg/hehehe.ogg" data-name="hitsound" data-url="../make/snd/hehehe.wav">b4nny giggle</option>
+								<option value="../make/snd/ogg/unusual.ogg" data-name="hitsound" data-url="../make/snd/unusual.wav">b4nny unusual (ear warning)</option>
+								<option value="../make/snd/ogg/wtf_tagg.ogg" data-name="hitsound" data-url="../make/snd/wtf_tagg.wav">tagg wtf (ear warning)</option>
+								<option value="../make/snd/ogg/steeve.ogg" data-name="hitsound" data-url="../make/snd/steeve.wav">b4nny steeve</option>
+								<option value="../make/snd/ogg/yight_ohyeaa.ogg" data-name="hitsound" data-url="../make/snd/yight_ohyeaa.wav">yight ohyeaa (ear warning)</option>
+								<option value="../make/snd/ogg/toasted_tagg.ogg" data-name="hitsound" data-url="../make/snd/toasted_tagg.wav">tagg get toasted</option>
+								<option value="../make/snd/ogg/funke_ding.ogg" data-name="hitsound" data-url="../make/snd/funke_ding.wav">FUNKe ding</option>
+								<option value="../make/snd/ogg/shade_aaa.ogg" data-name="hitsound" data-url="../make/snd/shade_aaa.wav">drunk shade screaming</option>
 						  </optgroup>
 						</select>
 
@@ -3757,6 +3996,9 @@
 											$('#hitsound_player').fadeIn(200);
 											source.src = sourceUrl;
 											audio.load();
+											if (killsoundmuter == false) {
+												audio.play();
+											}
 										}
 									}
 
@@ -3772,67 +4014,69 @@
 								});
 						</script>
 						<audio id="player" controls="controls" style="display:none;">
-							<source id="wav_src" src="" type="audio/wav" />Your browser does not support audio previews.
+							<source id="wav_src" src="" type="audio/ogg" />Your browser does not support audio previews.
 						</audio>
 	      </label>
-				<a id="hitsound_player" style="display:none;"><i class="fa fa-volume-up" aria-hidden="true"></i> </a>
+				<a id="hitsound_player" style="display:none;"><i class="fa fa-play" aria-hidden="true"></i> </a>
 			</li>
 
 			<li>
 	      <label>
 				  <!-- KILLSOUND SELECTOR -->
 					Killsound
-   					<select class="selectpicker" id="selectionkill" >
+   					<select class="selectpicker" id="selectionkill">
 							<option value="none" data-name="nokillsound" data-url=" ">None</option>
-						  <optgroup label="Generic">
-								<option value="../make/snd/Q3.wav" data-name="killsound" data-url="../make/snd/Q3.wav">Quake 3</option>
-								<option value="../make/snd/sonicring.wav" data-name="killsound" data-url="../make/snd/sonicring.wav" >Sonic Ring</option>
-								<option value="../make/snd/quack.wav" data-name="killsound" data-url="../make/snd/quack.wav" >Quack</option>
-								<option value="../make/snd/mariocoin.wav" data-name="killsound" data-url="../make/snd/mariocoin.wav">Mario Coin</option>
-								<option value="../make/snd/UT.wav" data-name="killsound" data-url="../make/snd/UT.wav" >Unreal Tournament</option>
-								<option value="../make/snd/TINGG.wav" data-name="killsound" data-url="../make/snd/TINGG.wav" >Ting</option>
-								<option value="../make/snd/funky.wav" data-name="killsound" data-url="../make/snd/funky.wav">Funky</option>
-								<option value="../make/snd/combine.wav" data-name="killsound" data-url="../make/snd/combine.wav">HL2 Combine</option>
-								<option value="../make/snd/mgs.wav" data-name="killsound" data-url="../make/snd/mgs.wav">MGS Alert</option>
-								<option value="../make/snd/jbird.wav" data-name="killsound" data-url="../make/snd/jbird.wav">Jbird's hitsound</option>
-								<option value="../make/snd/cod.wav" data-name="killsound" data-url="../make/snd/cod.wav">CoD Hitmaker</option>
-								<option value="../make/snd/QL.wav" data-name="killsound" data-url="../make/snd/QL.wav">Quake Live</option>
-								<option value="../make/snd/winxp_error.wav" data-name="killsound" data-url="../make/snd/winxp_error.wav">Windows XP error sound</option>
-								<option value="../make/snd/mlg.wav" data-name="killsound" data-url="../make/snd/mlg.wav">Airhorn</option>
-								<option value="../make/snd/prec.wav" data-name="killsound" data-url="../make/snd/prec.wav">P-Rec</option>
-								<option value="../make/snd/sonicspring.wav" data-name="killsound" data-url="../make/snd/sonicspring.wav">Sonic Spring</option>
-								<option value="../make/snd/doot.wav" data-name="killsound" data-url="../make/snd/doot.wav">Skull Trumpet</option>
-								<option value="../make/snd/acc.wav" data-name="killsound" data-url="../make/snd/acc.wav">acc-e-min</option>
-								<option value="../make/snd/owhit.wav" data-name="killsound" data-url="../make/snd/acc.wav">Overwatch Hitsound</option>
-								<option value="../make/snd/owkill.wav" data-name="killsound" data-url="../make/snd/acc.wav">Overwatch Killsound</option>
-								<option value="../make/snd/nintswitch.wav" data-name="killsound" data-url="../make/snd/nintswitch.wav">Nintendo Switch</option>
-								<option value="../make/snd/zoop.wav" data-name="killsound" data-url="../make/snd/zoop.wav">Zoop</option>
-								<option value="../make/snd/doof.wav" data-name="killsound" data-url="../make/snd/doof.wav">Doof</option>
-								<option value="../make/snd/pop.wav" data-name="killsound" data-url="../make/snd/pop.wav">Pop</option>
-								<option value="../make/snd/fortressforever.wav" data-name="killsound" data-url="../make/snd/fortressforever.wav">Fortress Forever hitsound</option>
-								<option value="../make/snd/crunchy_8-bit.wav" data-name="killsound" data-url="../make/snd/crunchy_8-bit.wav">Crunchy 8-bit</option>
-								<option value="../make/snd/8-bit.wav" data-name="killsound" data-url="../make/snd/8-bit.wav">8-bit</option>
+							<optgroup label="Game Hitsounds">
+								<option value="../make/snd/ogg/Q3.ogg" data-name="killsound" data-url="../make/snd/Q3.wav">Quake 3</option>
+								<option value="../make/snd/ogg/UT.ogg" data-name="killsound" data-url="../make/snd/UT.wav">Unreal Tournament</option>
+								<option value="../make/snd/ogg/QL.ogg" data-name="killsound" data-url="../make/snd/QL.wav">Quake Live</option>
+								<option value="../make/snd/ogg/cod.ogg" data-name="killsound" data-url="../make/snd/cod.wav">Call of Duty</option>
+								<option value="../make/snd/ogg/owhit.ogg" data-name="killsound" data-url="../make/snd/owhit.wav">Overwatch</option>
+								<option value="../make/snd/ogg/fortressforever.ogg" data-name="killsound" data-url="../make/snd/fortressforever.wav">Fortress Forever</option>
+							</optgroup>
+							<optgroup label="Generic">
+								<option value="../make/snd/ogg/sonicring.ogg" data-name="killsound" data-url="../make/snd/sonicring.wav">Sonic Ring</option>
+								<option value="../make/snd/ogg/quack.ogg" data-name="killsound" data-url="../make/snd/quack.wav">Quack</option>
+								<option value="../make/snd/ogg/mariocoin.ogg" data-name="killsound" data-url="../make/snd/mariocoin.wav">Mario Coin</option>
+								<option value="../make/snd/ogg/TINGG.ogg" data-name="killsound" data-url="../make/snd/TINGG.wav">Ting</option>
+								<option value="../make/snd/ogg/funky.ogg" data-name="killsound" data-url="../make/snd/funky.wav">Funky</option>
+								<option value="../make/snd/ogg/combine.ogg" data-name="killsound" data-url="../make/snd/combine.wav">HL2 Combine</option>
+								<option value="../make/snd/ogg/mgs.ogg" data-name="killsound" data-url="../make/snd/mgs.wav">MGS Alert</option>
+								<option value="../make/snd/ogg/jbird.ogg" data-name="killsound" data-url="../make/snd/jbird.wav">Jbird's hitsound</option>
+								<option value="../make/snd/ogg/winxp_error.ogg" data-name="killsound" data-url="../make/snd/winxp_error.wav">Windows XP error sound</option>
+								<option value="../make/snd/ogg/mlg.ogg" data-name="killsound" data-url="../make/snd/mlg.wav">Airhorn</option>
+								<option value="../make/snd/ogg/prec.ogg" data-name="killsound" data-url="../make/snd/prec.wav">P-Rec</option>
+								<option value="../make/snd/ogg/sonicspring.ogg" data-name="killsound" data-url="../make/snd/sonicspring.wav">Sonic Spring</option>
+								<option value="../make/snd/ogg/doot.ogg" data-name="killsound" data-url="../make/snd/doot.wav">Skull Trumpet</option>
+								<option value="../make/snd/ogg/acc.ogg" data-name="killsound" data-url="../make/snd/acc.wav">Acc-e-min</option>
+								<option value="../make/snd/ogg/owkill.ogg" data-name="killsound" data-url="../make/snd/owkill.wav">Overwatch Killsound</option>
+								<option value="../make/snd/ogg/nintswitch.ogg" data-name="killsound" data-url="../make/snd/nintswitch.wav">Nintendo Switch</option>
+								<option value="../make/snd/ogg/zoop.ogg" data-name="killsound" data-url="../make/snd/zoop.wav">Zoop</option>
+								<option value="../make/snd/ogg/doof.ogg" data-name="killsound" data-url="../make/snd/doof.wav">Doof</option>
+								<option value="../make/snd/ogg/pop.ogg" data-name="killsound" data-url="../make/snd/pop.wav">Pop</option>
+								<option value="../make/snd/ogg/crunchy_8-bit.ogg" data-name="killsound" data-url="../make/snd/crunchy_8-bit.wav">Crunchy 8-bit</option>
+								<option value="../make/snd/ogg/8-bit.ogg" data-name="killsound" data-url="../make/snd/8-bit.wav">8-bit</option>
 							</optgroup>
 						  <optgroup label="Voicelines">
-								<option value="../make/snd/impressive_q3.wav" data-name="killsound" data-url="../make/snd/impressive_q3.wav">Quake - Impressive</option>
-								<option value="../make/snd/q3_excellent.wav" data-name="killsound" data-url="../make/snd/q3_excellent.wav">Quake - Excellent</option>
-								<option value="../make/snd/ded.wav" data-name="killsound" data-url="../make/snd/ded.wav">DED</option>
-								<option value="../make/snd/nope.wav" data-name="killsound" data-url="../make/snd/nope.wav">Nope.wav</option>
-								<option value="../make/snd/see.wav" data-name="killsound" data-url="../make/snd/see.wav">SEE?</option>
-								<option value="../make/snd/huh.wav" data-name="killsound" data-url="../make/snd/huh.wav">Pyro honk</option>
-								<option value="../make/snd/mk_toasty.wav" data-name="killsound" data-url="../make/snd/mk_toasty.wav">Mortal Kombat - toasty</option>
+								<option value="../make/snd/ogg/impressive_q3.ogg" data-name="killsound" data-url="../make/snd/impressive_q3.wav">Quake - Impressive</option>
+								<option value="../make/snd/ogg/q3_excellent.ogg" data-name="killsound" data-url="../make/snd/q3_excellent.wav">Quake - Excellent</option>
+								<option value="../make/snd/ogg/ded.ogg" data-name="killsound" data-url="../make/snd/ded.wav">DED</option>
+								<option value="../make/snd/ogg/nope.ogg" data-name="killsound" data-url="../make/snd/nope.wav">Nope.wav</option>
+								<option value="../make/snd/ogg/see.ogg" data-name="killsound" data-url="../make/snd/see.wav">SEE?</option>
+								<option value="../make/snd/ogg/huh.ogg" data-name="killsound" data-url="../make/snd/huh.wav">Pyro honk</option>
+								<option value="../make/snd/ogg/mk_toasty.ogg" data-name="killsound" data-url="../make/snd/mk_toasty.wav">Mortal Kombat - toasty</option>
 						  </optgroup>
 						  <optgroup label="meme">
-								<option value="../make/snd/sideshow.wav" data-name="killsound" data-url="../make/snd/sideshow.wav">Sideshow dribble</option>
-								<option value="../make/snd/hehehe.wav" data-name="killsound" data-url="../make/snd/hehehe.wav">b4nny giggle</option>
-								<option value="../make/snd/unusual.wav" data-name="killsound" data-url="../make/snd/unusual.wav">b4nny unusual (ear warning)</option>
-								<option value="../make/snd/gj.wav" data-name="killsound" data-url="../make/snd/gj.wav">great job</option>
-								<option value="../make/snd/wtf_tagg.wav" data-name="killsound" data-url="../make/snd/wtf_tagg.wav">tagg wtf (ear warning)</option>
-								<option value="../make/snd/steeve.wav" data-name="killsound" data-url="../make/snd/steeve.wav">b4nny steeve</option>
-								<option value="../make/snd/yight_ohyeaa.wav" data-name="killsound" data-url="../make/snd/yight_ohyeaa.wav">yight ohyeaa (ear warning)</option>
-								<option value="../make/snd/toasted_tagg.wav" data-name="killsound" data-url="../make/snd/toasted_tagg.wav">tagg get toasted</option>
-								<option value="../make/snd/funke_ding.wav" data-name="killsound" data-url="../make/snd/funke_ding.wav">FUNKe ding</option>
-								<option value="../make/snd/shade_aaa.wav" data-name="killsound" data-url="../make/snd/shade_aaa.wav">drunk shade screaming</option>
+								<option value="../make/snd/ogg/sideshow.ogg" data-name="killsound" data-url="../make/snd/sideshow.wav">Sideshow dribble</option>
+								<option value="../make/snd/ogg/hehehe.ogg" data-name="killsound" data-url="../make/snd/hehehe.wav">b4nny giggle</option>
+								<option value="../make/snd/ogg/unusual.ogg" data-name="killsound" data-url="../make/snd/unusual.wav">b4nny unusual (ear warning)</option>
+								<option value="../make/snd/ogg/gj.ogg" data-name="killsound" data-url="../make/snd/gj.wav">great job</option>
+								<option value="../make/snd/ogg/wtf_tagg.ogg" data-name="killsound" data-url="../make/snd/wtf_tagg.wav">tagg wtf (ear warning)</option>
+								<option value="../make/snd/ogg/steeve.ogg" data-name="killsound" data-url="../make/snd/steeve.wav">b4nny steeve</option>
+								<option value="../make/snd/ogg/yight_ohyeaa.ogg" data-name="killsound" data-url="../make/snd/yight_ohyeaa.wav">yight ohyeaa (ear warning)</option>
+								<option value="../make/snd/ogg/toasted_tagg.ogg" data-name="killsound" data-url="../make/snd/toasted_tagg.wav">tagg get toasted</option>
+								<option value="../make/snd/ogg/funke_ding.ogg" data-name="killsound" data-url="../make/snd/funke_ding.wav">FUNKe ding</option>
+								<option value="../make/snd/ogg/shade_aaa.ogg" data-name="killsound" data-url="../make/snd/shade_aaa.wav">drunk shade screaming</option>
 						  </optgroup>
 						</select>
 
@@ -3848,6 +4092,9 @@
 											$('#killsound_player').fadeIn(200);
 											source2.src = sourceUrl;
 											audio2.load();
+											if (killsoundmuter == false) {
+												audio2.play();
+											}
 										}
 									}
 
@@ -3861,12 +4108,14 @@
 								});
 						</script>
 						<audio id="player2" controls="controls" style="display:none;">
-							<source id="wav_src2" src="" type="audio/wav" />Your browser does not support audio previews.
+							<source id="wav_src2" src="" type="audio/ogg" />Your browser does not support audio previews.
 						</audio>
 	      </label>
-				<a id="killsound_player" style="display:none;"><i class="fa fa-volume-up" aria-hidden="true"></i> </a>
+				<a id="killsound_player" style="display:none;"><i class="fa fa-play" aria-hidden="true"></i> </a>
 			</li>
 		</ul>
+		<p class="text-info">Click the <i class="fa fa-play" aria-hidden="true"></i> icon to hear audio preview.</p>
+
     <hr>
 	</div>
   <div class="tab-pane fade" id="network">
@@ -4011,7 +4260,7 @@
 </div>
 
   <button data-toggle="tooltip" title="Be sure to go through all the tabs before generating." type="submit" class="btn btn-primary">Generate config <i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
-  <button class="btn" name="resetter" type="reset" onclick="return confirm('Are you sure you want to reset all the data? This cannot be undone.')">Reset</button>
+	<span id="data_resetter"><button class="btn btn-danger btn-delete-item" type="button" data-toggle="confirmation" data-popout="true" data-btnoklabel="Reset" data-title="This will reset all options to default. Are you sure?">Reset</button></span>
 	<hr>
 </form>
 

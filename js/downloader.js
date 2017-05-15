@@ -185,6 +185,7 @@ jQuery(function($) {
 		var gfx_force_shadows = $('#gfx_force_shadows').is(':checked');
 		var gfx_force_glow = $('#gfx_force_glow').is(':checked');
 		var gfx_force_sprays = $('#gfx_force_sprays').is(':checked');
+		var gfx_nohats_enabled = $('#nohats_checkbox').is(':checked')
 
 		//get custom binds
 		var bindings = $('#bindings').val();
@@ -255,7 +256,13 @@ jQuery(function($) {
 			if (iswhat === 'killsound')
 				zipbin(url, 'custom/damage/sound/ui/killsound.wav');
 			if (iswhat === 'vpks')
-				zipbin(url, 'custom/' + filename);
+				if ($this.attr('name') === 'nohats') {
+					if (gfx_nohats_enabled && $this.val() != 'off') {
+						zipbin(url, 'custom/' + filename);
+					}
+				} else {
+					zipbin(url, 'custom/' + filename);
+				}
 			if (iswhat === 'configs')
 				zipbin(url, 'cfg/' + filename);
 			if (iswhat === 'crosshairswitcher') {
