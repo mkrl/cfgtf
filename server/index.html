@@ -65,12 +65,20 @@
 				  <ul class="dropdown-menu" role="menu">
 					<li><a href="../read/interp">Networking in Source games</a></li>
 					<li><a href="../read/health">Health care</a></li>
+					<li><a href="../read/server">Set up a TF2 server</a></li>
 					<li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=154435696" target="_blank"><i class="fa fa-external-link"></i>  Scripting guide</a></li>
 				  </ul>
 				</li>
 				<li>
 					<a href="../configs">Configs</a>
 				</li>
+								<li class="dropdown">
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Tools<span class="caret"></span></a>
+				<ul class="dropdown-menu" role="menu">
+					<li><a href="../tools/bindgen">Bind rotation generator</a></li>
+					<li><a href="../tools/asci">ASCI art maker</a></li>
+				  </ul>
+				  </li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
@@ -98,6 +106,7 @@
 				  <li><a href="#files" data-toggle="tab">League configs</a></li>
 				  <li><a href="#addons" data-toggle="tab">Add-ons</a></li>
 				  <li><a href="#essential" data-toggle="tab">Essential settings</a></li>
+				  <li><a href="#maps" data-toggle="tab">Maps</a></li>
 				  <li><a href="#network" data-toggle="tab">Network</a></li>
 				  <li><a href="#binds" data-toggle="tab">Custom commands</a></li>
 
@@ -412,6 +421,18 @@
 	<ul class="list-unstyled checkbox">
 		<li>
 			<label>
+			  <input type="checkbox" name="metamod" id="metamod" data-name="metamod" data-url="" />
+			  Metamod: Source <a class="text-muted">1.10 - build 957</a> <a href="https://www.metamodsource.net/" data-toggle="tooltip" title='Metamod:Source is a C++ plugin environment for Source games. It acts as a "metamod" which sits in between the Game and the Engine, and allows plugins to intercept calls that flow between. It is required if you want to run SourceMod, also a few other server-side plugins use it.' target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+			</label>
+		</li>
+		<li>
+			<label>
+			  <input type="checkbox" name="sourcemod" id="sourcemod" data-name="sourcemod" data-url="" />
+			  SourceMod <a class="text-muted">1.8 - build 5992</a> <a href="https://www.sourcemod.net/" data-toggle="tooltip" title='SourceMod is server modification for any game that runs on the Half-Life 2 engine. It is a powerful, highly optimized platform for scripting plugins and handling server administration. The default package comes with a base set of plugins, but there are over 2,500 plugins in the community.' target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+			</label>
+		</li>
+		<li>
+			<label>
 			  <input type="checkbox" name="tftrue" id="tftrue" data-name="tftrue" data-url="" />
 			  TFTrue <a href="http://tftrue.esport-tools.net/" data-toggle="tooltip" title="TFTrue is a competitive server mod that includes various settings that you usually can't control, automatical logs upload, quick whitelist change and more. Click here for details." target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
 			</label>
@@ -424,12 +445,128 @@
         if(this.checked)
             $('#tftrue_p').fadeIn(400);
         else
-            $('#tftrue_p').fadeOut(400);
-
+            $('#tftrue_p').fadeOut(400);		
     });
+    $('#sourcemod').change(function(){
+        if(this.checked)
+            {$('#sourcemod_p').fadeIn(400);}
+        else
+            {$('#sourcemod_p').fadeOut(400);}
+			
+        if(('#metamod').checked)
+           { $('#metawarning').hide;}
+        else
+            {$('#metawarning').show;}
+    });
+    $('#metamod').change(function(){
+        if(this.checked)
+            $('#metawarning').fadeOut(400);
+        else
+            $('#metawarning').fadeIn(400);
+	});
 	});
 	</script>
+	<div id="sourcemod_p" style="display: none;">
+	<div class="panel panel-primary">
+	  <div class="panel-heading">
+		<h3 class="panel-title">SourceMod settings</h3>
+	  </div>
+	  <div class="panel-body">
+	  <div class="alert alert-dismissible alert-warning" id="metawarning" >
+		  <button type="button" class="close" data-dismiss="alert">&times;</button>
+		  <h4>Metamod is not selected</h4>
+		  <p>SourceMod requires Metamod in order to work. Please make sure you have Metamod installed before you start your server.</p>
+		</div>
+		<h3>Admins</h3>
+		<p>Admins have an access to a set of commands that allow to control server and players easily. SourceMod has as very detailed and flexible administration system, and it can be quite daunting to users. To simplify things, there are a number of "flags" which specify generic permissions administrators can have. <a href="https://wiki.alliedmods.net/Adding_Admins_(SourceMod)" target="_blank">Click here </a>for a detailed explaination how admin system works.</p>
+		<p>SteamID should be provided in STEAM_X:X:XXXXXXXX format. Use <a href="http://steamidfinder.com/" target="_blank">Steam ID finder</a> to find out a SteamID you need.<br></p>
+		<p>Flags should be provided in a single line without any dividers, just like you would write them in a admins.cfg.<br></p>
+		  <div id="sm_admins">
+				  
+				</div>
+			   <div class="col-sm-3 nopadding">
+		  <div class="form-group">
+			<input type="text" class="form-control" id="sm_admin_alias0" name="sm_admin_alias[]" value="" placeholder="Name">
+		  </div>
+		</div>
+		<div class="col-sm-3 nopadding">
+		  <div class="form-group">
+			<input type="text" class="form-control" id="sm_steamid0" name="sm_steamid[]" value="" placeholder="SteamID">
+		  </div>
+		</div>
+		<div class="col-sm-3 nopadding">
+		  <div class="form-group">
+			<input type="text" class="form-control" id="sm_immunity0" name="sm_immunity[]" value="" placeholder="Immunity">
+		  </div>
+		</div>
 
+		<div class="col-sm-3 nopadding">
+		  <div class="form-group">
+			<div class="input-group">
+			  <input type="text"  class="form-control" id="sm_flags0" name="sm_flags[]" placeholder="Flags, single line of letters">
+			  <div class="input-group-btn">
+				<button class="btn btn-success" type="button"  onclick="sm_admins();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
+			  </div>
+			</div>
+		  </div>
+		</div>
+		<div class="clear"></div>
+		
+		<h3>Plugins:</h3>
+		<ul class="list-unstyled checkbox">
+		<li>
+			<label>
+			  <input type="checkbox" name="sm_plugins" id="f2s" data-name="sm_plugins" data-url="./addons/sm_plugins/f2s_plugins.zip" />
+			  F2's competitive plugins: SupStats2, LogsTF, RecordSTV  and more <a href="http://www.teamfortress.tv/13598/" data-toggle="tooltip" title='A set of plugins that implements almost everything that TFTrue has and also more. Is not compatible with TFTrue. Some plugins may require cURL extension. Click here for details.' target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+			</label>
+		</li>
+		<li>
+			<label>
+			  <input type="checkbox" name="curl" id="curl" data-name="curl" data-url="" />
+			  cURL extension <a href="https://forums.alliedmods.net/showthread.php?t=152216" data-toggle="tooltip" title='A free and easy-to-use client-side URL transfer library. Some plugins may require this.' target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+			</label>
+		</li>
+		<li>
+			<label>
+			  <input type="checkbox" name="sm_plugins" id="SOAP" data-name="sm_plugins" data-url="./addons/sm_plugins/SOAPDM.zip" />
+			  SOAP Team Deathmatch <a href="http://steamcommunity.com/sharedfiles/filedetails/?id=511339352" data-toggle="tooltip" title='Soap DM is a mod that essentially allows players to quickly continuously kill each other on existing Team Fortress 2 maps without any map objectives or time limits interfering.' target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+			</label>
+		</li>
+		<li>
+			<label>
+			  <input type="checkbox" name="sm_plugins" id="jassist" data-name="sm_plugins" data-url="./addons/sm_plugins/JumpAssist.zip" />
+			  Jump Assist <a href="http://jump.tf/forum/index.php/topic,854.0.html" data-toggle="tooltip" title='The most advanced jump plugin available for public usage. Click here for more details.' target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+			</label>
+		</li>
+		<li>
+			<label>
+			  <input type="checkbox" name="sm_plugins" id="MGEMod" data-name="sm_plugins" data-url="./addons/sm_plugins/MGEMod.zip" />
+			  MGE Mod 2.0 + map <a href="http://www.teamfortress.tv/7213/" data-toggle="tooltip" title='MGEMod is a gameplay modification plugin designed for use on specially made mge_training maps, and it is aimed at competitive players looking to improve their aim and movement. Improved version of a plugin originally made by Lange.' target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+			</label>
+		</li>
+	</ul>
+	  </div>
+	</div>
+	</div>
+	<script>
+	var admins_c = 1;
+	function sm_admins() {
+	 
+		admins_c++;
+		var objTo = document.getElementById('sm_admins')
+		var divtest = document.createElement("div");
+		divtest.setAttribute("class", "form-group removeclass"+admins_c);
+		var rdiv = 'removeclass'+admins_c;
+		divtest.innerHTML = '<div class="col-sm-3 nopadding"><div class="form-group"> <input type="text" class="form-control" id="sm_admin_alias'+admins_c+'" name="sm_admin_alias[]" value="" placeholder="Name"></div></div><div class="col-sm-3 nopadding"><div class="form-group"> <input type="text" class="form-control" id="sm_steamid'+admins_c+'" name="sm_steamid[]" value="" placeholder="SteamID"></div></div><div class="col-sm-3 nopadding"><div class="form-group"> <input type="text" class="form-control" id="sm_immunity'+admins_c+'" name="sm_immunity[]" value="" placeholder="Immunity"></div></div><div class="col-sm-3 nopadding"><div class="form-group"><div class="input-group"> <input type="text"  class="form-control" id="sm_flags'+admins_c+'" name="sm_flags[]" placeholder="Flags, single line of letters"><div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_sm_admins('+ admins_c +');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div></div></div></div><div class="clear"></div>';
+		
+		objTo.appendChild(divtest)
+	}
+	   function remove_sm_admins(rid) {
+		   $('.removeclass'+rid).remove();
+	   }
+
+	</script>
+	
 	<!-- TFTRUE -->
 	<div id="tftrue_p" style="display: none;">
 
@@ -666,6 +803,175 @@
 				</li>
 			</ul>
 		<hr>
+	</div>  
+	
+	<div class="tab-pane fade" id="maps">
+	<!--  maps  -->
+	<h3>Maps settings</h3>
+	<p class="alert alert-info">Please note that map rotation only includes Valve maps. We are working on a custom map support right now.</p>
+	<ul class="list-unstyled form-inline">
+				<li class="checkbox">
+					<label>
+					  <input type="checkbox" name="map_rotation" id="map_rotation" data-name="map_rotation" data-url="" />
+					  Create a map rotation file <a href="#" data-toggle="tooltip" title="We will create a map rotation file for your server. You will be able to edit it any time at /cfg/mapcycle.txt"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+					</label>
+				</li>
+	</ul>
+	<div id="map_picker" style="display: none;">
+	<select id="map_pickerino" class="selectpicker" data-live-search="true"  title="Select your maps" data-actions-box="true" multiple>
+	<optgroup label="Capture the flag">
+	  <option data-name="" data-url="" value="ctf_2fort">ctf_2fort</option>
+	  <option data-name="" data-url="" value="ctf_2fort_invasion">ctf_2fort_invasion</option>
+	  <option data-name="" data-url="" value="ctf_doublecross">ctf_doublecross</option>
+	  <option data-name="" data-url="" value="ctf_landfall">ctf_landfall</option>
+	  <option data-name="" data-url="" value="ctf_sawmill">ctf_sawmill</option>
+	  <option data-name="" data-url="" value="ctf_turbine">ctf_turbine</option>
+	  <option data-name="" data-url="" value="ctf_well">ctf_well</option>
+	</optgroup>                               
+	<optgroup label="Control Point">          
+	  <option data-name="" data-url="" value="cp_5gorge">cp_5gorge</option>
+	  <option data-name="" data-url="" value="cp_badlands">cp_badlands</option>
+	  <option data-name="" data-url="" value="cp_coldfront">cp_coldfront</option>
+	  <option data-name="" data-url="" value="cp_fastlane">cp_fastlane</option>
+	  <option data-name="" data-url="" value="cp_foundry">cp_foundry</option>
+	  <option data-name="" data-url="" value="cp_gullywash_final1">cp_gullywash_final1</option>
+	  <option data-name="" data-url="" value="cp_metalworks">cp_metalworks</option>
+	  <option data-name="" data-url="" value="cp_powerhouse">cp_powerhouse</option>
+	  <option data-name="" data-url="" value="cp_process_final">cp_process_final</option>
+	  <option data-name="" data-url="" value="cp_sunshine_event">cp_sunshine_event</option>
+	  <option data-name="" data-url="" value="cp_sunshine">cp_sunshine</option>
+	  <option data-name="" data-url="" value="cp_snakewater_final1">cp_snakewater_final1</option>
+	  <option data-name="" data-url="" value="cp_standin_final">cp_standin_final</option>
+	  <option data-name="" data-url="" value="cp_well">cp_well</option>
+	  <option data-name="" data-url="" value="cp_yukon_final">cp_yukon_final</option>
+	  <option data-name="" data-url="" value="cp_vanguard">cp_vanguard</option>
+	</optgroup>                               
+	<optgroup label="Attack/Defend">          
+	  <option data-name="" data-url="" value="cp_degrootkeep">cp_degrootkeep</option>
+	  <option data-name="" data-url="" value="cp_dustbowl">cp_dustbowl</option>
+	  <option data-name="" data-url="" value="cp_egypt_final">cp_egypt_final</option>
+	  <option data-name="" data-url="" value="cp_gorge">cp_gorge</option>
+	  <option data-name="" data-url="" value="cp_gorge_event">cp_gorge_event</option>
+	  <option data-name="" data-url="" value="cp_gravelpit">cp_gravelpit</option>
+	  <option data-name="" data-url="" value="cp_junction_final">cp_junction_final</option>
+	  <option data-name="" data-url="" value="cp_manor_event">cp_manor_event</option>
+	  <option data-name="" data-url="" value="cp_mountainlab">cp_mountainlab</option>
+	  <option data-name="" data-url="" value="cp_snowplow">cp_snowplow</option>
+	  <option data-name="" data-url="" value="cp_steel">cp_steel</option>
+	</optgroup>                               
+	<optgroup label="Territorial Control">    
+	  <option data-name="" data-url="" value="tc_hydro">tc_hydro</option>
+	</optgroup>                               
+	<optgroup label="Payload">                
+	  <option data-name="" data-url="" value="pl_badwater">pl_badwater</option>
+	  <option data-name="" data-url="" value="pl_barnblitz">pl_barnblitz</option>
+	  <option data-name="" data-url="" value="pl_borneo">pl_borneo</option>
+	  <option data-name="" data-url="" value="pl_fifthcurve_event">pl_fifthcurve_event</option>
+	  <option data-name="" data-url="" value="pl_cactuscanyon">pl_cactuscanyon</option>
+	  <option data-name="" data-url="" value="pl_frontier_final">pl_frontier_final</option>
+	  <option data-name="" data-url="" value="pl_goldrush">pl_goldrush</option>
+	  <option data-name="" data-url="" value="pl_millstone_event">pl_millstone_event</option>
+	  <option data-name="" data-url="" value="pl_hoodoo_final">pl_hoodoo_final</option>
+	  <option data-name="" data-url="" value="pl_snowycoast">pl_snowycoast</option>
+	  <option data-name="" data-url="" value="pl_swiftwater_final1">pl_swiftwater_final1</option>
+	  <option data-name="" data-url="" value="pl_thundermountain">pl_thundermountain</option>
+	  <option data-name="" data-url="" value="pl_upward">pl_upward</option>
+	</optgroup>                               
+	<optgroup label="Payload Race">           
+	  <option data-name="" data-url="" value="plr_hightower_event">plr_hightower_event</option>
+	  <option data-name="" data-url="" value="plr_hightower">plr_hightower</option>
+	  <option data-name="" data-url="" value="plr_nightfall_final">plr_nightfall_final</option>
+	  <option data-name="" data-url="" value="plr_pipeline">plr_pipeline</option>
+	</optgroup>                               
+	<optgroup label="Arena">                  
+	  <option data-name="" data-url="" value="arena_badlands">arena_badlands</option>
+	  <option data-name="" data-url="" value="arena_byre">arena_byre</option>
+	  <option data-name="" data-url="" value="arena_granary">arena_granary</option>
+	  <option data-name="" data-url="" value="arena_lumberyard">arena_lumberyard</option>
+	  <option data-name="" data-url="" value="arena_nucleus">arena_nucleus</option>
+	  <option data-name="" data-url="" value="arena_offblast_final">arena_offblast_final</option>
+	  <option data-name="" data-url="" value="arena_ravine">arena_ravine</option>
+	  <option data-name="" data-url="" value="arena_sawmill">arena_sawmill</option>
+	  <option data-name="" data-url="" value="arena_watchtower">arena_watchtower</option>
+	  <option data-name="" data-url="" value="arena_well">arena_well</option>
+	</optgroup>                               
+	<optgroup label="King of the Hill">       
+	  <option data-name="" data-url="" value="koth_viaduct_event">koth_viaduct_event</option>
+	  <option data-name="" data-url="" value="koth_lakeside_event">koth_lakeside_event</option>
+	  <option data-name="" data-url="" value="koth_harvest_final">koth_harvest_final</option>
+	  <option data-name="" data-url="" value="koth_harvest_event">koth_harvest_event</option>
+	  <option data-name="" data-url="" value="koth_highpass">koth_highpass</option>
+	  <option data-name="" data-url="" value="koth_king">koth_king</option>
+	  <option data-name="" data-url="" value="koth_maple_ridge_event">koth_maple_ridge_event</option>
+	  <option data-name="" data-url="" value="koth_moonshine_event">koth_moonshine_event</option>
+	  <option data-name="" data-url="" value="koth_nucleus">koth_nucleus</option>
+	  <option data-name="" data-url="" value="koth_sawmill">koth_sawmill</option>
+	  <option data-name="" data-url="" value="koth_suijin">koth_suijin</option>
+	  <option data-name="" data-url="" value="koth_viaduct">koth_viaduct</option>
+	  <option data-name="" data-url="" value="koth_probed">koth_probed</option>
+	</optgroup>                               
+	<optgroup label="Special Delivery">       
+	  <option data-name="" data-url="" value="sd_doomsday_event">sd_doomsday_event</option>
+	  <option data-name="" data-url="" value="sd_doomsday">sd_doomsday</option>
+	</optgroup>                               
+	<optgroup label="Player Destruction">     
+	  <option data-name="" data-url="" value="pd_pit_of_death_event">pd_pit_of_death_event</option>
+	  <option data-name="" data-url="" value="pd_watergate">pd_watergate</option>
+	</optgroup>                               
+	<optgroup label="Mann vs. Machine">       
+	  <option data-name="" data-url="" value="mvm_bigrock">mvm_bigrock</option>
+	  <option data-name="" data-url="" value="mvm_coaltown">mvm_coaltown</option>
+	  <option data-name="" data-url="" value="mvm_decoy">mvm_decoy</option>
+	  <option data-name="" data-url="" value="mvm_example">mvm_example</option>
+	  <option data-name="" data-url="" value="mvm_ghost_town">mvm_ghost_town</option>
+	  <option data-name="" data-url="" value="mvm_mannhattan">mvm_mannhattan</option>
+	  <option data-name="" data-url="" value="mvm_mannworks">mvm_mannworks</option>
+	  <option data-name="" data-url="" value="mvm_rottenburg">mvm_rottenburg</option>
+	</optgroup>                               
+	<optgroup label="Robot Destruction">      
+	  <option data-name="" data-url="" value="rd_asteroid">rd_asteroid</option>
+	</optgroup>                               
+	<optgroup label="Mannpower">              
+	  <option data-name="" data-url="" value="ctf_foundry">ctf_foundry</option>
+	  <option data-name="" data-url="" value="ctf_gorge">ctf_gorge</option>
+	  <option data-name="" data-url="" value="ctf_hellfire">ctf_hellfire</option>
+	  <option data-name="" data-url="" value="ctf_thundermountain">ctf_thundermountain</option>
+	</optgroup>                               
+	<optgroup label="PASS Time">              
+	  <option data-name="" data-url="" value="pass_brickyard">pass_brickyard</option>
+	  <option data-name="" data-url="" value="pass_timbertown">pass_timbertown</option>
+	  <option data-name="" data-url="" value="pass_district">pass_district</option>
+	</optgroup>
+	</select>
+	</div>
+	<hr>
+	<ul class="list-unstyled">
+					<li>
+					<label>
+					  <input type="checkbox" name="sv_allowdownload" id="sv_allowdownload" data-name="sv_allowdownload" data-url="" />
+					  Allow fast download <a href="#" data-toggle="tooltip" title="Don't forget to select this if you want to use FastDL URL."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+					</label>
+					</li>
+					<li class="form-inline">
+  			    <label>
+  			      FastDL url: <a href="#" data-toggle="tooltip" title="sv_downloadurl allows to get content from the server to the client faster. By default the download limit is capped at ridiculous 20kb/s. So to get content to clients faster, sv_downloadurl which allows the client to download files at high speeds using HTTP."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+  						<input class="form-control input-sm" type="text" size="35" placeholder="http://cdn.freetraffic.tf/maps" id="sv_downloadurl"/>
+  			    </label>
+					</li>
+
+	</ul>	
+	<hr>
+	<script>
+	$(document).ready(function(){
+    $('#map_rotation').change(function(){
+        if(this.checked)
+            $('#map_picker').fadeIn(400);
+        else
+            $('#map_picker').fadeOut(400);		
+    });
+	});
+	</script>
+	
 	</div>
   <div class="tab-pane fade" id="network">
 	<!--   NETWORK SETTINGS  -->

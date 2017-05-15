@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Automatically generate Team Fortress 2 configs, including custom VPKs, tweaks, crosshair switcher and more. Get a good fps boost without stupid unnecessary stuff." />
+    <title>CFG.TF - Bind rotation generator</title>
+
+		<!-- Latest compiled and minified CSS -->
+		<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"> -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" integrity="sha256-r1WijW/SNMgOwk5LDk7QRHr6oVYYbYWMw/1kOXfYJfg=" crossorigin="anonymous" />
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+		<!-- Extras -->
+		<!-- fontawesome --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+		<!-- bootstrap select --><script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js" integrity="sha256-JD3g+rB9BjW6/cGEuwCue1sGtitb2aQVNs/pl4114XQ=" crossorigin="anonymous"></script>
+		<!--                  --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css" integrity="sha256-an4uqLnVJ2flr7w0U74xiF4PJjO2N5Df91R2CUmCLCA=" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="../../css/pygments.css">
+    <link rel="stylesheet" href="../../css/main.css">
+
+		<script type="text/javascript" src="../../js/utility.js"></script>
+		<script type="text/javascript" src="./handler.js"></script>
+
+  </head>
+  <body>
+
+		<div class="jumbotron" id="overlay">
+			<div id="overlay_middle">
+				<div id="overlay_inner">
+					<div id="loading_logo">
+					<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 464 462.9">
+						<path fill="#000" d="M213 19.2A213 213 0 0 0 19.7 212H160a74.4 74.4 0 0 1 53-52.6V19.2zm38 0v140.4a74.4 74.4 0 0 1 52.4 52.3h140.4A213 213 0 0 0 251 19zM19.5 250A213 213 0 0 0 213 443.4V303.2a74.4 74.4 0 0 1-53.3-53.3H19.5zm284 0a74.4 74.4 0 0 1-52.5 53v140.4A213 213 0 0 0 443.8 250H303.6z"/>
+					</svg>
+			  	</div>
+					<noscript>
+						<p>Please enable javascript in your browser to continue.</p>
+						<style>#loading_logo svg {-webkit-animation-duration: 0ms;-moz-animation-duration: 0ms;-ms-animation-duration: 0ms;} #loading_logo svg path {fill: red;}</style>
+						<a href="../">Site Home</a>
+					</noscript>
+				</div>
+			</div>
+		</div>
+
+    <nav class="navbar navbar-default" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="../../"><i class="fa fa-cogs" aria-hidden="true"></i> CFG.TF</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li>
+					<a href="../../make">Generate</a>
+				</li>
+				<li>
+					<a href="../../server">Server config</a>
+				</li>
+				<li class="dropdown">
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Articles<span class="caret"></span></a>
+				  <ul class="dropdown-menu" role="menu">
+					<li><a href="../../read/interp">Networking in Source games</a></li>
+					<li><a href="../../read/health">Health care</a></li>
+					<li><a href="../../read/server">Set up a TF2 server</a></li>
+					<li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=154435696" target="_blank"><i class="fa fa-external-link"></i>  Scripting guide</a></li>
+				  </ul>
+				</li>
+				<li>
+					<a href="../../configs">Configs</a>
+				</li>
+				<li class="dropdown active">
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Tools<span class="caret"></span></a>
+				  <ul class="dropdown-menu" role="menu">
+					<li><a href="../bindgen">Bind rotation generator</a></li>
+					<li><a href="../asci">ASCI art maker</a></li>
+				  </ul>
+				</li>
+
+			</ul>
+
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<a href="../../faq/">FAQ</a>
+				</li>
+				<li>
+					<a href="../../about/">About</a>
+				</li>
+				<li>
+					<a href="https://blog.cfg.tf">Blog</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+  <div id="wrapper" class="container">
+	    <div class="container">
+        <div class="form-group">
+            <div style="text-align: center">
+			<br>
+                <h2>
+                    Bind Rotation Generator
+                </h2>
+                <p>
+                    By paced @ <a href="https://github.com/paced">GitHub</a> | 
+                    <a href="https://github.com/paced/bind-rotation-generator">Repository</a>
+                </p>
+                <p>
+                    Copy and paste your text with each phrase starting with a new line, fill in all forms and press "Generate". You can now press a button and each press a different phase will appear in chat.
+                </p>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                <br />
+                    <textarea
+                           id="input"
+                           style="resize: none; display: block;"
+                           class="form-control"
+                           placeholder="Type your input and press Generate."
+                           rows="24"
+                           required></textarea>
+                    
+                </div>
+            <br/>
+                <div class="col-md-6">
+                    <textarea
+                           id="output"
+                           style="resize: none; font-family: 'Monospace', 'Courier New'"
+                           class="form-control"
+                           rows="24"
+                           placeholder="Output will appear here."></textarea>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="text"
+                           id="aliasName"
+                           class="form-control"
+                           placeholder="Alias name, e.g.: 'sayCycle'."/>
+                </div>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="cycleName"
+                           class="form-control"
+                           placeholder="Cycle alias name, e.g.: 'bindCycle'."/>
+                </div>
+            </div>
+            <br />
+            <div>
+                <div class="text-center" style="padding-bottom: 1em">
+                    <label class="text-center">
+                        <input class="text-center"
+                               type="checkbox"
+                               id="comments"
+                               value="true" />
+                        Enable commenting.
+                    </label>
+                </div>
+                <div>
+                    <select class="form-control center-block"
+                            id="key"
+                            placeholder="Key"
+                            style="width: 10em">
+                        <option value='none' disabled selected>Key</option>
+                        <option value='space'>space</option>
+                        <option value='capslock'>capslock</option>
+                        <option value='escape'>escape</option>
+                        <option value='f1'>f1</option>
+                        <option value='f2'>f2</option>
+                        <option value='f3'>f3</option>
+                        <option value='f4'>f4</option>
+                        <option value='f5'>f5</option>
+                        <option value='f6'>f6</option>
+                        <option value='f7'>f7</option>
+                        <option value='f8'>f8</option>
+                        <option value='f9'>f9</option>
+                        <option value='f10'>f10</option>
+                        <option value='f11'>f11</option>
+                        <option value='f12'>f12</option>
+                        <option value='pause'>pause</option>
+                        <option value='`'>`</option>
+                        <option value='-'>-</option>
+                        <option value='='>=</option>
+                        <option value='backspace'>backspace</option>
+                        <option value='tab'>tab</option>
+                        <option value=']'>]</option>
+                        <option value='['>[</option>
+                        <option value='/'>/</option>
+                        <option value='semicolon'>semicolon</option>
+                        <option value="'">'</option>
+                        <option value='\'>\</option>
+                        <option value='shift'>shift</option>
+                        <option value='enter'>enter</option>
+                        <option value=','>,</option>
+                        <option value='ctrl'>ctrl</option>
+                        <option value='alt'>alt</option>
+                        <option value='1'>1</option>
+                        <option value='2'>2</option>
+                        <option value='3'>3</option>
+                        <option value='4'>4</option>
+                        <option value='5'>5</option>
+                        <option value='6'>6</option>
+                        <option value='7'>7</option>
+                        <option value='8'>8</option>
+                        <option value='9'>9</option>
+                        <option value='0'>0</option>
+                        <option value='a'>a</option>
+                        <option value='b'>b</option>
+                        <option value='c'>c</option>
+                        <option value='d'>d</option>
+                        <option value='e'>e</option>
+                        <option value='f'>f</option>
+                        <option value='g'>g</option>
+                        <option value='h'>h</option>
+                        <option value='i'>i</option>
+                        <option value='j'>j</option>
+                        <option value='k'>k</option>
+                        <option value='l'>l</option>
+                        <option value='m'>m</option>
+                        <option value='n'>n</option>
+                        <option value='o'>o</option>
+                        <option value='p'>p</option>
+                        <option value='q'>q</option>
+                        <option value='r'>r</option>
+                        <option value='s'>s</option>
+                        <option value='t'>t</option>
+                        <option value='u'>u</option>
+                        <option value='v'>v</option>
+                        <option value='w'>w</option>
+                        <option value='x'>x</option>
+                        <option value='y'>y</option>
+                        <option value='z'>z</option>
+                        <option value='uparrow'>uparrow</option>
+                        <option value='downarrow'>downarrow</option>
+                        <option value='rightarrow'>rightarrow</option>
+                        <option value='leftarrow'>leftarrow</option>
+                        <option value='ins'>ins</option>
+                        <option value='home'>home</option>
+                        <option value='pgup'>pgup</option>
+                        <option value='pgdn'>pgdn</option>
+                        <option value='del'>del</option>
+                        <option value='end'>end</option>
+                        <option value='mouse1'>mouse1</option>
+                        <option value='mouse2'>mouse2</option>
+                        <option value='mouse3'>mouse3</option>
+                        <option value='mouse4'>mouse4</option>
+                        <option value='mouse5'>mouse5</option>
+                        <option value='mwheelup'>mwheelup</option>
+                        <option value='mwheeldown'>mwheeldown</option>
+                        <option value='kp_end'>kp_end</option>
+                        <option value='kp_downarrow'>kp_downarrow</option>
+                        <option value='kp_pgdn'>kp_pgdn</option>
+                        <option value='kp_leftarrow'>kp_leftarrow</option>
+                        <option value='kp_5'>kp_5</option>
+                        <option value='kp_rightarrow'>kp_rightarrow</option>
+                        <option value='kp_home'>kp_home</option>
+                        <option value='kp_uparrow'>kp_uparrow</option>
+                        <option value='kp_pgup'>kp_pgup</option>
+                        <option value='kp_ins'>kp_ins</option>
+                        <option value='kp_plus'>kp_plus</option>
+                        <option value='kp_minus'>kp_minus</option>
+                        <option value='kp_minus'>kp_minus</option>
+                        <option value='kp_slash'>kp_slash</option>
+                        <option value='kp_del'>kp_del</option>
+                        <option value='*'>*</option>
+                        <option value='kp_enter'>kp_enter</option>
+                    </select>
+                </div>
+            <br />
+            <br />
+                <button class="btn btn-lg btn-primary btn-block" type="submit" onclick=submit()>Generate</button>
+           </div>
+        </div>
+     </div>	
+</div>
+
+
+	<script>
+	$(document).ready(function(){																															//tooltips
+		$('[data-toggle="tooltip"]').tooltip();
+	});
+	</script>
+
+
+
+
+<footer class="footer container-fluid">
+
+    <div class="col-md-4 text-center">
+      <ul class="list-unstyled">
+          <li><a href="//discord.gg/79cbsTu" target="_blank">Join our Discord</a></li>
+          <li><a href="//www.teamfortress.tv/40869/cfg-tf" target="_blank">Discuss on TFTV</a></li>
+          <li><a href="//github.com/mkrl/cfgtf/issues" target="_blank">Report an issue</a></li>
+          <li><a href="//github.com/mkrl/cfgtf" target="_blank">View the source code</a></li>
+      </ul>
+    </div>
+
+    <div class="col-md-4 text-center">
+      <p>CFG.TF</p>
+      <p><small>a custom TF2 config generator by <a href="https://steamcommunity.com/id/2x100/" target="_blank">200</a></small></p>
+      <script>
+        (function(i, s, o, g, r, a, m) {
+          i['GoogleAnalyticsObject'] = r;
+          i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+          }, i[r].l = 1 * new Date();
+          a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+          a.async = 1;
+          a.src = g;
+          m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-97817107-1', 'auto');
+        ga('send', 'pageview');
+      </script>
+    </div>
+
+    <div class="col-md-4">
+      <p class="text-center">~
+        <script language="JavaScript">
+          var fhsh = document.createElement('script');
+          var fhs_id_h = "3234623";
+          fhsh.src = "//s1.freehostedscripts.net/ocount.php?site=" + fhs_id_h + "&name=configs&a=1";
+          document.head.appendChild(fhsh);
+          document.write("<span id='h_" + fhs_id_h + "'></span>");
+        </script> generated so far.
+      </p>
+    </div>
+
+</footer>
+
+  </body>
+</html>
