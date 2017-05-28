@@ -395,14 +395,14 @@ jQuery(function($) {
 					'alias orig_sniper "alias originalclass "join_class sniper""'
 				].join('\n');
 				zip.file('cfg/medicheck.cfg', medichecksettings);
-				scout_switcher += '\n\n//medigun checker script\nexec medcheck; orig_scout\n\n';
-				soldier_switcher += '\n\n//medigun checker script\nexec medcheck; orig_soldier\n\n';
-				pyro_switcher += '\n\n//medigun checker script\nexec medcheck; orig_pyro\n\n';
-				demo_switcher += '\n\n//medigun checker script\nexec medcheck; orig_demoman\n\n';
-				heavy_switcher += '\n\n//medigun checker script\nexec medcheck; orig_heavyweapons\n\n';
-				engineer_switcher += '\n\n//medigun checker script\nexec medcheck; orig_engineer\n\n';
-				medic_switcher += '\n\n//medigun checker script\nexec medcheck; orig_medic\n\n';
-				sniper_switcher += '\n\n//medigun checker script\nexec medcheck; orig_sniper\n\n';
+				scout_switcher += '\n\n//medigun checker script\nexec medicheck; orig_scout\n\n';
+				soldier_switcher += '\n\n//medigun checker script\nexec medicheck; orig_soldier\n\n';
+				pyro_switcher += '\n\n//medigun checker script\nexec medicheck; orig_pyro\n\n';
+				demo_switcher += '\n\n//medigun checker script\nexec medicheck; orig_demoman\n\n';
+				heavy_switcher += '\n\n//medigun checker script\nexec medicheck; orig_heavyweapons\n\n';
+				engineer_switcher += '\n\n//medigun checker script\nexec medicheck; orig_engineer\n\n';
+				medic_switcher += '\n\n//medigun checker script\nexec medicheck; orig_medic\n\n';
+				sniper_switcher += '\n\n//medigun checker script\nexec medicheck; orig_sniper\n\n';
 
 
 			}
