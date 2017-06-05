@@ -155,6 +155,17 @@ Change server slots<br>
 Change update on start<br>
 Save the file<br>
 <br>
+Allow tf2server through the firewall.<br>
+<code>
+iptables -A INPUT -i venet0 -p tcp -m tcp --dport 27015 -m state --state NEW,ESTABLISHED -j ACCEPT <br>
+iptables -A INPUT -i venet0 -p udp -m udp --dport 27015 -m state --state NEW,ESTABLISHED -j ACCEPT <br>
+iptables -A INPUT -i venet0 -p tcp -m tcp --dport 27020 -m state --state NEW,ESTABLISHED -j ACCEPT <br>
+iptables -A INPUT -i venet0 -p udp -m udp --dport 27020 -m state --state NEW,ESTABLISHED -j ACCEPT <br>
+iptables-save > /etc/iptables/rules.v4 <br>
+ip6tables-save > /etc/iptables/rules.v6 <br>
+</code>
+
+<br>
 Start the server<br>
 <code>./tf2server start</code><br>
 <br>
