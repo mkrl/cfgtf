@@ -167,16 +167,17 @@ Stop the server<br>
 Installing apache2 webserver<br>
 <code>exit</code><br> 
 <code>apt install apache2</code><br>
-<br><br>
-<code>mkdir -p /var/www/html/fastdl/tf2/
-cd /var/www/html/fastdl/tf2/ 
-ln -s /home/tf2server/serverfiles/tf/maps maps
-ls -la
-systemctl status apache2.service
-systemctl start apache2.service
-systemctl enable apache2.service
-Cd ../..
+<code>
+	mkdir -p /var/www/html/fastdl/tf2/ <br>
+	cd /var/www/html/fastdl/tf2/ <br>
+	ln -s /home/tf2server/serverfiles/tf/maps maps <br>
+	ls -la <br>
+	systemctl status apache2.service <br>
+	systemctl start apache2.service <br>
+	systemctl enable apache2.service <br>
+	Cd ../.. <br>
 mv index.html index.html.bak</code><br>
+<br>
 Refresh the page and test downloading a map<br>
 <br>
 Address sftp:// ip here<br>
@@ -215,11 +216,11 @@ Go to cfg.tf and follow my example for configuring the server.<br>
 <br>
 Custom settings used in video. Remember to replace IP-GOES-HERE with the ip of your vps.<br>
 <code>
-// Server downloads and files
-net_maxfilesize "64"
-sv_downloadurl "http://IP-GOES-HERE/fastdl/tf2/"
-sv_allowdownload "1"
-sv_allowupload "1"
+	// Server downloads and files<br>
+	net_maxfilesize "64" <br>
+	sv_downloadurl "http://IP-GOES-HERE/fastdl/tf2/" <br>
+	sv_allowdownload "1" <br>
+	sv_allowupload "1" <br>
 sv_consistency "1"</code><br>
 <br>
 Unzip the file and upload it to your server in sftp to your serverfiles/tf directory, overwrite any files if asked.<br>
@@ -237,8 +238,8 @@ https://hastebin.com/divuqexeri.rb<br>
 Choose 3 to use vim <br>
 Add the following in insert mode<br>
 <br>
-<code>0 0 * * * /home/tf2server/./tf2server restart 
-@reboot /home/tf2server/./tf2server start</code><br>
+<code>0 0 * * * /home/tf2server/./tf2server restart </code><br> 
+<code>@reboot /home/tf2server/./tf2server start</code><br>
 <br>
 Save the file and exit vim<br>
 <br>
