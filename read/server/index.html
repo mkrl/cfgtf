@@ -157,7 +157,7 @@ Save the file<br>
 <br>
 Allow tf2server through the firewall.<br>
 <br>
-<b>Replace venet0 with your network interface. You can find this from the output of ip link show. Use the interface that is NOT 'lo'</b>
+<b>Replace venet0 with your network interface. You can find this from the output of ip link show. Use the interface that is NOT 'lo'.</b><br>
 <code>
 iptables -A INPUT -i venet0 -p tcp -m tcp --dport 27015 -m state --state NEW,ESTABLISHED -j ACCEPT <br>
 iptables -A INPUT -i venet0 -p udp -m udp --dport 27015 -m state --state NEW,ESTABLISHED -j ACCEPT <br>
@@ -204,15 +204,15 @@ Back in the ssh session<br>
 <code>Su - tf2server </code><br>
 <code>cd serverfiles/tf/ </code><br>
 <br>
-Now for metamod. <br>
+Now for metamod: <br>
 Go to the site and copy its link address for the Linux version.<br>
 https://www.metamodsource.net/downloads.php?branch=stable<br>
 <code>Wget (link here)</code> <br>
 <code>Tar -xvf mmsource </code> (Use tab completion)<br>
 <code>Rm mmsource </code> (tab complete)<br>
 <br>
-Now for sourcemod<br>
-Go to the souremod site and copy its link address for the Linux version<br>
+Now for sourcemod:<br>
+Go to the souremod site and copy its link address for the Linux version.<br>
 https://www.sourcemod.net/downloads.php?branch=stable<br>
 <code>Wget (link here) </code><br>
 <code>Tar -xvf sourcemod </code> (tab complete)<br>
