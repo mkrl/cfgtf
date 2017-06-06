@@ -155,6 +155,19 @@ Change server slots<br>
 Change update on start<br>
 Save the file<br>
 <br>
+Allow tf2server through the firewall.<br>
+<br>
+<b>Replace venet0 with your network interface. You can find this from the output of ip link show. Use the interface that is NOT 'lo'.</b><br>
+<code>
+iptables -A INPUT -i venet0 -p tcp -m tcp --dport 27015 -m state --state NEW,ESTABLISHED -j ACCEPT <br>
+iptables -A INPUT -i venet0 -p udp -m udp --dport 27015 -m state --state NEW,ESTABLISHED -j ACCEPT <br>
+iptables -A INPUT -i venet0 -p tcp -m tcp --dport 27020 -m state --state NEW,ESTABLISHED -j ACCEPT <br>
+iptables -A INPUT -i venet0 -p udp -m udp --dport 27020 -m state --state NEW,ESTABLISHED -j ACCEPT <br>
+iptables-save > /etc/iptables/rules.v4 <br>
+ip6tables-save > /etc/iptables/rules.v6 <br>
+</code>
+
+<br>
 Start the server<br>
 <code>./tf2server start</code><br>
 <br>
@@ -167,16 +180,17 @@ Stop the server<br>
 Installing apache2 webserver<br>
 <code>exit</code><br> 
 <code>apt install apache2</code><br>
-<br><br>
-<code>mkdir -p /var/www/html/fastdl/tf2/
-cd /var/www/html/fastdl/tf2/ 
-ln -s /home/tf2server/serverfiles/tf/maps maps
-ls -la
-systemctl status apache2.service
-systemctl start apache2.service
-systemctl enable apache2.service
-Cd ../..
+<code>
+	mkdir -p /var/www/html/fastdl/tf2/ <br>
+	cd /var/www/html/fastdl/tf2/ <br>
+	ln -s /home/tf2server/serverfiles/tf/maps maps <br>
+	ls -la <br>
+	systemctl status apache2.service <br>
+	systemctl start apache2.service <br>
+	systemctl enable apache2.service <br>
+	Cd ../.. <br>
 mv index.html index.html.bak</code><br>
+<br>
 Refresh the page and test downloading a map<br>
 <br>
 Address sftp:// ip here<br>
@@ -190,15 +204,15 @@ Back in the ssh session<br>
 <code>Su - tf2server </code><br>
 <code>cd serverfiles/tf/ </code><br>
 <br>
-Now for metamod. <br>
+Now for metamod: <br>
 Go to the site and copy its link address for the Linux version.<br>
 https://www.metamodsource.net/downloads.php?branch=stable<br>
 <code>Wget (link here)</code> <br>
 <code>Tar -xvf mmsource </code> (Use tab completion)<br>
 <code>Rm mmsource </code> (tab complete)<br>
 <br>
-Now for sourcemod<br>
-Go to the souremod site and copy its link address for the Linux version<br>
+Now for sourcemod:<br>
+Go to the souremod site and copy its link address for the Linux version.<br>
 https://www.sourcemod.net/downloads.php?branch=stable<br>
 <code>Wget (link here) </code><br>
 <code>Tar -xvf sourcemod </code> (tab complete)<br>
@@ -215,11 +229,11 @@ Go to cfg.tf and follow my example for configuring the server.<br>
 <br>
 Custom settings used in video. Remember to replace IP-GOES-HERE with the ip of your vps.<br>
 <code>
-// Server downloads and files
-net_maxfilesize "64"
-sv_downloadurl "http://IP-GOES-HERE/fastdl/tf2/"
-sv_allowdownload "1"
-sv_allowupload "1"
+	// Server downloads and files<br>
+	net_maxfilesize "64" <br>
+	sv_downloadurl "http://IP-GOES-HERE/fastdl/tf2/" <br>
+	sv_allowdownload "1" <br>
+	sv_allowupload "1" <br>
 sv_consistency "1"</code><br>
 <br>
 Unzip the file and upload it to your server in sftp to your serverfiles/tf directory, overwrite any files if asked.<br>
@@ -237,8 +251,8 @@ https://hastebin.com/divuqexeri.rb<br>
 Choose 3 to use vim <br>
 Add the following in insert mode<br>
 <br>
-<code>0 0 * * * /home/tf2server/./tf2server restart 
-@reboot /home/tf2server/./tf2server start</code><br>
+<code>0 0 * * * /home/tf2server/./tf2server restart </code><br> 
+<code>@reboot /home/tf2server/./tf2server start</code><br>
 <br>
 Save the file and exit vim<br>
 <br>
