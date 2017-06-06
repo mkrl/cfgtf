@@ -156,6 +156,8 @@ Change update on start<br>
 Save the file<br>
 <br>
 Allow tf2server through the firewall.<br>
+<br>
+<b>Replace venet0 with your network interface. You can find this from the output of ip link show. Use the interface that is NOT 'lo'</b>
 <code>
 iptables -A INPUT -i venet0 -p tcp -m tcp --dport 27015 -m state --state NEW,ESTABLISHED -j ACCEPT <br>
 iptables -A INPUT -i venet0 -p udp -m udp --dport 27015 -m state --state NEW,ESTABLISHED -j ACCEPT <br>
