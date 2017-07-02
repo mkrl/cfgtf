@@ -84,7 +84,7 @@
   <div id="wrapper" class="container">
   <br>
   <h2>Setting up a TF2 server</h2>
-  <p>Learn how to simply manage a TF2 server on Linux VPS or a local server with this very fine guide by <a href="http://steamcommunity.com/id/burningsmile/" target="_blank">BurningSmile</a>. You can also open text instructions below.</p>
+  <p>Learn how to simply manage a TF2 server on Linux VPS or a local server with this very fine guide by <a href="http://steamcommunity.com/id/burningsmile/" target="_blank">BurningSmile</a>. Please view the text instructions below as they are kept up to update with the newest changes.</p>
   <br>
   <div class="panel panel-default">
   <div class="panel-body">
@@ -100,7 +100,18 @@
         <div class="panel-collapse collapse out">
           <div class="panel-body">
             <p><a href="https://www.metamodsource.net/downloads.php?branch=stable" target="_blank">Metamod</a> | <a href="https://www.sourcemod.net/downloads.php?branch=stable" target="_blank">Sourcemod</a> | <a href="https://gameservermanagers.com/lgsm/tf2server/" target="_blank">LGSM</a></p>
-<p>Command used in Video are as follows:<br><br>
+
+	    <p> Alterively you can use <a href="https://github.com/BurningSmile/LinuxScripts/blob/master/Auto-tf2serverinstall.sh"> this </a> script to automate everything except the cfg.tf configuration. To run it do the following. </p><br>
+<code>git clone https://github.com/BurningSmile/LinuxScripts.git</code><br>
+<code>mv ./LinuxScripts/Auto-tf2serverinstall.sh . </code><br>
+<code>rm -rf LinuxScripts</code><br>
+<code>chmod +x Auto-tf2serverinstall.sh </code><br>
+<code>./Auto-tf2serverinsall.sh</code><br>
+Then simply follow the steps for generating a cfg.tf server configuration. Finally reboot your VPS with the following commands.<br>
+<code>su - tf2server -c '/home/tf2server/tf2server stop'</code><br>
+<code> reboot </code><br>
+<br>
+<p>Command used in Video are as follows:<br>
 
 Updating:
 <br>
@@ -132,27 +143,27 @@ Centos<br>
 <code>yum install mailx postfix curl wget bzip2 gzip unzip python tmux glibc.i686 libstdc++ libstdc++.i686 libcurl.i686</code><br>
 <br>
 Create a tf2server account<br>
-<code>adduser tf2server</code><br>
+<code>useradd -m --password default tf2server</code><br>
 <br>
 Create a password for the account<br>
-<code>Passwd tf2server</code><br>
+<code>passwd tf2server</code><br>
 <br>
 Change to the account<br>
 <code>su - tf2server</code><br>
 <br>
 Download the tf2 server management stack<br>
-<code>wget https://gameservermanagers.com/dl/tf2server</code><br>
-<br>
-Enable execution rights on the file<br>
-<code>chmod +x tf2server</code><br>
+<code>wget -N --no-check-certificate https://gameservermanagers.com/dl/linuxgsm.sh && chmod +x linuxgsm.sh && bash linuxgsm.sh tf2server</code><br>
 <br>
 Install the server<br>
-<code>./tf2server install</code><br>
+<code>./tf2server auto-install</code><br>
 <br>
-Edit tf2 server launch settings<br>
-<code>vim tf2server </code><br>
-Change server slots<br>
-Change update on start<br>
+Lgsm has recently changed the way they handel server settings. You now copy them to a file in the directory $HOME/lgsm/configs-lgsm/tf2server/tf2server.cfg. Use the following commands to setup this file with the items you will most likely be changing. <br>
+
+<code>vim /home/tf2server/lgsm/config-lgsm/tf2server/tf2server.cfg </code><br>
+Add the following<br>
+<code>defaultmap="cp_badlands"</code><br>
+<code>maxplayers="16"</code><br>
+<code>updateonstart="on"</code><br>
 Save the file<br>
 <br>
 Allow tf2server through the firewall.<br>
@@ -166,7 +177,6 @@ iptables -A INPUT -i venet0 -p udp -m udp --dport 27020 -m state --state NEW,EST
 iptables-save > /etc/iptables/rules.v4 <br>
 ip6tables-save > /etc/iptables/rules.v6 <br>
 </code>
-
 <br>
 Start the server<br>
 <code>./tf2server start</code><br>
