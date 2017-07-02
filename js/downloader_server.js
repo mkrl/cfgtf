@@ -195,7 +195,7 @@ jQuery(function($) {
 		var sv_downloadurl = "";
 		if ($("#sv_allowdownload").is(':checked')) {
 			var sv_allowdownload = "sv_allowdownload 1";
-			var sv_downloadurl = "sv_downloadurl "+ $('#sv_downloadurl').val();			
+			var sv_downloadurl = 'sv_downloadurl "'+ $('#sv_downloadurl').val() + '"';			
 		}
 		//maps
 		if ($("#map_rotation").is(':checked')) {
