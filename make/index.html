@@ -1888,58 +1888,6 @@
 				</div>
 			</ul>
 			<hr>
-			<h3><abbr title="Head-Up Display" class="initialism">HUD</abbr> <span class="label label-default">Beta</span></h3>
-			<p class="text-muted">Determines how your interface looks</p>
-			<p class="alert alert-info">More HUDs coming up very soon! Click on a "HUD preview" for detailed HUD information.</p>
-			<select class="selectpicker" data-live-search="true" id="hudselector" data-header="Hover your mouse over &quot;HUD&quot; preview button to see a preview.">
-			  <option name="huds" data-name="nothing" 	data-link="#" data-url="" selected>Default HUD</option>
-			  <option data-subtext="03-31-2017" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=207" data-name="hud" data-url="./huds/budhud.zip">budhud</option>
-			  <option data-subtext="02-02-2017" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=217" data-name="hud" data-url="./huds/broeselhud_blue.zip">broeselhud_blue</option>
-			  <option data-subtext="01-31-2017" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=276" data-name="hud" data-url="./huds/idhud.zip">Improved default HUD</option>
-			  <option data-subtext="02-18-2017" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=377" data-name="hud" data-url="./huds/rayshud.zip">rayshud</option>
-			  <option data-subtext="03-15-2017" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=234" data-name="hud" data-url="./huds/toonhud.zip">ToonHUD</option>
-			  <option data-subtext="02-14-2017" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=248" data-name="hud" data-url="./huds/m0rehud.zip">m0re HUD</option>
-			  <option data-subtext="12-21-2016" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=191" data-name="hud" data-url="./huds/ahud.zip">ahud</option>
-			  <option data-subtext="08-12-2016" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=223" data-name="hud" data-url="./huds/medHUD.zip">medHUD</option>
-			  <option data-subtext="07-16-2016" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=183" data-name="hud" data-url="./huds/noto.zip">noto HUD</option>
-			  <option data-subtext="12-31-2016" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=233" data-name="hud" data-url="./huds/omphud-redux.zip">omphud-redux</option>
-			  <option data-subtext="02-16-2017" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=270" data-name="hud" data-url="./huds/AntsHUD.zip">AntsHUD</option>
-			  <option data-subtext="02-21-2017" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=211" data-name="hud" data-url="./huds/IsaacHUD.zip">Isaac Hud</option>
-			  <option data-subtext="12-22-2016" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=198" data-name="hud" data-url="./huds/flathud.zip">flathud (blue)</option>
-			  <option data-subtext="06-23-2016" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=250" data-name="hud" data-url="./huds/mHUD.zip">mHUD</option>
-			  <option data-subtext="12-19-2016" name="huds" data-link="http://huds.tf/forum/showthread.php?tid=219" data-name="hud" data-url="./huds/Mannterface.zip">The Mannterface</option>
-			</select>
-			<a href="#" id="hudprev" class="btn btn-default disabled" target="_blank">HUD preview</a>
-			<div class="ibox"><div class="ibox-bg"><p class="text-muted"> Hud previews provided by huds.tf</p></div><iframe id="frameid" src="#" width = "500px" height = "450px" scrolling="no" seamless="seamless"></iframe></div>
-			<p>You might want to allow browser to load unsafe content if you don't see hud previews.</p>
-			<script>
-			var iframes = $('iframe');		//lazy iframe loading. can cause loading errors but thats okay. todo: hide iframe when defauld HUD selected
-			var hudaddress = "";
-			 $("#hudselector").change(function () {
-				if ($(this).find(':selected').data('name') !== 'nothing' ){
-					hudaddress = $(this).find(':selected').data('link');
-					$('#hudprev').attr("class", "btn btn-default");
-					$('#hudprev').attr("href", hudaddress);
-
-				} else {
-					$('#hudprev').attr("class", "btn btn-default disabled");
-					$('#hudprev').attr("href", "#");
-				}
-			});
-
-			$('#hudprev').hover(function() {
-				iframes.attr('src', function() {
-					$('#frameid').attr("src", hudaddress);
-					return $(this).data('src');
-				});
-			});
-
-			iframes.each(function() {
-				var src = $(this).attr('src');
-				$(this).data('src', src).attr('src', '');
-			});
-			</script>
-			<hr>
 			<h3>Addons</h3>
 			<ul class="checkbox list-unstyled">
 				<li>
