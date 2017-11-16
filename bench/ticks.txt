@@ -5,3 +5,12 @@ Sunshine:
 Badlands:
 
 Itemtest:
+
+
+
+tick: 1070 
+setpos: spectate heavy
+
+tick: 8369 
+setpos: spectate soldier
+
