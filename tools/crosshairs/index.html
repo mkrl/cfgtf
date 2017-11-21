@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Automatically generate Team Fortress 2 configs, including custom VPKs, tweaks, crosshair switcher and more. Get a good fps boost without stupid unnecessary stuff." />
+    <title>CFG.TF - Weapon-specific crosshairs</title>
+
+		<!-- Latest compiled and minified CSS -->
+		<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"> -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" integrity="sha256-r1WijW/SNMgOwk5LDk7QRHr6oVYYbYWMw/1kOXfYJfg=" crossorigin="anonymous" />
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+		<!-- Extras -->
+		<!-- fontawesome --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+		<!-- bootstrap select --><script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js" integrity="sha256-JD3g+rB9BjW6/cGEuwCue1sGtitb2aQVNs/pl4114XQ=" crossorigin="anonymous"></script>
+		<!--                  --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css" integrity="sha256-an4uqLnVJ2flr7w0U74xiF4PJjO2N5Df91R2CUmCLCA=" crossorigin="anonymous" />
+		<!-- jszip --><script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js" integrity="sha256-RbP/rbx4XeYJH6eYUniR63Jk5NEV48Gjestg49cNSWY=" crossorigin="anonymous"></script>
+		<!-- jszip-utils --><script src="https://cdnjs.cloudflare.com/ajax/libs/jszip-utils/0.0.2/jszip-utils.min.js" integrity="sha256-AIk6chbus7IS5RVpqSNV1X7Qihbi1YC0lOLuUXQZ+mw=" crossorigin="anonymous"></script>
+		<!-- jquery zoom --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-zoom/1.7.20/jquery.zoom.min.js" integrity="sha256-+kAcWA0klKCshjLIEEFOV51LntaiEdbldotJbI99Bh0=" crossorigin="anonymous"></script>
+		<!-- jquery unveil (lazy loader) --><script src="https://cdnjs.cloudflare.com/ajax/libs/unveil/1.3.0/jquery.unveil.min.js" integrity="sha256-L0QYOaMEAFNqeSmYEHbvOoH68wL9/vU5ItrVY8E+ivg=" crossorigin="anonymous"></script>
+		<!-- jquery SaveAs  --><script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.3/FileSaver.min.js" integrity="sha256-FPJJt8nA+xL4RU6/gsriA8p8xAeLGatoyTjldvQKGdE=" crossorigin="anonymous"></script>
+		<!-- bootstrap confirm --><script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-confirmation/1.0.5/bootstrap-confirmation.min.js" integrity="sha256-0lDCetJx/wJYWmLR1yr17IiofI6mcH+ohE5nLOYP7ZY=" crossorigin="anonymous"></script>
+
+		<!-- Local css -->
+    <link rel="stylesheet" href="../../css/pygments.css">
+    <link rel="stylesheet" href="../../css/main.css">
+		<!-- Local js -->
+		<script type="text/javascript" src="../../js/utility.js"></script>
+  </head>
+  <body>
+
+		<div class="jumbotron" id="overlay">
+			<div id="overlay_middle">
+				<div id="overlay_inner">
+					<div id="loading_logo">
+						<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 464 462.9">
+							<path fill="#f39c12" d="M213 19.2A213 213 0 0 0 19.7 212H160a74.4 74.4 0 0 1 53-52.6V19.2zm38 0v140.4a74.4 74.4 0 0 1 52.4 52.3h140.4A213 213 0 0 0 251 19zM19.5 250A213 213 0 0 0 213 443.4V303.2a74.4 74.4 0 0 1-53.3-53.3H19.5zm284 0a74.4 74.4 0 0 1-52.5 53v140.4A213 213 0 0 0 443.8 250H303.6z"/>
+						</svg>
+			  	</div>
+				  <noscript>
+						<p>Please enable javascript in your browser to continue.</p>
+						<style>#loading_logo svg {-webkit-animation-duration: 0ms;-moz-animation-duration: 0ms;-ms-animation-duration: 0ms;} #loading_logo svg path {fill: red;}</style>
+						<a href="../">Site Home</a>
+					</noscript>
+				</div>
+			</div>
+		</div>
+
+    <nav class="navbar navbar-default" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="../../"><i class="fa fa-cogs" aria-hidden="true"></i> CFG.TF</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li>
+					<a href="../../make">Generate</a>
+				</li>
+				<li>
+					<a href="../../server">Server config</a>
+				</li>
+				<li class="dropdown">
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Articles<span class="caret"></span></a>
+				  <ul class="dropdown-menu" role="menu">
+					<li><a href="../../read/interp">Networking in Source games</a></li>
+					<li><a href="../../read/health">Health care</a></li>
+					<li><a href="../../read/server">Set up a TF2 server</a></li>
+					<li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=154435696" target="_blank"><i class="fa fa-external-link"></i>  Scripting guide</a></li>
+				  </ul>
+				</li>
+				<li>
+					<a href="../../configs">Configs</a>
+				</li>
+								<li class="dropdown active">
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Tools<span class="caret"></span></a>
+				<ul class="dropdown-menu" role="menu">
+					<li><a href="../../tools/bindgen">Bind rotation generator</a></li>
+					<li><a href="../../tools/asci">ASCI art maker</a></li>
+				  </ul>
+				  </li>
+			</ul>
+
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<a href="../../faq/">FAQ</a>
+				</li>
+				<li>
+					<a href="../../about/">About</a>
+				</li>
+				<li>
+					<a href="https://blog.cfg.tf">Blog</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+  <div id="wrapper" class="container">
+		<div class="row content">
+			<h1>Weapon-specific crosshairs<small><span id="version"><!-- ./version.txt --></span></small></h1>
+
+ 			<form action="#" id="download_form">
+				<!-- The form submit will not work without ul, so I added another class to remove padding? todo: fix this shit -->
+			<div class="tabbable">
+				<ul class="nav nav-tabs">
+				  <li class="active"><a href="#Scout" data-toggle="tab">Scout</a></li>
+				  <li><a href="#Soldier" data-toggle="tab">Soldier</a></li>
+				  <li><a href="#Pyro" data-toggle="tab">Pyro</a></li>
+				  <li><a href="#Demoman" data-toggle="tab">Demoman</a></li>
+				  <li><a href="#Heavy" data-toggle="tab">Heavy</a></li>
+				  <li><a href="#Engineer" data-toggle="tab">Engineer</a></li>
+				  <li><a href="#Medic" data-toggle="tab">Medic</a></li>
+				  <li><a href="#Sniper" data-toggle="tab">Sniper</a></li>
+				  <li><a href="#Spy" data-toggle="tab">Spy</a></li>
+
+				</ul>
+			<div id="myTabContent" class="tab-content">
+			  <div class="tab-pane fade active in" id="Scout">
+			  <p>Scout</p>
+				</div>
+			  <div class="tab-pane fade in" id="Soldier">
+			  <p>Soldier</p>
+				</div>
+			  <div class="tab-pane fade in" id="Pyro">
+			  <p>Pyro</p>
+				</div>
+			  <div class="tab-pane fade in" id="Demoman">
+			  <p>Demoman</p>
+				</div>
+			  <div class="tab-pane fade in" id="Heavy">
+			  <p>Heavy</p>
+				</div>
+			  <div class="tab-pane fade in" id="Engineer">
+			  <p>Engineer</p>
+				</div>
+			  <div class="tab-pane fade in" id="Medic">
+			  <p>Medic</p>
+				</div>
+			  <div class="tab-pane fade in" id="Sniper">
+			  <p>Sniper</p>
+				</div>
+			  <div class="tab-pane fade in" id="Spy">
+			  <p>Spy</p>
+				</div>
+				</div>
+</div>
+
+  <button data-toggle="tooltip" title="Be sure to go through all the tabs before generating." type="submit" class="btn btn-primary">Download package<i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
+	<span id="data_resetter"><button class="btn btn-danger btn-delete-item" type="button" data-toggle="confirmation" data-popout="true" data-btnoklabel="Reset" data-title="This will reset all options to default. Are you sure?">Reset</button></span>
+	<hr>
+</form>
+
+<div class="progress hide" id="progress_bar">
+	<div class="progress progress-striped active">
+    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+    </div>
+	</div>
+</div>
+
+<p class="hide" id="result"></p>
+	<!--   LAUNCH OPTIONS  -->
+  <script>
+  $(document).ready(function() {
+    var copyTextareaBtn = document.querySelector('#loptions');
+
+    copyTextareaBtn.addEventListener('click', function(event) {
+    var copyTextarea = document.querySelector('#loptions');
+    copyTextarea.select();
+
+    try {
+      var successful = document.execCommand('copy');
+      var msg = successful ? 'successful' : 'unsuccessful';
+      $("#clipboard_copy_info_text").html('Copied to clipboard');
+      $("#clipboard_copy_info").addClass('text-success');
+      setTimeout(function(){
+        $("#clipboard_copy_info_text").html('Click to copy launch options to clipboard');
+        $("#clipboard_copy_info").removeClass('text-success');
+      }, 2000);
+    } catch (err) {
+      $("#clipboard_copy_info").addClass('text-danger');
+    }
+    });
+
+		// disable display options on startup.
+		$('#display_settings .display_option').prop('disabled', true);
+		$('#display_settings').fadeTo('fast', '0.6');
+
+		// trigger an update on input changes
+		$('#resolution_detector_cb, #launch_cmd_novid, #launch_cmd_console, #display_mode, #launch_cmd_high').change(updatescreenmode);
+
+		$(".resolution_selector, #aspectratio_selector").change(updateresolution);
+
+  });
+	$(window).on('load', updateresolution); // trigger update on 1st load
+
+  </script>
+</div>
+
+  <script type="text/javascript" src="../../js/downloader.js"></script>
+</div>
+
+  <footer class="footer container-fluid">
+
+      <div class="col-md-4 text-center">
+        <ul class="list-unstyled">
+            <li><a href="//discord.gg/79cbsTu" target="_blank">Join our Discord</a></li>
+            <li><a href="//www.teamfortress.tv/40869/cfg-tf" target="_blank">Discuss on TFTV</a></li>
+            <li><a href="//github.com/mkrl/cfgtf/issues" target="_blank">Report an issue</a></li>
+            <li><a href="//github.com/mkrl/cfgtf" target="_blank">View the source code</a></li>
+        </ul>
+      </div>
+
+      <div class="col-md-4 text-center">
+        <p>CFG.TF</p>
+        <p><small>a custom TF2 config generator by <a href="https://steamcommunity.com/id/2x100/" target="_blank">200</a></small></p>
+        <script>
+          (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+              (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+              m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+          })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+          ga('create', 'UA-97817107-1', 'auto');
+          ga('send', 'pageview');
+        </script>
+      </div>
+
+      <div class="col-md-4">
+        <p class="text-center">~
+          <script language="JavaScript">
+            var fhsh = document.createElement('script');
+            var fhs_id_h = "3234623";
+            fhsh.src = "//s1.freehostedscripts.net/ocount.php?site=" + fhs_id_h + "&name=configs&a=1";
+            document.head.appendChild(fhsh);
+            document.write("<span id='h_" + fhs_id_h + "'></span>");
+          </script> generated so far.
+        </p>
+      </div>
+  </footer>
+  </body>
+</html>
