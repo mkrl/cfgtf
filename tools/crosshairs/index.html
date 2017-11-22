@@ -101,49 +101,32 @@
 
  			<form action="#" id="download_form">
 				<!-- The form submit will not work without ul, so I added another class to remove padding? todo: fix this shit -->
-			<div class="tabbable">
-				<ul class="nav nav-tabs">
-				  <li class="active"><a href="#Scout" data-toggle="tab">Scout</a></li>
-				  <li><a href="#Soldier" data-toggle="tab">Soldier</a></li>
-				  <li><a href="#Pyro" data-toggle="tab">Pyro</a></li>
-				  <li><a href="#Demoman" data-toggle="tab">Demoman</a></li>
-				  <li><a href="#Heavy" data-toggle="tab">Heavy</a></li>
-				  <li><a href="#Engineer" data-toggle="tab">Engineer</a></li>
-				  <li><a href="#Medic" data-toggle="tab">Medic</a></li>
-				  <li><a href="#Sniper" data-toggle="tab">Sniper</a></li>
-				  <li><a href="#Spy" data-toggle="tab">Spy</a></li>
+			<ul class="checkbox list-unstyled">
+			<li>
+	      <label class="form-inline">
+					Pick a weapon:
+						<select class="selectpicker" id="selectionhit">
+							<option value="none" data-name="nohitsound" data-url="">Select a weapon to modify</option>
+							<optgroup label="Scout">
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Scattergun</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Bat</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Pistol</option>
+							</optgroup>
+								<optgroup label="Soulder">
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Rocket</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Shotty</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Pickaxe</option>
+							</optgroup>
+						</select>
+						<audio id="player" controls="controls" style="display:none;">
+							<source id="wav_src" src="" type="audio/ogg" />Your browser does not support audio previews.
+						</audio>
+	      </label>
+				<a id="hitsound_player" style="display:none;"><i class="fa fa-play" aria-hidden="true"></i> </a>
+			</li>
 
-				</ul>
-			<div id="myTabContent" class="tab-content">
-			  <div class="tab-pane fade active in" id="Scout">
-			  <p>Scout</p>
-				</div>
-			  <div class="tab-pane fade in" id="Soldier">
-			  <p>Soldier</p>
-				</div>
-			  <div class="tab-pane fade in" id="Pyro">
-			  <p>Pyro</p>
-				</div>
-			  <div class="tab-pane fade in" id="Demoman">
-			  <p>Demoman</p>
-				</div>
-			  <div class="tab-pane fade in" id="Heavy">
-			  <p>Heavy</p>
-				</div>
-			  <div class="tab-pane fade in" id="Engineer">
-			  <p>Engineer</p>
-				</div>
-			  <div class="tab-pane fade in" id="Medic">
-			  <p>Medic</p>
-				</div>
-			  <div class="tab-pane fade in" id="Sniper">
-			  <p>Sniper</p>
-				</div>
-			  <div class="tab-pane fade in" id="Spy">
-			  <p>Spy</p>
-				</div>
-				</div>
-</div>
+			<li>
+			</ul>
 
   <button data-toggle="tooltip" title="Be sure to go through all the tabs before generating." type="submit" class="btn btn-primary">Download package<i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
 	<span id="data_resetter"><button class="btn btn-danger btn-delete-item" type="button" data-toggle="confirmation" data-popout="true" data-btnoklabel="Reset" data-title="This will reset all options to default. Are you sure?">Reset</button></span>
@@ -159,41 +142,6 @@
 
 <p class="hide" id="result"></p>
 	<!--   LAUNCH OPTIONS  -->
-  <script>
-  $(document).ready(function() {
-    var copyTextareaBtn = document.querySelector('#loptions');
-
-    copyTextareaBtn.addEventListener('click', function(event) {
-    var copyTextarea = document.querySelector('#loptions');
-    copyTextarea.select();
-
-    try {
-      var successful = document.execCommand('copy');
-      var msg = successful ? 'successful' : 'unsuccessful';
-      $("#clipboard_copy_info_text").html('Copied to clipboard');
-      $("#clipboard_copy_info").addClass('text-success');
-      setTimeout(function(){
-        $("#clipboard_copy_info_text").html('Click to copy launch options to clipboard');
-        $("#clipboard_copy_info").removeClass('text-success');
-      }, 2000);
-    } catch (err) {
-      $("#clipboard_copy_info").addClass('text-danger');
-    }
-    });
-
-		// disable display options on startup.
-		$('#display_settings .display_option').prop('disabled', true);
-		$('#display_settings').fadeTo('fast', '0.6');
-
-		// trigger an update on input changes
-		$('#resolution_detector_cb, #launch_cmd_novid, #launch_cmd_console, #display_mode, #launch_cmd_high').change(updatescreenmode);
-
-		$(".resolution_selector, #aspectratio_selector").change(updateresolution);
-
-  });
-	$(window).on('load', updateresolution); // trigger update on 1st load
-
-  </script>
 </div>
 
   <script type="text/javascript" src="../../js/downloader.js"></script>
