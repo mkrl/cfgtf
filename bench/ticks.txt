@@ -9,6 +9,8 @@ Open demoui with Shift+F2 or via any other method and load up the map from "benc
 Execute "bench_settings".
 Execute "bench_mapname", where "mapname" is a name of the map you loaded.  For example, for "itemtest.dem" it is "bench_itemtest".
 
+Use F12 to take screenshots, 'high quality .tgas will be under your /tf/screenshots folder'
+
 Make your screenshots using the following format:
 
 Go to the tick provided (paste in the "tick" field and press "Go")
@@ -18,6 +20,7 @@ Particle effects also tend to glitch or speed up while paused from time to time.
 
 This demo pack inclues an australium weapon mod that replaces Grenade Launcher with an australium version of it (Valve-way australium textures and materials). Remove it after you're done with screenshots.
 If camera shortcuts suddenly stop working, reexecute the config again.
+
 
 
 ===========================================
@@ -73,7 +76,7 @@ tick: 11211
 position: 6 (roof)
 
 
-
+	
 ===========================================
 
 Sunshine:
