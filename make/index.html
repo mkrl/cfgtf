@@ -4879,11 +4879,10 @@
 		// trigger an update on input changes
 		$('#resolution_detector_cb, #launch_cmd_novid, #launch_cmd_console, #display_mode, #launch_cmd_high').change(updatescreenmode);
 
-		$(".resolution_selector, #aspectratio_selector").change(updateresolution);
-
+		$(".resolution_selector, #aspectratio_selector").change(updateresolution);	
   });
 	$(window).on('load', updateresolution); // trigger update on 1st load
-
+	$(window).on('load', updatescreenmode); // trigger update on 1st load
   </script>
 
 		<div class="panel panel-primary">
@@ -4965,7 +4964,6 @@
 	  	</div>
 		</div>
 </div>
-
   <script type="text/javascript" src="../js/downloader.js"></script>
 </div>
 
