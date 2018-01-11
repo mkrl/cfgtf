@@ -95,23 +95,28 @@ function isNumberKey(evt) //allowing numbers and decimal points
 
     return true;
 }
-var dxlevel = "90"; //updating dxlevel below
+var dxlevel = "95"; //updating dxlevel below
 function updatedxlevel() {
     switch ($("#gfx_selector").val()) {
         case "comanglia_toaster":
         case "comanglia_stability":
-        case "felik_lowend":
+        case "mastercomfig-maxperformance":
+        case "mastercomfig-igpu":
+        case "mastercomfig-stripped":
         case "rhapsody_dx8":
             dxlevel = "81";
             break;
         case "comanglia_hq":
-        case "felik_base":
+        case "mastercomfig-default":
+        case "mastercomfig-comp":
+        case "mastercomfig-compquality":
+        case "mastercomfig-midquality":
         case "rhapsody_dx9":
         case "myown":
-            dxlevel = "90";
+            dxlevel = "95";
             break;
         case "comanglia_cinema":
-        case "felik_eyecandy":
+        case "mastercomfig-maxquality":
             dxlevel = "98";
     }
 		printcommandline();

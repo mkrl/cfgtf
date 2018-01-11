@@ -165,3 +165,12 @@ a:hover + .ibox,.ibox:hover{
     position: relative;
     z-index: 100;
 }
+
+.disabledarea {
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+.defbutton {
+	pointer-events: auto !important;
+}
