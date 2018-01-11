@@ -117,97 +117,18 @@ jQuery(function($) {
 		var zippies = []; 
 		
 		var zip = new JSZip();
-		var customs = ""; //a var to store all the extra stuff to add to autoexec
 
 		//getting values form inputs
 		// !!!!IMPORTANT!!!! All the selectable html fields (non-text forms) should have data-name and data-url attributes or everything breaks
 
-		//general
-		var os = $('#os').val();
-		var hostname = $('#hostname').val();
-		var sv_password = $('#sv_password').val();
-		var sv_lan = $('#sv_lan').val();
-
-		//security
-		var rcon_password = $('#rcon_password').val();
-		var sv_rcon_banpenalty = $('#sv_rcon_banpenalty').val();
-		var sv_rcon_minfailures = $('#sv_rcon_minfailures').val();
-		var sv_rcon_maxfailures = $('#sv_rcon_maxfailures').val();
-		var log = $('#log').val();
-		var sv_logfile = $('#sv_logfile').val();
-		var sv_logecho = $('#sv_logecho').val();
-		var sv_logbans = $('#sv_logbans').val();
-
-		//tftrue
-		var tftrue_maxfov = $('#tftrue_maxfov').val();
-		var tftrue_freezecam = $('#tftrue_freezecam').val();
-		var tftrue_whitelist_id = $('#tftrue_whitelist_id').val();
-		var tftrue_logs_apikey = $('#tftrue_logs_apikey').val();
-		var tftrue_restorestats = $('#tftrue_restorestats').val();
-		var tftrue_tv_autorecord = $('#tftrue_tv_autorecord').val();
-		var tftrue_tv_demos_path = $('#tftrue_tv_demos_path').val();
-		var tftrue_no_hats = $('#tftrue_no_hats').val();
-		var tftrue_no_misc = $('#tftrue_no_misc').val();
-		var tftrue_bunnyhop = $('#tftrue_bunnyhop').val();
-
-		//various
-		var sv_pure = $('#sv_pure').val();
-		var sv_pure_kick_clients = $('#sv_pure_kick_clients').val();
-		var sv_alltalk = $('#sv_alltalk').val();
-		var mp_allowspectators = $('#mp_allowspectators').val();
-		var mp_autoteambalance = $('#mp_autoteambalance').val();
-		var mp_teams_unbalance_limit = $('#mp_teams_unbalance_limit').val();
-		var mp_forcecamera = $('#mp_forcecamera').val();
-		var sv_allow_wait_command = $('#sv_allow_wait_command').val();
-		var sv_cheats = $('#sv_cheats').val();
-		var sv_pausable = $('#sv_pausable').val();
-		var mp_stalemate_enable = $('#mp_stalemate_enable').val();
-		var mp_stalemate_timelimit = $('#mp_stalemate_timelimit').val();
-		var mp_winlimit = $('#mp_winlimit').val();
-		var mp_timelimit = $('#mp_timelimit').val();
-		var tf_weapon_criticals = $('#tf_weapon_criticals').val();
-		var tf_use_fixed_weaponspreads = $('#tf_use_fixed_weaponspreads').val();
-
-		//net
-		var sv_maxrate = $('#sv_maxrate').val();
-		var sv_minrate = $('#sv_minrate').val();
-		var sv_maxupdaterate = $('#sv_maxupdaterate').val();
-		var sv_minupdaterate = $('#sv_minupdaterate').val();
 		var sv_maxcmdrate = $('#sv_maxcmdrate').val();
 		var sv_mincmdrate = $('#tf_use_fixed_weaponspreads').val();
 
-	
-		//get large piece of custom set
-		var bindings = $('#bindings').val();
-		var tftrueset = "";
-
-		/*  		if($("#thing").is(':checked')){
-					var thing = "1"
-					} else {
-					var thing = "0"
-				} */
-		if ($("#tftrue").is(':checked')) {
-			tftrueset = "//TFTrue settings \n\ntftrue_maxfov " + tftrue_maxfov + "\ntftrue_freezecam " + tftrue_freezecam + "\ntftrue_whitelist_id " + tftrue_whitelist_id + "\ntftrue_logs_apikey " + tftrue_logs_apikey + "\ntftrue_restorestats " + tftrue_restorestats + "\ntftrue_tv_autorecord " + tftrue_tv_autorecord + "\ntftrue_tv_demos_path " + tftrue_tv_demos_path + "\ntftrue_no_hats " + tftrue_no_hats + "\ntftrue_no_misc " + tftrue_no_misc + "\ntftrue_bunnyhop " + tftrue_bunnyhop + "\n";
-		}
-		
-		//fastDL
-		var sv_allowdownload = "";
-		var sv_downloadurl = "";
 		if ($("#sv_allowdownload").is(':checked')) {
 			var sv_allowdownload = "sv_allowdownload 1";
 			var sv_downloadurl = 'sv_downloadurl "'+ $('#sv_downloadurl').val() + '"';			
 		}
 		//maps
-		if ($("#map_rotation").is(':checked')) {
-			var selectedValues = $('#map_pickerino').val();
-			var mapsstr = "";
-			for(var i = 0; i < selectedValues.length; ++i){
-				 mapsstr += selectedValues[i]+"\r\n" ;
-				}
-
-			zip.file('cfg/mapcycle.txt', mapsstr);
-		}
-
 		
 		// find every checked item
 		$(this).find(":checked").each(function() {
