@@ -98,15 +98,208 @@
   <div id="wrapper" class="container">
 		<div class="row content">
 			<h1>Weapon-specific crosshairs<small><span id="version"><!-- ./version.txt --></span></small></h1>
-
+			<br>
+			<br>
+			<br>
+			<p>This tool allows you to generate a set of files that will replace your stock weapon crosshairs. This means that you can assign any crosshair to a specific weapon, not just the weapon slot. Please note that you should have <code>cl_crosshair_file</code> set to "" (empty, just double quotes) in order for this script to work.</p>
+			<p>The original idea and way of implementing this can be found <a href="http://www.teamfortress.tv/30866/guide-weapon-specific-custom-crosshairs" target="_blank">here</a>.</p>
+			<p>This tool will only replace crosshairs for the weapons you pick - all the other ones will remain unchanged.</p>
+			<br>
+			<br>
+			<br>
  			<form action="#" id="download_form">
 				<!-- The form submit will not work without ul, so I added another class to remove padding? todo: fix this shit -->
 			<ul class="checkbox list-unstyled">
 			<li>
-	      <label class="form-inline">
-					Pick a weapon:
-						<select class="selectpicker" id="selectionhit">
+
+						<select class="selectpicker" id="weaponselector" data-live-search="true">
 							<option value="none" data-name="nohitsound" data-url="">Select a weapon to modify</option>
+							<optgroup label="Scout">
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Scattergun</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Force-A-Nature</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Shortstop</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Soda Popper</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Baby Face's Blaster</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Back Scatter</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Pistol</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Winger</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Pretty Boy's Pocket Pistol</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Flying Guillotine</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Bonk! Atomic Punch</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Crit-a-Cola</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Mad Milk</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Bat</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Holy Mackerel</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Sandman</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Candy Cane</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Boston Basher</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Sun-on-a-Stick</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Fan O'War</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Atomizer</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Wrap Assassin</option>
+							</optgroup>
+								<optgroup label="Soulder">
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Rocket Launcher</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Original</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Direct Hit</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Black Box</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Rocket Jumper</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Liberty Launcher</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Cow Mangler 5000</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Beggar's Bazooka</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Air Strike</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Shotgun</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Reserve Shooter</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Buff Banner</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Battalion's Backup</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Concheror</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Righteous Bison</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Panic Attack</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Shovel</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Equalizer</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Pain Train</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Half-Zatoichi</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Disciplinary Action</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Market Gardener</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Escape Plan</option>
+							</optgroup>
+								<optgroup label="Pyro">
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Flame Thrower</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Rainblower</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Nostromo Napalmer</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Backburner</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Degreaser</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Phlogistinator</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Dragon's Fury</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Shotgun</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Reserve Shooter</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Flare Gun</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Detonator</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Manmelter</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Scorch Shot</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Panic Attack</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Thermal Thruster</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Gas Passer</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Fire Axe</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Lollichop</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Axtinguisher</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Postal Pummeler</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Homewrecker</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Maul</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Powerjack</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Back Scratcher</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Sharpened Volcano Fragment</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Third Degree</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Neon Annihilator</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Hot Hand</option>
+							</optgroup>
+								<optgroup label="Demoman">
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Grenade Launcher</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Loch-n-Load</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Loose Cannon</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Iron Bomber</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Stickybomb Launcher</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Scottish Resistance</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Sticky Jumper</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Quickiebomb Launcher</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Bottle</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Eyelander</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Scotsman's Skullcutter</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Pain Train</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Ullapool Caber</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Claidheamh Mòr</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Half-Zatoichi</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Persian Persuader</option>
+							</optgroup>
+							</optgroup>
+								<optgroup label="Heavy">
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Minigun</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Natascha</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Brass Beast</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Tomislav</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Huo-Long Heater</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Shotgun</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Family Business</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Sandvich</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Dalokohs Bar</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Buffalo Steak Sandvich</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Panic Attack</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Second Banana</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Fists</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Killing Gloves of Boxing</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Gloves of Running Urgently</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Warrior's Spirit</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Fists of Steel</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Eviction Notice</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Holiday Punch</option>
+							</optgroup>
+							</optgroup>
+								<optgroup label="Engineer">
+								<option value="test" datadd-name="hitsound" data-url="../make/snd/Q3.wav">Shotgun</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Frontier Justice</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Widowmaker</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Pomson 6000</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Rescue Ranger</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Panic Attack</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Pistol</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Wrangler</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Short Circuit</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Wrench</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Gunslinger</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Southern Hospitality</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Jag</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Eureka Effect</option>
+							</optgroup>
+							</optgroup>
+								<optgroup label="Medic">
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Syringe Gun</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Blutsauger</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Crusader's Crossbow</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Overdose</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Medi Gun</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Kritzkrieg</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Quick-Fix</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Vaccinator</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Bonesaw</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Ubersaw</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Vita-Saw</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Amputator</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Solemn Vow</option>
+							</optgroup>
+							</optgroup>
+								<optgroup label="Sniper">
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Sniper Rifle</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Huntsman</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Sydney Sleeper</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Bazaar Bargain</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Machina</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Hitman's Heatmaker</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Classic</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Submachine Gun (SMG)</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Cleaner's Carbine</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Jarate</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Kukri</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Tribalman's Shiv</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Bushwacka</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Shahanshah</option>
+							</optgroup>
+							</optgroup>
+								<optgroup label="Spy">
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Revolver</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Ambassador</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">L'Etranger</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Enforcer</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Diamondback</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Knife</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Your Eternal Reward</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Conniver's Kunai</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Big Earner</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Spy-cicle</option>
+								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Sapper</option>
+							</optgroup>
+						</select>
+						<select class="selectpicker" id="crosshairselector" data-live-search="true">
+							<option value="none" data-name="nohitsound" data-url="">Pick a crosshair</option>
 							<optgroup label="Scout">
 								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Scattergun</option>
 								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Bat</option>
@@ -118,18 +311,26 @@
 								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Pickaxe</option>
 							</optgroup>
 						</select>
-						<audio id="player" controls="controls" style="display:none;">
-							<source id="wav_src" src="" type="audio/ogg" />Your browser does not support audio previews.
-						</audio>
-	      </label>
-				<a id="hitsound_player" style="display:none;"><i class="fa fa-play" aria-hidden="true"></i> </a>
+
+		  <button type="submit" class="btn btn-secondary">Add <i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i></button>
 			</li>
-
-			<li>
+			<br>
 			</ul>
-
-  <button data-toggle="tooltip" title="Be sure to go through all the tabs before generating." type="submit" class="btn btn-primary">Download package<i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
-	<span id="data_resetter"><button class="btn btn-danger btn-delete-item" type="button" data-toggle="confirmation" data-popout="true" data-btnoklabel="Reset" data-title="This will reset all options to default. Are you sure?">Reset</button></span>
+<table class="table table-striped table-hover ">
+						  <thead>
+  							<th>Crosshair</th>
+  							<th></th>
+  							<th>Weapon</th>
+						  </thead>
+						  <tr>
+							<td>Pick a weapon, desired crosshair and press "Add" to start</td>
+							<td></td>
+							<td></td>
+							</tr>
+</table>
+						
+						
+  <button type="submit" class="btn btn-primary">Download package <i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
 	<hr>
 </form>
 
