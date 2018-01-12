@@ -1,0 +1,84 @@
+scout		slot0	tf_weapon_scattergun
+					tf_weapon_handgun_secondary				(shortstop)
+					tf_weapon_pep_brawler					tf_weapon_	(baby blaster)
+			slot1	tf_weapon_pistol	
+					tf_weapon_lunchbox_drink
+					tf_weapon_jar_milk
+					tf_weapon_pistol_secondary				(winger/pocket pistol)
+					tf_weapon_cleaver
+			slot2	tf_weapon_bat
+					tf_weapon_bat_wood					tf_weapon_	(sandsman)
+					tf_weapon_bat_fish
+					tf_weapon_bat_giftwarp
+solly		slot0	tf_weapon_rocketlauncher
+					tf_weapon_rocketlauncher_directhit
+					tf_weapon_particle_cannon					tf_weapon_(cow mangler)
+					tf_weapon_rocketlauncher_airstrike
+			slot1	tf_weapon_shotgun_soldier
+					tf_weapon_shotgun
+					tf_weapon_buff_item
+					tf_weapon_raygun					tf_weapon_		(bison)
+					tf_weapon_//wearable
+					tf_weapon_//parachute
+			slot2	tf_weapon_shovel
+					tf_weapon_katana
+					tf_weapon_		
+pyro		slot0	tf_weapon_flamethrower
+			slot1	tf_weapon_shotgun_pyro
+					tf_weapon_flaregun
+					tf_weapon_shotgun
+					tf_weapon_flaregun_revenge				(manmelter)
+			slot2	tf_weapon_fireaxe
+					tf_weapon_		
+demo		slot0	tf_weapon_grenadelauncher
+					tf_weapon_cannon					tf_weapon_		(loose cannon)
+					tf_weapon_//wearable
+					tf_weapon_//parachute
+			slot1	tf_weapon_pipebomblauncher
+					tf_weapon_//wearable_demoshield
+			slot2	tf_weapon_bottle
+					tf_weapon_sword
+					tf_weapon_shovel
+					tf_weapon_stickbomb					tf_weapon_	(caber)
+					tf_weapon_katana
+					tf_weapon_	
+haevy		slot0	tf_weapon_minigun
+			slot1	tf_weapon_shotgun_hwg
+					tf_weapon_shotgun
+					tf_weapon_lunchbox 
+			slot2	tf_weapon_fists
+					tf_weapon_	
+engie		slot0	tf_weapon_shotgun_primary
+					tf_weapon_shotgun
+					tf_weapon_sentry_revenge					tf_weapon_(frontier justice)
+					tf_weapon_shotgun_building_rescue 		(rescue ranger)
+					tf_weapon_drg_pompson
+			slot1	tf_weapon_pistol
+					tf_weapon_laser_pointer					tf_weapon_(wrangler)
+					tf_weapon_mechanical_arm					tf_weapon_(short circuit)
+			slot2	tf_weapon_wrench
+					tf_weapon_robot_arm
+			slot3	tf_weapon_pda_engineer_build
+			slot4	tf_weapon_pda_engineer_destroy
+			slot5	tf_weapon_builder
+				
+medic		slot0	tf_weapon_syringegun_medic
+					tf_weapon_crossbow
+			slot1	tf_weapon_medicgun
+			slot2	tf_weapon_bonesaw
+				
+sniper		slot0	tf_weapon_sniperrifle
+					tf_weapon_compoundbow
+					tf_weapon_sniperrifle_decap				(bazaar bargain)
+					tf_weapon_sniperrifle_classic
+			slot1	tf_weapon_smg
+					tf_weapon_jar
+					tf_weapon_//wearable
+			slot2	tf_weapon_club
+				
+spy			slot0	tf_weapon_revolver
+			slot1	tf_weapon_builder
+					tf_weapon_sapper
+			slot2	tf_weapon_knife
+			slot3	tf_weapon_pda_spy
+			slot4	//invis

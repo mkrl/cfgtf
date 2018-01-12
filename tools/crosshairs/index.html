@@ -98,41 +98,173 @@
   <div id="wrapper" class="container">
 		<div class="row content">
 			<h1>Weapon-specific crosshairs<small><span id="version"><!-- ./version.txt --></span></small></h1>
-
+			<br>
+			<br>
+			<br>
+			<p>This tool allows you to generate a set of files that will replace your stock weapon crosshairs. This means that you can assign any crosshair to a specific weapon, not just the weapon slot. Please note that you should have <code>cl_crosshair_file</code> set to "" (empty, just double quotes) in order for this script to work.</p>
+			<p>The original idea and way of implementing this can be found <a href="http://www.teamfortress.tv/30866/guide-weapon-specific-custom-crosshairs" target="_blank">here</a>.</p>
+			<p>This tool will only replace crosshairs for the weapons you pick - all the other ones will remain unchanged.</p>
+			<br>
+			<br>
+			<br>
  			<form action="#" id="download_form">
 				<!-- The form submit will not work without ul, so I added another class to remove padding? todo: fix this shit -->
 			<ul class="checkbox list-unstyled">
 			<li>
-	      <label class="form-inline">
-					Pick a weapon:
-						<select class="selectpicker" id="selectionhit">
-							<option value="none" data-name="nohitsound" data-url="">Select a weapon to modify</option>
+
+						<select class="selectpicker" id="weaponselector" data-live-search="true">
+							<option value="none" data-name="nothing" data-url="">Select a weapon to modify</option>
 							<optgroup label="Scout">
-								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Scattergun</option>
-								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Bat</option>
-								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Pistol</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_scattergun.txt">Scattergun, Force-A-Nature, Soda Popper, Back Scatter</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_handgun_scout_secondary.txt">Shortstop</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_pep_brawler_blaster.txt">Baby Face's Blaster</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_pistol_scout.txt">Pistol and reskins</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_pistol_secondary.txt">Winger, Pretty Boy's Pocket Pistol</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_cleaver.txt">Flying Guillotine</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_lunchbox_drink.txt">Bonk! Atomic Punch, Crit-a-Cola</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_jar_milk.txt">Mad Milk</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_bat.txt">Bat and all reskins, Candy Cane, Boston Basher, Sun-on-a-Stick, Fan O'War, Atomizer</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_bat_fish.txt">Holy Mackerel</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_bat_wood.txt">Sandman</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_bat_giftwarp.txt">Wrap Assassin</option>
 							</optgroup>
-								<optgroup label="Soulder">
-								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Rocket</option>
-								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Shotty</option>
-								<option value="test" data-name="hitsound" data-url="../make/snd/Q3.wav">Pickaxe</option>
+								<optgroup label="Solder">
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_rocketlauncher.txt">Rocket Launcher, Liberty Launcher, Black Box, Original, Liberty Launcher, Beggar's Bazooka</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_rocketlauncher_directhit.txt">Direct Hit</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_particle_cannon.txt">Cow Mangler 5000</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_rocketlauncher_airstrike.txt">Air Strike</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_shotgun_soldier.txt">Shotgun, Reserve Shooter, Panic Attack</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_buff_item.txt">Buff Banner, Battalion's Backup, Concheror</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_raygun.txt">Righteous Bison</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_shovel.txt">Shovel and all reskins, Equalizer, Pain Train, Disciplinary Action, Market Gardener, Escape Plan</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_katana.txt">Half-Zatoichi</option>
+							</optgroup>
+								<optgroup label="Pyro">
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_flamethrower.txt">Flame Thrower and all reskins, Backburner, Degreaser, Phlogistinator, Dragon's Fury</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_shotgun_pyro.txt">Shotgun, Reserve Shooter, Panic Attack</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_flaregun.txt">Flare Gun, Detonator, Scorch Shot</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_flaregun_revenge.txt">Manmelter</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_??????????????.txt">Thermal Thruster</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_jar.txt">Gas Passer, Jarate</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_fireaxe.txt">Fire Axe, Lollichop, Axtinguisher and reskin, Homewrecker and reskin, Powerjack, Back Scratcher, Sharpened Volcano Fragment, Third Degree, Neon Annihilator</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_??????????????.txt">Hot Hand</option>
+							</optgroup>
+								<optgroup label="Demoman">
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_grenadelauncher.txt">Grenade Launcher, Loch-n-Load, Iron Bomber</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_cannon.txt">Loose Cannon</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_pipebomblauncher.txt">Stickybomb Launcher, Scottish Resistance, Sticky Jumper, Quickiebomb Launcher</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_bottle.txt">Bottle</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_sword.txt">Eyelander, Scotsman's Skullcutter, Claidheamh Mòr, Persian Persuader, Pain Train</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_stickbomb.txt">Ullapool Caber</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_katana.txt">Half-Zatoichi</option>
+							</optgroup>
+							</optgroup>
+								<optgroup label="Heavy">
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_minigun.txt">Minigun, Natascha, Brass Beast, Tomislav, Huo-Long Heater</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_shotgun_hwg.txt">Shotgun, Family Business, Panic Attack</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_lunchbox.txt">Sandvich, Dalokohs Bar and reskin, Buffalo Steak Sandvich, Second Banana</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_fists.txt">Fists and all reskins, Killing Gloves of Boxing, Gloves of Running Urgently, Warrior's Spirit, Fists of Steel, Eviction Notice, Holiday Punch</option>
+							</optgroup>
+							</optgroup>
+								<optgroup label="Engineer">
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_shotgun_primary.txt">Shotgun, Widowmaker, Panic Attack</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_drg_pompson.txt">Pomson 6000</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_shotgun_building_rescue.txt">Rescue Ranger</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_pistol.txt">Pistol</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_laser_pointer.txt">Wrangler and reskin</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_mechanical_arm.txt">Short Circuit</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_wrench.txt">Wrench, Southern Hospitality, Jag, Eureka Effect</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_robot_arm.txt">Gunslinger</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_pda_engineer_build.txt">Build PDA</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_pda_engineer_destroy.txt">Destroy PDA</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_builder.txt">Placing a building</option>
+							</optgroup>
+							</optgroup>
+								<optgroup label="Medic">
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_syringegun_medic.txt">Syringe Gun, Blutsauger, Overdose, Kritzkrieg, Quick-Fix, Vaccinator</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_crossbow.txt">Crusader's Crossbow</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_medigun.txt">Medi Gun</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_medicgun.txt">Bonesaw and all reskins, Ubersaw, Vita-Saw, Amputator, Solemn Vow</option>
+							</optgroup>
+							</optgroup>
+								<optgroup label="Sniper">
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_sniperrifle.txt">Sniper Rifle, Sydney Sleeper, Bazaar Bargain, Machina</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_compound_bow.txt">Huntsman and reskin</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_sniperrifle_decap.txt">Hitman's Heatmaker</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_sniperrifle_classic.txt">Classic</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_smg.txt">Submachine Gun (SMG), Cleaner's Carbine</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_jar.txt">Jarate and Gas Passer</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_club.txt">Kukri and all reskins, Tribalman's Shiv, Bushwacka, Shahanshah</option>
+							</optgroup>
+							</optgroup>
+								<optgroup label="Spy">
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_revolver.txt">Revolver, Ambassador, L'Etranger, Enforcer, Diamondback</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_knife.txt">Knife and all reskins, Your Eternal Reward and reskin, Conniver's Kunai, Big Earner, Spy-cicle</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_sapper.txt">Sapper</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_pda_spy.txt">Disguise kit</option>
 							</optgroup>
 						</select>
-						<audio id="player" controls="controls" style="display:none;">
-							<source id="wav_src" src="" type="audio/ogg" />Your browser does not support audio previews.
-						</audio>
-	      </label>
-				<a id="hitsound_player" style="display:none;"><i class="fa fa-play" aria-hidden="true"></i> </a>
+						<select class="selectpicker" id="crosshairselector" data-live-search="true">
+							<option value="none" data-name="nothing" data-url="">Pick a crosshair</option>
+								<option value="test" data-name="crosshair_picker" data-url="bigcross">bigcross</option>
+								<option value="test" data-name="crosshair_picker" data-url="circle">circle</option>
+								<option value="test" data-name="crosshair_picker" data-url="circledot">circledot</option>
+								<option value="test" data-name="crosshair_picker" data-url="crosshair11">crosshair11</option>
+								<option value="test" data-name="crosshair_picker" data-url="dot">dot</option>
+								<option value="test" data-name="crosshair_picker" data-url="fatcross">fatcross</option>
+								<option value="test" data-name="crosshair_picker" data-url="seeker">seeker</option>
+								<option value="test" data-name="crosshair_picker" data-url="sniper">sniper</option>
+								<option value="test" data-name="crosshair_picker" data-url="tob_rocketcross">tob_rocketcross</option>
+								<option value="test" data-name="crosshair_picker" data-url="tob_wingscross">tob_wingscross</option>
+								<option value="test" data-name="crosshair_picker" data-url="tob_wingsdot">tob_wingsdot</option>
+								<option value="test" data-name="crosshair_picker" data-url="wings">wings</option>
+								<option value="test" data-name="crosshair_picker" data-url="wingsdot">wingsdot</option>
+								<option value="test" data-name="crosshair_picker" data-url="xhairshadowdefault">xhairshadowdefault</option>
+								<option value="test" data-name="crosshair_picker" data-url="xhairshadowdots">xhairshadowdots</option>
+								<option value="test" data-name="crosshair_picker" data-url="xhairshadowplus">xhairshadowplus</option>
+								<option value="test" data-name="crosshair_picker" data-url="xhairshadowpluss">xhairshadowpluss</option>
+								<option value="test" data-name="crosshair_picker" data-url="xhairshadowrocketsthick">xhairshadowrocketsthick</option>
+						</select>
+
+		  <button class="btn btn-secondary" type="button" id="#add_btn" onclick="addItem();">Add <i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i></button>
 			</li>
-
-			<li>
+			<br>
 			</ul>
-
-  <button data-toggle="tooltip" title="Be sure to go through all the tabs before generating." type="submit" class="btn btn-primary">Download package<i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
-	<span id="data_resetter"><button class="btn btn-danger btn-delete-item" type="button" data-toggle="confirmation" data-popout="true" data-btnoklabel="Reset" data-title="This will reset all options to default. Are you sure?">Reset</button></span>
+		<table class="table table-striped table-hover " id="crosslist">
+						  <thead>
+  							<th>Crosshair</th>
+  							<th></th>
+  							<th>Weapon</th>
+							<th></th>
+						  </thead>
+						  <tr>
+							<td>Pick a weapon, desired crosshair and press "Add" to start</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							</tr>
+		</table>
+						
+						
+  <button type="submit" class="btn btn-primary">Download package <i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
 	<hr>
 </form>
+<script>
 
+	function addItem() {
+		var picked_cross = $("#crosshairselector option:selected").html();
+		var picked_weapon = $("#weaponselector option:selected").html();
+		$('#crosslist > tbody:last-child').append('<tr class="crosshair_item" data-url=""><td>'+picked_cross+'</td><td><img src="./xhairs/png/'+picked_cross+'.png"></td><td>'+picked_weapon+'</td><td><button class="btn btn-danger" type="button" class="remove_btn"><i class="fa fa-times" aria-hidden="true"></i></button></td></tr>');
+	}
+	
+	$(function() {
+					$(".remove_btn").on('click', (function() {
+					alert("Delet this");
+						$(this).parent().parent().remove();			
+					}));						
+				});
+
+</script>
 <div class="progress hide" id="progress_bar">
 	<div class="progress progress-striped active">
     <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">

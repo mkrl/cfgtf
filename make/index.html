@@ -136,10 +136,15 @@
                   <option value="comanglia_hq" data-name="gfx" onclick="updatedxlevel();" id="fine" data-url="../make/cfg/c_maxfps_hq.txt">Comanglia: Max FPS for High Quality PCs</option>
                   <option value="comanglia_cinema" data-name="gfx" onclick="updatedxlevel();" id="fancy" data-url="../make/cfg/c_cinema.txt">Comanglia: Cinema</option>
   							</optgroup>
-                <optgroup label="Felik">
-                  <option value="felik_base" data-name="gfx" onclick="updatedxlevel();" id="felik" data-url="../make/cfg/f_base.txt">Felik</option>
-                  <option value="felik_lowend" data-name="gfx" onclick="updatedxlevel();" id="feliklowend" data-url="../make/cfg/f_lowend.txt">Felik: Low End</option>
-                  <option value="felik_eyecandy" data-name="gfx" onclick="updatedxlevel();" id="felikeyecandy" data-url="../make/cfg/f_eyecandy.txt">Felik: Eye Candy</option>
+                <optgroup label="mastercomfig">
+                  <option value="mastercomfig-default" data-name="gfx" onclick="updatedxlevel();" id="mastercomfig" data-url="../make/cfg/mastercomfig-default.cfg">mastercomfig: default</option>
+                  <option value="mastercomfig-comp" data-name="gfx" onclick="updatedxlevel();" id="mastercomfigcomp" data-url="../make/cfg/mastercomfig-comp.cfg">mastercomfig: comp</option>
+                  <option value="mastercomfig-compquality" data-name="gfx" onclick="updatedxlevel();" id="mastercomfigcompquality" data-url="../make/cfg/mastercomfig-compquality.cfg">mastercomfig: compquality</option>
+                  <option value="mastercomfig-maxperformance" data-name="gfx" onclick="updatedxlevel();" id="mastercomfigmaxperformance" data-url="../make/cfg/mastercomfig-maxperformance.cfg">mastercomfig: maxperformance</option>
+                  <option value="mastercomfig-midquality" data-name="gfx" onclick="updatedxlevel();" id="mastercomfigmidquality" data-url="../make/cfg/mastercomfig-midquality.cfg">mastercomfig: midquality</option>
+                  <option value="mastercomfig-maxquality" data-name="gfx" onclick="updatedxlevel();" id="mastercomfigmaxquality" data-url="../make/cfg/mastercomfig-maxquality.cfg">mastercomfig: maxquality</option>
+                  <option value="mastercomfig-igpu" data-name="gfx" onclick="updatedxlevel();" id="mastercomfigigpu" data-url="../make/cfg/mastercomfig-igpu.cfg">mastercomfig: maxperformance igpu</option>
+                  <option value="mastercomfig-stripped" data-name="gfx" onclick="updatedxlevel();" id="mastercomfigstripped" data-url="../make/cfg/mastercomfig-stripped.cfg">mastercomfig: maxperformance stripped</option>
                 </optgroup>
                 <optgroup label="Rhapsody">
                   <option value="rhapsody_dx9" data-name="gfx" onclick="updatedxlevel();" id="rhapsodydx9" data-url="../make/cfg/r_base.txt">Rhapsody: DX9</option>
@@ -567,59 +572,59 @@
 		</div>
   </div>
 
-	<div id="cfg_felik_base" class="desc" style="display: none;">
+	<div id="cfg_mastercomfig-default" class="desc" style="display: none;">
 	  <div class="panel-body">
-      <h3>Felik's config</h3>
-      <p>Various optimizations for TF2, and soon to be for other Source Engine based games.</p>
+      <h3>mastercomfig</h3>
+      <p>This config is by default for modern PCs and aims to disable heavily unoptimized features and adjust other settings where it does not affect behavior or visuals noticeably. The config is constantly updated with tweaks, new features and documentation improvements — iterated upon based on user feedback and benchmarks.</p>
 			<label>Preview
-				<select class="form-control selectpicker gfx_preview_selection" id="felik_base_preview">
+				<select class="form-control selectpicker gfx_preview_selection" id="mastercomfig-default_preview">
 					<option value="pl_badwater" data-name="gfx_preview" data-url="" selected="selected">Badwater</option>
 					<option value="cp_sunshine" data-name="gfx_preview" data-url="">Sunshine</option>
 					<option value="cp_badlands" data-name="gfx_preview" data-url="">Badlands</option>
 					<option value="itemtest" data-name="gfx_preview" data-url="">Items</option>
 				</select>
 			</label>
-      <p><a class="cfg_source" href="https://gitlab.com/felik/TF2-Config/" target="_blank">Source</a></p>
+      <p><a class="cfg_source" href="https://github.com/mastercoms/mastercomfig" target="_blank">Source</a></p>
 
-      <div id="carousel_felik_base" class="carousel slide" data-ride="carousel" data-interval="0">
+      <div id="carousel_mastercomfig-default" class="carousel slide" data-ride="carousel" data-interval="0">
         <!-- Indicators -->
         <ol class="carousel-indicators">
-          <li data-target="#carousel_felik_base" data-slide-to="0" class="active"></li>
-          <li data-target="#carousel_felik_base" data-slide-to="1"></li>
-          <li data-target="#carousel_felik_base" data-slide-to="2"></li>
-          <li data-target="#carousel_felik_base" data-slide-to="3"></li>
-          <li data-target="#carousel_felik_base" data-slide-to="4"></li>
+          <li data-target="#carousel_mastercomfig-default" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel_mastercomfig-default" data-slide-to="1"></li>
+          <li data-target="#carousel_mastercomfig-default" data-slide-to="2"></li>
+          <li data-target="#carousel_mastercomfig-default" data-slide-to="3"></li>
+          <li data-target="#carousel_mastercomfig-default" data-slide-to="4"></li>
         </ol>
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
 
           <div class="item active">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_base/pl_badwater/pl_badwater01.jpg" alt="Felik's base Config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-default/pl_badwater/pl_badwater01.jpg" alt="mastercomfig default">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_base/pl_badwater/pl_badwater02.jpg" alt="Felik's base Config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-default/pl_badwater/pl_badwater02.jpg" alt="mastercomfig default">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_base/pl_badwater/pl_badwater03.jpg" alt="Felik's base Config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-default/pl_badwater/pl_badwater03.jpg" alt="mastercomfig default">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_base/pl_badwater/pl_badwater04.jpg" alt="Felik's base Config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-default/pl_badwater/pl_badwater04.jpg" alt="mastercomfig default">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_base/pl_badwater/pl_badwater05.jpg" alt="Felik's base Config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-default/pl_badwater/pl_badwater05.jpg" alt="mastercomfig default">
           </div>
         </div>
 
         <!-- Left and right controls -->
-        <a class="left carousel-control" href="#carousel_felik_base" role="button" data-slide="prev">
+        <a class="left carousel-control" href="#carousel_mastercomfig-default" role="button" data-slide="prev">
           <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
         </a>
-        <a class="right carousel-control" href="#carousel_felik_base" role="button" data-slide="next">
+        <a class="right carousel-control" href="#carousel_mastercomfig-default" role="button" data-slide="next">
           <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
@@ -627,15 +632,167 @@
       <div class="col-md-6">
         <h3 class="text-success">Pros</h3>
         <ul class="list-group">
-          <li class="list-group-item list-group-item-success">Decent FPS gain for good computers</li>
-          <li class="list-group-item list-group-item-success">A great performance choice for modern PCs</li>
-          <li class="list-group-item list-group-item-success">Looks good, textures are high quality</li>
+          <li class="list-group-item list-group-item-success">Reasonable performance on modern gaming PCs by only disabling the most unoptimized/intensive features</li>
+          <li class="list-group-item list-group-item-success">Only slightly reduces graphical quality in other areas</li>
+          <li class="list-group-item list-group-item-success">3D skybox</li>
         </ul>
       </div>
       <div class="col-md-6">
         <h3 class="text-danger">Cons</h3>
         <ul class="list-group">
           <li class="list-group-item list-group-item-danger">No shadows</li>
+          <li class="list-group-item list-group-item-danger">No ragdolls</li>
+          <li class="list-group-item list-group-item-danger">Limited particle effects</li>
+        </ul>
+      </div>
+
+		</div>
+  </div>
+
+	<div id="cfg_mastercomfig-comp" class="desc" style="display: none;">
+	  <div class="panel-body">
+      <h3>mastercomfig: Competitive performance preset</h3>
+      <p>Max FPS without visibility issues or bugs</p>
+			<label>Preview
+				<select class="form-control selectpicker gfx_preview_selection" id="mastercomfig-compt_preview">
+					<option value="pl_badwater" data-name="gfx_preview" data-url="" selected="selected">Badwater</option>
+					<option value="cp_sunshine" data-name="gfx_preview" data-url="">Sunshine</option>
+					<option value="cp_badlands" data-name="gfx_preview" data-url="">Badlands</option>
+					<option value="itemtest" data-name="gfx_preview" data-url="">Items</option>
+				</select>
+			</label>
+      <p><a class="cfg_source" href="https://github.com/mastercoms/mastercomfig" target="_blank">Source</a></p>
+
+      <div id="carousel_mastercomfig-comp" class="carousel slide" data-ride="carousel" data-interval="0">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#carousel_mastercomfig-comp" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel_mastercomfig-comp" data-slide-to="1"></li>
+          <li data-target="#carousel_mastercomfig-comp" data-slide-to="2"></li>
+          <li data-target="#carousel_mastercomfig-comp" data-slide-to="3"></li>
+          <li data-target="#carousel_mastercomfig-comp" data-slide-to="4"></li>
+        </ol>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+
+          <div class="item active">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-comp/pl_badwater/pl_badwater01.jpg" alt="mastercomfig default">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-comp/pl_badwater/pl_badwater02.jpg" alt="mastercomfig default">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-comp/pl_badwater/pl_badwater03.jpg" alt="mastercomfig default">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-comp/pl_badwater/pl_badwater04.jpg" alt="mastercomfig default">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-comp/pl_badwater/pl_badwater05.jpg" alt="mastercomfig default">
+          </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#carousel_mastercomfig-comp" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel_mastercomfig-comp" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <h3 class="text-success">Pros</h3>
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-success">Lowers graphical quality without having visibility/playability issues</li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <h3 class="text-danger">Cons</h3>
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-danger">No ragdolls</li>
+          <li class="list-group-item list-group-item-danger">No shadows</li>
+          <li class="list-group-item list-group-item-danger">No 3D skybox</li>
+          <li class="list-group-item list-group-item-danger">Limited particle effects</li>
+        </ul>
+      </div>
+
+		</div>
+  </div>
+
+	<div id="cfg_mastercomfig-compquality" class="desc" style="display: none;">
+	  <div class="panel-body">
+      <h3>mastercomfig: Competitive quality preset</h3>
+      <p>Maximizes advantage through enabling visual effects</p>
+			<label>Preview
+				<select class="form-control selectpicker gfx_preview_selection" id="mastercomfig-compquality_preview">
+					<option value="pl_badwater" data-name="gfx_preview" data-url="" selected="selected">Badwater</option>
+					<option value="cp_sunshine" data-name="gfx_preview" data-url="">Sunshine</option>
+					<option value="cp_badlands" data-name="gfx_preview" data-url="">Badlands</option>
+					<option value="itemtest" data-name="gfx_preview" data-url="">Items</option>
+				</select>
+			</label>
+      <p><a class="cfg_source" href="https://github.com/mastercoms/mastercomfig" target="_blank">Source</a></p>
+
+      <div id="carousel_mastercomfig-compquality" class="carousel slide" data-ride="carousel" data-interval="0">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#carousel_mastercomfig-compquality" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel_mastercomfig-compquality" data-slide-to="1"></li>
+          <li data-target="#carousel_mastercomfig-compquality" data-slide-to="2"></li>
+          <li data-target="#carousel_mastercomfig-compquality" data-slide-to="3"></li>
+          <li data-target="#carousel_mastercomfig-compquality" data-slide-to="4"></li>
+        </ol>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+
+          <div class="item active">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-compquality/pl_badwater/pl_badwater01.jpg" alt="mastercomfig default">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-compquality/pl_badwater/pl_badwater02.jpg" alt="mastercomfig default">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-compquality/pl_badwater/pl_badwater03.jpg" alt="mastercomfig default">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-compquality/pl_badwater/pl_badwater04.jpg" alt="mastercomfig default">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-compquality/pl_badwater/pl_badwater05.jpg" alt="mastercomfig default">
+          </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#carousel_mastercomfig-compquality" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel_mastercomfig-compquality" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <h3 class="text-success">Pros</h3>
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-success">Enables graphical features that may help your awareness</li>
+          <li class="list-group-item list-group-item-success">More accurate sound and visuals</li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <h3 class="text-danger">Cons</h3>
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-danger">Disables some optimizations for higher visual/audio accuracy</li>
           <li class="list-group-item list-group-item-danger">No 3D skybox</li>
         </ul>
       </div>
@@ -643,135 +800,136 @@
 		</div>
   </div>
 
-  <div id="cfg_felik_lowend" class="desc" style="display: none;">
-    <div class="panel-body">
-      <h3>Felik's "Low End" config</h3>
-      <p>Felik's config with the provided <code>low_end.cfg</code></p>
-			<p class="alert alert-warning"><i class="fa fa-info-circle" aria-hidden="true"></i> This config literally means low end. It enforces DirectX 8.0, which has many glaring graphical issues. If you just want more frames, use the base config.</p>
+	<div id="cfg_mastercomfig-maxperformance" class="desc" style="display: none;">
+	  <div class="panel-body">
+      <h3>mastercomfig: Maximum performance preset</h3>
+      <p>Max FPS without caring about visibility or possible bugs</p>
 			<label>Preview
-				<select class="form-control selectpicker gfx_preview_selection" id="felik_lowend_preview">
+				<select class="form-control selectpicker gfx_preview_selection" id="mastercomfig-maxperformance_preview">
 					<option value="pl_badwater" data-name="gfx_preview" data-url="" selected="selected">Badwater</option>
 					<option value="cp_sunshine" data-name="gfx_preview" data-url="">Sunshine</option>
 					<option value="cp_badlands" data-name="gfx_preview" data-url="">Badlands</option>
 					<option value="itemtest" data-name="gfx_preview" data-url="">Items</option>
 				</select>
 			</label>
-      <p><a class="cfg_source" href="https://gitlab.com/felik/TF2-Config/" target="_blank">Source</a></p>
+      <p><a class="cfg_source" href="https://github.com/mastercoms/mastercomfig" target="_blank">Source</a></p>
 
-
-      <div id="carousel_felik_lowend" class="carousel slide" data-ride="carousel" data-interval="0">
+      <div id="carousel_mastercomfig-maxperformance" class="carousel slide" data-ride="carousel" data-interval="0">
         <!-- Indicators -->
         <ol class="carousel-indicators">
-          <li data-target="#carousel_felik_lowend" data-slide-to="0" class="active"></li>
-          <li data-target="#carousel_felik_lowend" data-slide-to="1"></li>
-          <li data-target="#carousel_felik_lowend" data-slide-to="2"></li>
-          <li data-target="#carousel_felik_lowend" data-slide-to="3"></li>
-          <li data-target="#carousel_felik_lowend" data-slide-to="4"></li>
+          <li data-target="#carousel_mastercomfig-maxperformance" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel_mastercomfig-maxperformance" data-slide-to="1"></li>
+          <li data-target="#carousel_mastercomfig-maxperformance" data-slide-to="2"></li>
+          <li data-target="#carousel_mastercomfig-maxperformance" data-slide-to="3"></li>
+          <li data-target="#carousel_mastercomfig-maxperformance" data-slide-to="4"></li>
         </ol>
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
 
           <div class="item active">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_lowend/pl_badwater/pl_badwater01.jpg" alt="Felik's Low End Config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-maxperformance/pl_badwater/pl_badwater01.jpg" alt="mastercomfig default">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_lowend/pl_badwater/pl_badwater02.jpg" alt="Felik's Low End Config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-maxperformance/pl_badwater/pl_badwater02.jpg" alt="mastercomfig default">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_lowend/pl_badwater/pl_badwater03.jpg" alt="Felik's Low End Config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-maxperformance/pl_badwater/pl_badwater03.jpg" alt="mastercomfig default">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_lowend/pl_badwater/pl_badwater04.jpg" alt="Felik's Low End Config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-maxperformance/pl_badwater/pl_badwater04.jpg" alt="mastercomfig default">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_lowend/pl_badwater/pl_badwater05.jpg" alt="Felik's Low End Config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-maxperformance/pl_badwater/pl_badwater05.jpg" alt="mastercomfig default">
           </div>
         </div>
 
         <!-- Left and right controls -->
-        <a class="left carousel-control" href="#carousel_felik_lowend" role="button" data-slide="prev">
+        <a class="left carousel-control" href="#carousel_mastercomfig-maxperformance" role="button" data-slide="prev">
           <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
         </a>
-        <a class="right carousel-control" href="#carousel_felik_lowend" role="button" data-slide="next">
+        <a class="right carousel-control" href="#carousel_mastercomfig-maxperformance" role="button" data-slide="next">
           <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
       </div>
-
       <div class="col-md-6">
         <h3 class="text-success">Pros</h3>
         <ul class="list-group">
-          <li class="list-group-item list-group-item-success">Will run on low end GPUs</li>
+          <li class="list-group-item list-group-item-success">Significantly decreases the graphical quality/ load of the game, increasing performance on worse PCs</li>
         </ul>
       </div>
       <div class="col-md-6">
         <h3 class="text-danger">Cons</h3>
         <ul class="list-group">
+          <li class="list-group-item list-group-item-danger">Some visibility issues due to lack of lighting accuracy</li>
+          <li class="list-group-item list-group-item-danger">No ragdolls</li>
           <li class="list-group-item list-group-item-danger">No shadows</li>
-          <li class="list-group-item list-group-item-danger">Ugly ubercharges</li>
+          <li class="list-group-item list-group-item-danger">No 3D skybox</li>
+          <li class="list-group-item list-group-item-danger">Limited particle effects</li>
         </ul>
       </div>
 
-    </div>
+		</div>
   </div>
 
-  <div id="cfg_felik_eyecandy" class="desc" style="display: none;">
-    <div class="panel-body">
-      <h3>Felik's "Eye Candy" config</h3>
-      <p>Felik's config with the graphic enhancement additions from <code>maximum_graphics.cfg</code> <code>gibs_on.cfg</code> <code>ragdolls_on.cfg</code> <code>shadows_on.cfg</code> <code>tracers_on.cfg</code> <code>textures.cfg</code></p>
+	<div id="cfg_mastercomfig-midquality" class="desc" style="display: none;">
+	  <div class="panel-body">
+      <h3>mastercomfig: Mid quality preset</h3>
+      <p>Enables graphical features without making them too high quality</p>
 			<label>Preview
-				<select class="form-control selectpicker gfx_preview_selection" id="felik_eyecandy_preview">
+				<select class="form-control selectpicker gfx_preview_selection" id="mastercomfig-midquality_preview">
 					<option value="pl_badwater" data-name="gfx_preview" data-url="" selected="selected">Badwater</option>
 					<option value="cp_sunshine" data-name="gfx_preview" data-url="">Sunshine</option>
 					<option value="cp_badlands" data-name="gfx_preview" data-url="">Badlands</option>
 					<option value="itemtest" data-name="gfx_preview" data-url="">Items</option>
 				</select>
 			</label>
-			<p><a class="cfg_source" href="https://gitlab.com/felik/TF2-Config/" target="_blank">Source</a></p>
-      <div id="carousel_felik_eyecandy" class="carousel slide" data-ride="carousel" data-interval="0">
+      <p><a class="cfg_source" href="https://github.com/mastercoms/mastercomfig" target="_blank">Source</a></p>
+
+      <div id="carousel_mastercomfig-midquality" class="carousel slide" data-ride="carousel" data-interval="0">
         <!-- Indicators -->
         <ol class="carousel-indicators">
-          <li data-target="#carousel_felik_eyecandy" data-slide-to="0" class="active"></li>
-          <li data-target="#carousel_felik_eyecandy" data-slide-to="1"></li>
-          <li data-target="#carousel_felik_eyecandy" data-slide-to="2"></li>
-          <li data-target="#carousel_felik_eyecandy" data-slide-to="3"></li>
-          <li data-target="#carousel_felik_eyecandy" data-slide-to="4"></li>
+          <li data-target="#carousel_mastercomfig-midquality" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel_mastercomfig-midquality" data-slide-to="1"></li>
+          <li data-target="#carousel_mastercomfig-midquality" data-slide-to="2"></li>
+          <li data-target="#carousel_mastercomfig-midquality" data-slide-to="3"></li>
+          <li data-target="#carousel_mastercomfig-midquality" data-slide-to="4"></li>
         </ol>
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
 
           <div class="item active">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_eyecandy/pl_badwater/pl_badwater01.jpg" alt="Felik's Eye Candy config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-midquality/pl_badwater/pl_badwater01.jpg" alt="mastercomfig default">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_eyecandy/pl_badwater/pl_badwater02.jpg" alt="Felik's Eye Candy config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-midquality/pl_badwater/pl_badwater02.jpg" alt="mastercomfig default">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_eyecandy/pl_badwater/pl_badwater03.jpg" alt="Felik's Eye Candy config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-midquality/pl_badwater/pl_badwater03.jpg" alt="mastercomfig default">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_eyecandy/pl_badwater/pl_badwater04.jpg" alt="Felik's Eye Candy config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-midquality/pl_badwater/pl_badwater04.jpg" alt="mastercomfig default">
           </div>
 
           <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/felik_eyecandy/pl_badwater/pl_badwater05.jpg" alt="Felik's Eye Candy config">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-midquality/pl_badwater/pl_badwater05.jpg" alt="mastercomfig default">
           </div>
         </div>
 
         <!-- Left and right controls -->
-        <a class="left carousel-control" href="#carousel_felik_eyecandy" role="button" data-slide="prev">
+        <a class="left carousel-control" href="#carousel_mastercomfig-midquality" role="button" data-slide="prev">
           <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
         </a>
-        <a class="right carousel-control" href="#carousel_felik_eyecandy" role="button" data-slide="next">
+        <a class="right carousel-control" href="#carousel_mastercomfig-midquality" role="button" data-slide="next">
           <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
@@ -779,18 +937,254 @@
       <div class="col-md-6">
         <h3 class="text-success">Pros</h3>
         <ul class="list-group">
-          <li class="list-group-item list-group-item-success">Looks nice</li>
+          <li class="list-group-item list-group-item-success">Enables all graphical/game features, at decent quality</li>
+          <li class="list-group-item list-group-item-success">Ragdolls</li>
+          <li class="list-group-item list-group-item-success">Shadows</li>
+          <li class="list-group-item list-group-item-success">Optimized default particle effects</li>
         </ul>
       </div>
       <div class="col-md-6">
         <h3 class="text-danger">Cons</h3>
         <ul class="list-group">
-          <li class="list-group-item list-group-item-danger">Requires a high spec system</li>
+          <li class="list-group-item list-group-item-danger">Reduced performance due to the enabling of unoptimized/intensive features</li>
         </ul>
       </div>
 
-    </div>
+		</div>
   </div>
+
+	<div id="cfg_mastercomfig-maxquality" class="desc" style="display: none;">
+	  <div class="panel-body">
+      <h3>mastercomfig: Maximum quality preset</h3>
+      <p>Maximum quality without caring about FPS too much</p>
+			<label>Preview
+				<select class="form-control selectpicker gfx_preview_selection" id="mastercomfig-maxquality_preview">
+					<option value="pl_badwater" data-name="gfx_preview" data-url="" selected="selected">Badwater</option>
+					<option value="cp_sunshine" data-name="gfx_preview" data-url="">Sunshine</option>
+					<option value="cp_badlands" data-name="gfx_preview" data-url="">Badlands</option>
+					<option value="itemtest" data-name="gfx_preview" data-url="">Items</option>
+				</select>
+			</label>
+      <p><a class="cfg_source" href="https://github.com/mastercoms/mastercomfig" target="_blank">Source</a></p>
+
+      <div id="carousel_mastercomfig-maxquality" class="carousel slide" data-ride="carousel" data-interval="0">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#carousel_mastercomfig-maxquality" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel_mastercomfig-maxquality" data-slide-to="1"></li>
+          <li data-target="#carousel_mastercomfig-maxquality" data-slide-to="2"></li>
+          <li data-target="#carousel_mastercomfig-maxquality" data-slide-to="3"></li>
+          <li data-target="#carousel_mastercomfig-maxquality" data-slide-to="4"></li>
+        </ol>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+
+          <div class="item active">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-maxquality/pl_badwater/pl_badwater01.jpg" alt="mastercomfig default">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-maxquality/pl_badwater/pl_badwater02.jpg" alt="mastercomfig default">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-maxquality/pl_badwater/pl_badwater03.jpg" alt="mastercomfig default">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-maxquality/pl_badwater/pl_badwater04.jpg" alt="mastercomfig default">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-maxquality/pl_badwater/pl_badwater05.jpg" alt="mastercomfig default">
+          </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#carousel_mastercomfig-maxquality" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel_mastercomfig-maxquality" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <h3 class="text-success">Pros</h3>
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-success">Maximum quality for visuals and sound</li>
+          <li class="list-group-item list-group-item-success">Non-quality-affecting optimizations remain</li>
+          <li class="list-group-item list-group-item-success">Good for frag videos or spectating on strong PCs</li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <h3 class="text-danger">Cons</h3>
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-danger">Very intensive, requires a strong hardware</li>
+          <li class="list-group-item list-group-item-danger">Not for performance oriented users</li>
+        </ul>
+      </div>
+
+		</div>
+  </div>
+
+	<div id="cfg_mastercomfig-igpu" class="desc" style="display: none;">
+	  <div class="panel-body">
+      <h3>mastercomfig: Bad GPU</h3>
+      <p> Optimizations for weak Intel integrated graphics chips or weak/old GPUs. </p>
+			<label>Preview
+				<select class="form-control selectpicker gfx_preview_selection" id="mastercomfig-igpu_preview">
+					<option value="pl_badwater" data-name="gfx_preview" data-url="" selected="selected">Badwater</option>
+					<option value="cp_sunshine" data-name="gfx_preview" data-url="">Sunshine</option>
+					<option value="cp_badlands" data-name="gfx_preview" data-url="">Badlands</option>
+					<option value="itemtest" data-name="gfx_preview" data-url="">Items</option>
+				</select>
+			</label>
+      <p><a class="cfg_source" href="https://github.com/mastercoms/mastercomfig" target="_blank">Source</a></p>
+
+      <div id="carousel_mastercomfig-igpu" class="carousel slide" data-ride="carousel" data-interval="0">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#carousel_mastercomfig-igpu" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel_mastercomfig-igpu" data-slide-to="1"></li>
+          <li data-target="#carousel_mastercomfig-igpu" data-slide-to="2"></li>
+          <li data-target="#carousel_mastercomfig-igpu" data-slide-to="3"></li>
+          <li data-target="#carousel_mastercomfig-igpu" data-slide-to="4"></li>
+        </ol>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+
+          <div class="item active">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-igpu/pl_badwater/pl_badwater01.jpg" alt="mastercomfig default">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-igpu/pl_badwater/pl_badwater02.jpg" alt="mastercomfig default">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-igpu/pl_badwater/pl_badwater03.jpg" alt="mastercomfig default">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-igpu/pl_badwater/pl_badwater04.jpg" alt="mastercomfig default">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-igpu/pl_badwater/pl_badwater05.jpg" alt="mastercomfig default">
+          </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#carousel_mastercomfig-igpu" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel_mastercomfig-igpu" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <h3 class="text-success">Pros</h3>
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-success">Optimized for integrated and very weak, old dedicated graphics cards</li>
+          <li class="list-group-item list-group-item-success">Significantly decreased graphical quality to reduce intensity</li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <h3 class="text-danger">Cons</h3>
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-danger">No ragdolls</li>
+          <li class="list-group-item list-group-item-danger">No shadows</li>
+          <li class="list-group-item list-group-item-danger">No 3D skybox</li>
+          <li class="list-group-item list-group-item-danger">Limited particle effects</li>
+          <li class="list-group-item list-group-item-danger">May reduce performance on modern graphics cards</li>
+        </ul>
+      </div>
+
+		</div>
+  </div>
+
+	<div id="cfg_mastercomfig-stripped" class="desc" style="display: none;">
+	  <div class="panel-body">
+      <h3>mastercomfig: Stripped quality</h3>
+      <p>Significantly reduces playability in desperation for frames on very weak hardware.</p>
+			<label>Preview
+				<select class="form-control selectpicker gfx_preview_selection" id="mastercomfig-stripped_preview">
+					<option value="pl_badwater" data-name="gfx_preview" data-url="" selected="selected">Badwater</option>
+					<option value="cp_sunshine" data-name="gfx_preview" data-url="">Sunshine</option>
+					<option value="cp_badlands" data-name="gfx_preview" data-url="">Badlands</option>
+					<option value="itemtest" data-name="gfx_preview" data-url="">Items</option>
+				</select>
+			</label>
+      <p><a class="cfg_source" href="https://github.com/mastercoms/mastercomfig" target="_blank">Source</a></p>
+
+      <div id="carousel_mastercomfig-stripped" class="carousel slide" data-ride="carousel" data-interval="0">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#carousel_mastercomfig-stripped" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel_mastercomfig-stripped" data-slide-to="1"></li>
+          <li data-target="#carousel_mastercomfig-stripped" data-slide-to="2"></li>
+          <li data-target="#carousel_mastercomfig-stripped" data-slide-to="3"></li>
+          <li data-target="#carousel_mastercomfig-stripped" data-slide-to="4"></li>
+        </ol>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+
+          <div class="item active">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-stripped/pl_badwater/pl_badwater01.jpg" alt="mastercomfig default">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-stripped/pl_badwater/pl_badwater02.jpg" alt="mastercomfig default">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-stripped/pl_badwater/pl_badwater03.jpg" alt="mastercomfig default">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-stripped/pl_badwater/pl_badwater04.jpg" alt="mastercomfig default">
+          </div>
+
+          <div class="item">
+            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-stripped/pl_badwater/pl_badwater05.jpg" alt="mastercomfig default">
+          </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#carousel_mastercomfig-stripped" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel_mastercomfig-stripped" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <h3 class="text-success">Pros</h3>
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-success">Very minimalistic look to the game</li>
+          <li class="list-group-item list-group-item-success">Severely reduced quality for every last frame</li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <h3 class="text-danger">Cons</h3>
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-danger">Quality reduction reduces playability in many areas</li>
+          <li class="list-group-item list-group-item-danger">No ragdolls</li>
+          <li class="list-group-item list-group-item-danger">No shadows</li>
+          <li class="list-group-item list-group-item-danger">No 3D skybox</li>
+          <li class="list-group-item list-group-item-danger">Limited particle effects</li>
+        </ul>
+      </div>
+
+		</div>
+  </div>
+
 
   <div id="cfg_rhapsody_dx9" class="desc" style="display: none;">
     <div class="panel-body">
@@ -1869,14 +2263,14 @@
 
 						<li>
 	  		    <label>
-	  					<input type="radio" name="nohats" data-name="vpks" data-url="../make/vpks/headsfeet23.02.vpk" value="headsfeet"/>
+	  					<input type="radio" name="nohats" data-name="vpks" data-url="../make/vpks/headsfeet.v2017.12.22.vpk" value="headsfeet"/>
 	  		      Remove hats and some cosmetics <a href="http://www.teamfortress.tv/16179/no-hats-mod" data-toggle="tooltip" title="Disables cosmetics, except ones that replace body parts. Grants a small FPS boost." target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
 	  		    </label>
 						</li>
 
 						<li>
 		  		    <label>
-		  					<input type="radio" name="nohats" data-name="vpks" data-url="../make/vpks/no.hats.mod.2017.04.21.vpk" value="on" />
+		  					<input type="radio" name="nohats" data-name="vpks" data-url="../make/vpks/no.hats.v2017.12.22.vpk" value="on" />
 		  		      Remove all cosmetics <a href="http://www.teamfortress.tv/16179/no-hats-mod" data-toggle="tooltip" title="Disables all cosmetics. Grants a small FPS boost." target="_blank"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
 		  		    </label>
 						</li>
@@ -2092,6 +2486,7 @@
 
 			});
 
+			
 
 	});
 	</script>
@@ -2101,7 +2496,8 @@
 	<div class="span8">
         <div class="tabbable tabs-left">
         <ul class="nav nav-tabs">
-          <li class="active"><a href="#scoot" data-toggle="tab">Scout</a></li>
+          <li class="active"><a href="#defaults" data-toggle="tab">Default</a></li>
+          <li><a href="#scoot" data-toggle="tab">Scout</a></li>
           <li><a href="#solly" data-toggle="tab">Soldier</a></li>
           <li><a href="#pryo" data-toggle="tab">Pyro</a></li>
           <li><a href="#demonstration" data-toggle="tab">Demo</a></li>
@@ -2112,7 +2508,189 @@
           <li><a href="#12yo" data-toggle="tab">Spy</a></li>
         </ul>
         <div class="tab-content">
-          <div class="tab-pane fade active in" id="scoot">
+          <div class="tab-pane fade active in" id="defaults">
+						<!-- DEFAULTS -->
+						<table class="table table-striped table-hover ">
+						  <thead>
+  							<th></th>
+  							<th>Crosshair</th>
+  							<th>Display weapon</th>
+  							<th><abbr title="Field of View" class="initialism">FOV</abbr></th>
+						  </thead>
+						  <tr>
+							<td><b>Primary</b></td>
+							<td>
+
+						<select class="selectpicker" id="cs_col_0_1" name="cs_col_0_1n" multiple>
+							<optgroup label="Style" data-max-options="1">
+								<option value="cross_with_dot" data-name="nothing" data-url="" selected>Cross &amp; dot</option>
+								<option value="half_cross_with_dot" data-name="nothing" data-url="">Half cross &amp; dot</option>
+								<option value="ring" data-name="nothing" data-url="">Ring</option>
+								<option value="open_cross" data-name="nothing" data-url="">Cross, no dot</option>
+								<option value="ex" data-name="nothing" data-url="">X</option>
+								<option value="dot" data-name="nothing" data-url="">Dot</option>
+								<option value="cross" data-name="nothing" data-url="">Solid cross</option>
+								<option value="default" data-name="nothing" data-url="">Default</option>
+							</optgroup>
+							<optgroup label="Size" data-max-options="1">
+								<option value="tiny" data-name="nothing" data-url="">Tiny</option>
+								<option value="smallest" data-name="nothing" data-url="">Smallest</option>
+								<option value="small" data-name="nothing" data-url="">Small</option>
+								<option value="medium" data-name="nothing" data-url="" >Medium</option>
+								<option value="big" data-name="nothing" data-url="" selected>Big</option>
+								<option value="biggest" data-name="nothing" data-url="">Biggest</option>
+								<option value="huge" data-name="nothing" data-url="">Huge</option>
+								<option value="invisible" data-name="nothing" data-url="">Invisible</option>
+							</optgroup>
+							<optgroup label="Color" data-max-options="1">
+								<option value="red" data-name="nothing" data-url="">Red</option>
+								<option value="green" data-name="nothing" data-url="" selected>Green</option>
+								<option value="blue" data-name="nothing" data-url="">Blue</option>
+								<option value="yellow" data-name="nothing" data-url="">Yellow</option>
+								<option value="cyan" data-name="nothing" data-url="">Cyan</option>
+								<option value="pink" data-name="nothing" data-url="">Pink</option>
+								<option value="orange" data-name="nothing" data-url="">Orange</option>
+								<option value="purple" data-name="nothing" data-url="">Purple</option>
+								<option value="mint" data-name="nothing" data-url="">Mint</option>
+								<option value="lime" data-name="nothing" data-url="">Lime</option>
+								<option value="skyblue" data-name="nothing" data-url="">Skyblue</option>
+								<option value="grey" data-name="nothing" data-url="">Grey</option>
+								<option value="black" data-name="nothing" data-url="">Black</option>
+								<option value="white" data-name="nothing" data-url="">White</option>
+							</optgroup>
+						</select>
+
+
+							</td>
+							<td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_0_1" data-name="cs_draw_0_1" data-url=""/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_0_1_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_0_1_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
+							<td><input class="form-control" type="text" size="3"  id="cs_fov_0_1" onkeypress="return isNumberKey(event)" value="75" /></td>
+						  </tr>
+						  <tr>
+							<td><b>Secondary</b></td>
+							<td>
+
+							<select class="selectpicker" id="cs_col_0_2" name="cs_col_0_2n" multiple>
+							<optgroup label="Style" data-max-options="1">
+								<option value="cross_with_dot" data-name="nothing" data-url="">Cross &amp; dot</option>
+								<option value="half_cross_with_dot" data-name="nothing" data-url="" selected>Half cross &amp; dot</option>
+								<option value="ring" data-name="nothing" data-url="">Ring</option>
+								<option value="open_cross" data-name="nothing" data-url="">Cross, no dot</option>
+								<option value="ex" data-name="nothing" data-url="">X</option>
+								<option value="dot" data-name="nothing" data-url="">Dot</option>
+								<option value="cross" data-name="nothing" data-url="">Solid cross</option>
+								<option value="default" data-name="nothing" data-url="">Default</option>
+							</optgroup>
+							<optgroup label="Size" data-max-options="1">
+								<option value="tiny" data-name="nothing" data-url="">Tiny</option>
+								<option value="smallest" data-name="nothing" data-url="">Smallest</option>
+								<option value="small" data-name="nothing" data-url="">Small</option>
+								<option value="medium" data-name="nothing" data-url="" >Medium</option>
+								<option value="big" data-name="nothing" data-url="" selected>Big</option>
+								<option value="biggest" data-name="nothing" data-url="">Biggest</option>
+								<option value="huge" data-name="nothing" data-url="">Huge</option>
+								<option value="invisible" data-name="nothing" data-url="">Invisible</option>
+							</optgroup>
+							<optgroup label="Color" data-max-options="1">
+								<option value="red" data-name="nothing" data-url="">Red</option>
+								<option value="green" data-name="nothing" data-url="">Green</option>
+								<option value="blue" data-name="nothing" data-url="">Blue</option>
+								<option value="yellow" data-name="nothing" data-url="">Yellow</option>
+								<option value="cyan" data-name="nothing" data-url="">Cyan</option>
+								<option value="pink" data-name="nothing" data-url="">Pink</option>
+								<option value="orange" data-name="nothing" data-url="" selected>Orange</option>
+								<option value="purple" data-name="nothing" data-url="">Purple</option>
+								<option value="mint" data-name="nothing" data-url="">Mint</option>
+								<option value="lime" data-name="nothing" data-url="">Lime</option>
+								<option value="skyblue" data-name="nothing" data-url="">Skyblue</option>
+								<option value="grey" data-name="nothing" data-url="">Grey</option>
+								<option value="black" data-name="nothing" data-url="">Black</option>
+								<option value="white" data-name="nothing" data-url="">White</option>
+							</optgroup>
+						</select>
+
+							</td>
+              <td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_0_2" data-name="cs_draw_0_2" data-url=""/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_0_2_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_0_2_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
+							<td><input class="form-control" type="text" size="3"  id="cs_fov_0_2" onkeypress="return isNumberKey(event)" value="75" /></td>
+						  </tr>
+						  <tr>
+							<td><b>Melee</b></td>
+							<td>
+
+							<select class="selectpicker" id="cs_col_0_3" name="cs_col_0_3n" multiple>
+							<optgroup label="Style" data-max-options="1">
+								<option value="cross_with_dot" data-name="nothing" data-url="">Cross &amp; dot</option>
+								<option value="half_cross_with_dot" data-name="nothing" data-url="">Half cross &amp; dot</option>
+								<option value="ring" data-name="nothing" data-url="" selected>Ring</option>
+								<option value="open_cross" data-name="nothing" data-url="">Cross, no dot</option>
+								<option value="ex" data-name="nothing" data-url="">X</option>
+								<option value="dot" data-name="nothing" data-url="">Dot</option>
+								<option value="cross" data-name="nothing" data-url="">Solid cross</option>
+								<option value="default" data-name="nothing" data-url="">Default</option>
+							</optgroup>
+							<optgroup label="Size" data-max-options="1">
+								<option value="tiny" data-name="nothing" data-url="">Tiny</option>
+								<option value="smallest" data-name="nothing" data-url="">Smallest</option>
+								<option value="small" data-name="nothing" data-url="">Small</option>
+								<option value="medium" data-name="nothing" data-url="" >Medium</option>
+								<option value="big" data-name="nothing" data-url="" selected>Big</option>
+								<option value="biggest" data-name="nothing" data-url="">Biggest</option>
+								<option value="huge" data-name="nothing" data-url="">Huge</option>
+								<option value="invisible" data-name="nothing" data-url="">Invisible</option>
+							</optgroup>
+							<optgroup label="Color" data-max-options="1">
+								<option value="red" data-name="nothing" data-url="">Red</option>
+								<option value="green" data-name="nothing" data-url="">Green</option>
+								<option value="blue" data-name="nothing" data-url="">Blue</option>
+								<option value="yellow" data-name="nothing" data-url="" selected>Yellow</option>
+								<option value="cyan" data-name="nothing" data-url="">Cyan</option>
+								<option value="pink" data-name="nothing" data-url="">Pink</option>
+								<option value="orange" data-name="nothing" data-url="">Orange</option>
+								<option value="purple" data-name="nothing" data-url="">Purple</option>
+								<option value="mint" data-name="nothing" data-url="">Mint</option>
+								<option value="lime" data-name="nothing" data-url="">Lime</option>
+								<option value="skyblue" data-name="nothing" data-url="">Skyblue</option>
+								<option value="grey" data-name="nothing" data-url="">Grey</option>
+								<option value="black" data-name="nothing" data-url="">Black</option>
+								<option value="white" data-name="nothing" data-url="">White</option>
+							</optgroup>
+						</select>
+
+							</td>
+							<td>
+                <div class="viewmodel_options">
+                  <input class="viewmodel_checkbox" type="checkbox" id="cs_draw_0_3" data-name="cs_draw_0_3" data-url="" checked/>
+                  <div>
+                    <label class="viewmodel_minimal_checkbox text-muted"  id="cs_draw_0_3_min" style="display:none;">
+                      <input type="checkbox" data-name="cs_draw_0_3_min" data-url=""/> Min Viewmodel
+                    </label>
+                  </div>
+                </div>
+              </td>
+							<td><input class="form-control" type="text" size="3"  id="cs_fov_0_3" onkeypress="return isNumberKey(event)" value="75" /></td>
+						  </tr>
+						</table>
+						<p class="text-info text-center"><i class="fa fa-info-circle" aria-hidden="true"></i>The settings above will be used for the "Use defaults" button</p>
+						<p class="text-center"><button type="button" class="btn btn-warning" id="cs_defall">Toggle all settings to default / manual.</button></p>
+          </div>
+          <div class="tab-pane" id="scoot">
 
 						<!-- SCOUT -->
 						<table class="table table-striped table-hover ">
@@ -2164,7 +2742,62 @@
 								<option value="white" data-name="nothing" data-url="">White</option>
 							</optgroup>
 						</select>
-
+						<button type="button" class="btn btn-info defbutton" id="cs_defbutton_1_1">Use defaults</button>
+						<script>
+						//crosshairswitcher defaults handlers
+						$(function() {
+							  $(".defbutton").on('click', (function() {
+								if($(this).parent().parent().hasClass("disabledarea")){
+									$(this).removeClass("btn-warning");
+									$(this).html("Use defaults");
+									$(this).addClass("btn-info");								
+									$(this).parent().parent().removeClass("disabledarea");
+								} else {
+									$(this).removeClass("btn-info");
+									$(this).html("Set manually");
+									$(this).addClass("btn-warning");
+									$(this).parent().parent().addClass("disabledarea");		
+									var cs_button_id = $(this).attr('id');
+									var temp_weapon = cs_button_id.slice(14);
+									cs_button_id = cs_button_id.slice(12);
+									var temp_col = "cs_col" + cs_button_id;
+									var temp_fovid = "cs_fov" + cs_button_id;
+									var temp_drawid = "cs_draw" + cs_button_id;
+									
+									$("#"+temp_fovid).val($("#cs_fov_0"+temp_weapon).val());
+									
+									var temp_cross_style = $('#cs_col_0' + temp_weapon + ' optgroup[label*="Style"]').find(':selected').val();
+									var temp_cross_size = $('#cs_col_0' + temp_weapon + ' optgroup[label*="Size"]').find(':selected').val();
+									var temp_cross_color = $('#cs_col_0' + temp_weapon + ' optgroup[label*="Color"]').find(':selected').val();
+									
+									$('#'+temp_col).selectpicker('deselectAll');
+									$('#'+temp_col).selectpicker('val', [temp_cross_style,temp_cross_size,temp_cross_color]);
+									$('#'+temp_col).trigger("change");
+									
+									if ($('#cs_draw_0'+temp_weapon).is(':checked')) {
+									$("#"+temp_drawid).prop('checked', true);
+									$("#"+temp_drawid+"_min").fadeIn(100);
+									} else {
+									$("#"+temp_drawid).prop('checked', false);
+									$("#"+temp_drawid+"_min").fadeOut(100);
+									}
+									
+									if ($('[data-name="cs_draw_0'+temp_weapon+'_min"]').is(':checked')) {
+									$('[data-name="cs_draw'+cs_button_id+'_min"]').prop('checked', true);
+									} else {
+									$('[data-name="cs_draw'+cs_button_id+'_min"]').prop('checked', false);
+									}
+									
+								}
+							}));
+							
+							$("#cs_defall").click(function() {
+									$(".defbutton").each(function() {
+										$(this).trigger("click");
+									});
+							});
+						});
+						</script>
 
 							</td>
 							<td>
@@ -2221,7 +2854,7 @@
 								<option value="white" data-name="nothing" data-url="">White</option>
 							</optgroup>
 						</select>
-
+						<button type="button" class="btn btn-info defbutton" id="cs_defbutton_1_2">Use defaults</button>
 							</td>
               <td>
                 <div class="viewmodel_options">
@@ -2277,7 +2910,7 @@
 								<option value="white" data-name="nothing" data-url="">White</option>
 							</optgroup>
 						</select>
-
+						<button type="button" class="btn btn-info defbutton" id="cs_defbutton_1_3">Use defaults</button>
 							</td>
 							<td>
                 <div class="viewmodel_options">
@@ -2346,7 +2979,7 @@
 								<option value="white" data-name="nothing" data-url="">White</option>
 							</optgroup>
 						</select>
-
+						<button type="button" class="btn btn-info defbutton" id="cs_defbutton_2_1">Use defaults</button>
 
 							</td>
               <td>
@@ -2403,7 +3036,7 @@
 								<option value="white" data-name="nothing" data-url="">White</option>
 							</optgroup>
 						</select>
-
+						<button type="button" class="btn btn-info defbutton" id="cs_defbutton_2_2">Use defaults</button>
 							</td>
               <td>
                 <div class="viewmodel_options">
@@ -2459,7 +3092,7 @@
 								<option value="white" data-name="nothing" data-url="">White</option>
 							</optgroup>
 						</select>
-
+						<button type="button" class="btn btn-info defbutton" id="cs_defbutton_2_3">Use defaults</button>
 							</td>
               <td>
                 <div class="viewmodel_options">
@@ -2527,7 +3160,7 @@
 								<option value="white" data-name="nothing" data-url="">White</option>
 							</optgroup>
 						</select>
-
+						<button type="button" class="btn btn-info defbutton" id="cs_defbutton_3_1">Use defaults</button>
 
 							</td>
               <td>
@@ -2584,7 +3217,7 @@
 								<option value="white" data-name="nothing" data-url="">White</option>
 							</optgroup>
 						</select>
-
+						<button type="button" class="btn btn-info defbutton" id="cs_defbutton_3_2">Use defaults</button>
 							</td>
               <td>
                 <div class="viewmodel_options">
@@ -2640,7 +3273,7 @@
 								<option value="white" data-name="nothing" data-url="">White</option>
 							</optgroup>
 						</select>
-
+						<button type="button" class="btn btn-info defbutton" id="cs_defbutton_3_3">Use defaults</button>
 							</td>
               <td>
                 <div class="viewmodel_options">
@@ -2710,7 +3343,7 @@
 								<option value="white" data-name="nothing" data-url="">White</option>
 							</optgroup>
 						</select>
-
+						<button type="button" class="btn btn-info defbutton" id="cs_defbutton_4_1">Use defaults</button>
 
 							</td>
               <td>
@@ -2767,7 +3400,7 @@
 								<option value="white" data-name="nothing" data-url="">White</option>
 							</optgroup>
 						</select>
-
+						<button type="button" class="btn btn-info defbutton" id="cs_defbutton_4_2">Use defaults</button>
 							</td>
               <td>
                 <div class="viewmodel_options">
@@ -2823,7 +3456,7 @@
 								<option value="white" data-name="nothing" data-url="">White</option>
 							</optgroup>
 						</select>
-
+						<button type="button" class="btn btn-info defbutton" id="cs_defbutton_4_3">Use defaults</button>
 							</td>
               <td>
                 <div class="viewmodel_options">
@@ -2892,7 +3525,7 @@
 								<option value="white" data-name="nothing" data-url="">White</option>
 							</optgroup>
 						</select>
-
+						<button type="button" class="btn btn-info defbutton" id="cs_defbutton_5_1">Use defaults</button>
 
 							</td>
               <td>
@@ -2949,7 +3582,7 @@
 								<option value="white" data-name="nothing" data-url="">White</option>
 							</optgroup>
 						</select>
-
+						<button type="button" class="btn btn-info defbutton" id="cs_defbutton_5_2">Use defaults</button>
 							</td>
               <td>
                 <div class="viewmodel_options">
@@ -3005,7 +3638,7 @@
 								<option value="white" data-name="nothing" data-url="">White</option>
 							</optgroup>
 						</select>
-
+						<button type="button" class="btn btn-info defbutton" id="cs_defbutton_5_3">Use defaults</button>
 							</td>
               <td>
                 <div class="viewmodel_options">
@@ -3074,7 +3707,7 @@
 								<option value="white" data-name="nothing" data-url="">White</option>
 							</optgroup>
 						</select>
-
+						<button type="button" class="btn btn-info defbutton" id="cs_defbutton_6_1">Use defaults</button>
 
 							</td>
               <td>
@@ -3131,7 +3764,7 @@
 								<option value="white" data-name="nothing" data-url="">White</option>
 							</optgroup>
 						</select>
-
+						<button type="button" class="btn btn-info defbutton" id="cs_defbutton_6_2">Use defaults</button>
 							</td>
               <td>
                 <div class="viewmodel_options">
@@ -3187,7 +3820,7 @@
 								<option value="white" data-name="nothing" data-url="">White</option>
 							</optgroup>
 						</select>
-
+						<button type="button" class="btn btn-info defbutton" id="cs_defbutton_6_3">Use defaults</button>
 							</td>
               <td>
                 <div class="viewmodel_options">
@@ -3256,7 +3889,7 @@
 								<option value="white" data-name="nothing" data-url="">White</option>
 							</optgroup>
 						</select>
-
+						<button type="button" class="btn btn-info defbutton" id="cs_defbutton_7_1">Use defaults</button>
 
 							</td>
               <td>
@@ -3313,7 +3946,7 @@
 								<option value="white" data-name="nothing" data-url="">White</option>
 							</optgroup>
 						</select>
-
+						<button type="button" class="btn btn-info defbutton" id="cs_defbutton_7_2">Use defaults</button>
 							</td>
               <td>
                 <div class="viewmodel_options">
@@ -3369,7 +4002,7 @@
 								<option value="white" data-name="nothing" data-url="">White</option>
 							</optgroup>
 						</select>
-
+						<button type="button" class="btn btn-info defbutton" id="cs_defbutton_7_3">Use defaults</button>
 							</td>
               <td>
                 <div class="viewmodel_options">
@@ -3438,7 +4071,7 @@
 								<option value="white" data-name="nothing" data-url="">White</option>
 							</optgroup>
 						</select>
-
+						<button type="button" class="btn btn-info defbutton" id="cs_defbutton_8_1">Use defaults</button>
 
 							</td>
               <td>
@@ -3495,7 +4128,7 @@
 								<option value="white" data-name="nothing" data-url="">White</option>
 							</optgroup>
 						</select>
-
+						<button type="button" class="btn btn-info defbutton" id="cs_defbutton_8_2">Use defaults</button>
 							</td>
               <td>
                 <div class="viewmodel_options">
@@ -3551,7 +4184,7 @@
 								<option value="white" data-name="nothing" data-url="">White</option>
 							</optgroup>
 						</select>
-
+						<button type="button" class="btn btn-info defbutton" id="cs_defbutton_8_3">Use defaults</button>
 							</td>
               <td>
                 <div class="viewmodel_options">
@@ -3620,7 +4253,7 @@
 								<option value="white" data-name="nothing" data-url="">White</option>
 							</optgroup>
 						</select>
-
+						<button type="button" class="btn btn-info defbutton" id="cs_defbutton_9_1">Use defaults</button>
 
 							</td>
               <td>
@@ -3677,7 +4310,7 @@
 								<option value="white" data-name="nothing" data-url="">White</option>
 							</optgroup>
 						</select>
-
+						<button type="button" class="btn btn-info defbutton" id="cs_defbutton_9_2">Use defaults</button>
 							</td>
               <td>
                 <div class="viewmodel_options">
@@ -3733,7 +4366,7 @@
 								<option value="white" data-name="nothing" data-url="">White</option>
 							</optgroup>
 						</select>
-
+						<button type="button" class="btn btn-info defbutton" id="cs_defbutton_9_3">Use defaults</button>
 							</td>
               <td>
                 <div class="viewmodel_options">
@@ -4082,20 +4715,20 @@
 	<div class="btn-group" role="group" aria-label="Connection type">
 		<button type="button" class="btn btn-default" onclick="autoFillGood()"><span style="display: inline;" class="badge badge-info">Default</span> Good connection</button>
 		<button type="button" class="btn btn-default" onclick="autoFillBad()">Bad connection</button>
-		<button type="button" class="btn btn-default" onclick="autoFillComp()">Competitive connection</button>
+		<button type="button" class="btn btn-default" onclick="autoFillComp()">133 tick connection</button>
 	</div>
 
 	<ul class="list-unstyled page-header">
 		<li class="form-inline">
 	    <label>
 				cl_cmdrate
-	      <input class="form-control input-sm" type="text" size="6"  id="cmdrate" onkeypress="return isNumberKey(event)" value="67" />
+	      <input class="form-control input-sm" type="text" size="6"  id="cmdrate" onkeypress="return isNumberKey(event)" value="66" />
 	    </label>
 	    </li>
 		<li class="form-inline">
 	    <label>
 				cl_interp
-	      <input class="form-control input-sm" type="text" size="6"  id="interp" onkeypress="return isNumberKey(event)" value=".0152"/>
+	      <input class="form-control input-sm" type="text" size="6"  id="interp" onkeypress="return isNumberKey(event)" value="0"/>
 	    </label>
 	    </li>
 		<li class="form-inline">
@@ -4107,15 +4740,21 @@
 		<li class="form-inline">
 	    <label>
 				cl_updaterate
-	      <input class="form-control input-sm" type="text" size="6"  id="uprate" onkeypress="return isNumberKey(event)" value="67" />
+	      <input class="form-control input-sm" type="text" size="6"  id="uprate" onkeypress="return isNumberKey(event)" value="66" />
 	    </label>
 	    </li>
 		<li class="form-inline">
 	    <label>
 				rate
-	      <input class="form-control input-sm" type="text" size="6"  id="rate" onkeypress="return isNumberKey(event)" value="60000" />
+	      <input class="form-control input-sm" type="text" size="6"  id="rate" onkeypress="return isNumberKey(event)" value="196608" />
 	    </label>
-    </li>
+		</li>
+		<li class="form-inline">
+	    <label>
+				cl_smooth
+	      <input class="form-control input-sm" type="text" size="6"  id="cl_smooth" onkeypress="return isNumberKey(event)" value="1" />
+	    </label>
+		</li>
 	</ul>
   <hr>
 	</div>
@@ -4259,11 +4898,10 @@
 		// trigger an update on input changes
 		$('#resolution_detector_cb, #launch_cmd_novid, #launch_cmd_console, #display_mode, #launch_cmd_high').change(updatescreenmode);
 
-		$(".resolution_selector, #aspectratio_selector").change(updateresolution);
-
+		$(".resolution_selector, #aspectratio_selector").change(updateresolution);	
   });
 	$(window).on('load', updateresolution); // trigger update on 1st load
-
+	$(window).on('load', updatescreenmode); // trigger update on 1st load
   </script>
 
 		<div class="panel panel-primary">
@@ -4345,7 +4983,6 @@
 	  	</div>
 		</div>
 </div>
-
   <script type="text/javascript" src="../js/downloader.js"></script>
 </div>
 

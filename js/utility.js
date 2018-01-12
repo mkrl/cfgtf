@@ -56,11 +56,12 @@ function installPackage(file) {
 
 
 function autoFillGood() { //automatically fill network settings
-    document.getElementById('cmdrate').value = "67";
-    document.getElementById('interp').value = ".0152";
+    document.getElementById('cmdrate').value = "66";
+    document.getElementById('interp').value = "0";
     document.getElementById('intratio').value = "1";
-    document.getElementById('uprate').value = "67";
-    document.getElementById('rate').value = "60000";
+    document.getElementById('uprate').value = "66";
+    document.getElementById('rate').value = "196608";
+    document.getElementById('cl_smooth').value = "1";
 }
 
 function autoFillBad() {
@@ -68,15 +69,17 @@ function autoFillBad() {
     document.getElementById('interp').value = "0";
     document.getElementById('intratio').value = "2";
     document.getElementById('uprate').value = "40";
-    document.getElementById('rate').value = "35000";
+    document.getElementById('rate').value = "51520";
+    document.getElementById('cl_smooth').value = "1";	
 }
 
 function autoFillComp() {
-    document.getElementById('cmdrate').value = "128";
-    document.getElementById('interp').value = ".007";
+    document.getElementById('cmdrate').value = "133";
+    document.getElementById('interp').value = "0";
     document.getElementById('intratio').value = "1";
-    document.getElementById('uprate').value = "128";
-    document.getElementById('rate').value = "90000";
+    document.getElementById('uprate').value = "133";
+    document.getElementById('rate').value = "214130";
+    document.getElementById('cl_smooth').value = "1";	
 }
 
 function updateInput(ish) { //updating FOV on user default change
@@ -95,23 +98,28 @@ function isNumberKey(evt) //allowing numbers and decimal points
 
     return true;
 }
-var dxlevel = "90"; //updating dxlevel below
+var dxlevel = "95"; //updating dxlevel below
 function updatedxlevel() {
     switch ($("#gfx_selector").val()) {
         case "comanglia_toaster":
         case "comanglia_stability":
-        case "felik_lowend":
+        case "mastercomfig-maxperformance":
+        case "mastercomfig-igpu":
+        case "mastercomfig-stripped":
         case "rhapsody_dx8":
             dxlevel = "81";
             break;
         case "comanglia_hq":
-        case "felik_base":
+        case "mastercomfig-default":
+        case "mastercomfig-comp":
+        case "mastercomfig-compquality":
+        case "mastercomfig-midquality":
         case "rhapsody_dx9":
         case "myown":
-            dxlevel = "90";
+            dxlevel = "95";
             break;
         case "comanglia_cinema":
-        case "felik_eyecandy":
+        case "mastercomfig-maxquality":
             dxlevel = "98";
     }
 		printcommandline();
