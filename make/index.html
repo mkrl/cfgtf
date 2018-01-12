@@ -4715,20 +4715,20 @@
 	<div class="btn-group" role="group" aria-label="Connection type">
 		<button type="button" class="btn btn-default" onclick="autoFillGood()"><span style="display: inline;" class="badge badge-info">Default</span> Good connection</button>
 		<button type="button" class="btn btn-default" onclick="autoFillBad()">Bad connection</button>
-		<button type="button" class="btn btn-default" onclick="autoFillComp()">Competitive connection</button>
+		<button type="button" class="btn btn-default" onclick="autoFillComp()">133 tick connection</button>
 	</div>
 
 	<ul class="list-unstyled page-header">
 		<li class="form-inline">
 	    <label>
 				cl_cmdrate
-	      <input class="form-control input-sm" type="text" size="6"  id="cmdrate" onkeypress="return isNumberKey(event)" value="67" />
+	      <input class="form-control input-sm" type="text" size="6"  id="cmdrate" onkeypress="return isNumberKey(event)" value="66" />
 	    </label>
 	    </li>
 		<li class="form-inline">
 	    <label>
 				cl_interp
-	      <input class="form-control input-sm" type="text" size="6"  id="interp" onkeypress="return isNumberKey(event)" value=".0152"/>
+	      <input class="form-control input-sm" type="text" size="6"  id="interp" onkeypress="return isNumberKey(event)" value="0"/>
 	    </label>
 	    </li>
 		<li class="form-inline">
@@ -4740,15 +4740,21 @@
 		<li class="form-inline">
 	    <label>
 				cl_updaterate
-	      <input class="form-control input-sm" type="text" size="6"  id="uprate" onkeypress="return isNumberKey(event)" value="67" />
+	      <input class="form-control input-sm" type="text" size="6"  id="uprate" onkeypress="return isNumberKey(event)" value="66" />
 	    </label>
 	    </li>
 		<li class="form-inline">
 	    <label>
 				rate
-	      <input class="form-control input-sm" type="text" size="6"  id="rate" onkeypress="return isNumberKey(event)" value="60000" />
+	      <input class="form-control input-sm" type="text" size="6"  id="rate" onkeypress="return isNumberKey(event)" value="196608" />
 	    </label>
-    </li>
+		</li>
+		<li class="form-inline">
+	    <label>
+				cl_smooth
+	      <input class="form-control input-sm" type="text" size="6"  id="cl_smooth" onkeypress="return isNumberKey(event)" value="1" />
+	    </label>
+		</li>
 	</ul>
   <hr>
 	</div>
