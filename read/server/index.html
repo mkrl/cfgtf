@@ -101,25 +101,24 @@
           <div class="panel-body">
             <p><a href="https://www.metamodsource.net/downloads.php?branch=stable" target="_blank">Metamod</a> | <a href="https://www.sourcemod.net/downloads.php?branch=stable" target="_blank">Sourcemod</a> | <a href="https://gameservermanagers.com/lgsm/tf2server/" target="_blank">LGSM</a></p>
 
-	    <p> Alterively you can use <a href="https://github.com/BurningSmile/LinuxScripts/blob/master/Auto-tf2serverinstall.sh"> this </a> script to automate everything except the cfg.tf configuration. To run it do the following. </p><br>
+	    <p> Alternatively you can use <a href="https://github.com/BurningSmile/LinuxScripts/blob/master/auto-tf2serverinstall.sh"> this </a> script to automate everything except the cfg.tf configuration. To run it do the following. </p><br>
 <code>git clone https://github.com/BurningSmile/LinuxScripts.git</code><br>
-<code>mv ./LinuxScripts/Auto-tf2serverinstall.sh . </code><br>
-<code>rm -rf LinuxScripts</code><br>
-<code>chmod +x Auto-tf2serverinstall.sh </code><br>
-<code>./Auto-tf2serverinsall.sh</code><br>
+<code>cd LinuxScripts</code><br>
+<code>chmod +x auto-tf2serverinstall.sh </code><br>
+<code>sudo ./auto-tf2serverinsall.sh</code><br>
 Then simply follow the steps for generating a cfg.tf server configuration. Finally reboot your VPS with the following commands.<br>
 <code>su - tf2server -c '/home/tf2server/tf2server stop'</code><br>
-<code> reboot </code><br>
+<code>reboot</code><br>
 <br>
-<p>Command used in Video are as follows:<br>
+<p>Text directions:<br>
 
 Updating:
 <br>
 <code>apt update</code><br>
-<code>apt upgrade</code><br>
-<code>apt dist-upgrade</code><br>
-<code>apt autoremove</code><br>
-<code>apt clean</code><br>
+<code>apt -y upgrade</code><br>
+<code>apt -y dist-upgrade</code><br>
+<code>apt -y autoremove</code><br>
+<code>apt autoclean</code><br>
 </p>
 
 <p>Turn off auto updates
@@ -168,12 +167,18 @@ Save the file<br>
 <br>
 Allow tf2server through the firewall.<br>
 <br>
-<b>Replace venet0 with your network interface. You can find this from the output of ip link show. Use the interface that is NOT 'lo'.</b><br>
+<b>This will setup our firewall. I setup up firewalls to block all incoming traffic that is not whitelisted.</b><br>
 <code>
-iptables -A INPUT -i venet0 -p tcp -m tcp --dport 27015 -m state --state NEW,ESTABLISHED -j ACCEPT <br>
-iptables -A INPUT -i venet0 -p udp -m udp --dport 27015 -m state --state NEW,ESTABLISHED -j ACCEPT <br>
-iptables -A INPUT -i venet0 -p tcp -m tcp --dport 27020 -m state --state NEW,ESTABLISHED -j ACCEPT <br>
-iptables -A INPUT -i venet0 -p udp -m udp --dport 27020 -m state --state NEW,ESTABLISHED -j ACCEPT <br>
+sudo iptables -I INPUT 1 -i lo -j ACCEPT <br>
+sudo iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT <br>
+sudo iptables -A INPUT -p tcp -m state --state NEW,ESTABLISHED  --dport 22 -j ACCEPT <br>
+sudo iptables -A INPUT -p icmp --icmp-type echo-request -m state --state ESTABLISHED,RELATED -j ACCEPT <br>
+sudo iptables -A INPUT -p tcp --dport 80 -m state --state NEW,ESTABLISHED  -j ACCEPT <br>
+sudo iptables -A INPUT -p tcp --dport 443 -m state --state NEW,ESTABLISHED  -j ACCEPT <br>
+sudo iptables -A INPUT -p udp --dport 27015 -m state --state NEW,ESTABLISHED  -j ACCEPT <br>
+sudo iptables -A INPUT -p tcp --dport 27015 -m state --state NEW,ESTABLISHED  -j ACCEPT <br>
+sudo iptables -A INPUT -p udp --dport 27020 -m state --state NEW,ESTABLISHED  -j ACCEPT <br>
+sudo iptables -P INPUT DROP <br>
 iptables-save > /etc/iptables/rules.v4 <br>
 ip6tables-save > /etc/iptables/rules.v6 <br>
 </code>
@@ -188,7 +193,7 @@ Stop the server<br>
 <code>./tf2server stop</code><br>
 <br>
 Installing apache2 webserver<br>
-<code>exit</code><br> 
+<code>exit</code><br>
 <code>apt install apache2</code><br>
 <code>
 	mkdir -p /var/www/html/fastdl/tf2/ <br>
@@ -198,7 +203,7 @@ Installing apache2 webserver<br>
 	systemctl status apache2.service <br>
 	systemctl start apache2.service <br>
 	systemctl enable apache2.service <br>
-	Cd ../.. <br>
+	cd ../.. <br>
 mv index.html index.html.bak</code><br>
 <br>
 Refresh the page and test downloading a map<br>
@@ -211,22 +216,22 @@ Port 22<br>
 Change FileZilla directory to serverfiles/tf<br>
 <br>
 Back in the ssh session<br>
-<code>Su - tf2server </code><br>
+<code>su - tf2server </code><br>
 <code>cd serverfiles/tf/ </code><br>
 <br>
 Now for metamod: <br>
 Go to the site and copy its link address for the Linux version.<br>
 https://www.metamodsource.net/downloads.php?branch=stable<br>
-<code>Wget (link here)</code> <br>
-<code>Tar -xvf mmsource </code> (Use tab completion)<br>
-<code>Rm mmsource </code> (tab complete)<br>
+<code>wget (link here)</code> <br>
+<code>tar -xvf mmsource </code> (Use tab completion)<br>
+<code>rm mmsource </code> (tab complete)<br>
 <br>
 Now for sourcemod:<br>
 Go to the souremod site and copy its link address for the Linux version.<br>
 https://www.sourcemod.net/downloads.php?branch=stable<br>
-<code>Wget (link here) </code><br>
-<code>Tar -xvf sourcemod </code> (tab complete)<br>
-<code>Rm sourcemod </code><br>( tab complete)<br>
+<code>wget (link here) </code><br>
+<code>tar -xvf sourcemod </code> (tab complete)<br>
+<code>rm sourcemod </code><br>( tab complete)<br>
 <br>
 Setting up admin account<br>
 <code>vim ./addons/souremod/config/admins_simple.ini </code><br>
@@ -255,27 +260,26 @@ Automate a restart at midnight. And automate the SRCDS instance starting on serv
 Refer to crontab documentation if needed. <br>
 https://linux.die.net/man/5/crontab<br>
 https://help.ubuntu.com/community/CronHowto<br>
-https://hastebin.com/divuqexeri.rb<br>
 <br>
 <code>crontab -e </code><br>
 Choose 3 to use vim <br>
 Add the following in insert mode<br>
 <br>
-<code>0 0 * * * /home/tf2server/./tf2server restart </code><br> 
-<code>@reboot /home/tf2server/./tf2server start</code><br>
+<code>0 0 * * * /home/tf2server/tf2server restart </code><br>
+<code>@reboot /home/tf2server/tf2server start</code><br>
 <br>
 Save the file and exit vim<br>
 <br>
 Ensure the crontab file works<br>
 <code>./tf2server stop</code><br>
-<code>Exit</code><br>
-<code>Reboot </code><br>
+<code>exit</code><br>
+<code>reboot </code><br>
 <br>
 After the reboot make sure your Srcds instance starts on boot.</p>
           </div>
         </div>
       </div>
-	
+
 <script>
 	$(".spoiler-trigger").click(function() {
 		$(this).parent().next().collapse('toggle');
