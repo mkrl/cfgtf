@@ -166,6 +166,7 @@ jQuery(function($) {
 		var intratio = $('#intratio').val();
 		var uprate = $('#uprate').val();
 		var rate = $('#rate').val();
+		var cl_smooth = $('#cl_smooth').val();
 
 		//demo support
 		var ds_del    = $('#ds_delete').is(':checked');
@@ -565,7 +566,7 @@ jQuery(function($) {
 			'cl_interp ' + interp,
 			'cl_interp_ratio ' + intratio,
 			'',
-			'cl_smooth 0',
+			'cl_smooth ' + cl_smooth,
 			''
 		].join('\n');
 		//general custom binds

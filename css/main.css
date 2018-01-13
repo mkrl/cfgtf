@@ -174,3 +174,7 @@ a:hover + .ibox,.ibox:hover{
 .defbutton {
 	pointer-events: auto !important;
 }
+
+.crosshair_item td {
+	vertical-align: middle;
+}

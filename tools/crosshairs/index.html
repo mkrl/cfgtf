@@ -230,18 +230,20 @@
 			</li>
 			<br>
 			</ul>
-<table class="table table-striped table-hover ">
+		<table class="table table-striped table-hover " id="crosslist">
 						  <thead>
   							<th>Crosshair</th>
   							<th></th>
   							<th>Weapon</th>
+							<th></th>
 						  </thead>
 						  <tr>
 							<td>Pick a weapon, desired crosshair and press "Add" to start</td>
 							<td></td>
 							<td></td>
+							<td></td>
 							</tr>
-</table>
+		</table>
 						
 						
   <button type="submit" class="btn btn-primary">Download package <i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
@@ -250,8 +252,17 @@
 <script>
 
 	function addItem() {
-		alert("I'm pressed!");
+		var picked_cross = $("#crosshairselector option:selected").html();
+		var picked_weapon = $("#weaponselector option:selected").html();
+		$('#crosslist > tbody:last-child').append('<tr class="crosshair_item" data-url=""><td>'+picked_cross+'</td><td><img src="./xhairs/png/'+picked_cross+'.png"></td><td>'+picked_weapon+'</td><td><button class="btn btn-danger" type="button" class="remove_btn"><i class="fa fa-times" aria-hidden="true"></i></button></td></tr>');
 	}
+	
+	$(function() {
+					$(".remove_btn").on('click', (function() {
+					alert("Delet this");
+						$(this).parent().parent().remove();			
+					}));						
+				});
 
 </script>
 <div class="progress hide" id="progress_bar">
