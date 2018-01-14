@@ -121,6 +121,125 @@
        "-"
     ],
      [
+      "cmd",
+      "<a href=./cmd.zip>Download</a>",
+      "-",
+       "-"
+    ],
+    [
+      "Jewlander",
+      "<a href=./jerlander.zip>Download</a>",
+      "-",
+      "<a href=https://www.twitch.tv/jewlander>Twitch</a>"
+    ],
+    [
+      "saam",
+      "<a href=./saam.zip>Download</a>",
+      "<a href=https://www.youtube.com/user/DoomTyrannt101>YouTube</a>",
+      "-"
+    [
+      "Bloodis",
+      "<a href=./Bloodis.zip>Download</a>",
+      "-",
+      "-"
+    ],
+    [
+      "enigma",
+      "<a href=./enigma.zip>Download</a>",
+      "-",
+      "<a href=https://www.twitch.tv/lolenigma>Twitch</a>"
+    ],
+    [
+      "alba",
+      "<a href=./alba.zip>Download</a>",
+      "<a href=https://www.youtube.com/channel/UC9St075Fm7FIQF4WjrMkTeQ>YouTube</a>",
+      "-"
+    ],
+    [
+      "lange",
+      "<a href=./lange.zip>Download</a>",
+      "<a href=https://www.youtube.com/user/LangeGaming>YouTube</a>",
+      "<a href=https://www.twitch.tv/langeh>Twitch</a>"
+    ],
+    [
+      "numlocked",
+      "<a href=./lange.zip>Download</a>",
+      "<a href=https://www.youtube.com/num1ocked>YouTube</a>",
+      "<a href=https://www.twitch.tv/numlocked>Twitch</a>"
+    ],
+     [
+      "seanbud",
+      "<a href=./lange.zip>Download</a>",
+      "<a href=https://www.youtube.com/user/TheSeanbud>YouTube</a>",
+      "<a href=https://www.twitch.tv/seanbud>Twitch</a>"
+    ],
+    [
+      "lansky",
+      "<a href=./lansky.zip>Download</a>",
+      "<a href=https://www.youtube.com/user/lanskyirl>YouTube</a>",
+      "-"
+    ],
+    [
+      "bash",
+      "<a href=./bash.zip>Download</a>",
+      "<a href=http://www.youtube.com/bash22ful>YouTube</a>",
+      "<a href=https://www.twitch.tv/bashthenerd>Twitch</a>"
+    ],
+	[
+      "clockwork",
+      "<a href=./clockwork.zip>Download</a>",
+      "<a href=http://www.youtube.com/clockw0rkk>YouTube</a>",
+      "<a href=https://www.twitch.tv/clockwork>Twitch</a>"
+    ],
+	[
+      "cyzer",
+      "<a href=./cyzer.zip>Download</a>",
+      "<a href=http://www.youtube.com/clockw0rkk>YouTube</a>",
+      "<a href=https://www.twitch.tv/clockwork>Twitch</a>"
+    ],
+	[
+      "flippy",
+      "<a href=./flippy.zip>Download</a>",
+      "<a href=https://www.youtube.com/Flippy26120>YouTube</a>",
+      "<a href=https://www.twitch.tv/flippydoggydogg>Twitch</a>"
+    ],
+	[
+      "MR SLIN",
+      "<a href=./mrslin.zip>Download</a>",
+      "<a href=https://www.youtube.com/misterslin>YouTube</a>",
+      "<a href=https://www.twitch.tv/misterslin>Twitch</a>"
+    ],
+	[
+      "quad",
+      "<a href=./quad.zip>Download</a>",
+      "<a href=https://www.youtube.com/user/quadGC>YouTube</a>",
+      "<a href=https://www.twitch.tv/quadfps>Twitch</a>"
+    ],
+	[
+      "platinum",
+      "<a href=./platinum.zip>Download</a>",
+      "<a href=https://www.youtube.com/user/mdm06g>YouTube</a>",
+      "<a href=https://www.twitch.tv/platinumtf2>Twitch</a>"
+    ],
+	[
+      "powah",
+      "<a href=./powah.zip>Download</a>",
+      "<a href=http://www.youtube.com/user/brazilianPOWAH>YouTube</a>",
+      "<a href=http://twitch.tv/powah>Twitch</a>"
+    ],
+    [
+      "tagg",
+      "<a href=./tagg.zip>Download</a>",
+      "<a href=http://www.youtube.com/thatguytagg>YouTube</a>",
+      "<a href=https://www.twitch.tv/thatguytagg>Twitch</a>"
+    ],
+    [
+      "jukebox",
+      "<a href=./jukebox.zip>Download</a>",
+      "<a href=https://www.youtube.com/user/TheWrnrzn>YouTube</a>",
+      "<a href=https://www.twitch.tv/jukebokks>Twitch</a>"
+    ],
+    [
       "elmo",
       "<a href=./elmo.zip>Download</a>",
       "",
