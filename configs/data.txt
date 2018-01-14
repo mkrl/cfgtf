@@ -137,6 +137,7 @@
       "<a href=./saam.zip>Download</a>",
       "<a href=https://www.youtube.com/user/DoomTyrannt101>YouTube</a>",
       "-"
+	],
     [
       "Bloodis",
       "<a href=./Bloodis.zip>Download</a>",
@@ -185,13 +186,13 @@
       "<a href=http://www.youtube.com/bash22ful>YouTube</a>",
       "<a href=https://www.twitch.tv/bashthenerd>Twitch</a>"
     ],
-	[
+     [
       "clockwork",
       "<a href=./clockwork.zip>Download</a>",
       "<a href=http://www.youtube.com/clockw0rkk>YouTube</a>",
       "<a href=https://www.twitch.tv/clockwork>Twitch</a>"
     ],
-	[
+     [
       "cyzer",
       "<a href=./cyzer.zip>Download</a>",
       "<a href=http://www.youtube.com/clockw0rkk>YouTube</a>",
@@ -232,12 +233,6 @@
       "<a href=./tagg.zip>Download</a>",
       "<a href=http://www.youtube.com/thatguytagg>YouTube</a>",
       "<a href=https://www.twitch.tv/thatguytagg>Twitch</a>"
-    ],
-    [
-      "jukebox",
-      "<a href=./jukebox.zip>Download</a>",
-      "<a href=https://www.youtube.com/user/TheWrnrzn>YouTube</a>",
-      "<a href=https://www.twitch.tv/jukebokks>Twitch</a>"
     ],
     [
       "elmo",
