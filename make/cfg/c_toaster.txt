@@ -243,7 +243,6 @@ mat_specular 0 // Controls specularity. Setting this to 0 will make ubers
                // non-shiny, and will remove some specular effects from in-game
                // entities which support it. - Setting this to 0 while trilinear is off lowers framerate for reasons I don't understand
 mat_trilinear 0
-mat_viewportscale 0.75 // Almost no performance gain from viewport upscaling.
 mat_viewportupscale 1
 mat_wateroverlaysize 1
 mp_decals 9 // - Just keep this below 60ish and you shouldn't notice much different at all maybe .5 average fps for every 30-40 decals
