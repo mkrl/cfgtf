@@ -128,7 +128,7 @@
     ],
     [
       "Jewlander",
-      "<a href=./jerlander.zip>Download</a>",
+      "<a href=./jewander.zip>Download</a>",
       "-",
       "<a href=https://www.twitch.tv/jewlander>Twitch</a>"
     ],
