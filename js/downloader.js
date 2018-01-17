@@ -596,7 +596,7 @@ jQuery(function($) {
 					'',
 					bindings_soldier,
 					'',
-					'exec binds',
+					'',
 					'',
 					soldier_switcher
 				].join('\n');
