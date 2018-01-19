@@ -127,23 +127,22 @@ jQuery(function($) {
 			var $this = $(this);
 			var c_url = $this.data("url");
 			var crossname = $this.data("name");
-			
+			var filename = c_url.replace(/.*\//g, "");
+			var c_settings = '"crosshair"\n		{\n				"file"		"vgui/replay/thumbnails/'+crossname+'"\n				"x"		"0"\n				"y"		"0"\n				"width"		"64"\n				"height"	"64"\n		}\n		"';
 			$.ajax({
 				url : c_url,
 				dataType: "text",
 				success : function (data) {
-						console.log(data);
+						var c_temp = data.replace( /"crosshair"\s*\{[^]+\}\s*"/g, c_settings )
+						zip.file('crosshairs/scripts/'+filename+'.cfg', c_temp); 
 					}
 			});
 			
-			zippies.push('./xhairs/crosshairs.zip');
 			
-/* 			zip.file("addons/TFTrue.dll", urlToPromise("../server/addons/tftrue/TFTrue.dll"), {
-					binary: true
-			}); */
 
 		});
-
+		
+		zippies.push('./xhairs/crosshairs.zip');
 		
 		//static file text example
 		//zip.file('crosshairs/test.cfg', 'hello'); 
