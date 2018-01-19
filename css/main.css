@@ -175,6 +175,11 @@ a:hover + .ibox,.ibox:hover{
 	pointer-events: auto !important;
 }
 
-.crosshair_item td {
+table.vertical-align > tbody > tr > td {
 	vertical-align: middle;
+}
+
+#crosspreview.panel:hover {
+  background-image: url(/img/crosshairs/vtfcrosspreview.jpg);
+  color: #f9f9f9 !important;
 }

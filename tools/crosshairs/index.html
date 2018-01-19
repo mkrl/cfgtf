@@ -107,13 +107,15 @@
 			<br>
 			<br>
 			<br>
+			<div class="panel panel-default" id="crosspreview" style="text-align:center;">
+			  <div class="panel-body align="center">
+				Crosshair preview
+			  </div>
+			</div>
  			<form action="#" id="download_form">
 				<!-- The form submit will not work without ul, so I added another class to remove padding? todo: fix this shit -->
-			<ul class="checkbox list-unstyled">
-			<li>
-
 						<select class="selectpicker" id="weaponselector" data-live-search="true">
-							<option value="none" data-name="nothing" data-url="">Select a weapon to modify</option>
+							<option value="none" data-name="nothing" data-url="noweapon">Select a weapon to modify</option>
 							<optgroup label="Scout">
 								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_scattergun.txt">Scattergun, Force-A-Nature, Back Scatter</option>
 								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_soda_popper.txt">Soda Popper</option>
@@ -209,7 +211,7 @@
 							</optgroup>
 						</select>
 						<select class="selectpicker" id="crosshairselector" data-live-search="true">
-							<option value="none" data-name="nothing" data-url="">Pick a crosshair</option>
+							<option value="none" data-name="nothing" data-url="noxhair">Pick a crosshair</option>
 								<option value="test" data-name="crosshair_picker" data-url="bigcross">bigcross</option>
 								<option value="test" data-name="crosshair_picker" data-url="circle">circle</option>
 								<option value="test" data-name="crosshair_picker" data-url="circledot">circledot</option>
@@ -231,22 +233,17 @@
 						</select>
 
 		  <button class="btn btn-secondary" type="button" id="#add_btn" onclick="addItem();">Add <i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i></button>
-			</li>
+		  <span class="text-danger" style="margin-left: 7px;" id="notification_preview"></span>
 			<br>
-			</ul>
-		<table class="table table-striped table-hover " id="crosslist">
+		<table class="table table-striped table-hover vertical-align" id="crosslist">
 						  <thead>
-  							<th>Crosshair</th>
-  							<th></th>
-  							<th>Weapon</th>
-							<th></th>
+  							<th class="col-md-2">Crosshair</th>
+  							<th class="col-md-2"></th>
+  							<th class="col-md-6">Weapon</th>
+							<th class="col-md-2"></th>
 						  </thead>
-						  <tr>
-							<td>Pick a weapon, desired crosshair and press "Add" to start</td>
-							<td></td>
-							<td></td>
-							<td></td>
-							</tr>
+						  <tbody>
+						</tbody>
 		</table>
 						
 						
@@ -254,19 +251,37 @@
 	<hr>
 </form>
 <script>
-
+	
+	var i = 0;
+	
 	function addItem() {
 		var picked_cross = $("#crosshairselector option:selected").html();
 		var picked_weapon = $("#weaponselector option:selected").html();
-		$('#crosslist > tbody:last-child').append('<tr class="crosshair_item" data-url=""><td>'+picked_cross+'</td><td><img src="./xhairs/png/'+picked_cross+'.png"></td><td>'+picked_weapon+'</td><td><button class="btn btn-danger" type="button" class="remove_btn"><i class="fa fa-times" aria-hidden="true"></i></button></td></tr>');
+		if (($("#crosshairselector option:selected").val() === "none")||($("#weaponselector option:selected").val() === "none")) {
+		$('#notification_preview').html('Please pick a weapon and a crosshair');
+		} else {
+		$('#crosslist > tbody:last-child').append('<tr class="crosshair_item" data-url=""><td class="col-md-2">'+picked_cross+'</td><td  class="col-md-2"><img src="./xhairs/png/'+picked_cross+'.png"></td><td  class="col-md-7">'+picked_weapon+'</td><td  class="col-md-1"><button class="btn btn-danger" type="button" id="delet'+i+'" onclick="delet_this('+i+')" class="remove_btn"><i class="fa fa-times" aria-hidden="true"></i></button></td></tr>');
+		i += 1;
+		$('#notification_preview').html('');
+		}
+	}
+	
+	function delet_this(row) {
+		$('#delet'+row).parent().parent().remove();
 	}
 	
 	$(function() {
-					$(".remove_btn").on('click', (function() {
-					alert("Delet this");
-						$(this).parent().parent().remove();			
-					}));						
-				});
+
+	  $('#crosshairselector').on('change', function(){
+		var selected = $(this).find("option:selected").html();
+		if ($("#crosshairselector option:selected").val() !== "none"){
+		$('#crosspreview').html('<img src="./xhairs/png/'+selected+'.png">');
+		} else {
+		$('#notification_preview').html('Please pick a weapon and a crosshair');
+		}
+	  });
+	  
+	});
 
 </script>
 <div class="progress hide" id="progress_bar">
@@ -280,7 +295,7 @@
 	<!--   LAUNCH OPTIONS  -->
 </div>
 
-  <script type="text/javascript" src="../../js/downloader.js"></script>
+  <script type="text/javascript" src="../../js/downloader_crosshairs.js"></script>
 </div>
 
   <footer class="footer container-fluid">
