@@ -134,7 +134,7 @@ jQuery(function($) {
 				dataType: "text",
 				success : function (data) {
 						var c_temp = data.replace( /"crosshair"\s*\{[^]+\}\s*"/g, c_settings )
-						zip.file('crosshairs/scripts/'+filename+'.cfg', c_temp); 
+						zip.file('crosshairs/scripts/'+filename, c_temp); 
 					}
 			});
 			
