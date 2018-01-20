@@ -1,7 +1,7 @@
 "UnlitGeneric"
 {
 	"$translucent"	1
-	"$basetexture" "vgui\replay\thumbnails\xhairshadow\xhairshadowrockets"
+	"$basetexture" "vgui\replay\thumbnails\xhairshadowrockets"
 	"$vertexcolor" 1
 	"$no_fullbright" 1
 	"$ignorez" 1
