@@ -112,7 +112,6 @@
 			<p>This tool allows you to generate a set of files that will replace your stock weapon crosshairs. This means that you can assign any crosshair to a specific weapon, not just the weapon slot. Please note that you should have <code>cl_crosshair_file</code> set to "" (empty, just double quotes) in order for this script to work.</p>
 			<p>The original idea and way of implementing this can be found <a href="http://www.teamfortress.tv/30866/guide-weapon-specific-custom-crosshairs" target="_blank">here</a>.</p>
 			<p>This tool will only replace crosshairs for the weapons you pick - all the other ones will remain unchanged.</p>
-			<p class="text-danger">Please notice that this will not work with no explosion smoke script. You can still download and install other crosshairs, but explosive weapons' scripts must be merged with explosion smoke script files manually afterwards.</p>
 			<br>
 			<br>
 			<br>
@@ -141,10 +140,10 @@
 								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_bat_giftwrap.txt">Wrap Assassin</option>
 							</optgroup>
 								<optgroup label="Solder">
-								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_rocketlauncher.txt">Rocket Launcher, Black Box, Original, Liberty Launcher, Beggar's Bazooka</option>
-								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_rocketlauncher_directhit.txt">Direct Hit</option>
-								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_particle_cannon.txt">Cow Mangler 5000</option>
-								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_rocketlauncher_airstrike.txt">Air Strike</option>
+								<option value="explosion" data-name="weapon_picker" data-url="./scripts/tf_weapon_rocketlauncher.txt">Rocket Launcher, Black Box, Original, Liberty Launcher, Beggar's Bazooka</option>
+								<option value="explosion" data-name="weapon_picker" data-url="./scripts/tf_weapon_rocketlauncher_directhit.txt">Direct Hit</option>
+								<option value="explosion" data-name="weapon_picker" data-url="./scripts/tf_weapon_particle_cannon.txt">Cow Mangler 5000</option>
+								<option value="explosion" data-name="weapon_picker" data-url="./scripts/tf_weapon_rocketlauncher_airstrike.txt">Air Strike</option>
 								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_shotgun_soldier.txt">Shotgun, Reserve Shooter, Panic Attack</option>
 								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_buff_item.txt">Buff Banner, Battalion's Backup, Concheror</option>
 								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_raygun.txt">Righteous Bison</option>
@@ -163,9 +162,9 @@
 								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_slap.txt">Hot Hand</option>
 							</optgroup>
 								<optgroup label="Demoman">
-								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_grenadelauncher.txt">Grenade Launcher, Loch-n-Load, Iron Bomber</option>
-								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_cannon.txt">Loose Cannon</option>
-								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_pipebomblauncher.txt">Stickybomb Launcher, Scottish Resistance, Sticky Jumper, Quickiebomb Launcher</option>
+								<option value="explosion" data-name="weapon_picker" data-url="./scripts/tf_weapon_grenadelauncher.txt">Grenade Launcher, Loch-n-Load, Iron Bomber</option>
+								<option value="explosion" data-name="weapon_picker" data-url="./scripts/tf_weapon_cannon.txt">Loose Cannon</option>
+								<option value="explosion" data-name="weapon_picker" data-url="./scripts/tf_weapon_pipebomblauncher.txt">Stickybomb Launcher, Scottish Resistance, Sticky Jumper, Quickiebomb Launcher</option>
 								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_bottle.txt">Bottle and all reskins</option>
 								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_sword.txt">Eyelander, Scotsman's Skullcutter, Claidheamh Mòr, Persian Persuader, Pain Train</option>
 								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_stickbomb.txt">Ullapool Caber</option>
@@ -242,6 +241,13 @@
 								<option value="test" data-name="crosshair_picker" data-url="brackets">brackets</option>
 								<option value="test" data-name="crosshair_picker" data-url="yzwings">yzwings</option>
 						</select>
+						<select class="selectpicker" id="smokeselector" disabled>
+							<option value="none" data-name="nothing" data-url="">Default explosion effect</option>
+								<option value="test" data-name="script_picker" data-url="explosions_2colours">Electric Shock</option>
+								<option value="test" data-name="script_picker" data-url="explosions_muzzle_flash">Muzzle Flash</option>
+								<option value="test" data-name="script_picker" data-url="explosions_original">Spy Sapper</option>
+								<option value="test" data-name="script_picker" data-url="explosions_pyro_pool">Pyro Pool</option>
+						</select>
 
 		  <button class="btn btn-secondary" type="button" id="#add_btn" onclick="addItem();">Add <i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i></button>
 		  <span class="text-danger" style="margin-left: 7px;" id="notification_preview"></span>
@@ -253,8 +259,9 @@
 		<table class="table table-striped table-hover vertical-align" id="crosslist">
 						  <thead>
   							<th class="col-md-2">Crosshair</th>
-  							<th class="col-md-2"></th>
-  							<th class="col-md-6">Weapon</th>
+  							<th class="col-md-1"></th>
+							<th class="col-md-5">Weapon</th>
+  							<th class="col-md-2">Explosion effect</th>  							
 							<th class="col-md-2"></th>
 						  </thead>
 						  <tbody>
@@ -274,10 +281,20 @@
 		var crosshair_name = $("#crosshairselector option:selected").data("url");
 		var picked_weapon = $("#weaponselector option:selected").html();
 		var weapon_script = $("#weaponselector option:selected").data("url");
+		var explosion_name = $("#smokeselector option:selected").html();
+		var explosion_path = $("#smokeselector option:selected").data("url");
+		
+		if (($("#smokeselector option:selected").val() !== "none")||($("#weaponselector option:selected").val() === "explosion")) {
+			weapon_script = "./scripts/nosmoke/"+explosion_path+"/"+weapon_script.slice(10);
+		} else {
+			explosion_name = "";
+		}
+
+		
 		if (($("#crosshairselector option:selected").val() === "none")||($("#weaponselector option:selected").val() === "none")) {
 		$('#notification_preview').html('Please pick a weapon and a crosshair');
 		} else {
-		$('#crosslist > tbody:last-child').append('<tr class="crosshair_item" data-url="'+weapon_script+'" data-name="'+crosshair_name+'"><td class="col-md-2">'+picked_cross+'</td><td  class="col-md-2"><img src="./xhairs/png/'+picked_cross+'.png"></td><td  class="col-md-7">'+picked_weapon+'</td><td  class="col-md-1"><button class="btn btn-danger" type="button" id="delet'+i+'" onclick="delet_this('+i+')" class="remove_btn"><i class="fa fa-times" aria-hidden="true"></i></button></td></tr>');
+		$('#crosslist > tbody:last-child').append('<tr class="crosshair_item" data-url="'+weapon_script+'" data-name="'+crosshair_name+'"><td class="col-md-2">'+picked_cross+'</td><td  class="col-md-1"><img src="./xhairs/png/'+picked_cross+'.png"></td><td  class="col-md-5">'+picked_weapon+'</td><td  class="col-md-2">'+explosion_name+'</td><td  class="col-md-2"><button class="btn btn-danger" type="button" id="delet'+i+'" onclick="delet_this('+i+')" class="remove_btn"><i class="fa fa-times" aria-hidden="true"></i></button></td></tr>');
 		i += 1;
 		$('#notification_preview').html('');
 		}
@@ -295,6 +312,16 @@
 		$('#crosspreview').html('<img src="./xhairs/png/'+selected+'.png">');
 		} else {
 		$('#notification_preview').html('Please pick a weapon and a crosshair');
+		}
+	  });
+	  
+	  $('#weaponselector').on('change', function(){
+		if ($("#weaponselector option:selected").val() === "explosion"){
+		$('#smokeselector').prop('disabled', false);
+		$('#smokeselector').selectpicker('refresh');
+		} else {
+		$('#smokeselector').prop('disabled', true);
+		$('#smokeselector').selectpicker('refresh');
 		}
 	  });
 	  
