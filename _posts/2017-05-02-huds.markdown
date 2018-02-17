@@ -1,0 +1,14 @@
+---
+layout: post
+title:  "HUD support"
+date:   2017-05-02 12:48:22 +0800
+categories: update
+---
+
+Here goes a tiny but important update
+
+* HUDs support. We now support several HUDs, more coming up very soon. This feature is in a kind of a beta state, it may slow down the progress bar so don't worry if you don't see a percentage.
+* Fixed class changer throwing an error if no crosshair switcher selected
+* Added medigun check script
+* User input is now being saved, never loose your settings if you close the tab anymore! (may not work flawlessly for some fields). Use "Reset" button to return to defaults.
+* Fixed hugs.tf and essentials.tf images pointing towards huds.tf (thanks Llewxamris).

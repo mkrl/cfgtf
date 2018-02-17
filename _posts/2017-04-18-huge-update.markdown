@@ -2,7 +2,7 @@
 layout: post
 title:  "First rather huge update"
 date:   2017-04-18 15:48:22 +0800
-categories: blog
+categories: update
 ---
 Our first rather huge site update:
 
