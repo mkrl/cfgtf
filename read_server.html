@@ -1,0 +1,213 @@
+---
+layout: default
+title: CFG.TF - Articles
+loader: black
+permalink: /read/server/
+---
+  <div class="row content">
+  <br>
+  <h2>Setting up a TF2 server</h2>
+  <p>Learn how to simply manage a TF2 server on Linux VPS or a local server with this very fine guide by <a href="http://steamcommunity.com/id/burningsmile/" target="_blank">BurningSmile</a>. Please view the text instructions below as they are kept up to update with the newest changes.</p>
+  <br>
+  <div class="panel panel-default">
+  <div class="panel-body">
+    	<div class="embed-responsive embed-responsive-16by9">
+	  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/nyMyCPI5LP4"></iframe>
+	</div>
+  </div>
+</div>
+<div class="panel panel-default">
+        <div class="panel-heading">
+          <button type="button" class="btn btn-default btn-xs spoiler-trigger" data-toggle="collapse">Show instructions</button>
+        </div>
+        <div class="panel-collapse collapse out">
+          <div class="panel-body">
+            <p><a href="https://www.metamodsource.net/downloads.php?branch=stable" target="_blank">Metamod</a> | <a href="https://www.sourcemod.net/downloads.php?branch=stable" target="_blank">Sourcemod</a> | <a href="https://gameservermanagers.com/lgsm/tf2server/" target="_blank">LGSM</a></p>
+
+	    <p> Alternatively you can use <a href="https://github.com/BurningSmile/LinuxScripts/blob/master/auto-tf2serverinstall.sh"> this </a> script to automate everything except the cfg.tf configuration. To run it do the following. </p><br>
+<code>git clone https://github.com/BurningSmile/LinuxScripts.git</code><br>
+<code>cd LinuxScripts</code><br>
+<code>chmod +x auto-tf2serverinstall.sh </code><br>
+<code>sudo ./auto-tf2serverinsall.sh</code><br>
+Then simply follow the steps for generating a cfg.tf server configuration. Finally reboot your VPS with the following commands.<br>
+<code>su - tf2server -c '/home/tf2server/tf2server stop'</code><br>
+<code>reboot</code><br>
+<br>
+<p>Text directions:<br>
+
+Updating:
+<br>
+<code>apt update</code><br>
+<code>apt -y upgrade</code><br>
+<code>apt -y dist-upgrade</code><br>
+<code>apt -y autoremove</code><br>
+<code>apt autoclean</code><br>
+</p>
+
+<p>Turn off auto updates
+<br>
+<code>vim /etc/apt/apt.conf.d/10periodic</code><br>
+Change 1 to 0<br>
+Save and exit file<br>
+<br>
+Dependencies for LGSM<br>
+<br>
+<br>
+Ubuntu <br>
+<code>dpkg --add-architecture i386; apt-get update; apt-get install mailutils postfix curl wget file bzip2 gzip unzip bsdmainutils python util-linux tmux lib32gcc1 libstdc++6 libstdc++6:i386 libcurl4-gnutls-dev:i386</code><br>
+<br>
+Debian<br>
+<code>dpkg --add-architecture i386; sudo apt-get update; sudo apt-get install mailutils postfix curl wget file bzip2 gzip unzip bsdmainutils python util-linux tmux lib32gcc1 libstdc++6 libstdc++6:i386 libcurl4-gnutls-dev:i386</code><br>
+Fedora<br>
+<code>dnf install mailx postfix curl wget file bzip2 gzip unzippython tmux glibc.i686 libstdc++ libstdc++.i686 libcurl.i686</code><br>
+<br>
+Centos<br>
+<code>yum install mailx postfix curl wget bzip2 gzip unzip python tmux glibc.i686 libstdc++ libstdc++.i686 libcurl.i686</code><br>
+<br>
+Create a tf2server account<br>
+<code>useradd -m --password default tf2server</code><br>
+<br>
+Create a password for the account<br>
+<code>passwd tf2server</code><br>
+<br>
+Change to the account<br>
+<code>su - tf2server</code><br>
+<br>
+Download the tf2 server management stack<br>
+<code>wget -N --no-check-certificate https://gameservermanagers.com/dl/linuxgsm.sh && chmod +x linuxgsm.sh && bash linuxgsm.sh tf2server</code><br>
+<br>
+Install the server<br>
+<code>./tf2server auto-install</code><br>
+<br>
+Lgsm has recently changed the way they handel server settings. You now copy them to a file in the directory $HOME/lgsm/configs-lgsm/tf2server/tf2server.cfg. Use the following commands to setup this file with the items you will most likely be changing. <br>
+
+<code>vim /home/tf2server/lgsm/config-lgsm/tf2server/tf2server.cfg </code><br>
+Add the following<br>
+<code>defaultmap="cp_badlands"</code><br>
+<code>maxplayers="16"</code><br>
+<code>updateonstart="on"</code><br>
+Save the file<br>
+<br>
+Allow tf2server through the firewall.<br>
+<br>
+<b>This will setup our firewall. I setup up firewalls to block all incoming traffic that is not whitelisted.</b><br>
+<code>
+sudo iptables -I INPUT 1 -i lo -j ACCEPT <br>
+sudo iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT <br>
+sudo iptables -A INPUT -p tcp -m state --state NEW,ESTABLISHED  --dport 22 -j ACCEPT <br>
+sudo iptables -A INPUT -p icmp --icmp-type echo-request -m state --state ESTABLISHED,RELATED -j ACCEPT <br>
+sudo iptables -A INPUT -p tcp --dport 80 -m state --state NEW,ESTABLISHED  -j ACCEPT <br>
+sudo iptables -A INPUT -p tcp --dport 443 -m state --state NEW,ESTABLISHED  -j ACCEPT <br>
+sudo iptables -A INPUT -p udp --dport 27015 -m state --state NEW,ESTABLISHED  -j ACCEPT <br>
+sudo iptables -A INPUT -p tcp --dport 27015 -m state --state NEW,ESTABLISHED  -j ACCEPT <br>
+sudo iptables -A INPUT -p udp --dport 27020 -m state --state NEW,ESTABLISHED  -j ACCEPT <br>
+sudo iptables -P INPUT DROP <br>
+iptables-save > /etc/iptables/rules.v4 <br>
+ip6tables-save > /etc/iptables/rules.v6 <br>
+</code>
+<br>
+Start the server<br>
+<code>./tf2server start</code><br>
+<br>
+Test connecting to it<br>
+Connect ip-here in game console<br>
+<br>
+Stop the server<br>
+<code>./tf2server stop</code><br>
+<br>
+Installing apache2 webserver<br>
+<code>exit</code><br>
+<code>apt install apache2</code><br>
+<code>
+	mkdir -p /var/www/html/fastdl/tf2/ <br>
+	cd /var/www/html/fastdl/tf2/ <br>
+	ln -s /home/tf2server/serverfiles/tf/maps maps <br>
+	ls -la <br>
+	systemctl status apache2.service <br>
+	systemctl start apache2.service <br>
+	systemctl enable apache2.service <br>
+	cd ../.. <br>
+mv index.html index.html.bak</code><br>
+<br>
+Refresh the page and test downloading a map<br>
+<br>
+Address sftp:// ip here<br>
+User tf2server<br>
+Password The password you set up on the tf2 server account<br>
+Port 22<br>
+<br>
+Change FileZilla directory to serverfiles/tf<br>
+<br>
+Back in the ssh session<br>
+<code>su - tf2server </code><br>
+<code>cd serverfiles/tf/ </code><br>
+<br>
+Now for metamod: <br>
+Go to the site and copy its link address for the Linux version.<br>
+https://www.metamodsource.net/downloads.php?branch=stable<br>
+<code>wget (link here)</code> <br>
+<code>tar -xvf mmsource </code> (Use tab completion)<br>
+<code>rm mmsource </code> (tab complete)<br>
+<br>
+Now for sourcemod:<br>
+Go to the souremod site and copy its link address for the Linux version.<br>
+https://www.sourcemod.net/downloads.php?branch=stable<br>
+<code>wget (link here) </code><br>
+<code>tar -xvf sourcemod </code> (tab complete)<br>
+<code>rm sourcemod </code><br>( tab complete)<br>
+<br>
+Setting up admin account<br>
+<code>vim ./addons/souremod/config/admins_simple.ini </code><br>
+<br>
+Go to a <a href="http://steamidfinder.com/" target="_blank">steamidfinder.com</a><br>
+Paste your steam url and paste the steam id. Follow the below example<br>
+<code>“STEAMID” “99:z” //useraccountname </code><br>
+<br>
+Go to cfg.tf and follow my example for configuring the server.<br>
+<br>
+Custom settings used in video. Remember to replace IP-GOES-HERE with the ip of your vps.<br>
+<code>
+	// Server downloads and files<br>
+	net_maxfilesize "64" <br>
+	sv_downloadurl "http://IP-GOES-HERE/fastdl/tf2/" <br>
+	sv_allowdownload "1" <br>
+	sv_allowupload "1" <br>
+sv_consistency "1"</code><br>
+<br>
+Unzip the file and upload it to your server in sftp to your serverfiles/tf directory, overwrite any files if asked.<br>
+<br>
+Start the server via ssh<br>
+<code>./tf2server start </code><br>
+<br>
+Automate a restart at midnight. And automate the SRCDS instance starting on server start and restart.<br>
+Refer to crontab documentation if needed. <br>
+https://linux.die.net/man/5/crontab<br>
+https://help.ubuntu.com/community/CronHowto<br>
+<br>
+<code>crontab -e </code><br>
+Choose 3 to use vim <br>
+Add the following in insert mode<br>
+<br>
+<code>0 0 * * * /home/tf2server/tf2server restart </code><br>
+<code>@reboot /home/tf2server/tf2server start</code><br>
+<br>
+Save the file and exit vim<br>
+<br>
+Ensure the crontab file works<br>
+<code>./tf2server stop</code><br>
+<code>exit</code><br>
+<code>reboot </code><br>
+<br>
+After the reboot make sure your Srcds instance starts on boot.</p>
+          </div>
+        </div>
+      </div>
+
+<script>
+	$(".spoiler-trigger").click(function() {
+		$(this).parent().next().collapse('toggle');
+	});
+</script>
+
+  </div>
+

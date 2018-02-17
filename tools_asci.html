@@ -1,0 +1,55 @@
+---
+layout: default
+title: CFG.TF - ASCI art maker
+loader: black
+permalink: /tools/asci/
+custom_js:
+- <script type="text/javascript" src="/js/bootbox.min.js"></script>
+- <script type="text/javascript" src="./handler.js"></script>
+---
+	    <div class="container">
+        <div class="form-group">
+            <div style="text-align: center">
+			<br>
+                <h2>
+                    Console ASCI art maker
+                </h2>
+                <p>
+                    Copy ASCI art to the left field. Press the button and get a script you can execute for a fancy console look.
+                </p>
+                <p>
+                    Please note that you will not be able to use too huge pieces of text due to limitations of Source console.
+                </p>
+            </div>
+            <div class="row">
+                <div class="col-md-6" >
+                <br />
+                    <textarea
+                           id="input"
+                           style="resize: none; display: block; "
+                           class="form-control"
+                           placeholder="Paste your ASCI masterpiece here."
+                           rows="24"
+                           required></textarea>
+                    
+                </div>
+            <br/>
+                <div class="col-md-6">
+                    <textarea
+                           id="output"
+                           style="resize: none; font-family: 'Monospace', 'Courier New';"
+                           class="form-control"
+                           rows="24"
+                           placeholder="Output will appear here."></textarea>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div>
+
+            <br />
+            <br />
+                <button class="btn btn-lg btn-primary btn-block" type="submit" onclick=submit()>Generate</button>
+           </div>
+        </div>
+     </div>	

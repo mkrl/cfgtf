@@ -1,0 +1,30 @@
+# Left navigation for the site
+
+- title: Generate
+  url: /make/
+
+- title: Server config
+  url: /server/
+
+- title: Articles
+  url: /read/
+  sublinks:
+    - title: Networking in source games
+      url: /read/interp
+    - title: Health care
+      url: /read/health
+    - title: Set up a TF2 server
+      url: /read/server
+
+- title: Configs
+  url: /configs/
+ 
+- title: Tools
+  url: /tools/
+  sublinks:
+    - title: Bind rotation generator
+      url: /tools/bindgen
+    - title: ASCI art maker
+      url: /tools/asci    
+    - title: Weapon-specific crosshairs
+      url: /tools/crosshairs

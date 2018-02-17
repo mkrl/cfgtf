@@ -1,0 +1,33 @@
+---
+layout: default
+title: CFG.TF - Config collection
+loader: cyan
+permalink: /configs/
+custom_js:
+- <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.15/js/jquery.dataTables.min.js" integrity="sha256-j007R7R6ijEWPa1df7FeJ6AFbQeww0xgif2SJWZOhHw=" crossorigin="anonymous"></script>
+- <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.15/js/dataTables.bootstrap.min.js" integrity="sha256-X/58s5WblGMAw9SpDtqnV8dLRNCawsyGwNqnZD0Je/s=" crossorigin="anonymous"></script>
+---
+		<div class="row content">
+			<h1 class="page-header">Config database</h1>
+			<p class="page-header">We have collected various configuration files that well-known players use. We do not take any responsibility for anything that may happen to your game when you install this, all files are provided as they were shared by original authors. Some configs
+				may be outdated.</p>
+			<table id="cfgs" class="table table-striped table-bordered" cellspacing="0" width="100%">
+				<thead>
+					<tr>
+						<th><i class="fa fa-user" aria-hidden="true"></i> Name</th>
+						<th><i class="fa fa-download" aria-hidden="true"></i> Download link</th>
+						<th><i class="fa fa-youtube-play" aria-hidden="true"></i> Youtube</th>
+						<th><i class="fa fa-television" aria-hidden="true"></i> Stream</th>
+					</tr>
+				</thead>
+			</table>
+			<p class="text-center page-header">Feel like you can contribute to this list? Contact us <a href="https://discord.gg/79cbsTu" target="_blank">on Discord</a>.</p>
+		</div>
+		
+	<script>
+		$(document).ready(function() {
+			$('#cfgs').DataTable({
+				"ajax": './data.txt'
+			});
+		});
+	</script>
