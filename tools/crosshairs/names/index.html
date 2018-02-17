@@ -17,6 +17,9 @@
 		<!-- fontawesome --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
 		<!-- bootstrap select --><script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js" integrity="sha256-JD3g+rB9BjW6/cGEuwCue1sGtitb2aQVNs/pl4114XQ=" crossorigin="anonymous"></script>
 		<!--                  --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css" integrity="sha256-an4uqLnVJ2flr7w0U74xiF4PJjO2N5Df91R2CUmCLCA=" crossorigin="anonymous" />
+		<!-- datatables --><script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.15/js/jquery.dataTables.min.js" integrity="sha256-j007R7R6ijEWPa1df7FeJ6AFbQeww0xgif2SJWZOhHw=" crossorigin="anonymous"></script>
+		<!-- datatables bootstrap integration --><script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.15/js/dataTables.bootstrap.min.js" integrity="sha256-X/58s5WblGMAw9SpDtqnV8dLRNCawsyGwNqnZD0Je/s=" crossorigin="anonymous"></script>
+
 		<!-- Local css -->
     <link rel="stylesheet" href="../../../css/pygments.css">
     <link rel="stylesheet" href="../../../css/main.css">
@@ -90,7 +93,7 @@
 	</nav>
   <div id="wrapper" class="container">
 		<div class="row content">
-			<h1>Weapon-specific crosshairs script file names<small><span id="version"><!-- ./version.txt --></span></small></h1>
+			<h1>Weapon-specific crosshairs script file names<small><span id="version"><!-- ./version.txt</code> --></span></small></h1>
 			<br>
 			<br>
 			<br>
@@ -100,136 +103,374 @@
 			<br>
 			<br>
 
-			<table class="table table-striped table-hover ">
+			<table class="table table-striped table-hover" id="crossfiles">
 									<thead>
 										<th>Weapon name(s)</th>
 										<th>Class</th>
 										<th>Script file name</th>
 									</thead>
-									<tr>
-										<td>Scattergun, Force-A-Nature, Soda Popper, Back Scatter</td>
-										<td>Scout</td>
-										<td><code>tf_weapon_scattergun</code></td>
-									</tr>
-										<tr>
-										<td>Shortstop</td>
-										<td>Scout</td>
-										<td><code>tf_weapon_handgun_secondary</code></td>
-									</tr>
-										<tr>
-										<td>Baby Face's Blaster</td>
-										<td>Scout</td>
-										<td><code>tf_weapon_pep_brawler</code></td>
-									</tr>
-										<tr>
-										<td>Pistol, Lugermorph, C.A.P.P.E.R</td>
-										<td>Scout</td>
-										<td><code>tf_weapon_pistol_scout</code></td>
-									</tr>
-										<tr>
-										<td>Bonk! Atomic Punch, Crit-a-Cola</td>
-										<td>Scout</td>
-										<td><code>tf_weapon_lunchbox_drink</code></td>
-									</tr>
-										<tr>
-										<td>Mad Milk, Mutated milk</td>
-										<td>Scout</td>
-										<td><code>tf_weapon_jar_milk</code></td>
-									</tr>
-										<tr>
-										<td>Winger, Pretty Boy's Pocket Pistol</td>
-										<td>Scout</td>
-										<td><code>tf_weapon_pistol_secondary</code></td>
-									</tr>
-										<tr>
-										<td>Flying Guillotine</td>
-										<td>Scout</td>
-										<td><code>tf_weapon_cleaver</code></td>
-									</tr>
-										<tr>
-										<td>Bat and all reskins, Candy cane, Boston Basher, Sun-on-a-Stick, Fan O'War, Atomizer</td>
-										<td>Scout</td>
-										<td><code>tf_weapon_bat</code></td>
-									</tr>
-										<tr>
-										<td>Sandman</td>
-										<td>Scout</td>
-										<td><code>tf_weapon_bat_wood</code></td>
-									</tr>
-										<tr>
-										<td>Holy Mackerel</td>
-										<td>Scout</td>
-										<td><code>tf_weapon_bat_fish</code></td>
-									</tr>
-										<tr>
-										<td>Wrap Assasin</td>
-										<td>Scout</td>
-										<td><code>tf_weapon_bat_giftwarp</code></td>
-									</tr>
-										<tr>
-										<td>Rocket Launcher, Original</td>
-										<td>Soldier</td>
-										<td><code>tf_weapon_rocketlauncher</code></td>
-
-										<tr>
-										<td>Direct Hit</td>
-										<td>Soldier</td>
-										<td><code>tf_weapon_rocketlauncher_directhit</code></td>
-									</tr>
-
-										<tr>
-										<td>Rocket Launcher, Original, Liberty Launcher, Black Box</td>
-										<td>Soldier</td>
-										<td><code>tf_weapon_rocketlauncher</code></td>
-									</tr>
-
-										<tr>
-										<td>Cow Mangler 5000</td>
-										<td>Soldier</td>
-										<td><code>tf_weapon_particle_cannon</code></td>
-									</tr>
-
-										<tr>
-										<td>Air Strike</td>
-										<td>Soldier</td>
-										<td><code>tf_weapon_rocketlauncher_airstrike</code></td>
-									</tr>
-
-										<tr>
-										<td>Shotgun</td>
-										<td>Soldier</td>
-										<td><code>tf_weapon_shotgun_soldier</code></td>
-									</tr>
-
-										<tr>
-										<td>Buff Banener and other banners</td>
-										<td>Soldier</td>
-										<td><code>tf_weapon_buff_item</code></td>
-									</tr>
-
-										<tr>
-										<td>Bison</td>
-										<td>Soldier</td>
-										<td><code>tf_weapon_raygun</code></td>
-									</tr>
-
-										<tr>
-										<td>Half-Zatoichi</td>
-										<td>Soldier</td>
-										<td><code>tf_weapon_katana</code></td>
-									</tr>
-
-										<tr>
-										<td>Flamethrower</td>
-										<td>Pyro</td>
-										<td><code>tf_weapon_flamethrower</code></td>
-									</tr>
-			</table>
+<tbody><tr>
+<td>Scattergun, Force-A-Nature, Back Scatter</td>
+<td>Scout</td>
+<td><code>tf_weapon_scattergun.txt</code></td>
+</tr>
+<tr>
+<td>Soda Popper</td>
+<td>Scout</td>
+<td><code>tf_weapon_soda_popper.txt</code></td>
+</tr>
+<tr>
+<td>Shortstop</td>
+<td>Scout</td>
+<td><code>tf_weapon_handgun_scout_primary.txt</code></td>
+</tr>
+<tr>
+<td>Baby Face&#39;s Blaster</td>
+<td>Scout</td>
+<td><code>tf_weapon_pep_brawler_blaster.txt</code></td>
+</tr>
+<tr>
+<td>Pistol and reskins</td>
+<td>Scout</td>
+<td><code>tf_weapon_pistol_scout.txt</code></td>
+</tr>
+<tr>
+<td>Winger, Pretty Boy&#39;s Pocket Pistol</td>
+<td>Scout</td>
+<td><code>tf_weapon_handgun_scout_secondary.txt</code></td>
+</tr>
+<tr>
+<td>Flying Guillotine</td>
+<td>Scout</td>
+<td><code>tf_weapon_cleaver.txt</code></td>
+</tr>
+<tr>
+<td>Bonk! Atomic Punch, Crit-a-Cola</td>
+<td>Scout</td>
+<td><code>tf_weapon_lunchbox_drink.txt</code></td>
+</tr>
+<tr>
+<td>Mad Milk, Jarate, Gas Passer</td>
+<td>Scout</td>
+<td><code>tf_weapon_jar_milk.txt</code></td>
+</tr>
+<tr>
+<td>Bat and all reskins, Candy Cane, Boston Basher, Sun-on-a-Stick, Fan O&#39;War, Atomizer</td>
+<td>Scout</td>
+<td><code>tf_weapon_bat.txt</code></td>
+</tr>
+<tr>
+<td>Holy Mackerel</td>
+<td>Scout</td>
+<td><code>tf_weapon_bat_fish.txt</code></td>
+</tr>
+<tr>
+<td>Sandman</td>
+<td>Scout</td>
+<td><code>tf_weapon_bat_wood.txt</code></td>
+</tr>
+<tr>
+<td>Wrap Assassin</td>
+<td>Scout</td>
+<td><code>tf_weapon_bat_giftwarp.txt</code></td>
+</tr>
+<tr>
+<td>Rocket Launcher, Black Box, Original, Liberty Launcher, Beggar&#39;s Bazooka</td>
+<td>Soldier</td>
+<td><code>tf_weapon_rocketlauncher.txt</code></td>
+</tr>
+<tr>
+<td>Direct Hit</td>
+<td>Soldier</td>
+<td><code>tf_weapon_rocketlauncher_directhit.txt</code></td>
+</tr>
+<tr>
+<td>Cow Mangler 5000</td>
+<td>Soldier</td>
+<td><code>tf_weapon_particle_cannon.txt</code></td>
+</tr>
+<tr>
+<td>Air Strike</td>
+<td>Soldier</td>
+<td><code>tf_weapon_rocketlauncher_airstrike.txt</code></td>
+</tr>
+<tr>
+<td>Shotgun, Reserve Shooter, Panic Attack</td>
+<td>Soldier</td>
+<td><code>tf_weapon_shotgun_soldier.txt</code></td>
+</tr>
+<tr>
+<td>Buff Banner, Battalion&#39;s Backup, Concheror</td>
+<td>Soldier</td>
+<td><code>tf_weapon_buff_item.txt</code></td>
+</tr>
+<tr>
+<td>Righteous Bison</td>
+<td>Soldier</td>
+<td><code>tf_weapon_raygun.txt</code></td>
+</tr>
+<tr>
+<td>Shovel and all reskins, Equalizer, Pain Train, Disciplinary Action, Market Gardener, Escape Plan</td>
+<td>Soldier</td>
+<td><code>tf_weapon_shovel.txt</code></td>
+</tr>
+<tr>
+<td>Half-Zatoichi</td>
+<td>Soldier</td>
+<td><code>tf_weapon_katana.txt</code></td>
+</tr>
+<tr>
+<td>Flame Thrower and all reskins, Backburner, Degreaser, Phlogistinator</td>
+<td>Pyro</td>
+<td><code>tf_weapon_flamethrower.txt</code></td>
+</tr>
+<tr>
+<td>Dragon&#39;s Fury</td>
+<td>Pyro</td>
+<td><code>tf_weapon_rocketlauncher_fireball.txt</code></td>
+</tr>
+<tr>
+<td>Shotgun, Reserve Shooter, Panic Attack</td>
+<td>Pyro</td>
+<td><code>tf_weapon_shotgun_pyro.txt</code></td>
+</tr>
+<tr>
+<td>Flare Gun, Detonator, Scorch Shot</td>
+<td>Pyro</td>
+<td><code>tf_weapon_flaregun.txt</code></td>
+</tr>
+<tr>
+<td>Manmelter</td>
+<td>Pyro</td>
+<td><code>tf_weapon_flaregun_revenge.txt</code></td>
+</tr>
+<tr>
+<td>Thermal Thruster</td>
+<td>Pyro</td>
+<td><code>tf_weapon_<code>tf_weapon_rocketpack.txt</code></td>
+</tr>
+<tr>
+<td>Gas Passer, Jarate, Mad Milk</td>
+<td>Pyro</td>
+<td><code>tf_weapon_jar.txt</code></td>
+</tr>
+<tr>
+<td>Fire Axe, Lollichop, Axtinguisher and reskin, Homewrecker and reskin, Powerjack, Back Scratcher, Sharpened Volcano Fragment, Third Degree, Neo</td>
+<td>Pyro</td>
+<td><code>tf_weapon_fireaxe.txt</code></td>
+</tr>
+<tr>
+<td>Hot Hand</td>
+<td>Pyro</td>
+<td><code>tf_weapon_<code>tf_weapon_slap.txt</code></td>
+</tr>
+<tr>
+<td>Grenade Launcher, Loch-n-Load, Iron Bomber</td>
+<td>Demoman</td>
+<td><code>tf_weapon_grenadelauncher.txt</code></td>
+</tr>
+<tr>
+<td>Loose Cannon</td>
+<td>Demoman</td>
+<td><code>tf_weapon_cannon.txt</code></td>
+</tr>
+<tr>
+<td>Stickybomb Launcher, Scottish Resistance, Sticky Jumper, Quickiebomb Launcher</td>
+<td>Demoman</td>
+<td><code>tf_weapon_pipebomblauncher.txt</code></td>
+</tr>
+<tr>
+<td>Bottle and all reskins</td>
+<td>Demoman</td>
+<td><code>tf_weapon_bottle.txt</code></td>
+</tr>
+<tr>
+<td>Eyelander, Scotsman&#39;s Skullcutter, Claidheamh Mòr, Persian Persuader, Pain Train</td>
+<td>Demoman</td>
+<td><code>tf_weapon_sword.txt</code></td>
+</tr>
+<tr>
+<td>Ullapool Caber</td>
+<td>Demoman</td>
+<td><code>tf_weapon_stickbomb.txt</code></td>
+</tr>
+<tr>
+<td>Half-Zatoichi</td>
+<td>Demoman</td>
+<td><code>tf_weapon_katana.txt</code></td>
+</tr>
+<tr>
+<td>Minigun, Natascha, Brass Beast, Tomislav, Huo-Long Heater</td>
+<td>Heavy</td>
+<td><code>tf_weapon_minigun.txt</code></td>
+</tr>
+<tr>
+<td>Shotgun, Family Business, Panic Attack</td>
+<td>Heavy</td>
+<td><code>tf_weapon_shotgun_hwg.txt</code></td>
+</tr>
+<tr>
+<td>Sandvich, Dalokohs Bar and reskin, Buffalo Steak Sandvich, Second Banana</td>
+<td>Heavy</td>
+<td><code>tf_weapon_lunchbox.txt</code></td>
+</tr>
+<tr>
+<td>Fists and all reskins, Killing Gloves of Boxing, Gloves of Running Urgently, Warrior&#39;s Spirit, Fists of Steel, Eviction Notice, Holiday Punch</td>
+<td>Heavy</td>
+<td><code>tf_weapon_fists.txt</code></td>
+</tr>
+<tr>
+<td>Shotgun, Widowmaker, Panic Attack</td>
+<td>Engineer</td>
+<td><code>tf_weapon_shotgun_primary.txt</code></td>
+</tr>
+<tr>
+<td>Pomson 6000</td>
+<td>Engineer</td>
+<td><code>tf_weapon_drg_pompson.txt</code></td>
+</tr>
+<tr>
+<td>Rescue Ranger</td>
+<td>Engineer</td>
+<td><code>tf_weapon_shotgun_building_rescue.txt</code></td>
+</tr>
+<tr>
+<td>Frontier Justice</td>
+<td>Engineer</td>
+<td><code>tf_weapon_sentry_revenge.txt</code></td>
+</tr>
+<tr>
+<td>Pistol</td>
+<td>Engineer</td>
+<td><code>tf_weapon_pistol.txt</code></td>
+</tr>
+<tr>
+<td>Wrangler and reskin</td>
+<td>Engineer</td>
+<td><code>tf_weapon_laser_pointer.txt</code></td>
+</tr>
+<tr>
+<td>Short Circuit</td>
+<td>Engineer</td>
+<td><code>tf_weapon_mechanical_arm.txt</code></td>
+</tr>
+<tr>
+<td>Wrench, Southern Hospitality, Jag, Eureka Effect</td>
+<td>Engineer</td>
+<td><code>tf_weapon_wrench.txt</code></td>
+</tr>
+<tr>
+<td>Gunslinger</td>
+<td>Engineer</td>
+<td><code>tf_weapon_robot_arm.txt</code></td>
+</tr>
+<tr>
+<td>Build PDA</td>
+<td>Engineer</td>
+<td><code>tf_weapon_pda_engineer_build.txt</code></td>
+</tr>
+<tr>
+<td>Destroy PDA</td>
+<td>Engineer</td>
+<td><code>tf_weapon_pda_engineer_destroy.txt</code></td>
+</tr>
+<tr>
+<td>Placing a building</td>
+<td>Engineer</td>
+<td><code>tf_weapon_builder.txt</code></td>
+</tr>
+<tr>
+<td>Syringe Gun, Blutsauger, Overdose</td>
+<td>Medic</td>
+<td><code>tf_weapon_syringegun_medic.txt</code></td>
+</tr>
+<tr>
+<td>Crusader&#39;s Crossbow</td>
+<td>Medic</td>
+<td><code>tf_weapon_crossbow.txt</code></td>
+</tr>
+<tr>
+<td>Medi Gun, Kritzkrieg, Quick-Fix, Vaccinator</td>
+<td>Medic</td>
+<td><code>tf_weapon_medigun.txt</code></td>
+</tr>
+<tr>
+<td>Bonesaw and all reskins, Ubersaw, Vita-Saw, Amputator, Solemn Vow</td>
+<td>Medic</td>
+<td><code>tf_weapon_bonesaw.txt</code></td>
+</tr>
+<tr>
+<td>Sniper Rifle, Sydney Sleeper, Bazaar Bargain, Machina</td>
+<td>Sniper</td>
+<td><code>tf_weapon_sniperrifle.txt</code></td>
+</tr>
+<tr>
+<td>Huntsman and reskin</td>
+<td>Sniper</td>
+<td><code>tf_weapon_compound_bow.txt</code></td>
+</tr>
+<tr>
+<td>Hitman&#39;s Heatmaker</td>
+<td>Sniper</td>
+<td><code>tf_weapon_sniperrifle_decap.txt</code></td>
+</tr>
+<tr>
+<td>Classic</td>
+<td>Sniper</td>
+<td><code>tf_weapon_sniperrifle_classic.txt</code></td>
+</tr>
+<tr>
+<td>Submachine Gun (SMG)</td>
+<td>Sniper</td>
+<td><code>tf_weapon_smg.txt</code></td>
+</tr>
+<tr>
+<td>Cleaner&#39;s Carbine</td>
+<td>Sniper</td>
+<td><code>tf_weapon_charged_smg.txt</code></td>
+</tr>
+<tr>
+<td>Jarate, Mad Milk and Gas Passer</td>
+<td>Sniper</td>
+<td><code>tf_weapon_jar.txt</code></td>
+</tr>
+<tr>
+<td>Kukri and all reskins, Tribalman&#39;s Shiv, Bushwacka, Shahanshah</td>
+<td>Sniper</td>
+<td><code>tf_weapon_club.txt</code></td>
+</tr>
+<tr>
+<td>Revolver, Ambassador, L&#39;Etranger, Enforcer, Diamondback</td>
+<td>Spy</td>
+<td><code>tf_weapon_revolver.txt</code></td>
+</tr>
+<tr>
+<td>Knife and all reskins, Your Eternal Reward and reskin, Conniver&#39;s Kunai, Big Earner, Spy-cicle</td>
+<td>Spy</td>
+<td><code>tf_weapon_knife.txt</code></td>
+</tr>
+<tr>
+<td>Sapper</td>
+<td>Spy</td>
+<td><code>tf_weapon_sapper.txt</code></td>
+</tr>
+<tr>
+<td>Disguise kit</td>
+<td>Spy</td>
+<td><code>tf_weapon_pda_spy.txt</code></td>
+</tr>
+</tbody></table>
 
 
 </div>
 
-  <script type="text/javascript" src="../../js/downloader.js"></script>
+  <script>$(document).ready(function() {
+				$('#crossfiles').DataTable( {
+					"paging":   false,
+					"ordering": false,
+					"info":     false
+				} );
+			} );</script>
 </div>
 
   <footer class="footer container-fluid">
