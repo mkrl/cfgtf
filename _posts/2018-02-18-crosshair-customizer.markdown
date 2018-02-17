@@ -27,7 +27,7 @@ Feature requests and bug reports are extremely welcome in our [Discord server](h
 
 ### Minor and major site improvements:
 
-* Night mode! Click on a round icon in the site navbar to toggle between day/night mode. Your eyes will no longer burn when generating configs at night (JackyLegs special)
+* Night mode! Click on a round icon in the site navbar to toggle between day/night mode. Your eyes will no longer burn when generating configs at night.
 * The site itself has migrated to Jekyll to speed up the development process. If you were directly contributing to the site, make sure to take a look at the new repository and file paths. This also means that some bugs may occur, please let me know if you find something.
 * Minor styling improvements
 * Added binds execution to class configs so all the binds automatically update on class change.
