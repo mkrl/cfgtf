@@ -1,3 +1,8 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 .browser_support th {
   border-bottom-width: 3px !important;
 }
@@ -10,11 +15,14 @@
 .support_nd {border-bottom-color: #8CC84B !important;}
 
 .footer {
+  position: absolute;
   margin-top: 10%;
   color: rgb(102, 102, 102);
   background: rgb(34, 34, 34);
   padding: 35px 0 40px 0;
   border-top: 1px solid rgb(0, 0, 0);
+  width: 100%;
+  bottom: 0;
 }
 
 .text-code {
@@ -126,7 +134,7 @@
   -ms-animation-duration: 10000ms;
 }
 
-/* hide horizontal scrollbar on body */ body { overflow-x: hidden; overflow-y: scroll; }
+/* hide horizontal scrollbar on body */ body { overflow-x: hidden; overflow-y: scroll; margin-bottom: 270px;}
 /* separate the lists a bit more, its too squashed */ .radio label, .checkbox label { padding-top: 8px; }
 /* re-pad unstyled lists */ .list-unstyled { padding-left: 1em; }
 /* pad partner logos away from their links */ #partners p { margin-top: 1em; margin-bottom: 1em; }

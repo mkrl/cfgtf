@@ -26,12 +26,13 @@
 	});
 });
 	</script>
+	{% assign loader = site.data.loaders[page.loader] %}
 	<div class="jumbotron" id="overlay">
 		<div id="overlay_middle">
 			<div id="overlay_inner">
 				<div id="loading_logo">
 					<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 464 462.9">
-						<path fill="#000" d="M213 19.2A213 213 0 0 0 19.7 212H160a74.4 74.4 0 0 1 53-52.6V19.2zm38 0v140.4a74.4 74.4 0 0 1 52.4 52.3h140.4A213 213 0 0 0 251 19zM19.5 250A213 213 0 0 0 213 443.4V303.2a74.4 74.4 0 0 1-53.3-53.3H19.5zm284 0a74.4 74.4 0 0 1-52.5 53v140.4A213 213 0 0 0 443.8 250H303.6z"/>
+						{{ loader.color }}
 					</svg>
 				</div>
 				<noscript><style>#overlay { display: none; }</style></noscript>
