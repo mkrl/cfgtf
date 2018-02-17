@@ -1,0 +1,188 @@
+---
+layout: default
+title: CFG.TF - ASCI art maker
+loader: black
+permalink: /tools/bindgen/
+custom_js:
+- <script type="text/javascript" src="/js/bootbox.min.js"></script>
+- <script type="text/javascript" src="./handler.js"></script>
+---
+	    <div class="container">
+        <div class="form-group">
+            <div style="text-align: center">
+			<br>
+                <h2>
+                    Bind Rotation Generator
+                </h2>
+                <p>
+                    By paced @ <a href="https://github.com/paced">GitHub</a> | 
+                    <a href="https://github.com/paced/bindRotator">Repository</a>
+                </p>
+                <p>
+                    Copy and paste your text with each phrase starting with a new line, fill in all forms and press "Generate". You can now press a button and each press a different phase will appear in chat.
+                </p>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                <br />
+                    <textarea
+                           id="input"
+                           style="resize: none; display: block;"
+                           class="form-control"
+                           placeholder="Type your input and press Generate."
+                           rows="24"
+                           required></textarea>
+                    
+                </div>
+            <br/>
+                <div class="col-md-6">
+                    <textarea
+                           id="output"
+                           style="resize: none; font-family: 'Monospace', 'Courier New'"
+                           class="form-control"
+                           rows="24"
+                           placeholder="Output will appear here."></textarea>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="text"
+                           id="aliasName"
+                           class="form-control"
+                           placeholder="Alias name, e.g.: 'sayCycle'."/>
+                </div>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="cycleName"
+                           class="form-control"
+                           placeholder="Cycle alias name, e.g.: 'bindCycle'."/>
+                </div>
+            </div>
+            <br />
+            <div>
+                <div class="text-center" style="padding-bottom: 1em">
+                    <label class="text-center">
+                        <input class="text-center"
+                               type="checkbox"
+                               id="comments"
+                               value="true" />
+                        Enable commenting.
+                    </label>
+                </div>
+                <div>
+                    <select class="form-control center-block"
+                            id="key"
+                            placeholder="Key"
+                            style="width: 10em">
+                        <option value='none' disabled selected>Key</option>
+                        <option value='space'>space</option>
+                        <option value='capslock'>capslock</option>
+                        <option value='escape'>escape</option>
+                        <option value='f1'>f1</option>
+                        <option value='f2'>f2</option>
+                        <option value='f3'>f3</option>
+                        <option value='f4'>f4</option>
+                        <option value='f5'>f5</option>
+                        <option value='f6'>f6</option>
+                        <option value='f7'>f7</option>
+                        <option value='f8'>f8</option>
+                        <option value='f9'>f9</option>
+                        <option value='f10'>f10</option>
+                        <option value='f11'>f11</option>
+                        <option value='f12'>f12</option>
+                        <option value='pause'>pause</option>
+                        <option value='`'>`</option>
+                        <option value='-'>-</option>
+                        <option value='='>=</option>
+                        <option value='backspace'>backspace</option>
+                        <option value='tab'>tab</option>
+                        <option value=']'>]</option>
+                        <option value='['>[</option>
+                        <option value='/'>/</option>
+                        <option value='semicolon'>semicolon</option>
+                        <option value="'">'</option>
+                        <option value='\'>\</option>
+                        <option value='shift'>shift</option>
+                        <option value='enter'>enter</option>
+                        <option value=','>,</option>
+                        <option value='ctrl'>ctrl</option>
+                        <option value='alt'>alt</option>
+                        <option value='1'>1</option>
+                        <option value='2'>2</option>
+                        <option value='3'>3</option>
+                        <option value='4'>4</option>
+                        <option value='5'>5</option>
+                        <option value='6'>6</option>
+                        <option value='7'>7</option>
+                        <option value='8'>8</option>
+                        <option value='9'>9</option>
+                        <option value='0'>0</option>
+                        <option value='a'>a</option>
+                        <option value='b'>b</option>
+                        <option value='c'>c</option>
+                        <option value='d'>d</option>
+                        <option value='e'>e</option>
+                        <option value='f'>f</option>
+                        <option value='g'>g</option>
+                        <option value='h'>h</option>
+                        <option value='i'>i</option>
+                        <option value='j'>j</option>
+                        <option value='k'>k</option>
+                        <option value='l'>l</option>
+                        <option value='m'>m</option>
+                        <option value='n'>n</option>
+                        <option value='o'>o</option>
+                        <option value='p'>p</option>
+                        <option value='q'>q</option>
+                        <option value='r'>r</option>
+                        <option value='s'>s</option>
+                        <option value='t'>t</option>
+                        <option value='u'>u</option>
+                        <option value='v'>v</option>
+                        <option value='w'>w</option>
+                        <option value='x'>x</option>
+                        <option value='y'>y</option>
+                        <option value='z'>z</option>
+                        <option value='uparrow'>uparrow</option>
+                        <option value='downarrow'>downarrow</option>
+                        <option value='rightarrow'>rightarrow</option>
+                        <option value='leftarrow'>leftarrow</option>
+                        <option value='ins'>ins</option>
+                        <option value='home'>home</option>
+                        <option value='pgup'>pgup</option>
+                        <option value='pgdn'>pgdn</option>
+                        <option value='del'>del</option>
+                        <option value='end'>end</option>
+                        <option value='mouse1'>mouse1</option>
+                        <option value='mouse2'>mouse2</option>
+                        <option value='mouse3'>mouse3</option>
+                        <option value='mouse4'>mouse4</option>
+                        <option value='mouse5'>mouse5</option>
+                        <option value='mwheelup'>mwheelup</option>
+                        <option value='mwheeldown'>mwheeldown</option>
+                        <option value='kp_end'>kp_end</option>
+                        <option value='kp_downarrow'>kp_downarrow</option>
+                        <option value='kp_pgdn'>kp_pgdn</option>
+                        <option value='kp_leftarrow'>kp_leftarrow</option>
+                        <option value='kp_5'>kp_5</option>
+                        <option value='kp_rightarrow'>kp_rightarrow</option>
+                        <option value='kp_home'>kp_home</option>
+                        <option value='kp_uparrow'>kp_uparrow</option>
+                        <option value='kp_pgup'>kp_pgup</option>
+                        <option value='kp_ins'>kp_ins</option>
+                        <option value='kp_plus'>kp_plus</option>
+                        <option value='kp_minus'>kp_minus</option>
+                        <option value='kp_minus'>kp_minus</option>
+                        <option value='kp_slash'>kp_slash</option>
+                        <option value='kp_del'>kp_del</option>
+                        <option value='*'>*</option>
+                        <option value='kp_enter'>kp_enter</option>
+                    </select>
+                </div>
+            <br />
+            <br />
+                <button class="btn btn-lg btn-primary btn-block" type="submit" onclick=submit()>Generate</button>
+           </div>
+        </div>
+     </div>	

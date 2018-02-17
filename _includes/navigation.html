@@ -8,21 +8,18 @@
     {% endif %}
 {% endfor %}
 
-{% for entry in site.data.rightnavigation %}
-{% capture fullurl %}{{ site.baseurl }}{{ entry.url }}{% endcapture %}
-    {% if fullurl == page.url %}
-        {% assign current_page = fullurl %}
-        {% break %}
-    {% elsif page.url contains fullurl %}
-        {% assign current_page = fullurl %}
-    {% endif %}
-{% endfor %}
-
 <nav class="navbar navbar-default" role="navigation">
 	<div class="container">
 			<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
 				<a class="navbar-brand" href="/"><i class="fa fa-cogs" aria-hidden="true"></i> CFG.TF</a>
 			</div>
+		<div id="navbar" class="navbar-collapse collapse">
 		<ul class="nav navbar-nav">
 		{% for entry in site.data.navigation %}
 			{% if entry.url == current_page %}
@@ -57,6 +54,9 @@
 		{% endfor %}		
 		
 		<ul class="nav navbar-nav navbar-right">
+				<li>
+					<button type="button" id="toggle-light" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Toggle day/night mode"><i class="fa fa-adjust"></i></button>
+				</li>
 		{% for entry in site.data.rightnavigation %}
 			{% if entry.url == current_page %}
 				{% assign current = ' class="active"' %}
@@ -79,5 +79,6 @@
 			{% endif %}
 		{% endfor %}
 		</ul>
+		</div>
 	</div>
 </nav>

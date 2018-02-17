@@ -251,7 +251,7 @@ jQuery(function($) {
 			if (iswhat === 'gfx')
 				zipbin(url, 'cfg/gfx.cfg');
 			if (iswhat === 'scripts')
-				zipbin(url, 'custom/runfasterpls/scripts/' + filename);
+				zipbin(url, 'custom/custom_scripts/scripts/' + filename);
 			if (iswhat === 'hitsound')
 				zipbin(url, 'custom/damage/sound/ui/hitsound.wav');
 			if (iswhat === 'killsound')

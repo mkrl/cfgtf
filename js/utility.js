@@ -1,5 +1,85 @@
 /* Various page processing stuff for CFG.tf
 http://cfg.tf */
+
+function setActiveStyleSheet(title) {
+  var i, a, main;
+  for(i=0; (a = document.getElementsByTagName("link")[i]); i++) {
+    if(a.getAttribute("rel").indexOf("style") != -1 && a.getAttribute("title")) {
+      a.disabled = true;
+      if(a.getAttribute("title") == title) a.disabled = false;
+    }
+  }
+}
+
+function getActiveStyleSheet() {
+  var i, a;
+  for(i=0; (a = document.getElementsByTagName("link")[i]); i++) {
+    if(a.getAttribute("rel").indexOf("style") != -1 && a.getAttribute("title") && !a.disabled) return a.getAttribute("title");
+  }
+  return null;
+}
+
+function getPreferredStyleSheet() {
+  var i, a;
+  for(i=0; (a = document.getElementsByTagName("link")[i]); i++) {
+    if(a.getAttribute("rel").indexOf("style") != -1
+       && a.getAttribute("rel").indexOf("alt") == -1
+       && a.getAttribute("title")
+       ) return a.getAttribute("title");
+  }
+  return null;
+}
+
+function createCookie(name,value,days) {
+  if (days) {
+    var date = new Date();
+    date.setTime(date.getTime()+(days*24*60*60*1000));
+    var expires = "; expires="+date.toGMTString();
+  }
+  else expires = "";
+  document.cookie = name+"="+value+expires+"; path=/";
+}
+
+function readCookie(name) {
+  var nameEQ = name + "=";
+  var ca = document.cookie.split(';');
+  for(var i=0;i < ca.length;i++) {
+    var c = ca[i];
+    while (c.charAt(0)==' ') c = c.substring(1,c.length);
+    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+  }
+  return null;
+}
+
+window.onload = function(e) {
+  var cookie = readCookie("style");
+  var title = cookie ? cookie : getPreferredStyleSheet();
+  setActiveStyleSheet(title);
+}
+
+window.onunload = function(e) {
+  var title = getActiveStyleSheet();
+  createCookie("style", title, 365);
+}
+
+var cookie = readCookie("style");
+var title = cookie ? cookie : getPreferredStyleSheet();
+setActiveStyleSheet(title);
+
+
+
+function switch_style() {
+	if (readCookie("style") == "night"){
+		setActiveStyleSheet("day");
+		var title = getActiveStyleSheet();
+		createCookie("style", title, 365);
+	} else {
+		setActiveStyleSheet("night");
+		var title = getActiveStyleSheet();
+		createCookie("style", title, 365);		
+	}
+}
+
 function updateConnect() {
     var srvaddr = document.getElementById("ip").value;;
     var srvpass = document.getElementById("sv_password").value;;
@@ -217,9 +297,15 @@ function printcommandline() {
 $(document).ready(function() {
     $('[data-toggle="tooltip"]').tooltip(); //tooltips
 		$( "#version" ).load( "./version.txt" );
+		
+	$("#toggle-light").click(function() { //daynight button
+		  switch_style();return false;		  
+	  });		
+
 });
 
-$(window).on('load', function(){ // global smooth loader transition
+$(window).on('load', function(){
+	// global smooth loader transition
 	$('#overlay #loading_logo').addClass('fast'); // speed up spin when we've finished loading
 	$('#overlay').fadeOut(600);
 	setTimeout( function() {
@@ -235,4 +321,7 @@ $(window).on('load', function(){ // global smooth loader transition
 		setTimeout(function() {$('#overlay').fadeOut()}, 2500); // this is so the overlay isnt visible and blocking the screen when the user clicks back in their browser.
 		return false; // unfortunately the overlay can fade back in if the user takes too long to get a response from the next page but they probably have bigger problems than janky loading animations
 	});
+	
+		
+	
 });

@@ -7,25 +7,6 @@
 
     {% include header.html %}
 	
-	<script>
-	$(window).on('load', function(){ // global smooth loader transition
-	$('#overlay #loading_logo').addClass('fast'); // speed up spin when we've finished loading
-	$('#overlay').fadeOut(600);
-	setTimeout( function() {
-		$('#overlay #loading_logo').removeClass('fast');// after its hidden, replace fast spin with really slow spin. this slow spin is what fades back in before we change nav pages
-		$('#overlay #loading_logo').addClass('idle');  // the next page's regular spin makes it seem like the previous slow spinner speeds up when it starts loading, masking the jitteryness of page navigation a bit
-	}, 1000);
-
-	$("nav a").not( "nav .dropdown-toggle" ).click( function(){
-		var href = $(this).attr('href');
-
-		$('#overlay').fadeIn(200); // quick fade back in
-		setTimeout(function() {window.location = href}, 250); // change location after a tiny delay so the fadein plays out
-		setTimeout(function() {$('#overlay').fadeOut()}, 2500); // this is so the overlay isnt visible and blocking the screen when the user clicks back in their browser.
-		return false; // unfortunately the overlay can fade back in if the user takes too long to get a response from the next page but they probably have bigger problems than janky loading animations
-	});
-});
-	</script>
 	{% assign loader = site.data.loaders[page.loader] %}
 	<div class="jumbotron" id="overlay">
 		<div id="overlay_middle">
@@ -42,11 +23,10 @@
 
 		{% include navigation.html %}
 
-    <main class="page-content" aria-label="Content">
-      <div class="container">
+      <div id="wrapper" class="container">
         {{ content }}
       </div>
-    </main>
+
 
     {% include footer.html %}
 

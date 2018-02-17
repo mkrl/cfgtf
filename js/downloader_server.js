@@ -527,7 +527,7 @@ jQuery(function($) {
 					updatePercent(metadata.percent | 0);
 				})
 					.then(function(blob){
-						saveAs(blob, 'config.zip')
+						saveAs(blob, 'server_config.zip')
 						showMessage('Done! Extract this archive to your /tf folder.');
 					}, function(e) {
 					showError(e);
