@@ -1,0 +1,11 @@
+# Right navigation for the site
+
+- title: FAQ
+  url: /faq/
+
+- title: About
+  url: /about/
+
+- title: Blog
+  url: /blog/
+

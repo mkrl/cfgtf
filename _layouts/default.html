@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+  {% include head.html %}
+
+  <body>
+
+    {% include header.html %}
+	
+	<script>
+	$(window).on('load', function(){ // global smooth loader transition
+	$('#overlay #loading_logo').addClass('fast'); // speed up spin when we've finished loading
+	$('#overlay').fadeOut(600);
+	setTimeout( function() {
+		$('#overlay #loading_logo').removeClass('fast');// after its hidden, replace fast spin with really slow spin. this slow spin is what fades back in before we change nav pages
+		$('#overlay #loading_logo').addClass('idle');  // the next page's regular spin makes it seem like the previous slow spinner speeds up when it starts loading, masking the jitteryness of page navigation a bit
+	}, 1000);
+
+	$("nav a").not( "nav .dropdown-toggle" ).click( function(){
+		var href = $(this).attr('href');
+
+		$('#overlay').fadeIn(200); // quick fade back in
+		setTimeout(function() {window.location = href}, 250); // change location after a tiny delay so the fadein plays out
+		setTimeout(function() {$('#overlay').fadeOut()}, 2500); // this is so the overlay isnt visible and blocking the screen when the user clicks back in their browser.
+		return false; // unfortunately the overlay can fade back in if the user takes too long to get a response from the next page but they probably have bigger problems than janky loading animations
+	});
+});
+	</script>
+	<div class="jumbotron" id="overlay">
+		<div id="overlay_middle">
+			<div id="overlay_inner">
+				<div id="loading_logo">
+					<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 464 462.9">
+						<path fill="#000" d="M213 19.2A213 213 0 0 0 19.7 212H160a74.4 74.4 0 0 1 53-52.6V19.2zm38 0v140.4a74.4 74.4 0 0 1 52.4 52.3h140.4A213 213 0 0 0 251 19zM19.5 250A213 213 0 0 0 213 443.4V303.2a74.4 74.4 0 0 1-53.3-53.3H19.5zm284 0a74.4 74.4 0 0 1-52.5 53v140.4A213 213 0 0 0 443.8 250H303.6z"/>
+					</svg>
+				</div>
+				<noscript><style>#overlay { display: none; }</style></noscript>
+			</div>
+			</div>
+		</div>
+
+		{% include navigation.html %}
+
+    <main class="page-content" aria-label="Content">
+      <div class="container">
+        {{ content }}
+      </div>
+    </main>
+
+    {% include footer.html %}
+
+  </body>
+
+</html>

@@ -1,0 +1,130 @@
+<!-- <nav class="navbar navbar-default" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="https://cfg.tf"><i class="fa fa-cogs" aria-hidden="true"></i> CFG.TF</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li>
+					<a href="https://cfg.tf/make">Generate</a>
+				</li>
+				<li>
+					<a href="https://cfg.tf/server">Server config</a>
+				</li>
+				<li class="dropdown">
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Articles<span class="caret"></span></a>
+				  <ul class="dropdown-menu" role="menu">
+					<li><a href="https://cfg.tf/read/interp">Networking in Source games</a></li>
+					<li><a href="https://cfg.tf/read/health">Health care</a></li>
+					<li><a href="https://cfg.tf/read/health">Set up a TF2 server</a></li>
+					<li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=154435696" target="_blank"><i class="fa fa-external-link"></i>  Scripting guide</a></li>
+				  </ul>
+				</li>
+				<li>
+					<a href="https://cfg.tf/configs">Configs</a>
+				</li>
+				<li class="dropdown">
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Tools<span class="caret"></span></a>
+				<ul class="dropdown-menu" role="menu">
+					<li><a href="https://cfg.tf/tools/bindgen">Bind rotation generator</a></li>
+					<li><a href="https://cfg.tf/tools/asci">ASCI art maker</a></li>
+				  </ul>
+				  </li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<a href="https://cfg.tf/faq/">FAQ</a>
+				</li>
+				<li>
+					<a href="https://cfg.tf/about/">About</a>
+				</li>
+				<li class="active">
+					<a href="https://blog.cfg.tf">Blog</a>
+				</li>
+			</ul>
+		</div>
+</nav>
+ -->
+
+{% for entry in site.data.navigation %}
+{% capture fullurl %}{{ site.baseurl }}{{ entry.url }}{% endcapture %}
+    {% if fullurl == page.url %}
+        {% assign current_page = fullurl %}
+        {% break %}
+    {% elsif page.url contains fullurl %}
+        {% assign current_page = fullurl %}
+    {% endif %}
+{% endfor %}
+
+{% for entry in site.data.rightnavigation %}
+{% capture fullurl %}{{ site.baseurl }}{{ entry.url }}{% endcapture %}
+    {% if fullurl == page.url %}
+        {% assign current_page = fullurl %}
+        {% break %}
+    {% elsif page.url contains fullurl %}
+        {% assign current_page = fullurl %}
+    {% endif %}
+{% endfor %}
+
+<nav class="navbar navbar-default" role="navigation">
+	<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/"><i class="fa fa-cogs" aria-hidden="true"></i> CFG.TF</a>
+			</div>
+		<ul class="nav navbar-nav">
+		{% for entry in site.data.navigation %}
+			{% if entry.url == current_page %}
+				{% assign current = ' class="active"' %}
+			{% else %}
+				{% assign current = null %}
+			{% endif %}
+			{% assign sublinks = entry.sublinks %}
+			{% if sublinks %}
+			<li{{ current }} class="dropdown">
+				<a href="{{ site.baseurl }}{{ entry.url }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ entry.title }}<span class="caret"></span></a>
+				<ul class="dropdown-menu" role="menu">
+					{% for sublink in sublinks %}
+					<li><a href="{{ site.baseurl }}{{ sublink.url }}">{{ sublink.title }}</a></li>
+					{% endfor %}
+				</ul>
+			</li>
+			{% else %}
+			<li{{ current }}><a href="{{ site.baseurl }}{{ entry.url }}">{{ entry.title }}</a></li>
+			{% endif %}
+		{% endfor %}
+		</ul>
+
+		{% for entry in site.data.rightnavigation %}
+		{% capture fullurl %}{{ site.baseurl }}{{ entry.url }}{% endcapture %}
+			{% if fullurl == page.url %}
+				{% assign current_page = fullurl %}
+				{% break %}
+			{% elsif page.url contains fullurl %}
+				{% assign current_page = fullurl %}
+			{% endif %}
+		{% endfor %}		
+		
+		<ul class="nav navbar-nav navbar-right">
+		{% for entry in site.data.rightnavigation %}
+			{% if entry.url == current_page %}
+				{% assign current = ' class="active"' %}
+			{% else %}
+				<!-- We have to declare it 'null' to ensure it doesn't propagate. -->
+				{% assign current = null %}
+			{% endif %}
+			{% assign sublinks = entry.sublinks %}
+			{% if sublinks %}
+			<li{{ current }} class="dropdown">
+				<a href="{{ site.baseurl }}{{ entry.url }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ entry.title }}<span class="caret"></span></a>
+				<ul class="dropdown-menu" role="menu">
+					{% for sublink in sublinks %}
+					<li><a href="{{ site.baseurl }}{{ sublink.url }}">{{ sublink.title }}</a></li>
+					{% endfor %}
+				</ul>
+			</li>
+			{% else %}
+			<li{{ current }}><a href="{{ site.baseurl }}{{ entry.url }}">{{ entry.title }}</a></li>
+			{% endif %}
+		{% endfor %}
+		</ul>
+	</div>
+</nav>
