@@ -3,6 +3,7 @@ layout: post
 title:  "Crosshair generator and more stuff"
 date:   2018-02-18 02:00:22 +0800
 categories: update
+loader: darkblue
 ---
 
 Ever wanted to have a specific crosshair for every weapon? Here is your chance.

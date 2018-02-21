@@ -3,6 +3,7 @@ layout: post
 title:  "Class-specific settings and more"
 date:   2017-04-29 16:48:22 +0800
 categories: update
+loader: darkblue
 ---
 
 Yet another update has been released.

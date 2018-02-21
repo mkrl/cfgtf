@@ -235,6 +235,12 @@
       "<a href=https://www.twitch.tv/thatguytagg>Twitch</a>"
     ],
     [
+      "smzi",
+      "<a href=./smzi.zip>Download</a>",
+      "<a href=https://www.youtube.com/user/XSamy91X>YouTube</a>",
+      "-"
+    ],
+    [
       "elmo",
       "<a href=./elmo.zip>Download</a>",
       "",

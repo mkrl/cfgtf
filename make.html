@@ -16,7 +16,7 @@ custom_js:
 ---
 
 		<div class="row content">
-			<h1>TF2 custom config generator <small><span id="version"><!-- ./version.txt --></span></small></h1>
+			<h1 class="page-header">TF2 custom config generator <small><span id="version"><!-- ./version.txt --></span></small></h1>
 
       <div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><i class="fa fa-exclamation-circle" aria-hidden="true"></i> This tool will overwrite all of your binds. It is recommended to be installed on a blank <abbr title="Team Fortress 2" class="initialism">TF2</abbr>, without any prior configs installed. Please make a backup of your <abbr title="Config" class="initialism">CFG</abbr> and custom folders before using this if you want to save your old binds. You can wipe your configs by clearing your custom and cfg folders and launching <abbr title="Team Fortress 2" class="initialism">TF2</abbr> with -autoconfig launch option. </div>
 
@@ -26,6 +26,7 @@ custom_js:
 				<ul class="nav nav-tabs">
 				  <li class="active"><a href="#graphics" data-toggle="tab">Graphics</a></li>
 				  <li><a href="#keys" data-toggle="tab">Binds</a></li>
+				  <li><a href="#adoptions" data-toggle="tab">Advanced options</a></li>				  
 				  <li><a href="#cfgs" data-toggle="tab">Configs</a></li>
 				  <li><a href="#files" data-toggle="tab">Custom files</a></li>
 				  <li><a href="#viewmod" data-toggle="tab">Viewmodels</a></li>
@@ -1920,6 +1921,95 @@ custom_js:
   </div>
 </div>
 
+
+  <div class="tab-pane fade" id="adoptions">
+		<!--   ADVANCED OPTIONS  -->
+			<h3>TF2 advanced options</h3>
+			<p class="text-muted">The options below are set to default recommended for confortable gameplay. Please note that if you will change those options in game later, they will reset on TF2 restart.</p>
+ 
+		 <ul class="checkbox list-unstyled">
+					<li>
+						<label>
+						  <input type="checkbox" name="advoptions" data-name="hud_fastswitch" data-url="" checked />
+						  Fast weapon switch <a href="#" data-toggle="tooltip" title="If set, you can change weapons without using the weapon selection menu." ><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+						</label>
+					</li>
+					<li>
+						<label>
+						  <input type="checkbox" name="advoptions" data-name="cl_autoreload" data-url="" checked />
+						  Automatically reload weapons when you're not firing
+						</label>
+					</li>
+					<li>
+						<label>
+						  <input type="checkbox" name="advoptions" data-name="tf_colorblindassist" data-url=""/>
+						  Colorblind mode <a href="#" data-toggle="tooltip" title="If set, several in-game effects that are harder for colorblind players to see will use alternate, more visible effects." ><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+						</label>
+					</li>
+					<li>
+						<label>
+						  <input type="checkbox" name="advoptions" data-name="cl_use_tournament_specgui" data-url="" />
+						  Use advanced spectator HUD in tournament mode <a href="#" data-toggle="tooltip" title="The advanced spectator HUD is used in tournament mode only, and is designed to show you more information in 6 v 6 matches." ><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+						</label>
+					</li>
+					<li>
+						<label>
+						  <input type="checkbox" name="advoptions" data-name="cl_hud_playerclass_use_playermodel" data-url="" checked />
+						  Use player model in player class HUD <a href="#" data-toggle="tooltip" title="If set, the player class HUD will use player model in player class HUD will use player's model instead image." ><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+						</label>
+					</li>
+					<li>
+						<label>
+						  <input type="checkbox" name="advoptions" data-name="cl_disablehtmlmotd" data-url="" />
+						  Disable HTML MOTDs <a href="#" data-toggle="tooltip" title="If set, you won't be shown HTML versions of server's message of the day welcome screens. This includes ads on community servers and ingame logs on servers that have Logs.tf support."  ><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+						</label>
+					</li>
+					<li>
+						<label>
+						  <input type="checkbox" name="advoptions" data-name="hud_classautokill" data-url="" checked />
+						  Suicide after choosing a player class <a href="#" data-toggle="tooltip" title="If set, then you'll immediately kill yourself whenever you change your class while out in the field. If unset, you'll change to your new class the next time you respawn."  ><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+						</label>
+					</li>			
+					<li>
+						<label>
+						  <input type="checkbox" name="advoptions" data-name="tf_medigun_autoheal" data-url="" checked />
+						  Medic: Medi Gun autoheal <a href="#" data-toggle="tooltip" title="If set, your Medic's Medi Gun will stay locked onto your heal target until you press the fire button again. If unset, you'll be required to hold the button down to keep the Medi Gun locked on." ><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+						</label>
+					</li>			
+					<li>
+						<label>
+						  <input type="checkbox" name="advoptions" data-name="hud_medichealtargetmarker" data-url="" />
+						  Medic: Display a marker over the player you are healing <a href="#" data-toggle="tooltip" title="If set, a marker will be displayed above the friendly target that you're currently healing with your Medi Gun." ><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+						</label>
+					</li>			
+					<li>
+						<label>
+						  <input type="checkbox" name="advoptions" data-name="tf_simple_disguise_menu" data-url="" />
+						  Spy: Enable concise disguise menu <a href="#" data-toggle="tooltip" title="The concise disguise menu for the Spy is an alternate menu that requires more keypresses in the disguising process, but only uses the number keys 1 through 4."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+						</label>
+					</li>			
+					<li>
+						<label>
+						  <input type="checkbox" name="advoptions" data-name="cl_autorezoom" data-url="" checked />
+						  Sniper: Sniper Rifle will re-zoom after firing a zoomed shot <a href="#" data-toggle="tooltip" title="If set, the Sniper's Sniper Rifle will automatically zoom back in after it reloads, if you were zoomed in when you shot."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+						</label>
+					</li>	
+					<li>
+						<label>
+						  <input type="checkbox" name="advoptions" data-name="tf_sniper_fullcharge_bell" data-url="" checked />
+						  Sniper: Play a sound when the Sniper Rifle is fully charged
+						</label>
+					</li>
+					<li>
+						<label>
+						  <input type="checkbox" name="advoptions" data-name="tf_hud_no_crosshair_on_scope_zoom" data-url="" />
+						  Sniper: Hide crosshair when zoomed in <a href="#" data-toggle="tooltip" title="If set, when zoomed in with any Sniper rifles, the default and custom crosshairs will automatically disappear leaving only the rifle targeting laser."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
+						</label>
+					</li>
+					
+			  </ul>
+			<hr>
+	</div>
 
   <div class="tab-pane fade" id="cfgs">
 		<!--   TWEAK CFGS  -->
@@ -4445,8 +4535,6 @@ custom_js:
 		</script>
 		<h3>Custom hitsounds and killsounds <a data-toggle="tooltip" title="Toggle sound autoplaying on selection" href="javascript:;" id="killsound_muter" class="sound_muted"><i class="fa fa-volume-off" aria-hidden="true"></i></a></h3>
 		<p>There are already a few hitsounds that you can select from in the "Advanced Options" in-game menu. Optionally, you can select a custom hit/killsound (or choose none here and use your own one).</p>
-		<p class="alert alert-warning"><i class="fa fa-firefox" aria-hidden="true"></i> Mozilla Firefox users currently can not select custom hit/kill sounds, this will prevent config from being generated. Sorry, we're working on it right now.</p>
-		<p class="alert alert-warning" id="killsound_muter_warn" style="display:none;"><i class="fa fa-volume-up" aria-hidden="true"></i> Sound will automatically play on selection.</p>
 		<ul class="checkbox list-unstyled">
 			<li>
 	      <label class="form-inline">

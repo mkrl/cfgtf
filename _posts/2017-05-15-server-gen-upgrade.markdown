@@ -3,6 +3,7 @@ layout: post
 title:  "Server generator upgrade and more stuff"
 date:   2017-05-15 15:05:22 +0800
 categories: update
+loader: darkblue
 ---
 Ever dreamed of almost ready server out of the box? Or maybe you always wanted to know how good your TF2 will look like if you install one of our configs?
 Here is an update, crafted just for you by 200 and xiyzzc.
