@@ -36,7 +36,7 @@ Need some help? See the FAQ first - now with 100% more navigation!
 ### Bounce checker is back
 
 Some of you may have used the "hidden" section of the site - [Bounce Checker by Tyrael](https://jump.tf/forum/index.php?topic=1394.0) (huge props for making this!). It has now [returned back](https://cfg.tf/angle) at the old URL with a new theme and night mode support.
-Use our short url, there is no longer need to search for the file on your PC or search of it on forums!
+Use our short url, there is no longer need to search for the file on your PC or search it on forums!
 
 ### Minor and major site improvements:
 
