@@ -30,7 +30,7 @@ This application is using Jekyll as a static site engine. The usage and build pr
 Core application components:
 
 - Layouts and style templates
-  - The `_layouts` folder has the basic layouts that wrap around static pages located in the root folder. Usually remain unchanged.
+  - The `_layouts` folder has the basic layouts that wrap around static pages located in the root folder. Usually remains unchanged.
   - `css` folder. Self-explanatory. Please do not modify vendor files like `bootstrap.scss` or `_bootswatch.css`, they are being served from CDN anyway. Make your changes in `main.css` instead.
   - Posts folder that should not be touched by anyone but the project maintainer.
 - The "backend" part - `js` folder.
@@ -38,7 +38,7 @@ Core application components:
   - `utility.js` is a file that is being loaded on every page of the site. It maintains cookies, loaders, showing/hiding forms depending on a certain condition, lazy loading, updating dxlevel/connect string/etc.
 - Images folder. Please try to keep images for new features in a separate folder instead of root of `/img/`. For new configs - see the benchmarking screenshot instructions. All the config screenshots should be held in `cfg` folder.
 - Site section directories. Each service or generator provided by the site contains the HTML itself (in the project root folder) and generator/service files located in the subfolders with corresponding names. For articles it is `/read/[article]`, for tools it is `/tools/[name]`, etc. Please keep all the static files like cfgs or specific assets within their folders.
-- `_data` folder that has variables and site navigation partials. If you are adding a new feature - don't forget it add it to the navigation file.
+- `_data` folder that has variables and site navigation partials. If you are adding a new feature - don't forget it add it to the navigation file. Each part of the site is using a page loader of its' own color stated in the page front matters. They are defiled in `loaders.yml`.
 
 ## How it (usually) works 
 
