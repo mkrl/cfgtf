@@ -244,7 +244,7 @@
       "Sonikro",
       "<a href=./Sonikro.zip>Download</a>",
       "<a href=https://www.youtube.com/channel/UCITOGGARMgcZEG_bzXuBNlw>YouTube</a>",
-      "-"
+      "<a href=https://twitch.tv/sonikroz>Twitch</a>"
     ],
     [
       "elmo",
