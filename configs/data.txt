@@ -241,6 +241,12 @@
       "-"
     ],
     [
+      "Sonikro",
+      "<a href=./Sonikro.zip>Download</a>",
+      "<a href=https://www.youtube.com/channel/UCITOGGARMgcZEG_bzXuBNlw>YouTube</a>",
+      "-"
+    ],
+    [
       "elmo",
       "<a href=./elmo.zip>Download</a>",
       "",
