@@ -151,8 +151,8 @@ jQuery(function($) {
 		var cl_autorezoom = $('input[data-name="cl_autorezoom"]').is(':checked');
 		var tf_sniper_fullcharge_bell = $('input[data-name="tf_sniper_fullcharge_bell"]').is(':checked');
 		var tf_hud_no_crosshair_on_scope_zoom = $('input[data-name="tf_hud_no_crosshair_on_scope_zoom"]').is(':checked');
-		
-		
+
+
 		//viewmodel settings
 		var drawviewmodel = $('#modeltoggle').is(':checked');
 		var minmodel = $('#minmodtoggle').is(':checked');
@@ -442,6 +442,11 @@ jQuery(function($) {
 			var custom = [
 				'//tweaks and custom settings',
 				'//Made with cfg.tf - custom Team Fortress 2 config generator',
+				'',
+				'exec gfx',
+				'exec binds',
+				'exec settings',
+				'exec network',
 				surround('\n', customs, '///---\n')+
 				surround('\n', bindings, '\n///---\n'),
 				'//shameless promotion',
@@ -456,11 +461,9 @@ jQuery(function($) {
 		var autoexec = [
 			'//autoexec',
 			'//Made with cfg.tf - custom Team Fortress 2 config generator',
+			'//autoexec for compatbility with mastercomfig',
+			'//Look in custom.cfg for the actual autoexec, do not modify this file',
 			'',
-			'exec gfx',
-			'exec binds',
-			'exec settings',
-			'exec network',
 			'exec custom'
 		].join('\n');
 		var settings = [
@@ -510,7 +513,7 @@ jQuery(function($) {
 			'',
 			'tf_remember_activeweapon 1',
 			'tf_remember_lastswitched 1',
-			'm_rawinput 1',			
+			'm_rawinput 1',
 			'///---',
 			surround('\n', [
 				ds_mode !== 0 ? 'ds_enable '+ds_mode+'\n' : '',
