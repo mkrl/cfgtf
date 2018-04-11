@@ -1,0 +1,124 @@
+---
+layout: default
+title: Bounce checker, angled bounce calculator
+loader: red
+permalink: /angle/
+---
+
+	<script type="text/javascript">
+		/* START USER CONFIG */
+		
+		// Edit these options to set default on load checked options
+		
+			// Check angles by default, 0 = Off, 1 = On
+			var u_check_angles = 1;
+			
+				// What type of start for angle checking, 0 = Uncrouched, 1 = Crouched
+				var u_start_type = 0;
+				
+				// What type of land for angle checking, 0 = Uncrouched, 1 = Crouched
+				var u_land_type = 0;
+		
+		
+			// Rocket launcher type, 0 = Stock, 1 = Original
+			var u_rocket_launcher_type = 0;
+			
+			// Check special starts by default, 0 = Off, 1 = On
+			var u_check_special_start = 1;
+		
+		/* END USER CONFIG */
+	</script>
+	
+	<!---
+	
+		Original sourcemod plugin by nolem 
+		http://tf2rj.com/forum/index.php?topic=1374
+		
+		http://jump.tf/
+		
+	--->
+
+		<div class="header clearfix">
+			<h3 class="text-muted page-header">Bounce Checker</h3>
+		</div>
+			<div class="row">
+				<div class="col-md-4 text-left">
+					<a href="http://tf2rj.com/forum/index.php?topic=1374">Sourcemod plugin by nolem</a>
+				</div>
+				<div class="col-md-4 text-center">
+					1.1.9
+				</div>
+				<div class="col-md-4 text-right">
+					Created by Tyrael
+				</div>
+			</div>
+		<div class="jumbotron">
+		
+			<form class="form-inline">
+
+				<div class="row">
+					<div class="col-md-1"></div>
+					<div class="col-md-10">
+						
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Enter height..." size="35" maxlength="5" id="txt_height" data-toggle="tooltip" title="Distance to the platform to bounce on" onkeypress="checkEnterPress(event);">
+							<span class="input-group-btn" style="width:0px;"></span>
+							<input type="text" class="form-control" placeholder="60.00" size="1" maxlength="5" style="margin-left:-1px"  id="txt_nearestAngle" data-toggle="tooltip" title="Angle to start searching from" onkeypress="checkEnterPress(event);">
+							<span class="input-group-btn">
+								<button class="btn btn-primary" type="button" name="btn_findBounce" onclick='m()'>Find Bounces</button>
+								<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="sr-only"></span> <span class="caret"></span></button>
+								<ul class="dropdown-menu">
+								  <li><a href="#" class="small" tabIndex="-1" onclick="toggle_chkBox('chk_angleCheck');"><input type="checkbox" id="chk_angleCheck" value="CheckAngles" onclick="toggle_chkBox('chk_angleCheck');" checked>&nbsp;Check Angles</a></li>
+								  <li role="separator" class="divider"></li>
+								  <li><a href="#" class="small" tabIndex="-1" onclick="document.getElementById('rad_startUn').checked = true;"><input id="rad_startUn" type="radio" name="rad_start" checked>&nbsp;Start Uncrouched</a></li>
+								  <li><a href="#" class="small" tabIndex="-1" onclick="document.getElementById('rad_startC').checked = true;"><input id="rad_startC" type="radio" name="rad_start">&nbsp;Start Crouched</a></li>
+								  <li role="separator" class="divider"></li>
+								  <li><a href="#" class="small" tabIndex="-1" onclick="document.getElementById('rad_landUn').checked = true;"><input id="rad_landUn" type="radio" name="rad_land" checked>&nbsp;Land Uncrouched</a></li>
+								  <li><a href="#" class="small" tabIndex="-1" onclick="document.getElementById('rad_landC').checked = true;"><input id="rad_landC" type="radio" name="rad_land">&nbsp;Land Crouched</a></li>
+								  <li role="separator" class="divider"></li>
+								  <li><a href="#" class="small" tabIndex="-1" onclick="document.getElementById('rad_stock').checked = true;"><input id="rad_stock" type="radio" name="rad_RL" checked>&nbsp;Stock</a></li>
+								  <li><a href="#" class="small" tabIndex="-1" onclick="document.getElementById('rad_original').checked = true;"><input id="rad_original" type="radio" name="rad_RL">&nbsp;Original</a></li>
+								  <li><a href="#" class="small" tabIndex="-1" onclick="document.getElementById('rad_cowmangler').checked = true;"><input id="rad_cowmangler" type="radio" name="rad_RL">&nbsp;Cow Mangler</a></li>
+								  <li role="separator" class="divider"></li>
+								  <li><a href="#" class="small" tabIndex="-1" onclick="toggle_chkBox('chk_specialCheck');"><input class="checkbox" type="checkbox" id="chk_specialCheck" value="CheckSpecial" onclick="toggle_chkBox('chk_specialCheck');" checked>&nbsp;Check Special</a></li>
+								</ul>
+							</span>
+						</div>
+					</div>
+					<div class="col-md-1"></div>
+				</div>
+				
+			</form>	
+			
+			<p>
+				<div id="bounceInfo"></div>
+			</p>
+			
+			<hr>
+		
+			<p>
+				<div id="bounceResults"></div>
+				<div id="bounceTips"></div>
+			</p>
+		
+
+			<hr id="hrID_midway" style="display: none;">
+			
+			<div id="divID_specialTitle" style="display: none"><h4>Special Start</h4></div>
+			<div id="divID_specialBounce"></div>
+		
+		</div>
+
+
+
+
+
+	<script type="text/javascript">
+		/* Default loading stuff */
+		0==u_check_angles&&(document.getElementById("chk_angleCheck").checked=!1),1==u_start_type&&(document.getElementById("rad_startC").checked=!0),1==u_land_type&&(document.getElementById("rad_landC").checked=!0),1==u_rocket_launcher_type&&(document.getElementById("rad_original").checked=!0),0==u_check_special_start&&(document.getElementById("chk_specialCheck").checked=!1);
+	</script>
+	<script type="text/javascript">
+		/* Bounce stuff */
+		function checkBounce(t,e,o,a){"undefined"==typeof a&&(a="UNCROUCHED");var c=.18,r=0,l=0,n=t;for("CROUCHED"==a&&(n+=20),r=0==o?.18:.09+o/tickRate;n+50>e;)if(r-=c,-52.5>=r&&(r=-52.5),n+=r,1.98>n-e&&n-e>.99){l=1;break}return l}function calculateAngle(t,e,o,a,c){"undefined"==typeof e&&(e=60),"undefined"==typeof o&&(o="STOCK"),"undefined"==typeof a&&(a="UNCROUCHED"),"undefined"==typeof c&&(c="UNCROUCHED");var r=[0,0],l=0,n=1,h=.01;if(45>e||e>89)var w=45;else var w=e;for(;!l;){var _=calculateVel(w,o,a),k=_-12,u=(_+k)/2/tickRate;if("CROUCHED"==a&&(u-=20),checkBounce(u,t,k,c)){for(l=1,r[0]=w;n;){var i=calculateVel(w+h,o,a),p=i-12,g=(i+p)/2/tickRate;if("CROUCHED"==a&&(g-=20),!checkBounce(g,t,p,c)){n=0;break}r[1]=h,h+=.01}break}if(w+=.01,w>89)return[0,0]}return r}function calculateVel(t,e,o){if("STOCK"==e){if("UNCROUCHED"==o){var a=1118.8069518073094*Math.pow(t,0)+-94.47008294157256*Math.pow(t,1)+3.1437606011469272*Math.pow(t,2)+-.040376921140145704*Math.pow(t,3)+933112021180493e-20*Math.pow(t,4)+6472726948105672e-21*Math.pow(t,5)+-1.1651051659014418e-7*Math.pow(t,6)+1.257127794791198e-9*Math.pow(t,7)+-3.0365381334551026e-13*Math.pow(t,8)+-1.2132718662137765e-13*Math.pow(t,9)+-1.246487986917867e-15*Math.pow(t,10)+5.148127561319571e-17*Math.pow(t,11)+-4.587546899496485e-19*Math.pow(t,12)+1.3577824485845547e-21*Math.pow(t,13);return a}if("CROUCHED"==o){var a=-52.02712752177098*Math.pow(t,0)+3.0733029008180797*Math.pow(t,1)+.23908124362736322*Math.pow(t,2)+-.004347839298972804*Math.pow(t,3)+18765632022340585e-21*Math.pow(t,4)+6.176616028334595e-7*Math.pow(t,5)+-1.022630957266033e-8*Math.pow(t,6)+-3.973352367967372e-11*Math.pow(t,7)+2.9326047398834415e-12*Math.pow(t,8)+-2.857698047715629e-14*Math.pow(t,9)+-1.7276688436622473e-16*Math.pow(t,10)+5.833583134272185e-18*Math.pow(t,11)+-4.601858248187508e-20*Math.pow(t,12)+1.2674957409912882e-22*Math.pow(t,13);return a}}else if("ORIGINAL"==e){if("UNCROUCHED"==o){var a=-238.4516790464279*Math.pow(t,0)+11.061405198114741*Math.pow(t,1)+.20950128858174955*Math.pow(t,2)+-.012519137714164899*Math.pow(t,3)+.00022025450144075494*Math.pow(t,4)+-193261391802489e-20*Math.pow(t,5)+3.74354756388671e-8*Math.pow(t,6)+-6.305866180539925e-10*Math.pow(t,7)+-1.626777736287909e-12*Math.pow(t,8)+8.39569952772584e-14*Math.pow(t,9)+1.3864770303276377e-15*Math.pow(t,10)+-4.2611643493827815e-17*Math.pow(t,11)+3.534153366446905e-19*Math.pow(t,12)+-1.0075343975770242e-21*Math.pow(t,13);return a}if("CROUCHED"==o){var a=-60.6454353504548*Math.pow(t,0)+4.717672195276394*Math.pow(t,1)+.12846611744133046*Math.pow(t,2)+-.0008727036210824297*Math.pow(t,3)+-19722592749818588e-21*Math.pow(t,4)+1.4099345988711197e-7*Math.pow(t,5)+6.3019443428803775e-9*Math.pow(t,6)+-7.22483309880686e-11*Math.pow(t,7)+-6.827130947140813e-13*Math.pow(t,8)+1.0354962041869418e-14*Math.pow(t,9)+6.810909281422954e-17*Math.pow(t,10)+-1.5773944858723984e-18*Math.pow(t,11)+7.695830237644726e-21*Math.pow(t,12)+-9.243958107824609e-24*Math.pow(t,13);return a}}}function findSpecialBounce(t,e,o){"undefined"==typeof o&&(o="UNCROUCHED");var a=bounceSpecialVel[e].vel,c=a-12,r=(a+c)/2/tickRate;return-1===e.indexOf("uncrouch")&&(r-=20),checkBounce(r,t,c,o)}var tickRate=66.666666,bounceSpecialVel={stock_uncrouch_stand:{RL_type:"stock",text:"(Stock) Uncrouch Stand",vel:416.319183},stock_uncrouch_walk_right:{RL_type:"stock",text:"(Stock) Uncrouch Walk Right",vel:445.528625},stock_uncrouch_walk_left:{RL_type:"stock",text:"(Stock) Uncrouch Walk Left",vel:371.735992},stock_uncrouch_walk_forward:{RL_type:"stock",text:"(Stock) Uncrouch Walk Forward",vel:395.333892},stock_uncrouch_walk_backward:{RL_type:"stock",text:"(Stock) Uncrouch Walk Backward",vel:407.484252},stock_crouch_stand:{RL_type:"stock",text:"(Stock) Crouch Stand",vel:591.278747},stock_crouch_walk_right:{RL_type:"stock",text:"(Stock) Crouch Walk Right",vel:604.68103},stock_crouch_walk_left:{RL_type:"stock",text:"(Stock) Crouch Walk Left",vel:576.230651},stock_crouch_walk_forward:{RL_type:"stock",text:"(Stock) Crouch Walk Forward",vel:600.576049},stock_crouch_walk_backward:{RL_type:"stock",text:"(Stock) Crouch Walk Backward",vel:579.762084},original_uncrouch_stand:{RL_type:"original",text:"(Original) Uncrouch Stand",vel:445.98703},original_uncrouch_walk_leftright:{RL_type:"original",text:"(Original) Uncrouch Walk Left/Right",vel:419.643127},original_uncrouch_walk_forward:{RL_type:"original",text:"(Original) Uncrouch Walk Forward",vel:413.77008},original_uncrouch_walk_backward:{RL_type:"original",text:"(Original) Uncrouch Walk Backward",vel:429.626434},original_crouch_stand:{RL_type:"original",text:"(Original) Crouch Stand",vel:631.862487},original_crouch_walk_leftright:{RL_type:"original",text:"(Original) Crouch Walk Left/Right",vel:629.907165},original_crouch_walk_forward:{RL_type:"original",text:"(Original) Crouch Walk Forward",vel:645.274536},original_crouch_walk_backward:{RL_type:"original",text:"(Original) Crouch Walk Backward",vel:616.711364},stock_uncrouch_forwardright:{RL_type:"stock",text:"(Stock) Uncrouch Forward&Right",vel:422.054656,note:"[Unreliable]"},stock_uncrouch_forwardleft:{RL_type:"stock",text:"(Stock) Uncrouch Forward&Left",vel:376.538848,note:"[Unreliable]"},stock_uncrouch_backwardright:{RL_type:"stock",text:"(Stock) Uncrouch Backward&Right",vel:432.042541,note:"[Unreliable]"},stock_crouch_forwardright:{RL_type:"stock",text:"(Stock) Crouch Forward&Right",vel:608.236206,note:"[Unreliable]"},stock_crouch_backwardleft:{RL_type:"stock",text:"(Stock) Crouch Backward&Right",vel:592.538208,note:"[Unreliable]"},cowmangler_uncrouch_stand:{RL_type:"cowmangler",text:"(Cow Mangler) Uncrouch Stand",vel:429.504699},cowmangler_uncrouch_walk_right:{RL_type:"cowmangler",text:"(Cow Mangler) Uncrouch Walk Right",vel:442.26007},cowmangler_uncrouch_walk_left:{RL_type:"cowmangler",text:"(Cow Mangler) Uncrouch Walk Left",vel:388.864471},cowmangler_uncrouch_walk_forward:{RL_type:"cowmangler",text:"(Cow Mangler) Uncrouch Walk Forward",vel:405.110443},cowmangler_uncrouch_walk_backward:{RL_type:"cowmangler",text:"(Cow Mangler) Uncrouch Walk Backward",vel:418.827087},cowmangler_crouch_stand:{RL_type:"cowmangler",text:"(Cow Mangler) Crouch Stand",vel:612.282043},cowmangler_crouch_walk_right:{RL_type:"cowmangler",text:"(Cow Mangler) Crouch Walk Right",vel:621.940307},cowmangler_crouch_walk_left:{RL_type:"cowmangler",text:"(Cow Mangler) Crouch Walk Left",vel:600.181823},cowmangler_crouch_walk_forward:{RL_type:"cowmangler",text:"(Cow Mangler) Crouch Walk Forward",vel:623.124084},cowmangler_crouch_walk_backward:{RL_type:"cowmangler",text:"(Cow Mangler) Crouch Walk Backward",vel:599.182861}};
+		function m(){var e=document.getElementById("txt_height").value,n=document.getElementById("txt_nearestAngle").value;if(document.getElementById("bounceInfo").innerHTML="",document.getElementById("bounceResults").innerHTML="",document.getElementById("bounceTips").innerHTML="",document.getElementById("divID_specialBounce").innerHTML="",document.getElementById("hrID_midway").style.display="none",document.getElementById("divID_specialTitle").style.display="none",isNaN(e))return document.getElementById("bounceInfo").innerHTML="Enter a height > 1",0;if(e>999999)return document.getElementById("bounceInfo").innerHTML="Silly..",0;if(1>e)return document.getElementById("bounceInfo").innerHTML="Enter a height > 1",0;var t=0-e;if(document.getElementById("chk_angleCheck").checked){if(""===n&&(n=60),isNaN(n))return document.getElementById("bounceInfo").innerHTML="Nearest angle needs to be a number",0;if(45>n||n>89)return document.getElementById("bounceInfo").innerHTML="Nearest angle should be 45 < x < 89",0;if(n=parseFloat(n),document.getElementById("rad_stock").checked){if(document.getElementById("rad_startUn").checked){if(document.getElementById("rad_landUn").checked){var c=calculateAngle(t,n,"STOCK","UNCROUCHED","UNCROUCHED");if(0==c[0])document.getElementById("bounceResults").innerHTML="<h3>No bounce found</h3>";else{var d=Math.round(1e3*(c[0]+resultsOffset))/1e3,u=Math.round(1e3*(c[0]+c[1]))/1e3;document.getElementById("bounceResults").innerHTML="<h3>"+d+" to "+u+"</h3>",document.getElementById("bounceTips").innerHTML="(Stock) Start uncrouched -&gt; Land uncrouched"}}else if(document.getElementById("rad_landC").checked){var c=calculateAngle(t,n,"STOCK","UNCROUCHED","CROUCHED");if(0==c[0])document.getElementById("bounceResults").innerHTML="<h3>No bounce found</h3>";else{var d=Math.round(1e3*(c[0]+resultsOffset))/1e3,u=Math.round(1e3*(c[0]+c[1]))/1e3;document.getElementById("bounceResults").innerHTML="<h3>"+d+" to "+u+"</h3>",document.getElementById("bounceTips").innerHTML="(Stock) Start uncrouched -&gt; Land crouched"}}}else if(document.getElementById("rad_startC").checked)if(document.getElementById("rad_landUn").checked){var c=calculateAngle(t,n,"STOCK","CROUCHED","UNCROUCHED");if(0==c[0])document.getElementById("bounceResults").innerHTML="<h3>No bounce found</h3>";else{var d=Math.round(1e3*(c[0]+resultsOffset))/1e3,u=Math.round(1e3*(c[0]+c[1]))/1e3;document.getElementById("bounceResults").innerHTML="<h3>"+d+" to "+u+"</h3>",document.getElementById("bounceTips").innerHTML="(Stock) Start crouched -&gt; Land uncrouched"}}else if(document.getElementById("rad_landC").checked){var c=calculateAngle(t,n,"STOCK","CROUCHED","CROUCHED");if(0==c[0])document.getElementById("bounceResults").innerHTML="<h3>No bounce found</h3>";else{var d=Math.round(1e3*(c[0]+resultsOffset))/1e3,u=Math.round(1e3*(c[0]+c[1]))/1e3;document.getElementById("bounceResults").innerHTML="<h3>"+d+" to "+u+"</h3>",document.getElementById("bounceTips").innerHTML="(Stock) Start crouched -&gt; Land crouched"}}}else if(document.getElementById("rad_original").checked){if(document.getElementById("rad_startUn").checked){if(document.getElementById("rad_landUn").checked){var c=calculateAngle(t,n,"ORIGINAL","UNCROUCHED","UNCROUCHED");if(0==c[0])document.getElementById("bounceResults").innerHTML="<h3>No bounce found</h3>";else{var d=Math.round(1e3*(c[0]+resultsOffset))/1e3,u=Math.round(1e3*(c[0]+c[1]))/1e3;document.getElementById("bounceResults").innerHTML="<h3>"+d+" to "+u+"</h3>",document.getElementById("bounceTips").innerHTML="(Original) Start uncrouched -> Land uncrouched"}}else if(document.getElementById("rad_landC").checked){var c=calculateAngle(t,n,"ORIGINAL","UNCROUCHED","CROUCHED");if(0==c[0])document.getElementById("bounceResults").innerHTML="<h3>No bounce found</h3>";else{var d=Math.round(1e3*(c[0]+resultsOffset))/1e3,u=Math.round(1e3*(c[0]+c[1]))/1e3;document.getElementById("bounceResults").innerHTML="<h3>"+d+" to "+u+"</h3>",document.getElementById("bounceTips").innerHTML="(Original) Start uncrouched -&gt; Land crouched"}}}else if(document.getElementById("rad_startC").checked)if(document.getElementById("rad_landUn").checked){var c=calculateAngle(t,n,"ORIGINAL","CROUCHED","UNCROUCHED");if(0==c[0])document.getElementById("bounceResults").innerHTML="<h3>No bounce found</h3>";else{var d=Math.round(1e3*(c[0]+resultsOffset))/1e3,u=Math.round(1e3*(c[0]+c[1]))/1e3;document.getElementById("bounceResults").innerHTML="<h3>"+d+" to "+u+"</h3>",document.getElementById("bounceTips").innerHTML="(Original) Start crouched -&gt; Land uncrouched"}}else if(document.getElementById("rad_landC").checked){var c=calculateAngle(t,n,"ORIGINAL","CROUCHED","CROUCHED");if(0==c[0])document.getElementById("bounceResults").innerHTML="<h3>No bounce found</h3>";else{var d=Math.round(1e3*(c[0]+resultsOffset))/1e3,u=Math.round(1e3*(c[0]+c[1]))/1e3;document.getElementById("bounceResults").innerHTML="<h3>"+d+" to "+u+"</h3>",document.getElementById("bounceTips").innerHTML="(Original) Start crouched -&gt; Land crouched"}}}else document.getElementById("rad_cowmangler").checked&&(document.getElementById("bounceResults").innerHTML="<h3>No angle bounce found</h3>")}if(document.getElementById("chk_angleCheck").checked&&document.getElementById("chk_specialCheck").checked&&(document.getElementById("hrID_midway").style.display="block"),document.getElementById("chk_specialCheck").checked){document.getElementById("divID_specialTitle").style.display="block";var o=0,l="";if(document.getElementById("rad_stock").checked)var r="stock";else if(document.getElementById("rad_original").checked)var r="original";else if(document.getElementById("rad_cowmangler").checked)var r="cowmangler";for(var a in bounceSpecialVel)bounceSpecialVel.hasOwnProperty(a)&&(findSpecialBounce(t,a,"UNCROUCHED")?bounceSpecialVel[a].RL_type==r&&(l+=bounceSpecialVel[a].text+" -&gt; Land Uncrouched ","undefined"!=typeof bounceSpecialVel[a].note&&(l+=bounceSpecialVel[a].note),l+="<br />\n",o=1):findSpecialBounce(t,a,"CROUCHED")&&bounceSpecialVel[a].RL_type==r&&(l+=bounceSpecialVel[a].text+" -&gt; Land Crouched ","undefined"!=typeof bounceSpecialVel[a].note&&(l+=bounceSpecialVel[a].note),l+="<br />\n",o=1));o?document.getElementById("divID_specialBounce").innerHTML=l:document.getElementById("divID_specialBounce").innerHTML="No special start found."}return 1}function toggle_chkBox(e){document.getElementById(e).checked?document.getElementById(e).checked=!1:document.getElementById(e).checked=!0}function checkEnterPress(e){return 13==e.keyCode&&m(),!1}var resultsOffset=.01;
+	</script>

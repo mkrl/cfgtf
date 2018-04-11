@@ -3,6 +3,7 @@ layout: post
 title:  "New stuff: mastercomfig, small tweaks and improvements"
 date:   2018-01-12 13:10:22 +0800
 categories: update
+loader: darkblue
 ---
 Brace yourselves, the mastercomfig is coming to town!
 

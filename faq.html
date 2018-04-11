@@ -1,14 +1,30 @@
 ---
 layout: default
 title: CFG.TF - FAQ
-loader: black
+loader: darkblue
 permalink: /faq/
 ---
     <div class="row content">
       <h1 class="page-header">Frequently Asked Questions</h1>
-      <div class="panel panel-default">
-
-        <div class="panel-heading">
+	  
+	<p>  	
+	<ul>
+        <li><a href="#make">Make and install configs</a></li>
+        <li><a href="#why">Purpose of the site</a></li>
+        <li><a href="#uninstall">Uninstalling configs</a></li>
+        <li><a href="#settings_trouble">Key mappings / binds act werid</a></li>
+        <li><a href="#suggest">Suggest a feature / add own config</a></li>
+        <li><a href="#outdated">Outdated config</a></li>
+        <li><a href="#custom">Custom settings and binds</a></li>
+        <li><a href="#bad_graphics">TF2 looks too bad</a></li>
+        <li><a href="#post_install_customize">Modify the config after installation</a></li>
+        <li><a href="#contribute">Contribute to the site</a></li>
+      </ul>
+	 </p>
+	 <br>
+	 <br>
+     <div class="panel panel-default">
+        <div class="panel-heading" id="make">
           <h3>How to make and install the config using this site?</h3>
         </div>
         <div class="panel-body">
@@ -23,55 +39,83 @@ permalink: /faq/
       </ul></p>
         </div>
 		
-        <div class="panel-heading">
+        <div class="panel-heading" id="why">
           <h3>Why do I need this?</h3>
         </div>
         <div class="panel-body">
           <p>Even though TF2 is an old game, it has gone through so many updates and patches that it is now quite difficult run it at 120+ frames per second on mid-tier PC. And that is absolutely required for playing fast paced shooter comfortably. This app generates a set of premade settings that helps your game to run faster and smoother. </p>
         </div>
+		
+        <div class="panel-heading" id="uninstall">
+          <h3>How to uninstall the config?</h3>
+        </div>
+        <div class="panel-body">
+          <p>To completely wipe your game and reset it back to vanilla settings, please follow those steps:</p>
+		<p><ul>
+        <li>Delete all the files in <code>tf/custom</code> and <code>tf/cfg</code> folder. You can keep the HUD if you have one installed.</li>
+        <li><a href="https://support.steampowered.com/kb_article.php?ref=2037-QEUH-3335" target="_blank">Verify your game files using Steam</a></li>
+        <li><a href="https://support.steampowered.com/kb_article.php?ref=6736-QEIG-8941#enabling" target="_blank">Disable Steam Cloud</a></li>
+        <li>Remove everything from your launch options. Paste the following options instead: <code>-novid -default -autoconfig +host_writeconfig +mat_savechanges +quit</code>. Launch the game, it will close itself automatically shortly after.</li>
+        <li>Remove all launch options. You are now back to the stock TF2.</li>
+      </ul>
+		  </p>
+        </div>
 
-        <div class="panel-heading">
+        <div class="panel-heading" id="settings_trouble">
           <h3>My game controls and binds act werid, some keys are not working.</h3>
         </div>
         <div class="panel-body">
-          <p>Please make sure you have installed it on 100% default, clean TF2 with absolutely <b>no</b> configs and custom files. You may also have to disable Steam Cloud as it may restore some old settings. You can wipe all your custom stuff by removing the /cfg and /custom folders from your /tf folder and launching the game with <code>-autoconfig</code> launch option. If you are sure that you did everything right and that there is an error on this site - you are welcome to <a href="https://discord.gg/79cbsTu" target="_blank">join our Discord</a> where you can report a problem or ask for help.</p>
+          <p>Please make sure you have installed it on 100% default, clean TF2 with absolutely <b>no</b> configs and custom files. See the question above. If you are sure that you did everything right and that there is an error on this site - you are welcome to <a href="https://discord.gg/79cbsTu" target="_blank">join our Discord</a> where you can report a problem or ask for help.</p>
         </div>
 
-        <div class="panel-heading">
+        <div class="panel-heading" id="suggest">
           <h3>Is there a chance to add X feature?</h3>
         </div>
         <div class="panel-body">
           <p>Yes! You are more then welcome to suggest anything you'd like. If it is reasonable and is possible to implement, it is going directly to the to-do list. Hit us up on <a href="https://discord.gg/79cbsTu" target="_blank">Discord!</a> </p>
         </div>
 
-        <div class="panel-heading">
+        <div class="panel-heading" id="outdated">
           <h3>The file/config is outdated.</h3>
         </div>
         <div class="panel-body">
           <p>We try to keep all the stuff up to date, but since there are no static links provided by config authors, all the files have to be updated manually so there may be a delay. Feel free to inform us if we need to update anything. </p>
         </div>
 
-        <div class="panel-heading">
+        <div class="panel-heading" id="custom">
           <h3>Can I put my own settings or binds? How do I do that?</h3>
         </div>
         <div class="panel-body">
           <p>Of course you can. There is a "Custom binds/settings" tab at the end of the generator where you can put any custom commands you like. They will overwrite existing settings so be careful. Also, its good to have a general idea about Source games scripting when doing things like this. </p>
         </div>
 
-        <div class="panel-heading">
+        <div class="panel-heading" id="bad_graphics">
           <h3>My TF2 looks like poop. I didn't select the worst config here.</h3></div>
         <div class="panel-body">
-          <p>First of all, make sure you are using the launch options provided. Secondly, remember - you will generally always have to sacrifice something to see a performance increase. Or spend a lot of money on good PC and play without gfx config at all.</p>
+          <p>First of all, make sure you are using the launch options provided. Secondly, remember - you will generally always have to sacrifice something to see a performance increase. Or spend a some of money on good PC and play without gfx config at all.</p>
         </div>
 
-        <div class="panel-heading">
+        <div class="panel-heading" id="post_install_customize">
           <h3>Where do I change settings after I have installed this?</h3>
         </div>
         <div class="panel-body"><p>Inside your /tf/cfg folder there are going to be several files:</p>
           <p><code>binds.cfg</code> - keyboard mappings</p>
-          <p><code>settings.cfg</code> - general TF2 settings like viewmodels, hitsounds, etc.</p>
+          <p><code>settings.cfg</code> - general TF2 settings like viewmodels, hitsounds, advanced options, etc.</p>
           <p><code>gfx.cfg</code> - the entire graphics config.</p>
+          <p><code>network.cfg</code> - network settings.</p>
+          <p><code>[class name].cfg</code> - class-specific settings that are automatically applied when you change your class.</p>
           <p>Also, if you want to configure your crosshairs and you have a crosshair switcher installed, check out <code>CROSSHAIRSWITCHER-README.txt</code></p>
+          <p>For TF2 commands and variables reference you can use <a href="https://developer.valvesoftware.com/wiki/List_of_TF2_console_commands_and_variables" target="_blank">this page</a></p>
+        </div>
+		
+        <div class="panel-heading" id="contribute">
+          <h3>Can I help you to improve the site?</h3>
+        </div>
+        <div class="panel-body">
+		<p>If you are familiar with JavaScript and have some spare time - feel free to hit me up on <a href="https://discord.gg/79cbsTu" target="_blank">Discord</a>. If you feel like you are willing to contribute right now - feel free to fork the <a href="https://github.com/mkrl/cfgtf" target="_blank">repository</a> and submit a pull request.</p>
+		<p>Any bug reports also help us to improve the site. You can either create an issue on GitHub or hit us up with a message on Discord.</p>
+		<p>Willing to donate to keep us running? See the bottom of the <a href="/about">about page</a>.</p>
+
         </div>
 
       </div>

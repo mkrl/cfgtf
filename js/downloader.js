@@ -137,6 +137,22 @@ jQuery(function($) {
 		//getting values form inputs
 		// !!!!IMPORTANT!!!! All the selectable html fields (non-text forms) should have data-name and data-url attributes or everything breaks
 
+		//advanced options
+		var hud_fastswitch = $('input[data-name="hud_fastswitch"]').is(':checked');
+		var cl_autoreload = $('input[data-name="cl_autoreload"]').is(':checked');
+		var tf_colorblindassist = $('input[data-name="tf_colorblindassist"]').is(':checked');
+		var cl_use_tournament_specgui = $('input[data-name="cl_use_tournament_specgui"]').is(':checked');
+		var cl_hud_playerclass_use_playermodel = $('input[data-name="cl_hud_playerclass_use_playermodel"]').is(':checked');
+		var cl_disablehtmlmotd = $('input[data-name="cl_disablehtmlmotd"]').is(':checked');
+		var hud_classautokill = $('input[data-name="hud_classautokill"]').is(':checked');
+		var tf_medigun_autoheal = $('input[data-name="tf_medigun_autoheal"]').is(':checked');
+		var hud_medichealtargetmarker = $('input[data-name="hud_medichealtargetmarker"]').is(':checked');
+		var tf_simple_disguise_menu = $('input[data-name="tf_simple_disguise_menu"]').is(':checked');
+		var cl_autorezoom = $('input[data-name="cl_autorezoom"]').is(':checked');
+		var tf_sniper_fullcharge_bell = $('input[data-name="tf_sniper_fullcharge_bell"]').is(':checked');
+		var tf_hud_no_crosshair_on_scope_zoom = $('input[data-name="tf_hud_no_crosshair_on_scope_zoom"]').is(':checked');
+		
+		
 		//viewmodel settings
 		var drawviewmodel = $('#modeltoggle').is(':checked');
 		var minmodel = $('#minmodtoggle').is(':checked');
@@ -471,7 +487,6 @@ jQuery(function($) {
 			'hud_medicautocallers 1',
 			'// 100 - 20.5*2 (2 small first aid kits)',
 			'hud_medicautocallersthreshold 59',
-			'tf_medigun_autoheal 1',
 			'///---',
 			surround('\n', [
 				!dn                ? 'hud_combattext 0\n'                                   : '',
@@ -495,6 +510,7 @@ jQuery(function($) {
 			'',
 			'tf_remember_activeweapon 1',
 			'tf_remember_lastswitched 1',
+			'm_rawinput 1',			
 			'///---',
 			surround('\n', [
 				ds_mode !== 0 ? 'ds_enable '+ds_mode+'\n' : '',
@@ -550,9 +566,20 @@ jQuery(function($) {
 			'tf_coach_request_nevershowagain 1',
 			'///---',
 			'',
-			'cl_autoreload 1',
-			'm_rawinput 1',
-			'hud_fastswitch 1',
+			'//Advanced options',
+			'hud_fastswitch ' + (hud_fastswitch ? "1" : "0"),
+			'cl_autoreload ' + (cl_autoreload ? "1" : "0"),
+			'tf_colorblindassist ' + (tf_colorblindassist ? "1" : "0"),
+			'cl_use_tournament_specgui ' + (cl_use_tournament_specgui ? "1" : "0"),
+			'cl_hud_playerclass_use_playermodel ' + (cl_hud_playerclass_use_playermodel ? "1" : "0"),
+			'cl_disablehtmlmotd ' + (cl_disablehtmlmotd ? "1" : "0"),
+			'hud_classautokill ' + (hud_classautokill ? "1" : "0"),
+			'tf_medigun_autoheal ' + (tf_medigun_autoheal ? "1" : "0"),
+			'hud_medichealtargetmarker ' + (hud_medichealtargetmarker ? "1" : "0"),
+			'tf_simple_disguise_menu ' + (tf_simple_disguise_menu ? "1" : "0"),
+			'cl_autorezoom ' + (cl_autorezoom ? "1" : "0"),
+			'tf_sniper_fullcharge_bell ' + (tf_sniper_fullcharge_bell ? "1" : "0"),
+			'tf_hud_no_crosshair_on_scope_zoom ' + (tf_hud_no_crosshair_on_scope_zoom ? "1" : "0"),
 			'tf_scoreboard_ping_as_text 1'
 		].join('\n');
 		var network = [

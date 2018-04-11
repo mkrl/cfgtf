@@ -3,6 +3,7 @@ layout: post
 title:  "Crosshair previews"
 date:   2017-05-04 10:48:22 +0800
 categories: update
+loader: darkblue
 ---
 
 Your daily doze of updates:

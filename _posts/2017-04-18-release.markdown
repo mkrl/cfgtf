@@ -3,6 +3,7 @@ layout: post
 title:  "Initial release"
 date:   2017-04-18 09:48:22 +0800
 categories: update
+loader: darkblue
 ---
 Initial release! The site is now public and ready to serve all your customization needs.
 
