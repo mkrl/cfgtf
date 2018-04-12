@@ -3,7 +3,7 @@ layout: default
 title: CFG.TF - Generate a config
 loader: orange
 permalink: /make/
-custom_css: 
+custom_css:
 - <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css" integrity="sha256-an4uqLnVJ2flr7w0U74xiF4PJjO2N5Df91R2CUmCLCA=" crossorigin="anonymous" />
 - <link rel="stylesheet" href="/css/tf2-xhair.css">
 custom_js:
@@ -26,7 +26,7 @@ custom_js:
 				<ul class="nav nav-tabs">
 				  <li class="active"><a href="#graphics" data-toggle="tab">Graphics</a></li>
 				  <li><a href="#keys" data-toggle="tab">Binds</a></li>
-				  <li><a href="#adoptions" data-toggle="tab">Advanced options</a></li>				  
+				  <li><a href="#adoptions" data-toggle="tab">Advanced options</a></li>
 				  <li><a href="#cfgs" data-toggle="tab">Configs</a></li>
 				  <li><a href="#files" data-toggle="tab">Custom files</a></li>
 				  <li><a href="#viewmod" data-toggle="tab">Viewmodels</a></li>
@@ -56,14 +56,13 @@ custom_js:
                   <option value="comanglia_cinema" data-name="gfx" onclick="updatedxlevel();" id="fancy" data-url="../make/cfg/c_cinema.txt">Comanglia: Cinema</option>
   							</optgroup>
                 <optgroup label="mastercomfig">
-                  <option value="mastercomfig-default" data-name="gfx" onclick="updatedxlevel();" id="mastercomfig" data-url="../make/cfg/mastercomfig-default.cfg">mastercomfig: default</option>
-                  <option value="mastercomfig-comp" data-name="gfx" onclick="updatedxlevel();" id="mastercomfigcomp" data-url="../make/cfg/mastercomfig-comp.cfg">mastercomfig: comp</option>
-                  <option value="mastercomfig-compquality" data-name="gfx" onclick="updatedxlevel();" id="mastercomfigcompquality" data-url="../make/cfg/mastercomfig-compquality.cfg">mastercomfig: compquality</option>
-                  <option value="mastercomfig-maxperformance" data-name="gfx" onclick="updatedxlevel();" id="mastercomfigmaxperformance" data-url="../make/cfg/mastercomfig-maxperformance.cfg">mastercomfig: maxperformance</option>
-                  <option value="mastercomfig-midquality" data-name="gfx" onclick="updatedxlevel();" id="mastercomfigmidquality" data-url="../make/cfg/mastercomfig-midquality.cfg">mastercomfig: midquality</option>
-                  <option value="mastercomfig-maxquality" data-name="gfx" onclick="updatedxlevel();" id="mastercomfigmaxquality" data-url="../make/cfg/mastercomfig-maxquality.cfg">mastercomfig: maxquality</option>
-                  <option value="mastercomfig-igpu" data-name="gfx" onclick="updatedxlevel();" id="mastercomfigigpu" data-url="../make/cfg/mastercomfig-igpu.cfg">mastercomfig: maxperformance igpu</option>
-                  <option value="mastercomfig-stripped" data-name="gfx" onclick="updatedxlevel();" id="mastercomfigstripped" data-url="../make/cfg/mastercomfig-stripped.cfg">mastercomfig: maxperformance stripped</option>
+                  <option value="mastercomfig-default" data-name="vpks" onclick="updatedxlevel();" id="mastercomfig" data-url="../make/cfg/mastercomfig-midquality-preset.vpk">mastercomfig: midquality</option>
+                  <option value="mastercomfig-comp" data-name="gfx" onclick="updatedxlevel();" id="mastercomfigcomp" data-url="../make/cfg/mastercomfig-comp-preset.vpk">mastercomfig: comp</option>
+                  <option value="mastercomfig-compquality" data-name="gfx" onclick="updatedxlevel();" id="mastercomfigcompquality" data-url="../make/cfg/mastercomfig-compquality-preset.vpk">mastercomfig: compquality</option>
+                  <option value="mastercomfig-maxperformance" data-name="gfx" onclick="updatedxlevel();" id="mastercomfigmaxperformance" data-url="../make/cfg/mastercomfig-maxperformance-preset.cfg">mastercomfig: maxperformance</option>
+                  <option value="mastercomfig-midquality" data-name="gfx" onclick="updatedxlevel();" id="mastercomfigmidquality" data-url="../make/cfg/mastercomfig-highquality-preset.vpk">mastercomfig: highquality</option>
+                  <option value="mastercomfig-maxquality" data-name="gfx" onclick="updatedxlevel();" id="mastercomfigmaxquality" data-url="../make/cfg/mastercomfig-maxquality-preset.vpk">mastercomfig: maxquality</option>
+                  <option value="mastercomfig-stripped" data-name="gfx" onclick="updatedxlevel();" id="mastercomfigstripped" data-url="../make/cfg/mastercomfig-stripped-preset.vpk">mastercomfig: stripped</option>
                 </optgroup>
                 <optgroup label="Rhapsody">
                   <option value="rhapsody_dx9" data-name="gfx" onclick="updatedxlevel();" id="rhapsodydx9" data-url="../make/cfg/r_base.txt">Rhapsody: DX9</option>
@@ -493,8 +492,8 @@ custom_js:
 
 	<div id="cfg_mastercomfig-default" class="desc" style="display: none;">
 	  <div class="panel-body">
-      <h3>mastercomfig</h3>
-      <p>This config is by default for modern PCs and aims to disable heavily unoptimized features and adjust other settings where it does not affect behavior or visuals noticeably. The config is constantly updated with tweaks, new features and documentation improvements — iterated upon based on user feedback and benchmarks.</p>
+      <h3>mastercomfig: Mid Quality preset</h3>
+      <p>Disables unoptimized features and optimizes the game without making the game look bad</p>
 			<label>Preview
 				<select class="form-control selectpicker gfx_preview_selection" id="mastercomfig-default_preview">
 					<option value="pl_badwater" data-name="gfx_preview" data-url="" selected="selected">Badwater</option>
@@ -570,7 +569,7 @@ custom_js:
 
 	<div id="cfg_mastercomfig-comp" class="desc" style="display: none;">
 	  <div class="panel-body">
-      <h3>mastercomfig: Competitive performance preset</h3>
+      <h3>mastercomfig: Competitive Performance preset</h3>
       <p>Max FPS without visibility issues or bugs</p>
 			<label>Preview
 				<select class="form-control selectpicker gfx_preview_selection" id="mastercomfig-comp_preview">
@@ -646,8 +645,8 @@ custom_js:
 
 	<div id="cfg_mastercomfig-compquality" class="desc" style="display: none;">
 	  <div class="panel-body">
-      <h3>mastercomfig: Competitive quality preset</h3>
-      <p>Maximizes advantage through enabling visual effects</p>
+      <h3>mastercomfig: Competitive Quality preset</h3>
+      <p>Maximizes advantage through enabling visual effects and improving sound accuracy</p>
 			<label>Preview
 				<select class="form-control selectpicker gfx_preview_selection" id="mastercomfig-compquality_preview">
 					<option value="pl_badwater" data-name="gfx_preview" data-url="" selected="selected">Badwater</option>
@@ -721,7 +720,7 @@ custom_js:
 
 	<div id="cfg_mastercomfig-maxperformance" class="desc" style="display: none;">
 	  <div class="panel-body">
-      <h3>mastercomfig: Maximum performance preset</h3>
+      <h3>mastercomfig: Maximum Performance preset</h3>
       <p>Max FPS without caring about visibility or possible bugs</p>
 			<label>Preview
 				<select class="form-control selectpicker gfx_preview_selection" id="mastercomfig-maxperformance_preview">
@@ -779,7 +778,7 @@ custom_js:
       <div class="col-md-6">
         <h3 class="text-success">Pros</h3>
         <ul class="list-group">
-          <li class="list-group-item list-group-item-success">Significantly decreases the graphical quality/ load of the game, increasing performance on worse PCs</li>
+          <li class="list-group-item list-group-item-success">Significantly decreases the graphical quality/load of the game, increasing performance on worse PCs</li>
         </ul>
       </div>
       <div class="col-md-6">
@@ -798,8 +797,8 @@ custom_js:
 
 	<div id="cfg_mastercomfig-midquality" class="desc" style="display: none;">
 	  <div class="panel-body">
-      <h3>mastercomfig: Mid quality preset</h3>
-      <p>Enables graphical features without making them too high quality</p>
+      <h3>mastercomfig: High Quality preset</h3>
+      <p>Enables graphical features without making them very high quality</p>
 			<label>Preview
 				<select class="form-control selectpicker gfx_preview_selection" id="mastercomfig-midquality_preview">
 					<option value="pl_badwater" data-name="gfx_preview" data-url="" selected="selected">Badwater</option>
@@ -874,8 +873,8 @@ custom_js:
 
 	<div id="cfg_mastercomfig-maxquality" class="desc" style="display: none;">
 	  <div class="panel-body">
-      <h3>mastercomfig: Maximum quality preset</h3>
-      <p>Maximum quality without caring about FPS too much</p>
+      <h3>mastercomfig: Maximum Quality preset</h3>
+      <p>Maximum quality without caring about FPS</p>
 			<label>Preview
 				<select class="form-control selectpicker gfx_preview_selection" id="mastercomfig-maxquality_preview">
 					<option value="pl_badwater" data-name="gfx_preview" data-url="" selected="selected">Badwater</option>
@@ -940,86 +939,8 @@ custom_js:
       <div class="col-md-6">
         <h3 class="text-danger">Cons</h3>
         <ul class="list-group">
-          <li class="list-group-item list-group-item-danger">Very intensive, requires a strong hardware</li>
+          <li class="list-group-item list-group-item-danger">Very intensive, requires strong hardware</li>
           <li class="list-group-item list-group-item-danger">Not for performance oriented users</li>
-        </ul>
-      </div>
-
-		</div>
-  </div>
-
-	<div id="cfg_mastercomfig-igpu" class="desc" style="display: none;">
-	  <div class="panel-body">
-      <h3>mastercomfig: Bad GPU</h3>
-      <p> Optimizations for weak Intel integrated graphics chips or weak/old GPUs. </p>
-			<label>Preview
-				<select class="form-control selectpicker gfx_preview_selection" id="mastercomfig-igpu_preview">
-					<option value="pl_badwater" data-name="gfx_preview" data-url="" selected="selected">Badwater</option>
-					<option value="cp_sunshine" data-name="gfx_preview" data-url="">Sunshine</option>
-					<option value="cp_badlands" data-name="gfx_preview" data-url="">Badlands</option>
-					<option value="itemtest" data-name="gfx_preview" data-url="">Items</option>
-				</select>
-			</label>
-      <p><a class="cfg_source" href="https://github.com/mastercoms/mastercomfig" target="_blank">Source</a></p>
-
-      <div id="carousel_mastercomfig-igpu" class="carousel slide" data-ride="carousel" data-interval="0">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-          <li data-target="#carousel_mastercomfig-igpu" data-slide-to="0" class="active"></li>
-          <li data-target="#carousel_mastercomfig-igpu" data-slide-to="1"></li>
-          <li data-target="#carousel_mastercomfig-igpu" data-slide-to="2"></li>
-          <li data-target="#carousel_mastercomfig-igpu" data-slide-to="3"></li>
-          <li data-target="#carousel_mastercomfig-igpu" data-slide-to="4"></li>
-        </ol>
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner" role="listbox">
-
-          <div class="item active">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-igpu/pl_badwater/pl_badwater01.jpg" alt="mastercomfig default">
-          </div>
-
-          <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-igpu/pl_badwater/pl_badwater02.jpg" alt="mastercomfig default">
-          </div>
-
-          <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-igpu/pl_badwater/pl_badwater03.jpg" alt="mastercomfig default">
-          </div>
-
-          <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-igpu/pl_badwater/pl_badwater04.jpg" alt="mastercomfig default">
-          </div>
-
-          <div class="item">
-            <img class="img-responsive img-rounded" data-src="../img/cfg/mastercomfig-igpu/pl_badwater/pl_badwater05.jpg" alt="mastercomfig default">
-          </div>
-        </div>
-
-        <!-- Left and right controls -->
-        <a class="left carousel-control" href="#carousel_mastercomfig-igpu" role="button" data-slide="prev">
-          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#carousel_mastercomfig-igpu" role="button" data-slide="next">
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
-      <div class="col-md-6">
-        <h3 class="text-success">Pros</h3>
-        <ul class="list-group">
-          <li class="list-group-item list-group-item-success">Optimized for integrated and very weak, old dedicated graphics cards</li>
-          <li class="list-group-item list-group-item-success">Significantly decreased graphical quality to reduce intensity</li>
-        </ul>
-      </div>
-      <div class="col-md-6">
-        <h3 class="text-danger">Cons</h3>
-        <ul class="list-group">
-          <li class="list-group-item list-group-item-danger">No ragdolls</li>
-          <li class="list-group-item list-group-item-danger">No shadows</li>
-          <li class="list-group-item list-group-item-danger">No 3D skybox</li>
-          <li class="list-group-item list-group-item-danger">Limited particle effects</li>
-          <li class="list-group-item list-group-item-danger">May reduce performance on modern graphics cards</li>
         </ul>
       </div>
 
@@ -1028,8 +949,8 @@ custom_js:
 
 	<div id="cfg_mastercomfig-stripped" class="desc" style="display: none;">
 	  <div class="panel-body">
-      <h3>mastercomfig: Stripped quality</h3>
-      <p>Significantly reduces playability in desperation for frames on very weak hardware.</p>
+      <h3>mastercomfig: Stripped Performance preset</h3>
+      <p>Negatively affects playability by a lot and disables very essential features in desperation for performance</p>
 			<label>Preview
 				<select class="form-control selectpicker gfx_preview_selection" id="mastercomfig-stripped_preview">
 					<option value="pl_badwater" data-name="gfx_preview" data-url="" selected="selected">Badwater</option>
@@ -1926,7 +1847,7 @@ custom_js:
 		<!--   ADVANCED OPTIONS  -->
 			<h3>TF2 advanced options</h3>
 			<p class="text-muted">The options below are set to default recommended for confortable gameplay. Please note that if you will change those options in game later, they will reset on TF2 restart.</p>
- 
+
 		 <ul class="checkbox list-unstyled">
 					<li>
 						<label>
@@ -1969,31 +1890,31 @@ custom_js:
 						  <input type="checkbox" name="advoptions" data-name="hud_classautokill" data-url="" checked />
 						  Suicide after choosing a player class <a href="#" data-toggle="tooltip" title="If set, then you'll immediately kill yourself whenever you change your class while out in the field. If unset, you'll change to your new class the next time you respawn."  ><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
 						</label>
-					</li>			
+					</li>
 					<li>
 						<label>
 						  <input type="checkbox" name="advoptions" data-name="tf_medigun_autoheal" data-url="" checked />
 						  Medic: Medi Gun autoheal <a href="#" data-toggle="tooltip" title="If set, your Medic's Medi Gun will stay locked onto your heal target until you press the fire button again. If unset, you'll be required to hold the button down to keep the Medi Gun locked on." ><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
 						</label>
-					</li>			
+					</li>
 					<li>
 						<label>
 						  <input type="checkbox" name="advoptions" data-name="hud_medichealtargetmarker" data-url="" />
 						  Medic: Display a marker over the player you are healing <a href="#" data-toggle="tooltip" title="If set, a marker will be displayed above the friendly target that you're currently healing with your Medi Gun." ><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
 						</label>
-					</li>			
+					</li>
 					<li>
 						<label>
 						  <input type="checkbox" name="advoptions" data-name="tf_simple_disguise_menu" data-url="" />
 						  Spy: Enable concise disguise menu <a href="#" data-toggle="tooltip" title="The concise disguise menu for the Spy is an alternate menu that requires more keypresses in the disguising process, but only uses the number keys 1 through 4."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
 						</label>
-					</li>			
+					</li>
 					<li>
 						<label>
 						  <input type="checkbox" name="advoptions" data-name="cl_autorezoom" data-url="" checked />
 						  Sniper: Sniper Rifle will re-zoom after firing a zoomed shot <a href="#" data-toggle="tooltip" title="If set, the Sniper's Sniper Rifle will automatically zoom back in after it reloads, if you were zoomed in when you shot."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
 						</label>
-					</li>	
+					</li>
 					<li>
 						<label>
 						  <input type="checkbox" name="advoptions" data-name="tf_sniper_fullcharge_bell" data-url="" checked />
@@ -2006,7 +1927,7 @@ custom_js:
 						  Sniper: Hide crosshair when zoomed in <a href="#" data-toggle="tooltip" title="If set, when zoomed in with any Sniper rifles, the default and custom crosshairs will automatically disappear leaving only the rifle targeting laser."><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
 						</label>
 					</li>
-					
+
 			  </ul>
 			<hr>
 	</div>
@@ -2509,7 +2430,7 @@ custom_js:
 
 			});
 
-			
+
 
 	});
 	</script>
@@ -2773,30 +2694,30 @@ custom_js:
 								if($(this).parent().parent().hasClass("disabledarea")){
 									$(this).removeClass("btn-warning");
 									$(this).html("Use defaults");
-									$(this).addClass("btn-info");								
+									$(this).addClass("btn-info");
 									$(this).parent().parent().removeClass("disabledarea");
 								} else {
 									$(this).removeClass("btn-info");
 									$(this).html("Set manually");
 									$(this).addClass("btn-warning");
-									$(this).parent().parent().addClass("disabledarea");		
+									$(this).parent().parent().addClass("disabledarea");
 									var cs_button_id = $(this).attr('id');
 									var temp_weapon = cs_button_id.slice(14);
 									cs_button_id = cs_button_id.slice(12);
 									var temp_col = "cs_col" + cs_button_id;
 									var temp_fovid = "cs_fov" + cs_button_id;
 									var temp_drawid = "cs_draw" + cs_button_id;
-									
+
 									$("#"+temp_fovid).val($("#cs_fov_0"+temp_weapon).val());
-									
+
 									var temp_cross_style = $('#cs_col_0' + temp_weapon + ' optgroup[label*="Style"]').find(':selected').val();
 									var temp_cross_size = $('#cs_col_0' + temp_weapon + ' optgroup[label*="Size"]').find(':selected').val();
 									var temp_cross_color = $('#cs_col_0' + temp_weapon + ' optgroup[label*="Color"]').find(':selected').val();
-									
+
 									$('#'+temp_col).selectpicker('deselectAll');
 									$('#'+temp_col).selectpicker('val', [temp_cross_style,temp_cross_size,temp_cross_color]);
 									$('#'+temp_col).trigger("change");
-									
+
 									if ($('#cs_draw_0'+temp_weapon).is(':checked')) {
 									$("#"+temp_drawid).prop('checked', true);
 									$("#"+temp_drawid+"_min").fadeIn(100);
@@ -2804,16 +2725,16 @@ custom_js:
 									$("#"+temp_drawid).prop('checked', false);
 									$("#"+temp_drawid+"_min").fadeOut(100);
 									}
-									
+
 									if ($('[data-name="cs_draw_0'+temp_weapon+'_min"]').is(':checked')) {
 									$('[data-name="cs_draw'+cs_button_id+'_min"]').prop('checked', true);
 									} else {
 									$('[data-name="cs_draw'+cs_button_id+'_min"]').prop('checked', false);
 									}
-									
+
 								}
 							}));
-							
+
 							$("#cs_defall").click(function() {
 									$(".defbutton").each(function() {
 										$(this).trigger("click");
@@ -4919,7 +4840,7 @@ custom_js:
 		// trigger an update on input changes
 		$('#resolution_detector_cb, #launch_cmd_novid, #launch_cmd_console, #display_mode, #launch_cmd_high').change(updatescreenmode);
 
-		$(".resolution_selector, #aspectratio_selector").change(updateresolution);	
+		$(".resolution_selector, #aspectratio_selector").change(updateresolution);
   });
 	$(window).on('load', updateresolution); // trigger update on 1st load
 	$(window).on('load', updatescreenmode); // trigger update on 1st load
