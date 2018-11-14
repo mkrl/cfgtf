@@ -231,7 +231,7 @@ custom_js:
 		var explosion_name = $("#smokeselector option:selected").html();
 		var explosion_path = $("#smokeselector option:selected").data("url");
 		
-		if (($("#smokeselector option:selected").val() !== "none")||($("#weaponselector option:selected").val() === "explosion")) {
+		if (($("#smokeselector option:selected").val() !== "none")&&($("#weaponselector option:selected").val() === "explosion")) {
 			weapon_script = "./scripts/nosmoke/"+explosion_path+"/"+weapon_script.slice(10);
 		} else {
 			explosion_name = "";
