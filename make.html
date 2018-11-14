@@ -43,11 +43,11 @@ custom_js:
 				<p class="text-muted">Determine the look and performance of your game</p>
 				<p class="alert alert-info">Remember - you will generally always have to sacrifice something to see a performance increase. Selecting a config will show a demonstration with the pros and cons of the config explained.</p>
 
-        <ul class="checkbox list-unstyled">
+        <ul class="checkbox list-unstyled pl-0">
           <li>
-            <label class="form-inline">
+            <label class="form-inline pl-0">
               Graphics setting config
-              <select class="form-control selectpicker" id="gfx_selector">
+              <select class="form-control selectpicker mb-1" id="gfx_selector">
                 <option value="myown" data-name="gfx" onclick="updatedxlevel();" id="myown" data-url="../make/cfg/nogfx.txt" selected="selected">None</option>
 						    <optgroup label="Comanglia">
                   <option value="comanglia_toaster" data-name="gfx" onclick="updatedxlevel();" id="toaster" data-url="../make/cfg/c_toaster.txt">Comanglia: Toaster</option>
@@ -78,7 +78,7 @@ custom_js:
             </label>
           </li>
 					<div id="gfx_force_panel" style="display:none;">
-						<ul>
+						<ul class="list-unstyled">
 							<li>
 								<label>
 									<input type="checkbox" id="gfx_force_eyes" data-name="gfx_force_settings" data-url="" /> Enable facial features
@@ -170,7 +170,7 @@ custom_js:
   	});
 	</script>
 	<div id="cfg_comanglia_toaster" class="desc" style="display: none;">
-		<div class="panel-body">
+		<div class="panel-body pr-0 pl-0">
       <h3>Comanglia's "Toaster" config</h3>
       <p>Bare minimum, with a focus on simply running the game.</p>
       <p>This is probably the ugliest looking config you can get here. It disables a lot of things, and gives your TF2 that nice "blocky" oldschool look.</p>
@@ -251,7 +251,7 @@ custom_js:
 	</div>
 
 	<div id="cfg_comanglia_stability" class="desc" style="display: none;">
-	  <div class="panel-body">
+	  <div class="panel-body pr-0 pl-0">
       <h3>Comanglia's "Stability" config</h3>
       <p>A solid option for older PCs, with a focus on stability.</p>
 			<label>Preview
@@ -329,7 +329,7 @@ custom_js:
 	</div>
 
 	<div id="cfg_comanglia_hq" class="desc" style="display: none;">
-	  <div class="panel-body">
+	  <div class="panel-body pr-0 pl-0">
 		  <h3>Comanglia's "Max FPS for High Quality PCs" config</h3>
 			<p>For modern multi-core PCs, with a focus on maximum FPS while retaining modern graphics settings. Looks good, performs well.</p>
 			<label>Preview
@@ -412,7 +412,7 @@ custom_js:
 	  </div>
   </div>
 	<div id="cfg_comanglia_cinema" class="desc" style="display: none;">
-	  <div class="panel-body">
+	  <div class="panel-body pr-0 pl-0">
 			<h3>Comanglia's "Cinema" config</h3>
 			<p>Take a look at this. This is TF2 at its maximum potential. This is what quality water and 3D skyboxes look like.</p>
 			<label>Preview
@@ -492,8 +492,11 @@ custom_js:
   </div>
 
 	<div id="cfg_mastercomfig-default" class="desc" style="display: none;">
-	  <div class="panel-body">
+	  <div class="panel-body pr-0 pl-0">
       <h3>mastercomfig</h3>
+      <div class="alert alert-dismissible alert-danger">
+      Please note that we are not able to provide full support and customization level of the original mastercomfig, please consider using the <a href="https://mastercomfig.com/" target="_blank">official site</a> or <a href="https://github.com/mastercoms/mastercomfig" target="_blank">GitHub repository</a> instead.
+    </div>
       <p>This config is by default for modern PCs and aims to disable heavily unoptimized features and adjust other settings where it does not affect behavior or visuals noticeably. The config is constantly updated with tweaks, new features and documentation improvements — iterated upon based on user feedback and benchmarks.</p>
 			<label>Preview
 				<select class="form-control selectpicker gfx_preview_selection" id="mastercomfig-default_preview">
@@ -569,8 +572,11 @@ custom_js:
   </div>
 
 	<div id="cfg_mastercomfig-comp" class="desc" style="display: none;">
-	  <div class="panel-body">
+	  <div class="panel-body pr-0 pl-0">
       <h3>mastercomfig: Competitive performance preset</h3>
+           <div class="alert alert-dismissible alert-danger">
+      Please note that we are not able to provide full support and customization level of the original mastercomfig, please consider using the <a href="https://mastercomfig.com/" target="_blank">official site</a> or <a href="https://github.com/mastercoms/mastercomfig" target="_blank">GitHub repository</a> instead.
+    </div>
       <p>Max FPS without visibility issues or bugs</p>
 			<label>Preview
 				<select class="form-control selectpicker gfx_preview_selection" id="mastercomfig-comp_preview">
@@ -645,8 +651,11 @@ custom_js:
   </div>
 
 	<div id="cfg_mastercomfig-compquality" class="desc" style="display: none;">
-	  <div class="panel-body">
+	  <div class="panel-body pr-0 pl-0">
       <h3>mastercomfig: Competitive quality preset</h3>
+           <div class="alert alert-dismissible alert-danger">
+      Please note that we are not able to provide full support and customization level of the original mastercomfig, please consider using the <a href="https://mastercomfig.com/" target="_blank">official site</a> or <a href="https://github.com/mastercoms/mastercomfig" target="_blank">GitHub repository</a> instead.
+    </div>
       <p>Maximizes advantage through enabling visual effects</p>
 			<label>Preview
 				<select class="form-control selectpicker gfx_preview_selection" id="mastercomfig-compquality_preview">
@@ -720,8 +729,11 @@ custom_js:
   </div>
 
 	<div id="cfg_mastercomfig-maxperformance" class="desc" style="display: none;">
-	  <div class="panel-body">
+	  <div class="panel-body pr-0 pl-0">
       <h3>mastercomfig: Maximum performance preset</h3>
+           <div class="alert alert-dismissible alert-danger">
+      Please note that we are not able to provide full support and customization level of the original mastercomfig, please consider using the <a href="https://mastercomfig.com/" target="_blank">official site</a> or <a href="https://github.com/mastercoms/mastercomfig" target="_blank">GitHub repository</a> instead.
+    </div>
       <p>Max FPS without caring about visibility or possible bugs</p>
 			<label>Preview
 				<select class="form-control selectpicker gfx_preview_selection" id="mastercomfig-maxperformance_preview">
@@ -797,8 +809,11 @@ custom_js:
   </div>
 
 	<div id="cfg_mastercomfig-midquality" class="desc" style="display: none;">
-	  <div class="panel-body">
+	  <div class="panel-body pr-0 pl-0">
       <h3>mastercomfig: Mid quality preset</h3>
+           <div class="alert alert-dismissible alert-danger">
+      Please note that we are not able to provide full support and customization level of the original mastercomfig, please consider using the <a href="https://mastercomfig.com/" target="_blank">official site</a> or <a href="https://github.com/mastercoms/mastercomfig" target="_blank">GitHub repository</a> instead.
+    </div>
       <p>Enables graphical features without making them too high quality</p>
 			<label>Preview
 				<select class="form-control selectpicker gfx_preview_selection" id="mastercomfig-midquality_preview">
@@ -873,8 +888,11 @@ custom_js:
   </div>
 
 	<div id="cfg_mastercomfig-maxquality" class="desc" style="display: none;">
-	  <div class="panel-body">
+	  <div class="panel-body pr-0 pl-0">
       <h3>mastercomfig: Maximum quality preset</h3>
+           <div class="alert alert-dismissible alert-danger">
+      Please note that we are not able to provide full support and customization level of the original mastercomfig, please consider using the <a href="https://mastercomfig.com/" target="_blank">official site</a> or <a href="https://github.com/mastercoms/mastercomfig" target="_blank">GitHub repository</a> instead.
+    </div>
       <p>Maximum quality without caring about FPS too much</p>
 			<label>Preview
 				<select class="form-control selectpicker gfx_preview_selection" id="mastercomfig-maxquality_preview">
@@ -949,8 +967,11 @@ custom_js:
   </div>
 
 	<div id="cfg_mastercomfig-igpu" class="desc" style="display: none;">
-	  <div class="panel-body">
+	  <div class="panel-body pr-0 pl-0">
       <h3>mastercomfig: Bad GPU</h3>
+           <div class="alert alert-dismissible alert-danger">
+      Please note that we are not able to provide full support and customization level of the original mastercomfig, please consider using the <a href="https://mastercomfig.com/" target="_blank">official site</a> or <a href="https://github.com/mastercoms/mastercomfig" target="_blank">GitHub repository</a> instead.
+    </div>
       <p> Optimizations for weak Intel integrated graphics chips or weak/old GPUs. </p>
 			<label>Preview
 				<select class="form-control selectpicker gfx_preview_selection" id="mastercomfig-igpu_preview">
@@ -1027,8 +1048,11 @@ custom_js:
   </div>
 
 	<div id="cfg_mastercomfig-stripped" class="desc" style="display: none;">
-	  <div class="panel-body">
+	  <div class="panel-body pr-0 pl-0">
       <h3>mastercomfig: Stripped quality</h3>
+           <div class="alert alert-dismissible alert-danger">
+      Please note that we are not able to provide full support and customization level of the original mastercomfig, please consider using the <a href="https://mastercomfig.com/" target="_blank">official site</a> or <a href="https://github.com/mastercoms/mastercomfig" target="_blank">GitHub repository</a> instead.
+    </div>
       <p>Significantly reduces playability in desperation for frames on very weak hardware.</p>
 			<label>Preview
 				<select class="form-control selectpicker gfx_preview_selection" id="mastercomfig-stripped_preview">
@@ -1106,7 +1130,7 @@ custom_js:
 
 
   <div id="cfg_rhapsody_dx9" class="desc" style="display: none;">
-    <div class="panel-body">
+    <div class="panel-body pr-0 pl-0">
       <h3>Rhapsody</h3>
       <p>Rhapsody's config with DirectX 9.0 enabled.</p>
 			<label>Preview
@@ -1179,7 +1203,7 @@ custom_js:
   </div>
 
   <div id="cfg_rhapsody_dx8" class="desc" style="display: none;">
-    <div class="panel-body">
+    <div class="panel-body pr-0 pl-0">
       <h3>Rhapsody</h3>
       <p>Rhapsody's config with DirectX 8.1 enabled.</p>
 			<label>Preview

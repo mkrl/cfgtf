@@ -214,3 +214,19 @@ table.vertical-align > tbody > tr > td {
   background-image: url(/img/crosshairs/vtfcrosspreview.jpg);
   color: #f9f9f9 !important;;
 }
+
+.alert.alert-danger > a {
+  color: white;
+  text-decoration: underline;
+}
+
+.pl-0 {
+  padding-left: 0 !important;
+}
+.pr-0 {
+  padding-right: 0 !important;
+}
+
+.mb-1 {
+  margin-bottom: 1rem !important;
+}
