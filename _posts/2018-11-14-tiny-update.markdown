@@ -14,6 +14,6 @@ Hey, everyone! It's been almost a year without any updates, but here is a small 
 * Small visual adjustments.
 
 
-We would also like to announce that we are not able to provide full support and customization level of the original mastercomfig, please consider using the [official site](https://mastercomfig.com/) or [GitHub repository](https://github.com/mastercoms/mastercomfig) instead. The latest supported version is 6.7.0 | April 27 2018. 
+We would also like to announce that we are not able to provide full support and customization level of the original mastercomfig, please consider using the [official site](https://mastercomfig.com/) or [GitHub repository](https://github.com/mastercoms/mastercomfig) instead. The latest supported version is 6.7.0, April 27 2018. 
 
 Play safe, stay cool!
