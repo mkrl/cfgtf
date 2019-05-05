@@ -32,16 +32,6 @@ permalink: /angle/
 		/* END USER CONFIG */
 	</script>
 	
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/bootstrap-select.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    //<link href="css/jumbotron-narrow.css" rel="stylesheet">
-	
-	<script type="text/javascript" src="js/jquery-2.1.4.min.js" ></script>
-	<script type="text/javascript" src="js/bootstrap.min.js" ></script>
-	
 	<!---
 	
 		Original sourcemod plugin by nolem 
@@ -201,7 +191,6 @@ permalink: /angle/
 			var w = 45.0; //45 || nearestAngle > 89
 			
 			while (!l) {
-				//console.log("w" + w);
 				h = 0.01;
 				var _ = calculateVel((w+h-0.01), o, a);
 				var k = _ - 12.0
@@ -220,7 +209,6 @@ permalink: /angle/
 						if (w > 89){
 							break;
 						}
-						//console.log("h" + h);
 						var v_ = calculateVel((w + h), o, a);
 						var vk = v_ - 12.0
 				
@@ -255,10 +243,6 @@ permalink: /angle/
 					}
 				}
 			}
-			//return r;
-			//for (var i = 0; i < r.length; i++) {
-			//	console.log(r[i]);
-			//}
 			
 			//once all angle pairs are found find pair with biggest difference
 			var rDiff = 0.0;
@@ -271,9 +255,6 @@ permalink: /angle/
 					 r1 = i+1;
 					 rDiff = r[r1] - r[r0];
 				}
-				//console.log("Out0: " + r[r0]);
-				//console.log("Out1: " + r[r1]);
-				//console.log("Diff: " + rDiff);
 				i += 2;
 				if (i > r.length-1){
 					break;
@@ -282,16 +263,10 @@ permalink: /angle/
 			r0 = r[r0];
 			r1 = r[r1];
 			
-			//console.log(r0);
-			//console.log(r1);
-			
 			r_.push(r0);
 			r_.push(r1);
 			
 			return r_;
-			//for (var i = 0; i < r_.length; i++) {
-			//	console.log(r_[i]);
-			//}
 		}
 		
 		function calculateVel(t, e, o)
