@@ -81,13 +81,11 @@ custom_js:
 								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_stickbomb.txt">Ullapool Caber</option>
 								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_katana.txt">Half-Zatoichi</option>
 							</optgroup>
-							</optgroup>
 								<optgroup label="Heavy">
 								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_minigun.txt">Minigun, Natascha, Brass Beast, Tomislav, Huo-Long Heater</option>
 								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_shotgun_hwg.txt">Shotgun, Family Business, Panic Attack</option>
 								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_lunchbox.txt">Sandvich, Dalokohs Bar and reskin, Buffalo Steak Sandvich, Second Banana</option>
 								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_fists.txt">Fists and all reskins, Killing Gloves of Boxing, Gloves of Running Urgently, Warrior's Spirit, Fists of Steel, Eviction Notice, Holiday Punch</option>
-							</optgroup>
 							</optgroup>
 								<optgroup label="Engineer">
 								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_shotgun_primary.txt">Shotgun, Widowmaker, Panic Attack</option>
@@ -103,13 +101,11 @@ custom_js:
 								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_pda_engineer_destroy.txt">Destroy PDA</option>
 								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_builder.txt">Placing a building</option>
 							</optgroup>
-							</optgroup>
 								<optgroup label="Medic">
 								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_syringegun_medic.txt">Syringe Gun, Blutsauger, Overdose</option>
 								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_crossbow.txt">Crusader's Crossbow</option>
 								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_medigun.txt">Medi Gun, Kritzkrieg, Quick-Fix, Vaccinator</option>
 								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_bonesaw.txt">Bonesaw and all reskins, Ubersaw, Vita-Saw, Amputator, Solemn Vow</option>
-							</optgroup>
 							</optgroup>
 								<optgroup label="Sniper">
 								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_sniperrifle.txt">Sniper Rifle, Sydney Sleeper, Hitman's Heatmaker, Machina</option>
@@ -120,7 +116,6 @@ custom_js:
 								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_charged_smg.txt">Cleaner's Carbine</option>
 								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_jar.txt">Jarate, Mad Milk and Gas Passer</option>
 								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_club.txt">Kukri and all reskins, Tribalman's Shiv, Bushwacka, Shahanshah</option>
-							</optgroup>
 							</optgroup>
 								<optgroup label="Spy">
 								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_revolver.txt">Revolver, Ambassador, L'Etranger, Enforcer, Diamondback</option>
@@ -230,6 +225,10 @@ custom_js:
 						</select>
 
 		  <button class="btn btn-secondary" type="button" id="#add_btn" onclick="addItem();">Add <i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i></button>
+			<br>
+			<br>
+			<button class="btn btn-success" type="button" id="#add_all_btn" onclick="addAll();">Add current crosshair to all weapons</button>
+			<button class="btn btn-danger" type="button" id="#remove_all_btn" onclick="delet_all();">Remove all crosshairs</button>
 		  <span class="text-danger" style="margin-left: 7px;" id="notification_preview"></span>
 			<br>
 			<br>
@@ -252,7 +251,7 @@ custom_js:
   <button type="submit" class="btn btn-primary">Download package <i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
 	<hr>
 </form>
-<script>
+<script type="text/javascript">
 
 	var i = 0;
 
@@ -279,9 +278,42 @@ custom_js:
 		$('#notification_preview').html('');
 		}
 	}
+	function addAll() {
+		var picked_cross = $("#crosshairselector option:selected").html();
+		var crosshair_name = $("#crosshairselector option:selected").data("url");
+		var explosion_path = $("#smokeselector option:selected").data("url");
+
+		$('#weaponselector option:not([value="none"])').each(function() {
+			var explosion_name = $("#smokeselector option:selected").html();
+			var $this = $(this);
+			var weapon_script = $this.data("url");
+			var picked_weapon = $this.html();
+			if ($this.val() === "explosion") {
+				weapon_script = "./scripts/nosmoke/"+explosion_path+"/"+weapon_script.slice(10);
+			} else {
+				explosion_name = "";
+			}
+
+			if (($("#crosshairselector option:selected").val() === "none")||($("#weaponselector option:selected").val() === "none")) {
+				$('#notification_preview').html('Please pick a weapon and a crosshair');
+			} else {
+				console.log(explosion_name)
+				$('#crosslist > tbody:last-child').append('<tr class="crosshair_item" data-url="'+weapon_script+'" data-name="'+crosshair_name+'"><td class="col-md-2">'+picked_cross+'</td><td  class="col-md-1"><img src="./xhairs/png/'+picked_cross+'.png"></td><td  class="col-md-5">'+picked_weapon+'</td><td  class="col-md-2">'+explosion_name+'</td><td  class="col-md-2"><button class="btn btn-danger" type="button" id="delet'+i+'" onclick="delet_this('+i+')" class="remove_btn"><i class="fa fa-times" aria-hidden="true"></i></button></td></tr>');
+				i += 1;
+				$('#notification_preview').html('');
+			}
+		});
+	}
 
 	function delet_this(row) {
 		$('#delet'+row).parent().parent().remove();
+	}
+	function delet_all() {
+		const yes = window.confirm('Are you sure?');
+		if (yes) {
+			$('#crosslist tbody').html('')
+			i = 0
+		}
 	}
 
 	$(function() {
