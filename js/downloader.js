@@ -151,8 +151,8 @@ jQuery(function($) {
 		var cl_autorezoom = $('input[data-name="cl_autorezoom"]').is(':checked');
 		var tf_sniper_fullcharge_bell = $('input[data-name="tf_sniper_fullcharge_bell"]').is(':checked');
 		var tf_hud_no_crosshair_on_scope_zoom = $('input[data-name="tf_hud_no_crosshair_on_scope_zoom"]').is(':checked');
-		
-		
+
+
 		//viewmodel settings
 		var drawviewmodel = $('#modeltoggle').is(':checked');
 		var minmodel = $('#minmodtoggle').is(':checked');
@@ -246,7 +246,7 @@ jQuery(function($) {
 				}
 			}
 
-
+		var tabgraph_enabled = false;
 		var bindarr = '';
 		var scout_switcher = '';
 		var soldier_switcher = '';
@@ -388,6 +388,9 @@ jQuery(function($) {
 			if (iswhat === 'tweaks') {
 				zipbin(url, 'cfg/tweaks/' + filename);
 				customs += 'exec tweaks/' + filename.slice(0, -4) + '\n';
+				if (filename === 'tabgraph.cfg') {
+					tabgraph_enabled = true
+				}
 			}
 			if (iswhat === 'medicheck') {
 				var medichecksettings = [
@@ -510,7 +513,7 @@ jQuery(function($) {
 			'',
 			'tf_remember_activeweapon 1',
 			'tf_remember_lastswitched 1',
-			'm_rawinput 1',			
+			'm_rawinput 1',
 			'///---',
 			surround('\n', [
 				ds_mode !== 0 ? 'ds_enable '+ds_mode+'\n' : '',
@@ -601,7 +604,8 @@ jQuery(function($) {
 			'//stock non class-specific binds',
 			'//Made with cfg.tf - custom Team Fortress 2 config generator',
 			'',
-			bindarr
+			bindarr,
+			tabgraph_enabled ? 'exec tweaks/tabgraph' : ''
 		].join('\n');
 		//class binds
 		var binds_scout = [
