@@ -3,7 +3,7 @@ layout: default
 title: CFG.TF - Weapon-specific crosshairs
 loader: red
 permalink: /tools/crosshairs/
-custom_css: 
+custom_css:
 - <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css" integrity="sha256-an4uqLnVJ2flr7w0U74xiF4PJjO2N5Df91R2CUmCLCA=" crossorigin="anonymous" />
 custom_js:
 - <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js" integrity="sha256-JD3g+rB9BjW6/cGEuwCue1sGtitb2aQVNs/pl4114XQ=" crossorigin="anonymous"></script>
@@ -68,7 +68,8 @@ custom_js:
 								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_flaregun_revenge.txt">Manmelter</option>
 								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_rocketpack.txt">Thermal Thruster</option>
 								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_jar.txt">Gas Passer, Jarate, Mad Milk</option>
-								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_fireaxe.txt">Fire Axe, Lollichop, Axtinguisher and reskin, Homewrecker and reskin, Powerjack, Back Scratcher, Sharpened Volcano Fragment, Third Degree, Neon Annihilator</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_fireaxe.txt">Fire Axe, Lollichop, Axtinguisher and reskin, Homewrecker and reskin, Powerjack, Back Scratcher, Sharpened Volcano Fragment, Third Degree</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_breakable_sign.txt">Neon Annihilator</option>
 								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_slap.txt">Hot Hand</option>
 							</optgroup>
 								<optgroup label="Demoman">
@@ -111,9 +112,9 @@ custom_js:
 							</optgroup>
 							</optgroup>
 								<optgroup label="Sniper">
-								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_sniperrifle.txt">Sniper Rifle, Sydney Sleeper, Bazaar Bargain, Machina</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_sniperrifle.txt">Sniper Rifle, Sydney Sleeper, Hitman's Heatmaker, Machina</option>
 								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_compound_bow.txt">Huntsman and reskin</option>
-								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_sniperrifle_decap.txt">Hitman's Heatmaker</option>
+								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_sniperrifle_decap.txt">Bazaar Bargain</option>
 								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_sniperrifle_classic.txt">Classic</option>
 								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_smg.txt">Submachine Gun (SMG)</option>
 								<option value="test" data-name="weapon_picker" data-url="./scripts/tf_weapon_charged_smg.txt">Cleaner's Carbine</option>
@@ -240,21 +241,21 @@ custom_js:
   							<th class="col-md-2">Crosshair</th>
   							<th class="col-md-1"></th>
 							<th class="col-md-5">Weapon</th>
-  							<th class="col-md-2">Explosion effect</th>  							
+  							<th class="col-md-2">Explosion effect</th>
 							<th class="col-md-2"></th>
 						  </thead>
 						  <tbody>
 						</tbody>
 		</table>
-						
-						
+
+
   <button type="submit" class="btn btn-primary">Download package <i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
 	<hr>
 </form>
 <script>
-	
+
 	var i = 0;
-	
+
 	function addItem() {
 		var picked_cross = $("#crosshairselector option:selected").html();
 		var crosshair_name = $("#crosshairselector option:selected").data("url");
@@ -262,14 +263,14 @@ custom_js:
 		var weapon_script = $("#weaponselector option:selected").data("url");
 		var explosion_name = $("#smokeselector option:selected").html();
 		var explosion_path = $("#smokeselector option:selected").data("url");
-		
+
 		if (($("#smokeselector option:selected").val() !== "none")&&($("#weaponselector option:selected").val() === "explosion")) {
 			weapon_script = "./scripts/nosmoke/"+explosion_path+"/"+weapon_script.slice(10);
 		} else {
 			explosion_name = "";
 		}
 
-		
+
 		if (($("#crosshairselector option:selected").val() === "none")||($("#weaponselector option:selected").val() === "none")) {
 		$('#notification_preview').html('Please pick a weapon and a crosshair');
 		} else {
@@ -278,15 +279,15 @@ custom_js:
 		$('#notification_preview').html('');
 		}
 	}
-	
+
 	function delet_this(row) {
 		$('#delet'+row).parent().parent().remove();
 	}
-	
+
 	$(function() {
-		
+
 		$('#crosspreview').on('click', function(e) {
-		  $('#crosspreview').toggleClass("unpressed pressed"); //you can list several class names 
+		  $('#crosspreview').toggleClass("unpressed pressed"); //you can list several class names
 		  e.preventDefault();
 		});
 
@@ -298,7 +299,7 @@ custom_js:
 		$('#notification_preview').html('Please pick a weapon and a crosshair');
 		}
 	  });
-	  
+
 	  $('#weaponselector').on('change', function(){
 		if ($("#weaponselector option:selected").val() === "explosion"){
 		$('#smokeselector').prop('disabled', false);
@@ -309,7 +310,7 @@ custom_js:
 		$('#smokeselector').selectpicker('refresh');
 		}
 	  });
-	  
+
 	});
 
 </script>
