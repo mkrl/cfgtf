@@ -288,7 +288,7 @@ custom_js:
 			var $this = $(this);
 			var weapon_script = $this.data("url");
 			var picked_weapon = $this.html();
-			if ($this.val() === "explosion") {
+			if ($this.val() === "explosion" && $("#smokeselector option:selected").val() !== "none") {
 				weapon_script = "./scripts/nosmoke/"+explosion_path+"/"+weapon_script.slice(10);
 			} else {
 				explosion_name = "";
@@ -297,7 +297,6 @@ custom_js:
 			if (($("#crosshairselector option:selected").val() === "none")||($("#weaponselector option:selected").val() === "none")) {
 				$('#notification_preview').html('Please pick a weapon and a crosshair');
 			} else {
-				console.log(explosion_name)
 				$('#crosslist > tbody:last-child').append('<tr class="crosshair_item" data-url="'+weapon_script+'" data-name="'+crosshair_name+'"><td class="col-md-2">'+picked_cross+'</td><td  class="col-md-1"><img src="./xhairs/png/'+picked_cross+'.png"></td><td  class="col-md-5">'+picked_weapon+'</td><td  class="col-md-2">'+explosion_name+'</td><td  class="col-md-2"><button class="btn btn-danger" type="button" id="delet'+i+'" onclick="delet_this('+i+')" class="remove_btn"><i class="fa fa-times" aria-hidden="true"></i></button></td></tr>');
 				i += 1;
 				$('#notification_preview').html('');
